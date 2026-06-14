@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Paisabor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="login-page">
+
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="logo.jpg" alt="Paisabor">
+            <h1>Paisabor</h1>
+            <p>Panel de Administración</p>
+        </div>
+
+        <div class="form-grupo">
+            <label for="usuario">Usuario</label>
+            <input type="text" id="usuario" placeholder="Tu usuario">
+        </div>
+
+        <div class="form-grupo">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" placeholder="Tu contraseña">
+        </div>
+
+        <button class="btn-primario" id="btn-login" style="width:100%">
+            <span class="material-symbols-outlined">lock_open</span>
+            Entrar
+        </button>
+
+        <p class="form-mensaje oculto" id="login-mensaje"></p>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

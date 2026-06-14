@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "titulo": "Festival Vallenato",
+    "fecha": "2025-08-05",
+    "lugar": "Utrecht",
+    "descripcion": "Acordeón, caja y guacharaca en la plaza principal.",
+    "imagen": "/imagenes/eventos/vallenato.jpg"
+  }
+]

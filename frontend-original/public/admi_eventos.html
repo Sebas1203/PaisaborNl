@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Eventos | Paisabor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <nav class="navbar-paisabor">
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo Paisabor" />
+            <h1>Paisabor — Admin</h1>
+        </div>
+        <div class="navbar-links">
+            <a href="index.html">← Volver al sitio</a>
+        </div>
+    </nav>
+
+    <main class="admin-layout">
+
+        <!-- Formulario agregar evento -->
+        <div class="admin-panel">
+            <h2>
+                <span class="material-symbols-outlined">add_circle</span>
+                Agregar Evento
+            </h2>
+
+            <div class="admin-form">
+                <div class="form-grupo">
+                    <label for="titulo">Título del evento</label>
+                    <input type="text" id="titulo" placeholder="Ej: Festival Vallenato">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="lugar">Lugar</label>
+                    <input type="text" id="lugar" placeholder="Ej: Utrecht, Ámsterdam...">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" rows="3" placeholder="Describe el evento..."></textarea>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="imagen">URL de la imagen</label>
+                    <input type="text" id="imagen" placeholder="/imagenes/eventos/nombre.jpg">
+                </div>
+
+                <button class="btn-primario" id="btn-agregar">
+                    <span class="material-symbols-outlined">add</span>
+                    Agregar evento
+                </button>
+
+                <p class="form-mensaje oculto" id="form-mensaje"></p>
+            </div>
+        </div>
+
+        <!-- Lista de eventos existentes -->
+        <div class="admin-panel">
+            <h2>
+                <span class="material-symbols-outlined">event</span>
+                Eventos activos
+            </h2>
+            <div id="admin-lista-eventos"></div>
+        </div>
+
+    </main>
+
+    <script src="admin-eventos.js"></script>
+</body>
+</html>

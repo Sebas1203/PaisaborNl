@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Paisabor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+
+    <nav class="navbar-paisabor">
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo Paisabor" />
+            <h1>Paisabor</h1>
+        </div>
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="eventos.html">Eventos</a>
+            <a href="productos.html" class="nav-activo">Productos</a>
+            <a href="fotos.html">Fotos</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="carrito.html" class="carrito-btn">
+                <span class="material-symbols-outlined">shopping_basket</span>
+                <span class="carrito-contador" id="carrito-contador">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <header class="productos-hero">
+        <span class="hero-label">Artesanía Culinaria</span>
+        <h2>El Sabor de Nuestra <em>Tierra</em></h2>
+        <p>Selección artesanal de los tesoros gastronómicos de Colombia,
+        traídos directamente al corazón de los Países Bajos.</p>
+    </header>
+
+    <div class="productos-layout">
+
+        <!-- Barra lateral de categorías -->
+        <aside class="categorias-sidebar">
+            <h3>Categorías</h3>
+            <ul id="lista-categorias">
+                <li>
+                    <button class="categoria-btn activo" data-id="todas">
+                        <span class="material-symbols-outlined">grid_view</span>
+                        Todos los productos
+                    </button>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Grid de productos -->
+        <section class="productos-seccion">
+            <p class="categoria-titulo" id="categoria-titulo">Todos los productos</p>
+            <div id="lista-productos"></div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2025 Paisabor.NL · Para más información escríbenos a
+        <a href="mailto:info@paisabor.nl">info@paisabor.nl</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

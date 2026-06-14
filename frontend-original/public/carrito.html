@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+</head>
+<body>
+    <a href="index.html">Volver a la página principal</a>
+    <h1>Productos</h1>
+    <p>En esta sección encontrarás los productos que te haran sentir en casa</p>
+    <ul id="lista-productos"></ul>
+    <script>
+        // Simulación de productos (puedes reemplazar esto con una llamada a una API o base de datos)
+        const productos = [
+            { id: 1, nombre: 'Producto 1', precio: 10.99 },
+            { id: 2, nombre: 'Producto 2', precio: 15.49 },
+            { id: 3, nombre: 'Producto 3', precio: 7.99 }
+        ];
+
+        const listaProductos = document.getElementById('lista-productos');
+
+        productos.forEach(producto => {
+            const li = document.createElement('li');
+            li.textContent = `${producto.nombre} - $${producto.precio.toFixed(2)}`;
+            listaProductos.appendChild(li);
+        });
+    </script>
+</body>
+</html>

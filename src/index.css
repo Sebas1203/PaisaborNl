@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --font-headline: 'Epilogue', system-ui, -apple-system, sans-serif;
+  --font-display: 'Epilogue', system-ui, -apple-system, sans-serif;
+  --font-body: 'Work Sans', system-ui, -apple-system, sans-serif;
+  --font-label: 'Work Sans', system-ui, -apple-system, sans-serif;
+
+  /* Paisabor Curated Hearth Palette */
+  --color-primary: #33210d;
+  --color-primary-container: #4b3621;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #bd9f83;
+  --color-primary-fixed: #fedcbe;
+  --color-primary-fixed-dim: #e1c1a4;
+  --color-on-primary-fixed: #291806;
+  --color-on-primary-fixed-variant: #59422c;
+
+  --color-secondary: #994621;
+  --color-secondary-container: #ff956a;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #762c08;
+  --color-secondary-fixed: #ffdbce;
+  --color-secondary-fixed-dim: #ffb599;
+  --color-on-secondary-fixed: #370e00;
+  --color-on-secondary-fixed-variant: #7b2f0b;
+
+  --color-tertiary: #391e00;
+  --color-tertiary-container: #54330c;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #cb9b6c;
+  --color-tertiary-fixed: #ffdcbd;
+  --color-tertiary-fixed-dim: #f0bd8b;
+  --color-on-tertiary-fixed: #2c1600;
+  --color-on-tertiary-fixed-variant: #623f18;
+
+  --color-surface: #fcf9f4;
+  --color-surface-bright: #fcf9f4;
+  --color-surface-dim: #dcdad5;
+  --color-surface-variant: #e5e2dd;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f6f3ee;
+  --color-surface-container: #f0ede8;
+  --color-surface-container-high: #ebe8e3;
+  --color-surface-container-highest: #e5e2dd;
+  --color-surface-tint: #725a42;
+
+  --color-on-surface: #1c1c19;
+  --color-on-surface-variant: #4e453d;
+  --color-background: #fcf9f4;
+  --color-on-background: #1c1c19;
+
+  --color-outline: #80756c;
+  --color-outline-variant: #d2c4ba;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+}
+
+/* Custom Design System Utility Classes & Soil Shadows */
+.soil-shadow {
+  box-shadow: -10px 0 40px rgba(28, 28, 25, 0.05);
+}
+
+.card-ambient-shadow {
+  box-shadow: 0 4px 40px rgba(28, 28, 25, 0.05);
+}
+
+.cart-float-shadow {
+  box-shadow: 0 12px 48px -6px rgba(51, 33, 13, 0.15);
+}
+
+/* Smooth focus styles adhering to no-harsh-border rule */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}

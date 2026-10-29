@@ -1,0 +1,6 @@
+{
+  "name": "Paisabor - El Sabor de Casa",
+  "description": "Tienda gourmet y restaurante de cocina tradicional colombiana con despensa artesanal, menú de firmas y panel de administración.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

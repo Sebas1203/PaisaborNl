@@ -6,6 +6,7 @@ import '@fontsource-variable/work-sans';
 import '@fontsource-variable/work-sans/wght-italic.css';
 import './globals.css';
 import { CartProvider } from '@/features/cart/CartProvider';
+import { INITIAL_CART } from '@/data/products';
 
 export const metadata: Metadata = {
   title: 'Paisabor — El Corazón de Colombia en tu Mesa',
@@ -17,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className="bg-surface font-body text-on-surface antialiased">
-        <CartProvider>{children}</CartProvider>
+        <CartProvider initialItems={INITIAL_CART}>{children}</CartProvider>
       </body>
     </html>
   );

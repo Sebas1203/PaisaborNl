@@ -155,15 +155,7 @@ export default function CheckoutErrorPage() {
                         </span>
                         {' '}
                         <span className="px-2 py-1 rounded-sm bg-surface-container">
-                          Bancontact
-                        </span>
-                        {' '}
-                        <span className="px-2 py-1 rounded-sm bg-surface-container">
                           Visa/Mastercard
-                        </span>
-                        {' '}
-                        <span className="px-2 py-1 rounded-sm bg-surface-container">
-                          Apple Pay
                         </span>
                       </div>
                     </div>

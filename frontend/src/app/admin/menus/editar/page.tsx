@@ -161,7 +161,7 @@ export default function AdminMenusEditarPage() {
                         </span>
                         {' '}
                         <span>
-                          IVA 9%: €2.02
+                          BTW 9%: €2.02
                         </span>
                       </div>
                     </div>

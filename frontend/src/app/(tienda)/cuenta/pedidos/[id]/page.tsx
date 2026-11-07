@@ -312,7 +312,7 @@ export default function CuentaPedidosIdPage() {
                       </span>
                       {' '}
                       <span className="block text-[10px] text-on-primary-container mt-1 font-label">
-                        Precios con IVA incluido
+                        Precios con BTW incluido
                       </span>
                     </div>
                   </div>

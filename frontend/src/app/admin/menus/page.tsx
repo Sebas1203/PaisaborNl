@@ -121,7 +121,7 @@ export default function AdminMenusPage() {
                   </span>
                 </div>
                 <p className="text-xs text-on-surface-variant mt-1.5 leading-snug">
-                  Todas liquidadas vía iDeal &amp; Bancontact con 48h de antelación.
+                  Todas liquidadas vía iDEAL o tarjeta con 48h de antelación.
                 </p>
               </div>
               <div className="mt-4 pt-3 flex items-center justify-between text-xs text-on-surface-variant bg-surface-container-low px-3 py-2 rounded-lg">

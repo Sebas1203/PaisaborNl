@@ -1,6 +1,6 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/men_de_platos_t_picos
 /* eslint-disable @next/next/no-img-element */
-import { Go } from '@/components/ui/Go';
+import { AddToCartButton } from '@/features/cart/AddToCartButton';
 
 export default function CatalogoFirmasPage() {
   return (
@@ -18,33 +18,33 @@ export default function CatalogoFirmasPage() {
               Platos Típicos
             </span>
             <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-primary tracking-tight leading-tight -ml-1 md:w-3/4">
-              The Heart
+              El Corazón
               <br />
-              of Colombia.
+              de Colombia.
             </h1>
             <p className="mt-6 text-lg md:text-xl text-on-surface-variant max-w-2xl font-body leading-relaxed">
-              Heavy, hearty, and handcrafted. Our signature dishes are slow-cooked using traditional methods, bringing the warmth of a Paisa kitchen straight to your table.
+              Contundentes, abundantes y hechos a mano. Nuestros platos insignia se cocinan a fuego lento con métodos tradicionales y llevan el calor de una cocina paisa directo a tu mesa.
             </p>
           </div>
         </section>
         <section className="max-w-7xl mx-auto px-6 lg:px-8 py-16 md:py-24 w-full">
           <div className="flex flex-col md:flex-row justify-between items-baseline mb-12 border-b border-outline-variant/15 pb-6">
             <h2 className="font-display font-bold text-3xl md:text-4xl text-primary tracking-tight">
-              Our Signatures
+              Nuestros Platos Insignia
             </h2>
             <div className="flex gap-4 mt-4 md:mt-0">
               <span className="font-label text-sm text-on-surface-variant flex items-center gap-1">
                 <span className="material-symbols-outlined text-base">
                   local_shipping
                 </span>
-                {' '}Delivery
+                {' '}Domicilio
               </span>
               {' '}
               <span className="font-label text-sm text-on-surface-variant flex items-center gap-1">
                 <span className="material-symbols-outlined text-base">
                   takeout_dining
                 </span>
-                {' '}Takeout
+                {' '}Para llevar
               </span>
             </div>
           </div>
@@ -65,24 +65,24 @@ export default function CatalogoFirmasPage() {
                     </span>
                   </div>
                   <p className="font-body text-on-surface-variant leading-relaxed mb-6">
-                    The undisputed king of Colombian cuisine. A substantial feast featuring slow-cooked red beans, white rice, seasoned ground beef, crispy chicharrón, chorizo, sweet plantain, fresh avocado, an artisanal arepa, topped with a fried egg.
+                    El rey indiscutible de la cocina colombiana. Un banquete abundante con fríjoles rojos de cocción lenta, arroz blanco, carne molida sazonada, chicharrón crujiente, chorizo, plátano maduro, aguacate fresco y arepa artesanal, coronado con un huevo frito.
                   </p>
                   <div className="flex flex-wrap gap-2 mb-8">
                     <span className="px-3 py-1 bg-surface-container-low text-on-surface-variant rounded-full font-label text-xs">
-                      Hearty
+                      Contundente
                     </span>
                     {' '}
                     <span className="px-3 py-1 bg-surface-container-low text-on-surface-variant rounded-full font-label text-xs">
-                      Traditional
+                      Tradicional
                     </span>
                   </div>
                 </div>
-                <Go href="/carrito" className="w-full bg-primary text-on-primary font-label font-medium py-4 px-6 rounded-xl hover:bg-primary-container transition-colors duration-300 flex items-center justify-center gap-2 active:scale-95">
+                <AddToCartButton productId="bandeja-paisa" href="/carrito" className="w-full bg-primary text-on-primary font-label font-medium py-4 px-6 rounded-xl hover:bg-primary-container transition-colors duration-300 flex items-center justify-center gap-2 active:scale-95">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
                     add_shopping_cart
                   </span>
                   {' '}Añadir al Carrito
-                </Go>
+                </AddToCartButton>
               </div>
             </article>
             <article className="md:col-span-6 lg:col-span-4 group bg-surface-container-lowest rounded-[1.5rem] p-6 lg:p-8 flex flex-col">
@@ -100,15 +100,15 @@ export default function CatalogoFirmasPage() {
                     </span>
                   </div>
                   <p className="font-body text-sm text-on-surface-variant leading-relaxed mb-6">
-                    Authentic stuffed pork, slow-roasted to perfection with yellow peas, rice, and a blend of traditional spices. Served with a crispy white arepa.
+                    Auténtico cerdo relleno, asado lentamente con arveja amarilla, arroz y una mezcla de especias tradicionales. Se sirve con una arepa blanca crujiente.
                   </p>
                 </div>
-                <button className="w-full bg-secondary-container text-on-secondary-container font-label font-medium py-3 px-4 rounded-xl hover:bg-secondary hover:text-on-secondary transition-colors duration-300 flex items-center justify-center gap-2 active:scale-95">
+                <AddToCartButton productId="lechona-tolimense" className="w-full bg-secondary-container text-on-secondary-container font-label font-medium py-3 px-4 rounded-xl hover:bg-secondary hover:text-on-secondary transition-colors duration-300 flex items-center justify-center gap-2 active:scale-95">
                   <span className="material-symbols-outlined">
                     add
                   </span>
                   {' '}Añadir
-                </button>
+                </AddToCartButton>
               </div>
             </article>
             <article className="md:col-span-6 lg:col-span-4 group bg-surface-container-lowest rounded-[1.5rem] p-6 lg:p-8 flex flex-col">
@@ -126,15 +126,15 @@ export default function CatalogoFirmasPage() {
                     </span>
                   </div>
                   <p className="font-body text-sm text-on-surface-variant leading-relaxed mb-6">
-                    A soul-warming traditional soup made with three types of potatoes, shredded chicken, corn on the cob, and the essential 'guascas' herb. Served with capers and cream.
+                    Una sopa tradicional que reconforta el alma, con tres tipos de papa, pollo desmechado, mazorca y la imprescindible hierba guasca. Se sirve con alcaparras y crema.
                   </p>
                 </div>
-                <button className="w-full bg-secondary-container text-on-secondary-container font-label font-medium py-3 px-4 rounded-xl hover:bg-secondary hover:text-on-secondary transition-colors duration-300 flex items-center justify-center gap-2 active:scale-95">
+                <AddToCartButton productId="ajiaco-santafereno" className="w-full bg-secondary-container text-on-secondary-container font-label font-medium py-3 px-4 rounded-xl hover:bg-secondary hover:text-on-secondary transition-colors duration-300 flex items-center justify-center gap-2 active:scale-95">
                   <span className="material-symbols-outlined">
                     add
                   </span>
                   {' '}Añadir
-                </button>
+                </AddToCartButton>
               </div>
             </article>
             <article className="md:col-span-12 lg:col-span-8 group bg-surface-container-lowest rounded-[1.5rem] overflow-hidden flex flex-col md:flex-row-reverse">
@@ -152,15 +152,15 @@ export default function CatalogoFirmasPage() {
                     </span>
                   </div>
                   <p className="font-body text-on-surface-variant leading-relaxed mb-6">
-                    A rich, savory blend of corn dough, tender chicken, pork, hard-boiled egg, and vegetables, all tightly wrapped in fragrant plantain leaves and steamed for hours to meld the earthy flavors.
+                    Una sabrosa mezcla de masa de maíz, pollo tierno, cerdo, huevo cocido y verduras, envuelta en aromáticas hojas de plátano y cocida al vapor durante horas para fundir sus sabores.
                   </p>
                 </div>
-                <Go href="/carrito" className="w-full bg-primary text-on-primary font-label font-medium py-4 px-6 rounded-xl hover:bg-primary-container transition-colors duration-300 flex items-center justify-center gap-2 active:scale-95">
+                <AddToCartButton productId="tamal-tolimense" href="/carrito" className="w-full bg-primary text-on-primary font-label font-medium py-4 px-6 rounded-xl hover:bg-primary-container transition-colors duration-300 flex items-center justify-center gap-2 active:scale-95">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
                     add_shopping_cart
                   </span>
                   {' '}Añadir al Carrito
-                </Go>
+                </AddToCartButton>
               </div>
             </article>
           </div>

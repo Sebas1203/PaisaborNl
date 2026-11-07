@@ -1,10 +1,12 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/pago_exitoso_pedido_confirmado_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import { ClearCartOnMount } from '@/features/cart/ClearCartOnMount';
 
 export default function CheckoutExitoPage() {
   return (
     <>
+      <ClearCartOnMount />
       <style dangerouslySetInnerHTML={{ __html: "@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }" }} />
     <div className="bg-surface font-body text-on-surface selection:bg-secondary-container selection:text-on-secondary-container antialiased">
       <main className="w-full pt-28 bg-surface min-h-[calc(100vh-16rem)]">

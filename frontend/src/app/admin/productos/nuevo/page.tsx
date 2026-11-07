@@ -252,18 +252,18 @@ export default function AdminProductosNuevoPage() {
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2 font-label" htmlFor="tax_rate">
-                        Tasa de IVA (Belastingdienst NL)
+                        Tasa de BTW (Belastingdienst NL)
                       </label>
                       <div className="relative">
                         <select className="form-select w-full px-4 py-3 bg-surface-container-high text-on-surface text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all appearance-none cursor-pointer pr-10 font-medium" id="tax_rate" defaultValue="9">
                           <option value="9">
-                            IVA 9% (Alimentos &amp; Bebidas NL)
+                            BTW 9% (Alimentos &amp; Bebidas NL)
                           </option>
                           <option value="21">
-                            IVA 21% (Tarifa General / Souvenirs)
+                            BTW 21% (Tarifa General / Souvenirs)
                           </option>
                           <option value="0">
-                            IVA 0% (Exento)
+                            BTW 0% (Exento)
                           </option>
                         </select>
                         <span className="material-symbols-outlined absolute right-3 top-3.5 pointer-events-none text-on-surface-variant text-[20px]">

@@ -102,47 +102,6 @@ export default function CheckoutPagoPage() {
                     </div>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <label className="text-xs uppercase font-label tracking-wider font-semibold text-on-surface-variant">
-                    Pago Ultrarrápido Express
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <button className="w-full py-3.5 px-4 bg-primary text-on-primary rounded-lg font-medium flex items-center justify-center gap-2.5 hover:bg-primary-container transition-all active:scale-[0.99] shadow-xs" type="button">
-                      <svg className="h-4 w-auto fill-current" viewBox="0 0 170 82">
-                        <path d="M45.83 28.17c-.11-6.19 5.04-9.21 5.27-9.35-2.88-4.21-7.37-4.78-8.97-4.85-3.82-.39-7.46 2.25-9.4 2.25-1.94 0-4.96-2.2-8.12-2.14-4.17.06-8.02 2.42-10.17 6.16-4.34 7.53-1.11 18.67 3.1 24.75 2.06 2.97 4.51 6.3 7.73 6.18 3.1-.12 4.27-2 7.82-2 3.55 0 4.6 2 7.82 1.94 3.28-.06 5.37-3.03 7.43-6 2.38-3.48 3.36-6.85 3.48-7.03-.08-.03-6.68-2.56-6.75-10.16M39.69 11.23c1.72-2.08 2.87-4.98 2.56-7.88-2.47.1-5.46 1.65-7.23 3.73-1.55 1.79-2.91 4.75-2.54 7.58 2.76.22 5.59-1.35 7.21-3.43"></path>
-                        {' '}
-                        <path d="M72.9 14.88v41.67h8.86v-14.8h12.5c10.42 0 17.5-6.97 17.5-16.44 0-9.46-7-10.43-17.1-10.43H72.9zm8.86 7.42h11.96c6.43 0 9.87 2.9 9.87 7.74 0 4.88-3.44 7.78-9.87 7.78H81.76V22.3zM116.14 43.83c0 7.85 5.8 13.3 14.35 13.3 4.25 0 8.01-1.3 10.7-3.49v-6.93c-2.42 1.99-5.7 3.12-8.82 3.12-4.52 0-7.31-2.42-7.31-6.13 0-3.66 2.74-5.65 8.12-6.08l7.85-.64c.22-.05.43-.05.43-1.88 0-4.73-3.06-7.31-8.23-7.31-4.03 0-7.74 1.45-10.16 3.66l3.39 5.38c2.1-1.61 4.41-2.47 6.67-2.47 2.47 0 3.76 1.08 3.76 2.9v1.24l-6.88.54c-7.96.64-13.87 3.55-13.87 11.79zm8.92-.05c0-3.33 2.58-4.79 6.29-5.11l5.59-.48v3.06c0 3.66-2.96 5.86-6.24 5.86-3.44 0-5.64-1.4-5.64-3.33zM144.37 66.88h8.87V48.51l8.71 18.37h8.76l-10.86-21.6 10.27-16.02h-9.52l-7.36 12.31v-12.31h-8.87v37.62z"></path>
-                      </svg>
-                      {' '}
-                      <span className="text-xs font-semibold tracking-wide">
-                        Pagar con Apple Pay
-                      </span>
-                    </button>
-                    {' '}
-                    <button className="w-full py-3.5 px-4 bg-surface-container-highest text-primary rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-surface-container transition-all active:scale-[0.99] shadow-xs" type="button">
-                      <svg className="h-4 w-auto" viewBox="0 0 40 40">
-                        <path d="M39.2 20.45c0-1.41-.13-2.77-.36-4.09H20v7.75h10.77c-.46 2.5-1.87 4.62-3.99 6.05v5.03h6.47c3.78-3.49 5.95-8.62 5.95-14.74z" fill="#4285F4"></path>
-                        {' '}
-                        <path d="M20 40c5.4 0 9.93-1.79 13.24-4.86l-6.47-5.03c-1.79 1.2-4.08 1.91-6.77 1.91-5.21 0-9.61-3.52-11.19-8.25H2.07v5.19C5.39 35.53 12.18 40 20 40z" fill="#34A853"></path>
-                        {' '}
-                        <path d="M8.81 23.77c-.4-1.2-.63-2.49-.63-3.77 0-1.29.23-2.57.63-3.77V11.04H2.07C.75 13.67 0 16.75 0 20s.75 6.33 2.07 8.96l6.74-5.19z" fill="#FBBC05"></path>
-                        {' '}
-                        <path d="M20 7.98c2.94 0 5.58 1.01 7.65 2.99l5.74-5.74C29.92 1.94 25.39 0 20 0 12.18 0 5.39 4.47 2.07 11.04l6.74 5.19C10.39 11.5 14.79 7.98 20 7.98z" fill="#EA4335"></path>
-                      </svg>
-                      {' '}
-                      <span className="text-xs font-semibold tracking-wide">
-                        Pagar con GPay
-                      </span>
-                    </button>
-                  </div>
-                  <div className="relative flex py-2 items-center">
-                    <div className="flex-grow bg-surface-variant h-[1px]"></div>
-                    <span className="flex-shrink mx-4 text-xs font-label text-on-surface-variant uppercase tracking-widest">
-                      O elige tu método
-                    </span>
-                    <div className="flex-grow bg-surface-variant h-[1px]"></div>
-                  </div>
-                </div>
                 <div className="space-y-4" id="payment-accordion">
                   <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-xs transition-all duration-200" id="ideal-card">
                     <label className="flex items-center justify-between p-5 cursor-pointer hover:bg-surface-container-low transition-colors select-none">
@@ -451,7 +410,7 @@ export default function CheckoutPagoPage() {
                     </div>
                     <div className="flex justify-between text-xs">
                       <span>
-                        IVA (9% btw holandés incluido)
+                        BTW (9%) incluido
                       </span>
                       {' '}
                       <span>

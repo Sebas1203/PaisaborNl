@@ -1,6 +1,6 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/men_de_productos_completo
 /* eslint-disable @next/next/no-img-element */
-import { Go } from '@/components/ui/Go';
+import { AddToCartButton } from '@/features/cart/AddToCartButton';
 
 export default function ProductosPage() {
   return (
@@ -53,12 +53,12 @@ export default function ProductosPage() {
                 <p className="font-body text-sm text-on-surface-variant mb-6 flex-grow">
                   Panecillos de queso y almidón de yuca, suaves por dentro y crujientes por fuera. Paquete de 6 unidades.
                 </p>
-                <Go href="/carrito" className="w-full bg-primary text-on-primary font-label font-medium rounded-lg py-3 px-4 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors duration-300 shadow-[0_4px_14px_0_rgba(51,33,13,0.15)] group/btn">
+                <AddToCartButton productId="pandebonos" href="/carrito" className="w-full bg-primary text-on-primary font-label font-medium rounded-lg py-3 px-4 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors duration-300 shadow-[0_4px_14px_0_rgba(51,33,13,0.15)] group/btn">
                   <span className="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover/btn:scale-110">
                     add_shopping_cart
                   </span>
                   {' '}Añadir al Carrito
-                </Go>
+                </AddToCartButton>
               </div>
             </article>
             <article className="group bg-surface rounded-lg overflow-hidden flex flex-col transition-transform duration-500 hover:-translate-y-2" style={{ boxShadow: "0 10px 40px -10px rgba(28, 28, 25, 0.05)" }}>
@@ -77,12 +77,12 @@ export default function ProductosPage() {
                 <p className="font-body text-sm text-on-surface-variant mb-6 flex-grow">
                   Deliciosos panecillos a base de harina de maíz y cuajada fresca. Ideales para el desayuno. Paquete de 6 unidades.
                 </p>
-                <Go href="/carrito" className="w-full bg-primary text-on-primary font-label font-medium rounded-lg py-3 px-4 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors duration-300 shadow-[0_4px_14px_0_rgba(51,33,13,0.15)] group/btn">
+                <AddToCartButton productId="almojabanas" href="/carrito" className="w-full bg-primary text-on-primary font-label font-medium rounded-lg py-3 px-4 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors duration-300 shadow-[0_4px_14px_0_rgba(51,33,13,0.15)] group/btn">
                   <span className="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover/btn:scale-110">
                     add_shopping_cart
                   </span>
                   {' '}Añadir al Carrito
-                </Go>
+                </AddToCartButton>
               </div>
             </article>
           </div>
@@ -132,12 +132,12 @@ export default function ProductosPage() {
                   Cultivado a 1.700 metros sobre el nivel del mar en las montañas del sur de Colombia. Un perfil de taza balanceado con cuerpo cremoso y un postgusto prolongado y dulce. 250g.
                 </p>
                 <div className="flex gap-4">
-                  <Go href="/carrito" className="flex-grow bg-primary text-on-primary font-label font-medium rounded-lg py-3 px-6 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors duration-300 shadow-[0_4px_14px_0_rgba(51,33,13,0.15)]">
+                  <AddToCartButton productId="cafe-especial-huila" href="/carrito" className="flex-grow bg-primary text-on-primary font-label font-medium rounded-lg py-3 px-6 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors duration-300 shadow-[0_4px_14px_0_rgba(51,33,13,0.15)]">
                     <span className="material-symbols-outlined text-[20px]">
                       add_shopping_cart
                     </span>
                     {' '}Añadir al Carrito
-                  </Go>
+                  </AddToCartButton>
                   {' '}
                   <button aria-label="Ver detalles" className="bg-transparent border-2 border-outline-variant text-primary font-label font-medium rounded-lg p-3 hover:border-secondary hover:text-secondary transition-colors duration-300">
                     <span className="material-symbols-outlined">
@@ -172,12 +172,12 @@ export default function ProductosPage() {
                 <p className="font-body text-sm text-on-surface-variant mb-6 flex-grow">
                   El clásico sabor del eje cafetero. Notas intensas a caramelo y frutos rojos. Ideal para espresso o moka. 250g.
                 </p>
-                <Go href="/carrito" className="w-full bg-transparent border-2 border-primary text-primary font-label font-medium rounded-lg py-3 px-4 flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-colors duration-300 group/btn">
+                <AddToCartButton productId="cafe-tradicion-quindio" href="/carrito" className="w-full bg-transparent border-2 border-primary text-primary font-label font-medium rounded-lg py-3 px-4 flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-colors duration-300 group/btn">
                   <span className="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover/btn:scale-110">
                     add_shopping_cart
                   </span>
                   {' '}Añadir al Carrito
-                </Go>
+                </AddToCartButton>
               </div>
             </article>
           </div>

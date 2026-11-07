@@ -1,6 +1,6 @@
 // Tipos de dominio de la demo. Los datos que los usan (src/data) son mock.
 
-export type ProductCategory = 'panaderia' | 'cafe' | 'dulces' | 'congelados';
+export type ProductCategory = 'panaderia' | 'cafe' | 'dulces' | 'congelados' | 'platos';
 
 export interface Product {
   id: string;
@@ -12,6 +12,8 @@ export interface Product {
   category: ProductCategory;
   image: string;
   badge?: string;
+  /** Aparece en la cuadrícula de "Nuestra Despensa" (/catalogo) */
+  catalogo?: boolean;
 }
 
 export interface CartItem {
@@ -38,7 +40,7 @@ export type DeliveryMethod = 'domicilio' | 'recogida';
 export interface OrderLine {
   name: string;
   quantity: number;
-  price: number;
+  price?: number;
 }
 
 export interface Order {
@@ -55,14 +57,16 @@ export interface ReservableMenu {
   id: string;
   name: string;
   description: string;
-  pricePerPerson: number;
-  image: string;
+  /** Precio por plato en EUR con BTW incluido */
+  price: number;
+  tag: string;
 }
 
 export type ReservationStatus = 'pendiente' | 'confirmada' | 'finalizada' | 'rechazada';
 
 export interface Reservation {
   id: string;
+  kind: 'catering' | 'menu';
   menuName: string;
   /** Fecha ISO (YYYY-MM-DD) */
   eventDate: string;

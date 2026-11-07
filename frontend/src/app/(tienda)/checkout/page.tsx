@@ -398,22 +398,6 @@ export default function CheckoutPage() {
                         Visa · Mastercard
                       </span>
                     </label>
-                    {' '}
-                    <label className="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer flex flex-col items-center justify-center text-center gap-1.5 transition-colors has-[:checked]:bg-surface-container-highest has-[:checked]:ring-1 has-[:checked]:ring-secondary">
-                      <input className="sr-only" name="payment-method" type="radio" value="applepay" />
-                      {' '}
-                      <span className="material-symbols-outlined text-primary text-2xl">
-                        contactless
-                      </span>
-                      {' '}
-                      <span className="text-xs font-headline font-bold text-primary">
-                        Apple / Google
-                      </span>
-                      {' '}
-                      <span className="text-[10px] text-on-surface-variant">
-                        1-Click
-                      </span>
-                    </label>
                   </div>
                 </div>
               </div>
@@ -561,7 +545,7 @@ export default function CheckoutPage() {
                       <div className="flex items-center justify-between text-xs text-on-surface-variant">
                         <span className="flex items-center gap-1">
                           <span>
-                            IVA / BTW Alimentos (9%)
+                            BTW Alimentos (9%)
                           </span>
                           {' '}
                           <span className="material-symbols-outlined text-[12px] text-outline cursor-help" title="Tarifa reducida para alimentos frescos en Países Bajos">
@@ -576,7 +560,7 @@ export default function CheckoutPage() {
                       <div className="flex items-center justify-between text-xs text-on-surface-variant" id="shipping-btw-row">
                         <span className="flex items-center gap-1">
                           <span>
-                            IVA / BTW Logística (21%)
+                            BTW Logística (21%)
                           </span>
                         </span>
                         {' '}

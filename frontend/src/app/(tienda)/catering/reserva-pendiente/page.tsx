@@ -265,7 +265,7 @@ export default function CateringReservaPendientePage() {
                         3. Aprobación y Enlace de Pago Seguro Mollie
                       </span>
                       <p className="text-xs sm:text-sm text-on-surface-variant/80 mt-1">
-                        Recibirás una notificación por correo electrónico y WhatsApp con el presupuesto formal y un enlace cifrado (iDEAL, Tarjeta o Bancontact) para reservar la fecha abonando el 30% de depósito.
+                        Recibirás una notificación por correo electrónico y WhatsApp con el presupuesto formal y un enlace cifrado (iDEAL o tarjeta) para reservar la fecha abonando el 30% de depósito.
                       </p>
                     </div>
                   </div>

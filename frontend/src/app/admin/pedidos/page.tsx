@@ -114,8 +114,20 @@ export default function AdminPedidosPage() {
                 Pendientes (4)
               </button>
               {' '}
+              <button className="filter-pill px-3.5 py-1.5 rounded-lg text-xs font-medium bg-surface-container-highest text-on-surface hover:bg-surface-container-high transition-all whitespace-nowrap" data-status="confirmed">
+                Confirmados (0)
+              </button>
+              {' '}
               <button className="filter-pill px-3.5 py-1.5 rounded-lg text-xs font-medium bg-surface-container-highest text-on-surface hover:bg-surface-container-high transition-all whitespace-nowrap" data-status="prep">
                 En Preparación (6)
+              </button>
+              {' '}
+              <button className="filter-pill px-3.5 py-1.5 rounded-lg text-xs font-medium bg-surface-container-highest text-on-surface hover:bg-surface-container-high transition-all whitespace-nowrap" data-status="ready">
+                Listos (0)
+              </button>
+              {' '}
+              <button className="filter-pill px-3.5 py-1.5 rounded-lg text-xs font-medium bg-surface-container-highest text-on-surface hover:bg-surface-container-high transition-all whitespace-nowrap" data-status="shipped">
+                Enviados (0)
               </button>
               {' '}
               <button className="filter-pill px-3.5 py-1.5 rounded-lg text-xs font-medium bg-surface-container-highest text-on-surface hover:bg-surface-container-high transition-all whitespace-nowrap" data-status="delivered">
@@ -242,7 +254,7 @@ export default function AdminPedidosPage() {
                         </span>
                       </td>
                     </tr>
-                    <tr className="order-row group cursor-pointer bg-surface hover:bg-surface-container-high/40 transition-colors" data-address="Retiro en Tienda (Kinkerstraat 58)" data-btw="2.34" data-customer="Lars Van Der Berg" data-envio="0.00" data-id="PSB-2025-1083" data-modalidad="Retiro en local" data-pago="Tarjeta Stripe" data-phone="+31 6 1823 4409" data-status="delivered" data-subtotal="26.00" data-total="28.34">
+                    <tr className="order-row group cursor-pointer bg-surface hover:bg-surface-container-high/40 transition-colors" data-address="Retiro en Tienda (Kinkerstraat 58)" data-btw="2.34" data-customer="Lars Van Der Berg" data-envio="0.00" data-id="PSB-2025-1083" data-modalidad="Retiro en local" data-pago="Tarjeta Mollie" data-phone="+31 6 1823 4409" data-status="delivered" data-subtotal="26.00" data-total="28.34">
                       <td className="py-3.5 px-4 font-body">
                         <div className="font-semibold text-primary font-headline">
                           #PSB-2025-1083
@@ -651,11 +663,17 @@ export default function AdminPedidosPage() {
                     <option value="pending">
                       Pendiente de Aceptación
                     </option>
+                    <option value="confirmed">
+                      Confirmado
+                    </option>
                     <option value="prep">
                       En preparación artesanal
                     </option>
-                    <option value="route">
-                      En ruta / Listo para retiro
+                    <option value="ready">
+                      Listo para retiro / despacho
+                    </option>
+                    <option value="shipped">
+                      Enviado (solo a domicilio)
                     </option>
                     <option value="delivered">
                       Entregado al cliente

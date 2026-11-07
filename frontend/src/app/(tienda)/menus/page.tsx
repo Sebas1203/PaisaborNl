@@ -133,7 +133,7 @@ export default function MenusPage() {
                       Pago Seguro
                     </h4>
                     <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                      Confirma de inmediato con iDeal, Bancontact o tarjeta para apartar lote.
+                      Confirma de inmediato con iDEAL o tarjeta para apartar lote.
                     </p>
                   </div>
                 </div>
@@ -839,7 +839,7 @@ export default function MenusPage() {
                         <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
                         {' '}
                         <span>
-                          Tarjetas de Crédito / Débito &amp; Apple Pay
+                          Tarjetas de Crédito / Débito
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
@@ -1075,7 +1075,7 @@ export default function MenusPage() {
                     </span>
                   </button>
                   <p className="text-[11px] text-center text-outline mt-2">
-                    Aceptamos iDeal, Tarjetas y Apple Pay en el siguiente paso seguro.
+                    Aceptamos iDEAL y tarjeta (Mollie) en el siguiente paso seguro.
                   </p>
                 </div>
               </div>

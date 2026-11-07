@@ -112,6 +112,15 @@ export default function CuentaPedidosPage() {
                       <option value="Confirmado">
                         Confirmado
                       </option>
+                      <option value="En preparación">
+                        En preparación
+                      </option>
+                      <option value="Listo">
+                        Listo
+                      </option>
+                      <option value="Enviado">
+                        Enviado
+                      </option>
                       <option value="Entregado">
                         Entregado
                       </option>

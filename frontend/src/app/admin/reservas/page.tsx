@@ -821,7 +821,7 @@ export default function AdminReservasPage() {
                 </span>
               </div>
               <h3 className="font-headline text-base font-bold text-primary mb-1">
-                iDeal, Bancontact &amp; Tarjetas
+                iDEAL &amp; Tarjetas
               </h3>
               <p className="text-xs text-on-surface-variant leading-relaxed">
                 Los enlaces generados expiran en 48 horas. Se aplica un recargo automático del 50% como adelanto para confirmar la fecha del catering.

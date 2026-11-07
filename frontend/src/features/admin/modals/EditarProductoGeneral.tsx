@@ -141,7 +141,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
                 </div>
                 <div className="flex items-center justify-between text-[11px] text-on-surface-variant pt-1">
                   <span>
-                    IVA Holandés (9% BTW):
+                    BTW (9%):
                   </span>
                   {' '}
                   <span className="font-mono font-medium text-primary">

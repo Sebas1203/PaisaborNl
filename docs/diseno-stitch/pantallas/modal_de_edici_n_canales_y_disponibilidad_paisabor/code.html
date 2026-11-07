@@ -1,0 +1,521 @@
+<!DOCTYPE html><html class="h-full bg-background antialiased" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Paisabor - Admin Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f6f3ee",
+                    "on-surface-variant": "#4e453d",
+                    "on-secondary-fixed": "#370e00",
+                    "tertiary-fixed": "#ffdcbd",
+                    "secondary-fixed-dim": "#ffb599",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#59422c",
+                    "primary": "#33210d",
+                    "surface-bright": "#fcf9f4",
+                    "secondary-container": "#ff956a",
+                    "on-secondary-container": "#762c08",
+                    "surface": "#fcf9f4",
+                    "on-tertiary-fixed-variant": "#623f18",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#f0ede8",
+                    "on-background": "#1c1c19",
+                    "on-tertiary-container": "#cb9b6c",
+                    "secondary": "#994621",
+                    "background": "#fcf9f4",
+                    "surface-container-high": "#ebe8e3",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e5e2dd",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#f0bd8b",
+                    "surface-variant": "#e5e2dd",
+                    "on-surface": "#1c1c19",
+                    "inverse-surface": "#31302d",
+                    "on-tertiary-fixed": "#2c1600",
+                    "tertiary-container": "#54330c",
+                    "outline-variant": "#d2c4ba",
+                    "primary-fixed": "#fedcbe",
+                    "inverse-on-surface": "#f3f0eb",
+                    "secondary-fixed": "#ffdbce",
+                    "tertiary": "#391e00",
+                    "surface-tint": "#725a42",
+                    "primary-container": "#4b3621",
+                    "surface-dim": "#dcdad5",
+                    "inverse-primary": "#e1c1a4",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline": "#80756c",
+                    "on-primary-fixed": "#291806",
+                    "on-primary-container": "#bd9f83",
+                    "on-secondary-fixed-variant": "#7b2f0b",
+                    "primary-fixed-dim": "#e1c1a4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Epilogue", "sans-serif"],
+                    "display": ["Epilogue", "sans-serif"],
+                    "body": ["Work Sans", "sans-serif"],
+                    "label": ["Work Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .soil-shadow {
+            box-shadow: -10px 0 40px rgba(28,28,25,0.05);
+        }
+        .card-ambient-shadow {
+            box-shadow: 0 4px 40px rgba(28,28,25,0.05);
+        }
+    </style>
+<meta content="web_standard" name="shell-type"></head>
+<body class="h-full flex font-body text-on-surface">
+<!-- SideNavBar (From JSON) -->
+<nav class="bg-surface-container-low h-screen w-64 fixed left-0 top-0 soil-shadow flex flex-col h-full py-6 z-40 hidden md:flex">
+<!-- Header -->
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest shrink-0 border border-outline-variant/30">
+<img alt="Admin Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBFhdLB6K5ELyXC-tjxdZLa41ysfgt4zesm66UfuaCe_yhYB0SejwJydE7-GxMMu8UCIRGmtcG9bGnKczxQ77KQVqwiaSAd0R8EAWdUozGd-GqwSWQl5SmsnnfEW1qcXO5fzd4v-KYoHKzi7PJGA6O9Sk0WFzFW_WL304SAx01e8dYg3e-b0iz2B4xDCbu_53pBg-fjy77rm6PX5HtLAOMV5_OY5MCYd-fmM9-BDQwxBxud-JrZJNbkbQeJp7yJRpvEA">
+</div>
+<div>
+<h2 class="font-headline font-bold text-xl text-primary leading-tight">Admin Portal</h2>
+<p class="font-body text-label-sm text-on-surface-variant">Manage the Hacienda</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<ul class="flex-1 space-y-2 overflow-y-auto font-body text-label-lg">
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<!-- Active -->
+<li>
+<a class="bg-secondary text-on-secondary rounded-lg font-medium mx-2 px-4 py-3 active:opacity-80 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+                    Products
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">restaurant_menu</span>
+                    Menu
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+                    Content
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<!-- Bottom CTA -->
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary rounded-lg py-3 font-medium transition-all hover:bg-primary-container hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Product
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 bg-background min-h-screen"><div class="flex flex-col w-full relative min-h-screen">
+<!-- Capa del Fondo: Inventario y Catálogo Paisabor (Visible con desenfoque tonal) -->
+<div class="w-full p-6 md:p-10 filter blur-[2.5px] opacity-40 pointer-events-none select-none transition-all duration-300">
+<!-- Top Bar Mockup de Fondo -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<span class="text-secondary font-semibold text-xs tracking-widest uppercase">Inventario Central • Bodega Ámsterdam</span>
+<h1 class="font-headline text-3xl font-bold text-primary mt-1">Catálogo de Productos</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-4 py-2 bg-surface-container rounded-lg text-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">search</span>
+<span>Buscar café, panela, arepas...</span>
+</div>
+<div class="px-4 py-2 bg-primary text-on-primary rounded-lg text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Nuevo Producto</span>
+</div>
+</div>
+</div>
+<!-- Lista de Productos en segundo plano simulada -->
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-lg bg-surface-container-high overflow-hidden">
+<img alt="Café Sierra Nevada" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UHH1jTOYefikynnvTjP2etuAXDLDRTbV1mX9IcJPrhohn-dmGT3TnpKAV58wFHOrobewTsIZBBpiHqzuL9QuMPZBsxGmq5AWSK2ZDwTarjhBFi3RIuKdQYCdviUw-frgB4Ivm1c4DRqWQdmZ1i6pfEGpYq__6f1ruLhgqidyl3Ab4Khzsldy3nXM785QgObPLShx5L4vAyHkTZy6IsPx4mlA_YDqABijN8zxzpklFs342xD_QeZ7pnT2vA8OlhzEhrX7qHS6kz">
+</div>
+<div>
+<h3 class="font-headline font-bold text-primary text-lg">Café de Origen - Sierra Nevada Dark Roast</h3>
+<p class="text-xs text-on-surface-variant">SKU: #PRD-0042 • Café en Grano • Stock: 45 u.</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline font-bold text-primary text-lg">€18.50</div>
+<span class="text-xs text-secondary font-medium">Activo en Tienda</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-lg bg-surface-container-high overflow-hidden">
+<img alt="Arequipe Artesanal" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VDeI_wO3h2Ypsq_ZLb3paIiXqbhbxxPg4DQ3mS0tHlU-iT9PkISzXBry48naEWfgxC1PgLtcDvz5clucpfNumLU6iVDrQRcoYDMF3HFCkJjAyzu-chGzBcaW7trn0PJD-aRGAH9CNHDdtJ0JtK_0GLheAHgxZZfTzF1-Sel9vVzgELje3PD2115_OpTXGsgITIhKtqwTfFGbDFaZ8HoOlAQ0dbQ6262JWR5qOpczdNx96XHzldmOyllV22JJcJOBaZaNRIDtVAkA">
+</div>
+<div>
+<h3 class="font-headline font-bold text-primary text-lg">Arequipe Artesanal Paisabor 350g</h3>
+<p class="text-xs text-on-surface-variant">SKU: #PRD-0019 • Despensa • Stock: 88 u.</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline font-bold text-primary text-lg">€6.20</div>
+<span class="text-xs text-secondary font-medium">Activo en Tienda</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Overlay (Backdrop desenfocado y terroso) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-primary/40 backdrop-blur-md overflow-y-auto">
+<!-- Contenedor Principal del Modal: The Curated Hearth Aesthetic -->
+<div class="bg-surface relative w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col my-auto transition-all" id="edit-modal">
+<!-- Top Accent Bar: Terracota Paisabor Heritage -->
+<div class="h-1.5 w-full bg-gradient-to-r from-secondary via-secondary-container to-primary"></div>
+<!-- Header del Modal -->
+<div class="p-6 sm:p-8 bg-surface-container-lowest flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start md:items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">coffee</span>
+</div>
+<div>
+<div class="flex items-center gap-2.5 flex-wrap">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant font-mono">
+                SKU #PRD-0042
+              </span>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-fixed text-on-secondary-fixed flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                Activo en Tienda
+              </span>
+<span class="text-xs text-on-surface-variant hidden sm:inline">• Sierra Nevada de Santa Marta</span>
+</div>
+<h2 class="font-headline font-bold text-2xl sm:text-3xl text-primary mt-1 tracking-tight">
+              Editar Producto
+            </h2>
+</div>
+</div>
+<!-- Botón de Cerrar Modal -->
+<button aria-label="Cerrar modal" class="self-end md:self-center w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Pestañas de Navegación Rápida -->
+<div class="px-6 sm:px-8 bg-surface-container-low flex items-center gap-2 overflow-x-auto text-sm font-medium"><button class="py-3 px-4 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-base">info</span>
+          Información General
+        </button>
+<button class="py-3 px-4 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-base">payments</span>
+          Inventario y Precios
+        </button>
+<button class="py-3 px-4 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-base">image</span>
+          Fotografía
+        </button>
+<button class="py-3 px-4 text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-base">visibility</span>
+          Canales • Disponibilidad
+        </button></div>
+<!-- Formulario & Cuerpo del Modal -->
+<form class="p-6 sm:p-8 space-y-8 overflow-y-auto max-h-[68vh]" onsubmit="event.preventDefault();"><!-- SECCIÓN 1: Canales de Venta Activos -->
+<div class="space-y-4">
+<div class="flex items-center justify-between pb-1">
+<div>
+<h3 class="font-headline font-bold text-primary text-base flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">storefront</span>
+            Canales de Venta Activos
+          </h3>
+<p class="text-xs text-on-surface-variant">Define dónde y cómo estará disponible este producto para los clientes.</p>
+</div>
+<span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed">3 Canales Operativos</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Canal 1: Tienda Online -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex flex-col justify-between space-y-3">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-headline font-bold text-primary text-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-lg">language</span>
+                Tienda Online Paisabor
+              </span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
+              Clientes en Países Bajos y la UE pueden pedir y pagar online.
+            </p>
+</div>
+<div class="pt-2 border-t border-outline-variant/30">
+<label class="block text-[11px] uppercase tracking-wider font-semibold text-on-surface-variant mb-1">Visibilidad en Catálogo</label>
+<select class="w-full bg-surface-container-high px-2.5 py-1.5 rounded-lg text-primary text-xs font-medium focus:outline-none focus:bg-surface-container-highest">
+<option selected="">Público (Destacado en Tienda)</option>
+<option>Visible en Catálogo General</option>
+<option>Oculto (Solo enlace directo)</option>
+</select>
+</div>
+</div>
+<!-- Canal 2: Restaurante & Mostrador Físico -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex flex-col justify-between space-y-3">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-headline font-bold text-primary text-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-lg">point_of_sale</span>
+                Mostrador &amp; Caja (POS)
+              </span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
+              Disponible para cobro directo en local y vitrina física de Ámsterdam.
+            </p>
+</div>
+<div class="pt-2 border-t border-outline-variant/30 flex items-center justify-between text-xs text-on-surface-variant">
+<span>Sincronización POS:</span>
+<span class="font-medium text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> En Línea
+            </span>
+</div>
+</div>
+<!-- Canal 3: Delivery Asociadas -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex flex-col justify-between space-y-3">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-headline font-bold text-primary text-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-lg">moped</span>
+                Delivery (Apps NL)
+              </span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
+              Thuisbezorgd &amp; Uber Eats Ámsterdam vinculados al menú del día.
+            </p>
+</div>
+<div class="pt-2 border-t border-outline-variant/30 flex items-center justify-between">
+<span class="text-[11px] text-on-surface-variant">Integración EDR:</span>
+<span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-surface-container-highest text-primary">Conectado (API)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECCIÓN 2: Modalidades de Entrega y Consumo (TipoEntrega EDR) -->
+<div class="bg-surface-container-low p-6 rounded-xl space-y-4">
+<div class="flex items-center justify-between pb-2">
+<div class="flex items-center gap-2 text-primary font-headline font-bold text-base">
+<span class="material-symbols-outlined text-secondary text-xl">local_shipping</span>
+            Modalidades de Entrega y Consumo (EDR)
+          </div>
+<span class="text-xs text-on-surface-variant">Configuración de Domicilio y Despacho</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Opción 1: Envío Nacional -->
+<label class="relative p-4 rounded-xl bg-surface-container-lowest border-2 border-secondary cursor-pointer block shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">package_2</span>
+<span class="font-headline font-bold text-primary text-sm">Envío Postal Nacional</span>
+</div>
+<input checked="" class="rounded text-secondary focus:ring-0 mt-0.5" type="checkbox">
+</div>
+<p class="text-xs text-on-surface-variant mt-2">PostNL / DPD Países Bajos</p>
+<div class="mt-3 pt-2 border-t border-outline-variant/30 text-[11px] text-secondary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">schedule</span> 1-2 días hábiles (Track &amp; Trace)
+            </div>
+</label>
+<!-- Opción 2: Recogida en Local -->
+<label class="relative p-4 rounded-xl bg-surface-container-lowest border-2 border-secondary cursor-pointer block shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">shopping_bag</span>
+<span class="font-headline font-bold text-primary text-sm">Click &amp; Collect</span>
+</div>
+<input checked="" class="rounded text-secondary focus:ring-0 mt-0.5" type="checkbox">
+</div>
+<p class="text-xs text-on-surface-variant mt-2">Recogida en tienda Paisabor</p>
+<div class="mt-3 pt-2 border-t border-outline-variant/30 text-[11px] text-secondary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">bolt</span> Gratis • Listo en 30 minutos
+            </div>
+</label>
+<!-- Opción 3: Consumo en Restaurante -->
+<label class="relative p-4 rounded-xl bg-surface-container-lowest border border-outline-variant/30 cursor-pointer block shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">table_restaurant</span>
+<span class="font-headline font-bold text-primary text-sm">Consumo en Mesa</span>
+</div>
+<input checked="" class="rounded text-secondary focus:ring-0 mt-0.5" type="checkbox">
+</div>
+<p class="text-xs text-on-surface-variant mt-2">Servicio cafetería y restaurante</p>
+<div class="mt-3 pt-2 border-t border-outline-variant/30 text-[11px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">coffee</span> Taza servida o empaque para llevar
+            </div>
+</label>
+</div>
+</div>
+<!-- SECCIÓN 3: Restricciones de Disponibilidad y Stock -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Restricciones de Pedido -->
+<div class="bg-surface-container-low p-5 rounded-xl space-y-4">
+<h4 class="font-headline font-bold text-primary text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">tune</span>
+            Reglas de Pedido y Venta
+          </h4>
+<div class="space-y-3">
+<!-- Toggle Preventa -->
+<div class="flex items-center justify-between">
+<div>
+<span class="font-medium text-xs text-primary block">Vender aun sin stock (Preventa)</span>
+<span class="text-[11px] text-on-surface-variant">Permite órdenes cuando el stock llegue a 0</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Límite de Unidades -->
+<div class="pt-2">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant mb-1">
+              Límite de Unidades por Pedido
+            </label>
+<div class="relative">
+<input class="w-full bg-surface-container-highest px-3 py-2 rounded-lg text-primary font-bold text-sm focus:outline-none" type="number" value="10">
+<span class="absolute right-3 top-2 text-xs text-on-surface-variant">unidades máx.</span>
+</div>
+<span class="text-[11px] text-on-surface-variant mt-1 block">Protege el stock frente a compras mayoristas no autorizadas.</span>
+</div>
+</div>
+</div>
+<!-- Horarios & Calendario -->
+<div class="bg-surface-container-low p-5 rounded-xl space-y-4">
+<h4 class="font-headline font-bold text-primary text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">calendar_month</span>
+            Días y Horario de Disponibilidad
+          </h4>
+<div class="space-y-3">
+<div>
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant mb-1">
+              Régimen de Disponibilidad
+            </label>
+<select class="w-full bg-surface-container-highest px-3 py-2 rounded-lg text-primary text-xs font-medium focus:outline-none cursor-pointer">
+<option selected="">Siempre Disponible (Todos los días del año)</option>
+<option>Solo días hábiles (Lunes a Viernes)</option>
+<option>Especial Fin de Semana (Viernes a Domingo)</option>
+<option>Por Temporada o Lote Específico</option>
+</select>
+</div>
+<div>
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant mb-1">
+              Ventana de Despacho Diario
+            </label>
+<div class="flex items-center gap-2">
+<input class="w-1/2 bg-surface-container-highest px-3 py-2 rounded-lg text-primary text-xs font-mono text-center focus:outline-none" type="text" value="08:00 AM">
+<span class="text-xs text-on-surface-variant">a</span>
+<input class="w-1/2 bg-surface-container-highest px-3 py-2 rounded-lg text-primary text-xs font-mono text-center focus:outline-none" type="text" value="19:00 PM">
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SECCIÓN 4: Zonas de Cobertura Geográfica -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+            Cobertura Geográfica Autorizada
+          </label>
+<span class="text-xs text-secondary font-medium">Red Logística Paisabor EU</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-surface-container-low p-4 rounded-xl">
+<div class="flex items-center gap-3 p-2.5 bg-surface-container-lowest rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary text-lg">flag</span>
+<div>
+<span class="text-xs font-bold text-primary block">Países Bajos</span>
+<span class="text-[11px] text-secondary font-medium">100% Cobertura Nacional</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2.5 bg-surface-container-lowest rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary text-lg">local_shipping</span>
+<div>
+<span class="text-xs font-bold text-primary block">Flandes / Bélgica</span>
+<span class="text-[11px] text-on-surface-variant">Envío 48h activo</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2.5 bg-surface-container-lowest rounded-lg border border-outline-variant/30 opacity-75">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">public</span>
+<div>
+<span class="text-xs font-bold text-primary block">Alemania / NRW</span>
+<span class="text-[11px] text-on-surface-variant">Tarifa transfronteriza</span>
+</div>
+</div>
+</div>
+</div></form>
+<!-- Footer del Modal: Acciones Estratégicas -->
+<div class="p-6 sm:p-8 bg-surface-container-lowest flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+<!-- Acción Destructiva a la Izquierda -->
+<button class="w-full sm:w-auto px-4 py-2.5 text-tertiary hover:bg-error-container hover:text-on-error-container rounded-lg text-xs font-semibold transition-colors flex items-center justify-center gap-2" onclick="confirm('¿Está seguro de archivar este producto? Afectará los pedidos pendientes en Paisabor.')" type="button">
+<span class="material-symbols-outlined text-lg">delete_forever</span>
+          Eliminar Producto
+        </button>
+<!-- Botones de Guardar / Cancelar a la Derecha -->
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial px-5 py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface-variant rounded-lg text-sm font-medium transition-colors" type="button">
+            Cancelar
+          </button>
+<button class="flex-1 sm:flex-initial px-6 py-2.5 bg-secondary hover:bg-primary text-on-secondary rounded-lg text-sm font-semibold shadow-md transition-all flex items-center justify-center gap-2 group" type="submit">
+<span class="material-symbols-outlined text-base group-hover:scale-110 transition-transform">check</span>
+            Guardar Cambios
+          </button>
+</div>
+</div>
+</div>
+</div>
+</div></main>
+</body></html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html><html class="h-full bg-background antialiased" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Paisabor - Admin Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f6f3ee",
+                    "on-surface-variant": "#4e453d",
+                    "on-secondary-fixed": "#370e00",
+                    "tertiary-fixed": "#ffdcbd",
+                    "secondary-fixed-dim": "#ffb599",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#59422c",
+                    "primary": "#33210d",
+                    "surface-bright": "#fcf9f4",
+                    "secondary-container": "#ff956a",
+                    "on-secondary-container": "#762c08",
+                    "surface": "#fcf9f4",
+                    "on-tertiary-fixed-variant": "#623f18",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#f0ede8",
+                    "on-background": "#1c1c19",
+                    "on-tertiary-container": "#cb9b6c",
+                    "secondary": "#994621",
+                    "background": "#fcf9f4",
+                    "surface-container-high": "#ebe8e3",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e5e2dd",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#f0bd8b",
+                    "surface-variant": "#e5e2dd",
+                    "on-surface": "#1c1c19",
+                    "inverse-surface": "#31302d",
+                    "on-tertiary-fixed": "#2c1600",
+                    "tertiary-container": "#54330c",
+                    "outline-variant": "#d2c4ba",
+                    "primary-fixed": "#fedcbe",
+                    "inverse-on-surface": "#f3f0eb",
+                    "secondary-fixed": "#ffdbce",
+                    "tertiary": "#391e00",
+                    "surface-tint": "#725a42",
+                    "primary-container": "#4b3621",
+                    "surface-dim": "#dcdad5",
+                    "inverse-primary": "#e1c1a4",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline": "#80756c",
+                    "on-primary-fixed": "#291806",
+                    "on-primary-container": "#bd9f83",
+                    "on-secondary-fixed-variant": "#7b2f0b",
+                    "primary-fixed-dim": "#e1c1a4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Epilogue", "sans-serif"],
+                    "display": ["Epilogue", "sans-serif"],
+                    "body": ["Work Sans", "sans-serif"],
+                    "label": ["Work Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .soil-shadow {
+            box-shadow: -10px 0 40px rgba(28,28,25,0.05);
+        }
+        .card-ambient-shadow {
+            box-shadow: 0 4px 40px rgba(28,28,25,0.05);
+        }
+    </style>
+<meta content="web_standard" name="shell-type"></head>
+<body class="h-full flex font-body text-on-surface">
+<!-- SideNavBar (From JSON) -->
+<nav class="bg-surface-container-low h-screen w-64 fixed left-0 top-0 soil-shadow flex flex-col h-full py-6 z-40 hidden md:flex">
+<!-- Header -->
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest shrink-0 border border-outline-variant/30">
+<img alt="Admin Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBFhdLB6K5ELyXC-tjxdZLa41ysfgt4zesm66UfuaCe_yhYB0SejwJydE7-GxMMu8UCIRGmtcG9bGnKczxQ77KQVqwiaSAd0R8EAWdUozGd-GqwSWQl5SmsnnfEW1qcXO5fzd4v-KYoHKzi7PJGA6O9Sk0WFzFW_WL304SAx01e8dYg3e-b0iz2B4xDCbu_53pBg-fjy77rm6PX5HtLAOMV5_OY5MCYd-fmM9-BDQwxBxud-JrZJNbkbQeJp7yJRpvEA">
+</div>
+<div>
+<h2 class="font-headline font-bold text-xl text-primary leading-tight">Admin Portal</h2>
+<p class="font-body text-label-sm text-on-surface-variant">Manage the Hacienda</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<ul class="flex-1 space-y-2 overflow-y-auto font-body text-label-lg">
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<!-- Active -->
+<li>
+<a class="bg-secondary text-on-secondary rounded-lg font-medium mx-2 px-4 py-3 active:opacity-80 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+                    Products
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">restaurant_menu</span>
+                    Menu
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+                    Content
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<!-- Bottom CTA -->
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary rounded-lg py-3 font-medium transition-all hover:bg-primary-container hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Product
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 bg-background min-h-screen"><div class="flex flex-col w-full relative min-h-screen">
+<!-- Capa del Fondo: Inventario y Catálogo Paisabor (Visible con desenfoque tonal) -->
+<div class="w-full p-6 md:p-10 filter blur-[2.5px] opacity-40 pointer-events-none select-none transition-all duration-300">
+<!-- Top Bar Mockup de Fondo -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<span class="text-secondary font-semibold text-xs tracking-widest uppercase">Inventario Central • Bodega Ámsterdam</span>
+<h1 class="font-headline text-3xl font-bold text-primary mt-1">Catálogo de Productos</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-4 py-2 bg-surface-container rounded-lg text-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">search</span>
+<span>Buscar café, panela, arepas...</span>
+</div>
+<div class="px-4 py-2 bg-primary text-on-primary rounded-lg text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Nuevo Producto</span>
+</div>
+</div>
+</div>
+<!-- Lista de Productos en segundo plano simulada -->
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-lg bg-surface-container-high overflow-hidden">
+<img alt="Café Sierra Nevada" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UHH1jTOYefikynnvTjP2etuAXDLDRTbV1mX9IcJPrhohn-dmGT3TnpKAV58wFHOrobewTsIZBBpiHqzuL9QuMPZBsxGmq5AWSK2ZDwTarjhBFi3RIuKdQYCdviUw-frgB4Ivm1c4DRqWQdmZ1i6pfEGpYq__6f1ruLhgqidyl3Ab4Khzsldy3nXM785QgObPLShx5L4vAyHkTZy6IsPx4mlA_YDqABijN8zxzpklFs342xD_QeZ7pnT2vA8OlhzEhrX7qHS6kz">
+</div>
+<div>
+<h3 class="font-headline font-bold text-primary text-lg">Café de Origen - Sierra Nevada Dark Roast</h3>
+<p class="text-xs text-on-surface-variant">SKU: #PRD-0042 • Café en Grano • Stock: 45 u.</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline font-bold text-primary text-lg">€18.50</div>
+<span class="text-xs text-secondary font-medium">Activo en Tienda</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-lg bg-surface-container-high overflow-hidden">
+<img alt="Arequipe Artesanal" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VDeI_wO3h2Ypsq_ZLb3paIiXqbhbxxPg4DQ3mS0tHlU-iT9PkISzXBry48naEWfgxC1PgLtcDvz5clucpfNumLU6iVDrQRcoYDMF3HFCkJjAyzu-chGzBcaW7trn0PJD-aRGAH9CNHDdtJ0JtK_0GLheAHgxZZfTzF1-Sel9vVzgELje3PD2115_OpTXGsgITIhKtqwTfFGbDFaZ8HoOlAQ0dbQ6262JWR5qOpczdNx96XHzldmOyllV22JJcJOBaZaNRIDtVAkA">
+</div>
+<div>
+<h3 class="font-headline font-bold text-primary text-lg">Arequipe Artesanal Paisabor 350g</h3>
+<p class="text-xs text-on-surface-variant">SKU: #PRD-0019 • Despensa • Stock: 88 u.</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline font-bold text-primary text-lg">€6.20</div>
+<span class="text-xs text-secondary font-medium">Activo en Tienda</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Overlay (Backdrop desenfocado y terroso) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-primary/40 backdrop-blur-md overflow-y-auto">
+<!-- Contenedor Principal del Modal: The Curated Hearth Aesthetic -->
+<div class="bg-surface relative w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col my-auto transition-all" id="edit-modal">
+<!-- Top Accent Bar: Terracota Paisabor Heritage -->
+<div class="h-1.5 w-full bg-gradient-to-r from-secondary via-secondary-container to-primary"></div>
+<!-- Header del Modal -->
+<div class="p-6 sm:p-8 bg-surface-container-lowest flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start md:items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">coffee</span>
+</div>
+<div>
+<div class="flex items-center gap-2.5 flex-wrap">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant font-mono">
+                SKU #PRD-0042
+              </span>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-fixed text-on-secondary-fixed flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                Activo en Tienda
+              </span>
+<span class="text-xs text-on-surface-variant hidden sm:inline">• Sierra Nevada de Santa Marta</span>
+</div>
+<h2 class="font-headline font-bold text-2xl sm:text-3xl text-primary mt-1 tracking-tight">
+              Editar Producto
+            </h2>
+</div>
+</div>
+<!-- Botón de Cerrar Modal -->
+<button aria-label="Cerrar modal" class="self-end md:self-center w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Pestañas de Navegación Rápida -->
+<div class="px-6 sm:px-8 bg-surface-container-low flex items-center gap-2 overflow-x-auto text-sm font-medium">
+<button class="py-3 px-4 text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">info</span>
+          Información General
+        </button>
+<button class="py-3 px-4 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">payments</span>
+          Inventario y Precios
+        </button>
+<button class="py-3 px-4 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">image</span>
+          Fotografía
+        </button>
+<button class="py-3 px-4 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">visibility</span>
+          Canales • Disponibilidad
+        </button>
+</div>
+<!-- Formulario & Cuerpo del Modal -->
+<form class="p-6 sm:p-8 space-y-8 overflow-y-auto max-h-[68vh]" onsubmit="event.preventDefault();">
+<!-- Bloque 1: Datos Base y Categoría -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="md:col-span-8 space-y-2">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+              Nombre Oficial del Producto *
+            </label>
+<input class="w-full bg-surface-container-high px-4 py-3 rounded-lg text-primary font-headline font-semibold text-base focus:outline-none focus:ring-0 focus:bg-surface-container-highest transition-colors" type="text" value="Café de Origen - Sierra Nevada Dark Roast">
+<p class="text-xs text-on-surface-variant">Visible públicamente en vitrina digital y cartas de restaurante Paisabor.</p>
+</div>
+<div class="md:col-span-4 space-y-2">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+              Categoría EDR *
+            </label>
+<div class="relative">
+<select class="w-full bg-surface-container-high px-4 py-3 rounded-lg text-primary font-medium text-sm appearance-none focus:outline-none focus:ring-0 focus:bg-surface-container-highest pr-10 cursor-pointer transition-colors">
+<option selected="" value="cafe_grano">Café en Grano (Tostado)</option>
+<option value="despensa">Despensa Tradicional</option>
+<option value="panaderia">Panadería y Amasijos</option>
+<option value="menu_tipico">Menú Típico Hacienda</option>
+<option value="dulces">Dulces &amp; Golosinas</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-3.5 text-on-surface-variant text-lg">
+                expand_more
+              </span>
+</div>
+<p class="text-xs text-on-surface-variant">Código CategoriaID: #CAT-CFE-01</p>
+</div>
+</div>
+<!-- Bloque 2: Precios, Impuestos e Inventario (EDR MovimientoInventario) -->
+<div class="bg-surface-container-low p-6 rounded-xl space-y-6">
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-2 text-primary font-headline font-bold text-lg">
+<span class="material-symbols-outlined text-secondary text-xl">account_balance_wallet</span>
+              Precios y Existencias en Bodega
+            </div>
+<span class="text-xs text-on-surface-variant">Unidad: Paquete 500g sellado al vacío</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<!-- Precio Base -->
+<div class="space-y-1.5">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+                Precio Unitario (€)
+              </label>
+<div class="relative">
+<span class="absolute left-3.5 top-3 text-secondary font-bold text-base">€</span>
+<input class="w-full bg-surface-container-highest pl-8 pr-4 py-2.5 rounded-lg text-primary font-bold text-lg focus:outline-none" type="text" value="18.50">
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant pt-1">
+<span>IVA Holandés (9% BTW):</span>
+<span class="font-mono font-medium text-primary">€1.53 incl.</span>
+</div>
+</div>
+<!-- Stock Actual -->
+<div class="space-y-1.5">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+                Stock Físico Actual
+              </label>
+<div class="flex items-center gap-2">
+<div class="relative flex-1">
+<input class="w-full bg-surface-container-highest px-4 py-2.5 rounded-lg text-primary font-headline font-bold text-lg focus:outline-none cursor-default" readonly="" type="text" value="45">
+<span class="absolute right-3.5 top-3 text-xs text-on-surface-variant font-medium">unidades</span>
+</div>
+</div>
+<p class="text-[11px] text-secondary font-medium pt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">verified</span> Nivel óptimo (&gt; 20 mín.)
+              </p>
+</div>
+<!-- Acción Rápida EDR: MovimientoInventario -->
+<div class="space-y-1.5 flex flex-col justify-end">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+                Ajuste de Existencias
+              </label>
+<button class="w-full py-2.5 px-3 bg-surface-container-high hover:bg-surface-container-highest text-primary font-medium text-xs rounded-lg transition-colors flex items-center justify-center gap-2" onclick="alert('Apertura de formulario de Movimiento de Inventario: Entrada / Salida / Merma')" type="button">
+<span class="material-symbols-outlined text-sm text-secondary">sync_alt</span>
+                Registrar Movimiento
+              </button>
+<p class="text-[11px] text-on-surface-variant text-center pt-1">Auditoría EDR activa</p>
+</div>
+</div>
+</div>
+<!-- Bloque 3: Fotografía e Identidad Visual del Producto -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+              Fotografía Principal del Producto
+            </label>
+<span class="text-xs text-on-surface-variant">Aspect ratio 16:10 recomendado</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-surface-container-low p-4 rounded-xl">
+<!-- Preview Imagen Actual con Placeholder Obligatorio https://lh3.googleusercontent.com/aida/AEtjO1UHH1jTOYefikynnvTjP2etuAXDLDRTbV1mX9IcJPrhohn-dmGT3TnpKAV58wFHOrobewTsIZBBpiHqzuL9QuMPZBsxGmq5AWSK2ZDwTarjhBFi3RIuKdQYCdviUw-frgB4Ivm1c4DRqWQdmZ1i6pfEGpYq__6f1ruLhgqidyl3Ab4Khzsldy3nXM785QgObPLShx5L4vAyHkTZy6IsPx4mlA_YDqABijN8zxzpklFs342xD_QeZ7pnT2vA8OlhzEhrX7qHS6kz -->
+<div class="md:col-span-5 relative group overflow-hidden rounded-lg aspect-[16/10] bg-surface-container-highest">
+<img alt="Café de Origen Sierra Nevada Dark Roast en empaque artesanal Paisabor" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1UHH1jTOYefikynnvTjP2etuAXDLDRTbV1mX9IcJPrhohn-dmGT3TnpKAV58wFHOrobewTsIZBBpiHqzuL9QuMPZBsxGmq5AWSK2ZDwTarjhBFi3RIuKdQYCdviUw-frgB4Ivm1c4DRqWQdmZ1i6pfEGpYq__6f1ruLhgqidyl3Ab4Khzsldy3nXM785QgObPLShx5L4vAyHkTZy6IsPx4mlA_YDqABijN8zxzpklFs342xD_QeZ7pnT2vA8OlhzEhrX7qHS6kz">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent flex items-end p-3">
+<span class="text-on-primary text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                  Fotografía activa en web
+                </span>
+</div>
+</div>
+<!-- Acciones de Gestión de Imagen -->
+<div class="md:col-span-7 flex flex-col justify-center space-y-3">
+<div>
+<h4 class="font-headline font-bold text-primary text-base">sierra-nevada-dark-500g.webp</h4>
+<p class="text-xs text-on-surface-variant mt-0.5">Subido el 12 de Noviembre, 2024 • 757 × 472 px</p>
+</div>
+<div class="flex items-center gap-3 pt-2">
+<button class="px-4 py-2 bg-secondary text-on-secondary rounded-lg text-xs font-semibold hover:bg-secondary-container hover:text-on-secondary-container transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-base">cloud_upload</span>
+                  Reemplazar Imagen
+                </button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant hover:text-tertiary rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+                  Remover
+                </button>
+</div>
+<p class="text-[11px] text-on-surface-variant">Archivos admitidos: JPG, PNG, WEBP hasta 5MB.</p>
+</div>
+</div>
+</div>
+<!-- Bloque 4: Descripción Sensorial y Detallada -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+              Descripción Sensorial &amp; Notas de Cata
+            </label>
+<span class="text-xs text-secondary font-medium">Español • Tienda Europea</span>
+</div>
+<textarea class="w-full bg-surface-container-high p-4 rounded-lg text-primary text-sm leading-relaxed focus:outline-none focus:ring-0 focus:bg-surface-container-highest transition-colors" rows="3">Café colombiano 100% Arábica con notas a chocolate amargo, panela y frutos secos. Cultivado por caficultores de la Sierra Nevada de Santa Marta a 1.700 msnm. Tueste medio-oscuro artesanal con cuerpo sedoso y acidez brillante.</textarea>
+</div>
+<!-- Bloque 5: Canales de Disponibilidad (Switches) & Notas Internas -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+<!-- Switches -->
+<div class="space-y-4 bg-surface-container-low p-5 rounded-xl">
+<span class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+              Canales de Venta &amp; Despacho
+            </span>
+<!-- Switch 1: Tienda Online -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="pr-4">
+<span class="font-headline font-semibold text-primary text-sm block">Tienda Online (E-Commerce)</span>
+<span class="text-xs text-on-surface-variant">Visible para pedidos en Países Bajos y la UE</span>
+</div>
+<div class="relative">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</div>
+</label>
+<!-- Switch 2: Domicilio / Restaurante -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="pr-4">
+<span class="font-headline font-semibold text-primary text-sm block">Servicio a Domicilio Local</span>
+<span class="text-xs text-on-surface-variant">Entrega directa en Ámsterdam Centro &amp; De Pijp</span>
+</div>
+<div class="relative">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</div>
+</label>
+</div>
+<!-- Observaciones de Bodega / Notas Internas -->
+<div class="space-y-2">
+<label class="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
+              Notas Internas de Bodega
+            </label>
+<textarea class="w-full bg-surface-container-high p-3.5 rounded-xl text-primary text-xs leading-relaxed focus:outline-none focus:ring-0 focus:bg-surface-container-highest" placeholder="Ej: Lote SN-2024-B importado vía puerto de Rotterdam. Almacenar lejos de humedad..." rows="4">Lote de cosecha fresca importado en Octubre. Mantener estiba sobre tarima a 18°C. No mezclar con bultos de arequipe.</textarea>
+<p class="text-[11px] text-on-surface-variant">Solo visible para el personal administrativo de Paisabor.</p>
+</div>
+</div>
+</form>
+<!-- Footer del Modal: Acciones Estratégicas -->
+<div class="p-6 sm:p-8 bg-surface-container-lowest flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+<!-- Acción Destructiva a la Izquierda -->
+<button class="w-full sm:w-auto px-4 py-2.5 text-tertiary hover:bg-error-container hover:text-on-error-container rounded-lg text-xs font-semibold transition-colors flex items-center justify-center gap-2" onclick="confirm('¿Está seguro de archivar este producto? Afectará los pedidos pendientes en Paisabor.')" type="button">
+<span class="material-symbols-outlined text-lg">delete_forever</span>
+          Eliminar Producto
+        </button>
+<!-- Botones de Guardar / Cancelar a la Derecha -->
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial px-5 py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface-variant rounded-lg text-sm font-medium transition-colors" type="button">
+            Cancelar
+          </button>
+<button class="flex-1 sm:flex-initial px-6 py-2.5 bg-secondary hover:bg-primary text-on-secondary rounded-lg text-sm font-semibold shadow-md transition-all flex items-center justify-center gap-2 group" type="submit">
+<span class="material-symbols-outlined text-base group-hover:scale-110 transition-transform">check</span>
+            Guardar Cambios
+          </button>
+</div>
+</div>
+</div>
+</div>
+</div></main>
+</body></html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300..900;1,300..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "on-primary-container": "#bd9f83",
+        "tertiary": "#391e00",
+        "on-primary-fixed-variant": "#59422c",
+        "surface-container-low": "#f6f3ee",
+        "outline": "#80756c",
+        "surface-container-highest": "#e5e2dd",
+        "primary-fixed": "#fedcbe",
+        "surface-tint": "#725a42",
+        "on-error-container": "#93000a",
+        "error": "#ba1a1a",
+        "on-surface-variant": "#4e453d",
+        "secondary-container": "#ff956a",
+        "secondary": "#994621",
+        "surface-container-high": "#ebe8e3",
+        "secondary-fixed-dim": "#ffb599",
+        "tertiary-fixed": "#ffdcbd",
+        "primary": "#33210d",
+        "background": "#fcf9f4",
+        "on-surface": "#1c1c19",
+        "surface-container": "#f0ede8",
+        "on-secondary-fixed-variant": "#7b2f0b",
+        "on-background": "#1c1c19",
+        "on-primary-fixed": "#291806",
+        "inverse-on-surface": "#f3f0eb",
+        "surface-dim": "#dcdad5",
+        "tertiary-container": "#54330c",
+        "on-tertiary-container": "#cb9b6c",
+        "on-secondary": "#ffffff",
+        "on-tertiary-fixed-variant": "#623f18",
+        "surface-bright": "#fcf9f4",
+        "tertiary-fixed-dim": "#f0bd8b",
+        "surface": "#fcf9f4",
+        "on-tertiary": "#ffffff",
+        "on-error": "#ffffff",
+        "on-secondary-container": "#762c08",
+        "on-primary": "#ffffff",
+        "surface-container-lowest": "#ffffff",
+        "inverse-primary": "e1c1a4",
+        "outline-variant": "#d2c4ba",
+        "on-secondary-fixed": "#370e00",
+        "inverse-surface": "#31302d",
+        "error-container": "#ffdad6",
+        "surface-variant": "#e5e2dd",
+        "primary-fixed-dim": "#e1c1a4",
+        "secondary-fixed": "#ffdbce",
+        "primary-container": "#4b3621",
+        "on-tertiary-fixed": "#2c1600"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {},
+      "fontFamily": {
+        "headline": ["Epilogue"],
+        "display": ["Epilogue"],
+        "body": ["Work Sans"],
+        "label": ["Work Sans"]
+      },
+      "fontSize": {}
+    },
+  }
+}</script></head><body class="bg-surface font-body text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="bg-surface-container-low"><div class="max-w-7xl mx-auto px-6 lg:px-12 h-8 flex items-center justify-between text-xs text-on-surface-variant font-label"><div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span>Gastronomía Colombiana Artesanal en los Países Bajos</span></div><div class="flex items-center gap-4"><span>Ámsterdam • Utrecht • Rotterdam</span><span class="text-outline-variant">|</span><span class="hover:text-secondary cursor-pointer transition-colors">NL / ES / EN</span></div></div></div><div class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"><div class="flex items-center gap-4"><a class="flex items-center gap-3 group" data-path="tienda-productos" href="#"><div class="w-11 h-11 rounded-full bg-primary-container text-primary-fixed flex items-center justify-center font-headline font-bold text-lg shadow-[0_2px_8px_rgba(51,33,13,0.15)] group-hover:bg-primary transition-all">P</div><div class="flex flex-col"><span class="font-headline font-bold text-xl tracking-tight text-primary leading-none">PAISABOR</span><span class="text-[10px] tracking-widest uppercase font-label text-secondary font-semibold mt-1">Hearth • Andes • NL</span></div></a></div><nav class="hidden md:flex items-center gap-2 lg:gap-3" data-active-classes="bg-primary-container text-on-primary font-medium rounded-lg"><a class="px-3.5 py-2 text-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-lg transition-colors" data-path="tienda-productos" href="#">Tienda / Productos</a><a class="px-3.5 py-2 text-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-lg transition-colors" data-path="menus-bajo-reserva" href="#">Menús Bajo Reserva</a><a class="px-3.5 py-2 text-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-lg transition-colors" data-path="catering-eventos" href="#">Catering</a><a class="px-3.5 py-2 text-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-lg transition-colors" data-path="quienes-somos" href="#">Quiénes Somos</a></nav><div class="flex items-center gap-3 lg:gap-4"><button aria-label="Buscar" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-xl">search</span></button><button aria-label="Cesta de compra" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors relative"><span class="material-symbols-outlined text-xl">shopping_bag</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary"></span></button><a class="flex items-center gap-2 pl-2" data-path="perfil-ajustes" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container/20 hover:ring-secondary transition-all" src="https://lh3.googleusercontent.com/aida/AEtjO1VDeI_wO3h2Ypsq_ZLb3paIiXqbhbxxPg4DQ3mS0tHlU-iT9PkISzXBry48naEWfgxC1PgLtcDvz5clucpfNumLU6iVDrQRcoYDMF3HFCkJjAyzu-chGzBcaW7trn0PJD-aRGAH9CNHDdtJ0JtK_0GLheAHgxZZfTzF1-Sel9vVzgELje3PD2115_OpTXGsgITIhKtqwTfFGbDFaZ8HoOlAQ0dbQ6262JWR5qOpczdNx96XHzldmOyllV22JJcJOBaZaNRIDtVAkA"></a></div></div></header><main class="w-full pt-28 bg-surface min-h-[calc(100vh-22rem)]"><div class="flex flex-col w-full">
+<!-- Subtle decorative ambient background glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-24 right-1/4 w-96 h-96 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-1/2 left-0 w-80 h-80 bg-secondary-fixed/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="max-w-7xl mx-auto px-6 lg:px-12 py-8">
+<!-- Breadcrumb and Context Header -->
+<div class="mb-10">
+<div class="flex items-center gap-2 text-xs font-label uppercase tracking-widest text-secondary font-semibold mb-2">
+<span>Mi Cuenta</span>
+<span class="text-outline-variant">•</span>
+<span>Ajustes Personales</span>
+<span class="text-outline-variant">•</span>
+<span class="text-on-surface-variant">Editar Perfil</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-primary">
+              Actualizar Perfil
+            </h1>
+<p class="font-body text-base text-on-surface-variant mt-2 max-w-2xl leading-relaxed">
+              Mantén tus datos y credenciales actualizados para garantizar la entrega puntual de nuestras amasijos frescos y una atención personalizada en tus reservas de mesa.
+            </p>
+</div>
+<div class="flex items-center gap-2 self-start md:self-auto bg-surface-container-high px-3.5 py-1.5 rounded-full text-xs font-label text-on-surface-variant">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span>Sincronizado con La Hacienda NL</span>
+</div>
+</div>
+</div>
+<!-- Main Split Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<!-- LEFT COLUMN: Sticky Live Profile Preview Card -->
+<aside class="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl shadow-primary/5 p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
+<!-- Warm top decorative strip (curated hearth touch) -->
+<div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary via-secondary to-primary-container"></div>
+<!-- Live Preview Indicator -->
+<div class="flex items-center justify-between mb-6 pt-1">
+<span class="text-[11px] font-label uppercase tracking-wider font-semibold text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                Vista Pública del Perfil
+              </span>
+<span class="bg-surface-container text-on-surface-variant text-[11px] font-label px-2.5 py-0.5 rounded-full font-medium">
+                En Vivo
+              </span>
+</div>
+<!-- Avatar + Status Banner -->
+<div class="flex flex-col items-center text-center">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full overflow-hidden p-1 bg-gradient-to-tr from-secondary via-primary-fixed to-secondary-container shadow-md">
+<img alt="Juan Carlos Pérez Restrepo" class="w-full h-full object-cover rounded-full" id="live-avatar-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeMdM7SohkbXCXbvEHbDwwR7U_0U5PxRDeisqRgMSCaOZIdwOuobGusNsPV6SAGboY0Ss81RaVrkgV27cfB1zEfnDxNL6eM_v0aqjtTLNw6l2OBlNKql35zETSSIslZnukXA9de8aop6qYj0QJKkK6m-Dp_KXQqBhIjGhe7JrLkJGnXrpHkVOaB88uPdzupaKTtjiMQvJ-6dfdXvBIDNiNYg1TC55M3NVJ7MLqeVx_S4VF2Xt-g4Hg">
+</div>
+<div class="absolute -bottom-2 -right-1 bg-surface-container-lowest p-1 rounded-full shadow-md">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-base">verified</span>
+</div>
+</div>
+</div>
+<!-- Membership Badge -->
+<div class="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-xs font-label font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>Miembro Activo • Familia Paisabor</span>
+</div>
+<!-- Name & Contact -->
+<h2 class="font-headline font-bold text-xl text-primary mt-4 tracking-tight" id="live-name-display">
+                Juan Carlos Pérez Restrepo
+              </h2>
+<div class="flex items-center gap-1.5 mt-1 text-sm text-on-surface-variant font-body">
+<span class="truncate max-w-[200px]" id="live-email-display">juan.perez@ejemplo.co</span>
+</div>
+<div class="inline-flex items-center gap-1 text-[11px] font-medium text-secondary bg-secondary-fixed/50 px-2.5 py-0.5 rounded-full mt-2 font-label">
+<span class="material-symbols-outlined text-xs">mark_email_read</span>
+<span>Correo Verificado</span>
+</div>
+</div>
+<!-- Member Statistics Card (The Digital Hacienda Data) -->
+<div class="mt-6 pt-6 bg-surface-container-low rounded-lg p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<span class="text-on-surface-variant font-label">Rango en Mesa</span>
+<span class="font-headline font-bold text-primary">Cliente Frecuente</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-center pt-1">
+<div class="bg-surface-container-lowest p-2.5 rounded-lg shadow-sm">
+<span class="block font-headline font-bold text-lg text-secondary leading-tight">12</span>
+<span class="text-[11px] text-on-surface-variant font-label">Despensa Andina</span>
+</div>
+<div class="bg-surface-container-lowest p-2.5 rounded-lg shadow-sm">
+<span class="block font-headline font-bold text-lg text-primary leading-tight">3</span>
+<span class="text-[11px] text-on-surface-variant font-label">Menús Reservados</span>
+</div>
+</div>
+<!-- Loyalty Points Pill -->
+<div class="flex items-center justify-between bg-primary text-primary-fixed p-3 rounded-lg mt-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-lg" style="font-variation-settings: 'FILL' 1;">local_cafe</span>
+<span class="text-xs font-label uppercase tracking-wider font-semibold">Puntos Sabor</span>
+</div>
+<span class="font-headline font-bold text-base text-primary-fixed">1,450 pts</span>
+</div>
+</div>
+<!-- Current Preferred Logistics Destination -->
+<div class="mt-6 pt-5 bg-transparent">
+<div class="flex items-start gap-3 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-base shrink-0 mt-0.5">location_on</span>
+<div>
+<span class="font-semibold text-primary block mb-0.5">Destino Predeterminado</span>
+<span class="leading-relaxed">Prinsengracht 263-267, Ámsterdam, Países Bajos</span>
+</div>
+</div>
+</div>
+<!-- Helper Advisory Tip -->
+<div class="mt-6 p-3.5 bg-surface-container-high rounded-lg flex items-start gap-3 text-xs text-on-surface-variant/90 leading-relaxed">
+<span class="material-symbols-outlined text-secondary shrink-0 text-base">info</span>
+<p>Tu fotografía y nombre se reflejarán automáticamente en las etiquetas de tus reservas culinarias y confirmaciones de entrega de La Hacienda.</p>
+</div>
+</div>
+<!-- Quick Secondary Help Card -->
+<div class="bg-surface-container-low p-5 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-primary-fixed flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-lg">shield</span>
+</div>
+<div>
+<p class="font-headline font-bold text-sm text-primary">Seguridad &amp; Privacidad</p>
+<p class="text-xs text-on-surface-variant">Cumplimiento estricto AVG / GDPR</p>
+</div>
+</div>
+<a class="text-secondary hover:text-on-secondary-fixed-variant text-xs font-semibold font-label uppercase" href="#">Ver</a>
+</div>
+</aside>
+<!-- RIGHT COLUMN: Form Inputs & Photo Management -->
+<main class="lg:col-span-8 space-y-8">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl shadow-primary/5 p-6 sm:p-10">
+<!-- Section Header -->
+<div class="mb-8">
+<h2 class="font-headline font-bold text-2xl text-primary tracking-tight">
+                Información de la Cuenta
+              </h2>
+<p class="text-on-surface-variant text-sm mt-1 font-body">
+                Actualiza tus datos personales y fotografía para tus pedidos y reservas de mesa.
+              </p>
+</div>
+<form class="space-y-10" id="profile-edit-form" onsubmit="event.preventDefault();">
+<!-- SECTION 1: FOTOGRAFÍA DE PERFIL -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline font-bold text-base text-primary uppercase tracking-wider text-xs">
+                    01. Fotografía de Perfil
+                  </h3>
+<span class="text-xs text-on-surface-variant font-label">Identificador visual</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-6 flex flex-col md:flex-row items-center gap-6">
+<!-- Thumbnail Current -->
+<div class="relative shrink-0">
+<img alt="Juan Carlos avatar" class="w-24 h-24 rounded-full object-cover shadow-md" id="form-avatar-thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeMdM7SohkbXCXbvEHbDwwR7U_0U5PxRDeisqRgMSCaOZIdwOuobGusNsPV6SAGboY0Ss81RaVrkgV27cfB1zEfnDxNL6eM_v0aqjtTLNw6l2OBlNKql35zETSSIslZnukXA9de8aop6qYj0QJKkK6m-Dp_KXQqBhIjGhe7JrLkJGnXrpHkVOaB88uPdzupaKTtjiMQvJ-6dfdXvBIDNiNYg1TC55M3NVJ7MLqeVx_S4VF2Xt-g4Hg">
+<div class="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-xs">photo_camera</span>
+</div>
+</div>
+<!-- Actions & Drag Area -->
+<div class="flex-1 w-full space-y-4">
+<div class="flex flex-wrap items-center gap-3">
+<label class="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-high text-primary font-medium text-xs font-label shadow-sm transition-all" for="avatar-file-input">
+<span class="material-symbols-outlined text-base text-secondary">cloud_upload</span>
+<span>Subir nueva foto</span>
+</label>
+<input accept="image/png, image/jpeg, image/webp" class="hidden" id="avatar-file-input" type="file">
+<button class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 font-medium text-xs font-label transition-colors" id="btn-remove-photo" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+<span>Eliminar foto</span>
+</button>
+</div>
+<!-- Drop microzone with subtle dashed terracotta accent -->
+<div class="p-4 rounded-lg bg-surface-container-lowest/80 text-center cursor-pointer transition-colors group" id="dropzone">
+<div class="flex items-center justify-center gap-2 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary group-hover:scale-110 transition-transform">upload_file</span>
+<span>Arrastra y suelta aquí tu archivo o haz clic para explorar</span>
+</div>
+<p class="text-[11px] text-on-surface-variant/70 mt-1">
+                        Formatos recomendados: JPG, PNG o WEBP. Tamaño máximo 5MB. Se recomienda una imagen cuadrada y nítida.
+                      </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: DATOS PERSONALES -->
+<section class="space-y-6 pt-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline font-bold text-base text-primary uppercase tracking-wider text-xs">
+                    02. Datos Personales
+                  </h3>
+<span class="text-xs text-on-surface-variant font-label">* Campos requeridos</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Nombre Completo -->
+<div class="md:col-span-2 space-y-1.5">
+<label class="block font-headline text-xs font-bold uppercase tracking-wider text-primary" for="full-name">
+                      Nombre Completo *
+                    </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-lg pointer-events-none">person</span>
+<input class="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-4 py-3 placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-inner" id="full-name" required="" type="text" value="Juan Carlos Pérez Restrepo">
+</div>
+<span class="text-[11px] text-on-surface-variant block pl-1">Tal como aparecerá en tus facturas y comprobantes fiscales.</span>
+</div>
+<!-- Nombre de Pila / Preferido -->
+<div class="space-y-1.5">
+<label class="block font-headline text-xs font-bold uppercase tracking-wider text-primary" for="preferred-name">
+                      Nombre de Pila / Preferido
+                    </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-lg pointer-events-none">sentiment_satisfied</span>
+<input class="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-4 py-3 placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-inner" id="preferred-name" type="text" value="Juan">
+</div>
+<span class="text-[11px] text-on-surface-variant block pl-1">¿Cómo te saludamos en la panadería y confirmaciones?</span>
+</div>
+<!-- Teléfono Móvil -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="block font-headline text-xs font-bold uppercase tracking-wider text-primary" for="phone-number">
+                        Teléfono Móvil
+                      </label>
+<span class="text-[10px] uppercase font-label bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">Para PostNL / App</span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-lg pointer-events-none">call</span>
+<input class="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-4 py-3 placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-inner font-mono text-xs" id="phone-number" type="tel" value="+31 6 1234 5678">
+</div>
+<span class="text-[11px] text-on-surface-variant block pl-1">Para avisos inmediatos de despacho refrigerado y WhatsApp.</span>
+</div>
+<!-- Correo Electrónico -->
+<div class="md:col-span-2 space-y-1.5">
+<label class="block font-headline text-xs font-bold uppercase tracking-wider text-primary" for="email-address">
+                      Correo Electrónico *
+                    </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-lg pointer-events-none">mail</span>
+<input class="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-12 py-3 placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-inner" id="email-address" required="" type="email" value="juan.perez@ejemplo.co">
+<span class="material-symbols-outlined absolute right-3.5 text-secondary text-lg" title="Verificado">lock_open</span>
+</div>
+<div class="flex items-center gap-2 pt-1 pl-1 text-[11px] text-secondary">
+<span class="material-symbols-outlined text-xs">info</span>
+<span>Se enviará un enlace de confirmación si modificas tu dirección electrónica.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: PREFERENCIAS DE COMUNICACIÓN -->
+<section class="space-y-4 pt-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline font-bold text-base text-primary uppercase tracking-wider text-xs">
+                    03. Preferencias de Comunicación &amp; Notificaciones
+                  </h3>
+<span class="text-xs text-on-surface-variant font-label">Canales activos</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-5 space-y-4">
+<!-- Preferencia 1: WhatsApp de Entrega -->
+<label class="flex items-start gap-4 p-3 bg-surface-container-lowest rounded-lg cursor-pointer hover:bg-surface-container-high/50 transition-colors">
+<div class="pt-0.5">
+<input checked="" class="w-4 h-4 rounded text-secondary accent-secondary focus:ring-0 cursor-pointer" type="checkbox">
+</div>
+<div class="flex-1 text-sm">
+<div class="flex items-center gap-2">
+<span class="font-headline font-bold text-primary text-xs uppercase tracking-wide">Alertas de Entrega vía WhatsApp</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-semibold">Recomendado</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-0.5">
+                        Notificaciones en tiempo real del repartidor de Paisabor o PostNL con el código de seguimiento refrigerado.
+                      </p>
+</div>
+</label>
+<!-- Preferencia 2: Reservas de Menús -->
+<label class="flex items-start gap-4 p-3 bg-surface-container-lowest rounded-lg cursor-pointer hover:bg-surface-container-high/50 transition-colors">
+<div class="pt-0.5">
+<input checked="" class="w-4 h-4 rounded text-secondary accent-secondary focus:ring-0 cursor-pointer" type="checkbox">
+</div>
+<div class="flex-1 text-sm">
+<span class="font-headline font-bold text-primary text-xs uppercase tracking-wide block">Estado de Menús Bajo Reserva</span>
+<p class="text-xs text-on-surface-variant mt-0.5">
+                        Confirmación de fecha, selección de maridaje de café de origen y preparación de tu cena a puerta cerrada.
+                      </p>
+</div>
+</label>
+<!-- Preferencia 3: Horneadas Semanales -->
+<label class="flex items-start gap-4 p-3 bg-surface-container-lowest rounded-lg cursor-pointer hover:bg-surface-container-high/50 transition-colors">
+<div class="pt-0.5">
+<input class="w-4 h-4 rounded text-secondary accent-secondary focus:ring-0 cursor-pointer" type="checkbox">
+</div>
+<div class="flex-1 text-sm">
+<span class="font-headline font-bold text-primary text-xs uppercase tracking-wide block">Boletín de Amasijos &amp; Horneadas Frescas</span>
+<p class="text-xs text-on-surface-variant mt-0.5">
+                        Aviso anticipado cada miércoles cuando sale el pandebono caliente, almojábanas y queso costeño fresco.
+                      </p>
+</div>
+</label>
+</div>
+</section>
+<!-- BOTTOM ACTIONS BAR -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2 text-xs text-on-surface-variant font-label order-2 sm:order-1">
+<span class="material-symbols-outlined text-sm text-secondary">history</span>
+<span>Última actualización: <strong>24 de Octubre, 2024</strong></span>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto order-1 sm:order-2">
+<button class="w-1/2 sm:w-auto px-5 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high text-xs font-headline font-bold tracking-wider uppercase transition-all" id="btn-cancel" type="button">
+                    Cancelar
+                  </button>
+<button class="w-1/2 sm:w-auto px-7 py-3 rounded-lg bg-primary hover:bg-primary-container text-on-primary text-xs font-headline font-bold tracking-wider uppercase shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2" id="btn-save" type="submit">
+<span class="material-symbols-outlined text-base">check</span>
+<span>Guardar Cambios</span>
+</button>
+</div>
+</div>
+</form>
+<!-- Success Notification Banner (Hidden by default, triggered via JS) -->
+<div class="hidden mt-6 p-4 rounded-lg bg-primary text-primary-fixed flex items-center justify-between transition-all" id="save-toast">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-fixed text-xl">check_circle</span>
+<div class="text-xs">
+<p class="font-bold font-headline">¡Perfil Actualizado con Éxito!</p>
+<p class="text-primary-fixed/80">Tus datos han sido sincronizados con el sistema de La Hacienda.</p>
+</div>
+</div>
+<button class="text-primary-fixed hover:text-white" onclick="document.getElementById('save-toast').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+<!-- Micro-banner for Coffee & Hearth Connection -->
+<div class="bg-gradient-to-r from-surface-container-high to-surface-container-low rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">loyalty</span>
+</div>
+<div>
+<p class="font-headline font-bold text-sm text-primary">¿Deseas canjear tus 1,450 Puntos Sabor?</p>
+<p class="text-xs text-on-surface-variant">Puedes utilizarlos para envíos gratis o catas privadas de café colombiano en Ámsterdam.</p>
+</div>
+</div>
+<a class="px-4 py-2 rounded-lg bg-surface-container-lowest text-primary text-xs font-bold font-label hover:bg-primary hover:text-on-primary transition-colors whitespace-nowrap shadow-sm" href="#">
+              Ver Recompensas
+            </a>
+</div>
+</main>
+</div>
+</div>
+</div>
+<script>
+    // Live update profile preview when inputs change
+    const nameInput = document.getElementById('full-name');
+    const emailInput = document.getElementById('email-address');
+    const liveName = document.getElementById('live-name-display');
+    const liveEmail = document.getElementById('live-email-display');
+    const saveToast = document.getElementById('save-toast');
+    const saveBtn = document.getElementById('btn-save');
+    const cancelBtn = document.getElementById('btn-cancel');
+    const avatarInput = document.getElementById('avatar-file-input');
+    const liveAvatar = document.getElementById('live-avatar-preview');
+    const thumbAvatar = document.getElementById('form-avatar-thumbnail');
+    const removeBtn = document.getElementById('btn-remove-photo');
+    const dropzone = document.getElementById('dropzone');
+
+    if (nameInput && liveName) {
+      nameInput.addEventListener('input', (e) => {
+        liveName.textContent = e.target.value.trim() || 'Juan Carlos Pérez Restrepo';
+      });
+    }
+
+    if (emailInput && liveEmail) {
+      emailInput.addEventListener('input', (e) => {
+        liveEmail.textContent = e.target.value.trim() || 'juan.perez@ejemplo.co';
+      });
+    }
+
+    // Avatar upload preview simulation
+    if (avatarInput) {
+      avatarInput.addEventListener('change', function(e) {
+        if (this.files && this.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            liveAvatar.src = evt.target.result;
+            thumbAvatar.src = evt.target.result;
+          };
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+    }
+
+    // Drag and drop trigger
+    if (dropzone && avatarInput) {
+      dropzone.addEventListener('click', () => avatarInput.click());
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('bg-surface-container-high');
+      });
+      dropzone.addEventListener('dragleave', () => {
+        dropzone.classList.remove('bg-surface-container-high');
+      });
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('bg-surface-container-high');
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            liveAvatar.src = evt.target.result;
+            thumbAvatar.src = evt.target.result;
+          };
+          reader.readAsDataURL(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    // Remove photo reset
+    if (removeBtn) {
+      removeBtn.addEventListener('click', () => {
+        const fallback = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAeMdM7SohkbXCXbvEHbDwwR7U_0U5PxRDeisqRgMSCaOZIdwOuobGusNsPV6SAGboY0Ss81RaVrkgV27cfB1zEfnDxNL6eM_v0aqjtTLNw6l2OBlNKql35zETSSIslZnukXA9de8aop6qYj0QJKkK6m-Dp_KXQqBhIjGhe7JrLkJGnXrpHkVOaB88uPdzupaKTtjiMQvJ-6dfdXvBIDNiNYg1TC55M3NVJ7MLqeVx_S4VF2Xt-g4Hg';
+        liveAvatar.src = fallback;
+        thumbAvatar.src = fallback;
+      });
+    }
+
+    // Form submit interactive feedback
+    if (saveBtn && saveToast) {
+      saveBtn.addEventListener('click', () => {
+        saveToast.classList.remove('hidden');
+        saveToast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        setTimeout(() => {
+          saveToast.classList.add('hidden');
+        }, 5000);
+      });
+    }
+
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', () => {
+        if (confirm('¿Deseas descartar los cambios no guardados?')) {
+          location.reload();
+        }
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface-variant mt-24"><div class="max-w-7xl mx-auto px-6 lg:px-12 py-16"><div class="grid grid-cols-1 md:grid-cols-4 gap-12"><div class="space-y-4 md:col-span-1"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full bg-primary text-primary-fixed flex items-center justify-center font-headline font-bold text-base">P</div><span class="font-headline font-bold text-lg tracking-tight text-primary">PAISABOR</span></div><p class="text-sm text-on-surface-variant leading-relaxed">El corazón culinario de los Andes trasladado a los Países Bajos. Ingredientes ancestrales, amasijos calientes y café de origen para hogares y mesas selectas.</p><div class="pt-2 flex items-center gap-3 text-secondary"><span class="text-xs font-semibold uppercase tracking-wider font-label">Artesanal • Fresco • Colombiano</span></div></div><div class="space-y-3"><h3 class="font-headline text-xs font-bold uppercase tracking-wider text-primary">Explorar</h3><ul class="space-y-2.5 text-sm"><li class="hover:text-primary transition-colors cursor-pointer">Despensa y Charcutería</li><li class="hover:text-primary transition-colors cursor-pointer">Amasijos y Panadería Criolla</li><li class="hover:text-primary transition-colors cursor-pointer">Café de Finca Huila y Nariño</li><li class="hover:text-primary transition-colors cursor-pointer">Dulcería Tradicional</li></ul></div><div class="space-y-3"><h3 class="font-headline text-xs font-bold uppercase tracking-wider text-primary">Experiencias</h3><ul class="space-y-2.5 text-sm"><li class="hover:text-primary transition-colors cursor-pointer">Cenas a Puerta Cerrada</li><li class="hover:text-primary transition-colors cursor-pointer">Catering para Empresas</li><li class="hover:text-primary transition-colors cursor-pointer">Bodas y Celebraciones</li><li class="hover:text-primary transition-colors cursor-pointer">Talleres de Arepas &amp; Café</li></ul></div><div class="space-y-3"><h3 class="font-headline text-xs font-bold uppercase tracking-wider text-primary">Países Bajos</h3><p class="text-sm leading-relaxed text-on-surface-variant">Entregas climatizadas en toda la zona Randstad y despachos nacionales por servicio express.</p><div class="pt-3 flex flex-col gap-1 text-sm font-label text-primary"><span class="font-semibold">Keizersgracht, Ámsterdam</span><span>contact@paisabor.nl</span></div></div></div><div class="mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant/80"><p>© 2025 Paisabor Artisanal Foods B.V. Todos los derechos reservados.</p><div class="flex items-center gap-6"><span class="hover:text-primary cursor-pointer transition-colors">Privacidad &amp; Cookies</span><span class="hover:text-primary cursor-pointer transition-colors">Términos de Envío</span><span class="hover:text-primary cursor-pointer transition-colors">Contacto Directo</span></div></div></div></footer></body></html>

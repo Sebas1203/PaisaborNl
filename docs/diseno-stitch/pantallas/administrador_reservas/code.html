@@ -1,0 +1,719 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,600;0,700;0,800;1,400&amp;family=Work+Sans:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-high":"#ebe8e3","tertiary-container":"#54330c","surface-dim":"#dcdad5","on-error-container":"#93000a","on-background":"#1c1c19","outline":"#80756c","on-error":"#ffffff","secondary-fixed-dim":"#ffb599","surface-container-lowest":"#ffffff","on-primary-container":"#bd9f83","on-tertiary-fixed":"#2c1600","inverse-primary":"#e1c1a4","background":"#fcf9f4","secondary-container":"#ff956a","on-primary-fixed":"#291806","on-secondary-fixed":"#370e00","on-secondary-container":"#762c08","surface-container-low":"#f6f3ee","secondary-fixed":"#ffdbce","on-surface":"#1c1c19","surface-container":"#f0ede8","surface-container-highest":"#e5e2dd","outline-variant":"#d2c4ba","error":"#ba1a1a","error-container":"#ffdad6","on-tertiary-fixed-variant":"#623f18","surface-tint":"#725a42","tertiary-fixed":"#ffdcbd","tertiary":"#391e00","on-tertiary":"#ffffff","on-tertiary-container":"#cb9b6c","on-primary":"#ffffff","primary-fixed-dim":"#e1c1a4","surface-bright":"#fcf9f4","tertiary-fixed-dim":"#f0bd8b","inverse-surface":"#31302d","surface-variant":"#e5e2dd","primary":"#33210d","on-secondary":"#ffffff","secondary":"#994621","on-surface-variant":"#4e453d","inverse-on-surface":"#f3f0eb","on-primary-fixed-variant":"#59422c","primary-container":"#4b3621","surface":"#fcf9f4","on-secondary-fixed-variant":"#7b2f0b","primary-fixed":"#fedcbe"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{},fontFamily:{headline:["Epilogue"],display:["Epilogue"],body:["Work Sans"],label:["Work Sans"]},fontSize:{}}}}</script></head><body class="bg-surface font-body text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-6 pb-6 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="px-6 mb-8 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center"><span class="text-primary font-headline font-bold text-lg tracking-tight">P</span></div><div><div class="font-headline text-lg font-bold tracking-tight text-primary leading-tight">Paisabor</div><div class="text-xs text-secondary font-medium tracking-wide uppercase">Hearth &amp; Co.</div></div></div><div class="px-6 mb-3"><span class="text-[11px] font-semibold tracking-widest uppercase text-on-surface-variant">Administración</span></div><nav class="flex-1 px-3 space-y-1.5" data-active-classes="bg-primary-container text-on-primary font-semibold"><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="panel" href="#"><span class="material-symbols-outlined text-[20px]">space_dashboard</span><span>Panel</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="productos" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span>Productos</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="menus" href="#"><span class="material-symbols-outlined text-[20px]">restaurant_menu</span><span>Menús</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="pedidos" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span>Pedidos</span></a><a aria-current="page" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg transition-all bg-primary-container text-on-primary font-semibold" data-path="reservas" href="#"><span class="material-symbols-outlined text-[20px]">event_available</span><span>Reservas</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="inventario" href="#"><span class="material-symbols-outlined text-[20px]">shelves</span><span>Inventario</span></a></nav><div class="px-4 mt-auto pt-4"><div class="p-3 bg-surface rounded-lg flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">pin_drop</span><div class="text-xs"><div class="font-medium text-on-surface">Sede Central</div><div class="text-on-surface-variant">Ámsterdam, NL</div></div></div><span class="w-2 h-2 rounded-full bg-secondary"></span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 w-full px-8 flex items-center justify-between"><div class="flex items-center gap-4"><span class="font-headline text-lg font-bold tracking-tight text-primary">Paisabor Admin</span><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-xs font-medium text-on-surface-variant"><span class="material-symbols-outlined text-sm text-secondary">location_on</span><span>Ámsterdam</span></div></div><div class="flex items-center gap-6"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-outline text-lg pointer-events-none">search</span><input class="w-72 bg-surface-container-low text-xs text-on-surface pl-9 pr-4 py-2 rounded-lg placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors" placeholder="Buscar pedidos, platos o insumos..." type="text"></div><div class="flex items-center gap-3 pl-2"><div class="text-right hidden sm:block"><div class="text-xs font-medium text-on-surface">Mayordomo</div><div class="text-[11px] text-secondary font-medium">Admin General</div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VDeI_wO3h2Ypsq_ZLb3paIiXqbhbxxPg4DQ3mS0tHlU-iT9PkISzXBry48naEWfgxC1PgLtcDvz5clucpfNumLU6iVDrQRcoYDMF3HFCkJjAyzu-chGzBcaW7trn0PJD-aRGAH9CNHDdtJ0JtK_0GLheAHgxZZfTzF1-Sel9vVzgELje3PD2115_OpTXGsgITIhKtqwTfFGbDFaZ8HoOlAQ0dbQ6262JWR5qOpczdNx96XHzldmOyllV22JJcJOBaZaNRIDtVAkA"></div></div></div></header><main class="relative pt-16 w-full bg-surface min-h-screen px-8 py-8"><div class="flex flex-col w-full pb-16">
+<!-- Top Stat / Atmosphere Bar -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low p-6 sm:p-8 mb-8 shadow-sm">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-secondary-fixed/40 blur-3xl pointer-events-none"></div>
+<div class="absolute right-32 -bottom-20 w-64 h-64 rounded-full bg-tertiary-fixed/30 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+<div class="max-w-xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-xs font-semibold tracking-wider uppercase text-secondary mb-3">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Fogón &amp; Celebraciones · Países Bajos
+        </div>
+<h1 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary tracking-tight leading-tight">
+          Gestión de Reservas &amp; Catering
+        </h1>
+<p class="text-on-surface-variant text-sm mt-1 leading-relaxed">
+          Supervisión logística de banquetes colombianos, menaje tradicional y cotizaciones activas para la comunidad en Ámsterdam, Utrecht y Randstad.
+        </p>
+</div>
+<!-- Quick Metrics Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-surface-container-lowest p-3.5 rounded-lg shadow-sm">
+<span class="text-[10px] uppercase font-bold tracking-wider text-outline">Por Confirmar</span>
+<div class="font-headline text-2xl font-bold text-secondary mt-0.5">7</div>
+<span class="text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-xs text-secondary">priority_high</span> 2 urgentes
+          </span>
+</div>
+<div class="bg-surface-container-lowest p-3.5 rounded-lg shadow-sm">
+<span class="text-[10px] uppercase font-bold tracking-wider text-outline">Confirmadas</span>
+<div class="font-headline text-2xl font-bold text-primary mt-0.5">18</div>
+<span class="text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-xs text-primary">event</span> Este mes
+          </span>
+</div>
+<div class="bg-surface-container-lowest p-3.5 rounded-lg shadow-sm">
+<span class="text-[10px] uppercase font-bold tracking-wider text-outline">Total Pax Activo</span>
+<div class="font-headline text-2xl font-bold text-primary mt-0.5">485</div>
+<span class="text-[11px] text-on-surface-variant">Comensales</span>
+</div>
+<div class="bg-surface-container-lowest p-3.5 rounded-lg shadow-sm">
+<span class="text-[10px] uppercase font-bold tracking-wider text-outline">Facturación Est.</span>
+<div class="font-headline text-2xl font-bold text-primary mt-0.5">€9,840</div>
+<span class="text-[11px] text-outline">Incl. 9% BTW</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Filter Bar & Search -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+<!-- Filter Tabs (State driven by click) -->
+<div class="flex items-center gap-1.5 p-1 bg-surface-container-low rounded-xl overflow-x-auto" id="filter-tab-group">
+<button class="filter-btn active-tab px-4 py-2 rounded-lg text-xs font-semibold tracking-wide bg-primary text-on-primary transition-all" onclick="setFilter('todas', this)">
+        Todas (28)
+      </button>
+<button class="filter-btn px-4 py-2 rounded-lg text-xs font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-1.5" onclick="setFilter('pendientes', this)">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+        Pendientes (7)
+      </button>
+<button class="filter-btn px-4 py-2 rounded-lg text-xs font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" onclick="setFilter('confirmadas', this)">
+        Confirmadas (14)
+      </button>
+<button class="filter-btn px-4 py-2 rounded-lg text-xs font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" onclick="setFilter('finalizadas', this)">
+        Finalizadas (5)
+      </button>
+<button class="filter-btn px-4 py-2 rounded-lg text-xs font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" onclick="setFilter('rechazadas', this)">
+        Rechazadas (2)
+      </button>
+</div>
+<!-- Quick Utilities -->
+<div class="flex items-center gap-3">
+<div class="relative flex-1 sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">search</span>
+<input class="w-full bg-surface-container-lowest text-xs text-on-surface pl-9 pr-3 py-2 rounded-lg outline-none placeholder:text-outline focus:bg-surface-container-low transition-colors shadow-sm" id="reservation-search" oninput="filterCards()" placeholder="Buscar cliente, código..." type="text">
+</div>
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-lowest text-xs font-semibold text-primary hover:bg-surface-container transition-all shadow-sm">
+<span class="material-symbols-outlined text-base">calendar_view_week</span>
+<span>Calendario</span>
+</button>
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-secondary text-xs font-semibold text-on-secondary hover:bg-primary-container transition-all shadow-sm">
+<span class="material-symbols-outlined text-base">add</span>
+<span>Crear Reserva</span>
+</button>
+</div>
+</div>
+<!-- Reservations Stack & Editorial Cards -->
+<div class="flex flex-col gap-6" id="cards-container">
+<!-- Card 1: Urgent Pending Catering -->
+<article class="reservation-card bg-surface-container-lowest rounded-xl p-6 sm:p-7 shadow-[0_4px_24px_rgba(28,28,25,0.04)] transition-all hover:shadow-[0_8px_32px_rgba(28,28,25,0.07)]" data-code="#CAT-2025-0891" data-name="van der Meer" data-status="pendientes">
+<div class="flex flex-col xl:flex-row xl:items-start justify-between gap-6">
+<!-- Left Column: Primary Details & Menu Context -->
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2.5 mb-3">
+<span class="font-mono text-xs font-bold text-secondary bg-secondary-fixed/50 px-2.5 py-1 rounded-md">
+              #CAT-2025-0891
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed-dim/30 text-[11px] font-semibold text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+              Pendiente de Confirmación
+            </span>
+<span class="inline-flex items-center gap-1 text-[11px] text-outline">
+<span class="material-symbols-outlined text-xs">schedule</span>
+              Recibida hace 2 horas
+            </span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-4">
+<h2 class="font-headline text-xl sm:text-2xl font-bold text-primary">
+              Banquete Campesino Lechona &amp; Tamal Tolimense
+            </h2>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-xs font-medium">
+<span class="material-symbols-outlined text-xs">local_fire_department</span> Especial Paisabor
+            </span>
+</div>
+<!-- Grid of Essential Specs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-3 bg-surface-container-low rounded-lg px-4 mb-4">
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Cliente &amp; Empresa</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5">Sanne van der Meer</div>
+<div class="text-xs text-on-surface-variant truncate">Booking.com Event Team</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Fecha &amp; Horario</div>
+<div class="text-sm font-semibold text-primary mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">calendar_today</span>
+                Sáb 15 Nov, 2025
+              </div>
+<div class="text-xs text-on-surface-variant">14:00 - 18:30 CET</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Comensales &amp; Formato</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">groups</span>
+                45 Pax
+              </div>
+<div class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-secondary">local_shipping</span>
+                Entrega térmica a domicilio
+              </div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Ubicación Destino</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5 truncate">Keizersgracht 421</div>
+<div class="text-xs text-outline">1016 EK Ámsterdam Centrum</div>
+</div>
+</div>
+<!-- Dietary Alerts & Sensory Notes -->
+<div class="flex flex-wrap items-center gap-3">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary">contact_phone</span>
+<span>+31 6 4928 1033</span>
+<span class="text-outline">·</span>
+<span class="text-on-surface">sanne.v@booking.com</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-secondary-fixed/30 text-xs font-medium text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-sm text-secondary">soup_kitchen</span>
+<span>Dieta: 6x Tamal Vegetariano (sin tocino)</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container-high text-xs font-medium text-error">
+<span class="material-symbols-outlined text-sm text-error">warning</span>
+<span>Alergia severa a cacahuates/maní (1 comensal)</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual Preview, Price & Direct Action CTAs -->
+<div class="w-full xl:w-80 flex flex-col justify-between self-stretch bg-surface-container-low p-5 rounded-lg">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-medium text-outline">Presupuesto Estimado</span>
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-wider">BTW 9% incl.</span>
+</div>
+<div class="font-headline text-3xl font-extrabold text-primary">
+              € 1,745.00
+            </div>
+<div class="text-xs text-on-surface-variant mt-1">
+              Incluye menaje de barro, samovares térmicos y salsero artesanal ají/guacamole.
+            </div>
+<!-- Visual thumbnail peek -->
+<div class="mt-4 relative h-24 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Traditional Colombian whole lechona stuffed with fragrant rice, green peas, and marinated pork inside a rustic clay serving dish on a wooden Dutch catering table, warm natural candlelight, cinematic food photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq3TmGFMoPT_NFlljCEKEfBbHpZ9y8x1HEdJ0ZvZOxENE76UXSlI2l_FV6kfited12CTAQsfALFQmH1xj1SSidhiIP-4Cxzgs_pkKzHtTXhTY78qc_KMJE2uhtFBZL6zklpqYmwyALZ3GioytE8vbHMWQT3OS2oDeJ2w9Jw4xgrgZt_PgfFb7rXWH7VIxtTwQXAoVWhJtSax5Y0AH8kBfwC6EIBXw99JYoO9sEcyqLugsgq-SQZxt_">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent flex items-end p-2.5">
+<span class="text-[11px] font-medium text-on-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">restaurant</span> Vajilla rústica incluida
+                </span>
+</div>
+</div>
+</div>
+<!-- Action Buttons Bar -->
+<div class="flex flex-col gap-2 mt-5">
+<button class="w-full py-2.5 px-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary text-xs font-semibold tracking-wide transition-all flex items-center justify-center gap-2 shadow-sm" onclick="confirmReservation('CAT-2025-0891')">
+<span class="material-symbols-outlined text-base">check_circle</span>
+              Confirmar Reserva
+            </button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-primary text-xs font-medium transition-all flex items-center justify-center gap-1 shadow-sm" onclick="openModal('adjust', 'CAT-2025-0891', '1745.00')">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+                Cotización
+              </button>
+<button class="py-2 px-2.5 rounded-lg bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed text-xs font-semibold transition-all flex items-center justify-center gap-1 shadow-sm" onclick="sendMolliePayment('CAT-2025-0891', 'Sanne van der Meer', '1745.00')">
+<span class="material-symbols-outlined text-sm">link</span>
+                Link Mollie
+              </button>
+</div>
+<button class="w-full py-2 px-3 rounded-lg text-error hover:bg-error-container/40 text-xs font-semibold transition-all flex items-center justify-center gap-1.5" onclick="openModal('reject', 'CAT-2025-0891')">
+<span class="material-symbols-outlined text-sm">close</span>
+              Rechazar Reserva
+            </button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2: Fiesta Tradicional Paisa (Confirmed Status) -->
+<article class="reservation-card bg-surface-container-lowest rounded-xl p-6 sm:p-7 shadow-[0_4px_24px_rgba(28,28,25,0.04)] transition-all hover:shadow-[0_8px_32px_rgba(28,28,25,0.07)]" data-code="#CAT-2025-0886" data-name="Carlos Gomez" data-status="confirmadas">
+<div class="flex flex-col xl:flex-row xl:items-start justify-between gap-6">
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2.5 mb-3">
+<span class="font-mono text-xs font-bold text-primary bg-surface-container-high px-2.5 py-1 rounded-md">
+              #CAT-2025-0886
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-[11px] font-semibold text-primary">
+<span class="material-symbols-outlined text-xs text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              Confirmada · Pago 50% Recibido
+            </span>
+<span class="inline-flex items-center gap-1 text-[11px] text-outline">
+<span class="material-symbols-outlined text-xs">local_shipping</span>
+              Ruta Amsterdam-Zuid
+            </span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-4">
+<h2 class="font-headline text-xl sm:text-2xl font-bold text-primary">
+              Fiesta Tradicional Bandeja Paisa &amp; Arepas de Choclo
+            </h2>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-medium">
+<span class="material-symbols-outlined text-xs">star</span> Best Seller
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-3 bg-surface-container-low rounded-lg px-4 mb-4">
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Cliente</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5">Carlos Gómez Ospina</div>
+<div class="text-xs text-on-surface-variant truncate">Fiesta Aniversario Familiar</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Fecha &amp; Horario</div>
+<div class="text-sm font-semibold text-primary mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">calendar_today</span>
+                Dom 16 Nov, 2025
+              </div>
+<div class="text-xs text-on-surface-variant">13:00 - 17:00 CET</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Comensales</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">groups</span>
+                28 Pax
+              </div>
+<div class="text-xs text-on-surface-variant">Buffet asistido con chafing dishes</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Modalidad</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">storefront</span>
+                Retiro en Local
+              </div>
+<div class="text-xs text-outline">Paisabor Keizersgracht Lab</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary">phone_iphone</span>
+<span>+31 6 8122 9044</span>
+<span class="text-outline">·</span>
+<span class="text-on-surface">cgomez.ospina@gmail.com</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">
+<span class="material-symbols-outlined text-sm text-secondary">check</span>
+<span>Sin restricciones de gluten notificadas</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-tertiary-fixed text-xs font-medium text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-sm">cake</span>
+<span>Incluye 28x Postre Tres Leches de Guayaba</span>
+</div>
+</div>
+</div>
+<div class="w-full xl:w-80 flex flex-col justify-between self-stretch bg-surface-container-low p-5 rounded-lg">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-medium text-outline">Presupuesto Acordado</span>
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-wider">Restante €495</span>
+</div>
+<div class="font-headline text-3xl font-extrabold text-primary">
+              € 990.00
+            </div>
+<div class="text-xs text-on-surface-variant mt-1">
+              Depósito de €495 recibido vía Mollie iDeal (NL91INGB...).
+            </div>
+<div class="mt-4 relative h-24 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Generous Colombian Bandeja Paisa platter with crispy pork belly chicharron, red beans in clay bowl, ripe plantains, fried egg, avocado, and arepas arranged elegantly on a rustic linen cloth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYo-f5nZuJUVgBg3gKlCU08lOHvMva0t5UZMzoEQNcMBuRGFWBQTeFCxJyaeSHlJ_9Yvw8SI7ryN7Ep55Dfy2u31tvZB8bLgelm6yImOsurCkxTmtYUwQBKhvyE6eF6dQ5E2sfkU_vDgdsOCNZjmPr-Bm9ODuSMrgGgG55o0CENCrMKuG8S12p_nbJH6s_1ck8PkDNSYBQhIl-kEN9coybSPuWrAd2DeTjNx5k7GnyC13FlP2AqyC9">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent flex items-end p-2.5">
+<span class="text-[11px] font-medium text-on-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">kitchen</span> Empaque térmico grado alimenticio
+                </span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 mt-5">
+<button class="w-full py-2.5 px-4 rounded-lg bg-surface-container-highest hover:bg-surface-container-high text-primary text-xs font-semibold tracking-wide transition-all flex items-center justify-center gap-2" onclick="sendFinalPayment('CAT-2025-0886', 'Carlos Gomez', '495.00')">
+<span class="material-symbols-outlined text-base">payments</span>
+              Cobrar Saldo Pendiente (€495)
+            </button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-primary text-xs font-medium transition-all flex items-center justify-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-sm">print</span>
+                Hoja de Cocina
+              </button>
+<button class="py-2 px-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-primary text-xs font-medium transition-all flex items-center justify-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-sm">receipt</span>
+                Factura BTW
+              </button>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3: Pending Large Corporate Gala Sancocho Bifásico -->
+<article class="reservation-card bg-surface-container-lowest rounded-xl p-6 sm:p-7 shadow-[0_4px_24px_rgba(28,28,25,0.04)] transition-all hover:shadow-[0_8px_32px_rgba(28,28,25,0.07)]" data-code="#CAT-2025-0894" data-name="Hendrik de Jong" data-status="pendientes">
+<div class="flex flex-col xl:flex-row xl:items-start justify-between gap-6">
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2.5 mb-3">
+<span class="font-mono text-xs font-bold text-secondary bg-secondary-fixed/50 px-2.5 py-1 rounded-md">
+              #CAT-2025-0894
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed-dim/30 text-[11px] font-semibold text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+              Pendiente de Confirmación
+            </span>
+<span class="inline-flex items-center gap-1 text-[11px] text-error font-medium">
+<span class="material-symbols-outlined text-xs">alarm</span>
+              Evento en 4 días
+            </span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-4">
+<h2 class="font-headline text-xl sm:text-2xl font-bold text-primary">
+              Festival de Sancochos de la Montaña &amp; Empanadas Cocteleras
+            </h2>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container text-xs font-medium text-on-surface-variant">
+              Catering Corporativo
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-3 bg-surface-container-low rounded-lg px-4 mb-4">
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Empresa Solicitante</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5">Hendrik de Jong</div>
+<div class="text-xs text-on-surface-variant truncate">Adyen Global Expats Group</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Fecha &amp; Horario</div>
+<div class="text-sm font-semibold text-primary mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">calendar_today</span>
+                Jue 20 Nov, 2025
+              </div>
+<div class="text-xs text-on-surface-variant">17:30 - 22:00 CET</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Volumen Comensales</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">groups</span>
+                65 Pax
+              </div>
+<div class="text-xs text-on-surface-variant">Con servicio de meseros (2 pax)</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Punto de Entrega</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5 truncate">Simon Carmiggeltstraat 6</div>
+<div class="text-xs text-outline">1011 DJ Ámsterdam Oosterdok</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary">mail</span>
+<span>hdejong@adyen-events.nl</span>
+<span class="text-outline">·</span>
+<span>+31 20 882 1900</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-secondary-fixed/40 text-xs font-medium text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-sm text-secondary">eco</span>
+<span>12x Menú Vegano: Cazuela de fríjoles y plátano maduro</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-surface-container text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-primary">local_bar</span>
+<span>Bebidas: Refajo artesanal &amp; Lulada fría</span>
+</div>
+</div>
+</div>
+<div class="w-full xl:w-80 flex flex-col justify-between self-stretch bg-surface-container-low p-5 rounded-lg">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-medium text-outline">Cotización Proyectada</span>
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-wider">BTW 9% &amp; 21%</span>
+</div>
+<div class="font-headline text-3xl font-extrabold text-primary">
+              € 2,980.00
+            </div>
+<div class="text-xs text-on-surface-variant mt-1">
+              Incluye personal de servicio (4 hrs), ollas térmicas tradicionales y vajilla.
+            </div>
+<div class="mt-4 relative h-24 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Traditional Colombian Sancocho soup served in rustic black clay cookware from La Chamba, steaming hot with plantains, corn on the cob, yuca, accompanied by cilantro, avocado, and lime on an upscale banquet wooden table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP10tcRsaqs-HwqjS2adjxYFcVdn-9WSucVir02JE9TfVeV7r85xtnAB_4c3kcRu-xb5NmslE_OhqO62Mr8LsKPDMK6nmIakn4i1f8wQ8yLLS5XLJVhLvTOmnxM6xS1G1zYm8p2Out4tPac2HTVS3mnU1Bk9n_Ge-8SrJYCqMMtMnqto_B7lFP4oIkz404fHgCF_uYWNIwNkt3g2o_0ojUHNe6KyAQRIOeedFvwQcXWtqd4TKtWJm0">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent flex items-end p-2.5">
+<span class="text-[11px] font-medium text-on-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">workspace_premium</span> Menaje La Chamba Cerámica
+                </span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 mt-5">
+<button class="w-full py-2.5 px-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary text-xs font-semibold tracking-wide transition-all flex items-center justify-center gap-2 shadow-sm" onclick="confirmReservation('CAT-2025-0894')">
+<span class="material-symbols-outlined text-base">check_circle</span>
+              Confirmar Reserva
+            </button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-primary text-xs font-medium transition-all flex items-center justify-center gap-1 shadow-sm" onclick="openModal('adjust', 'CAT-2025-0894', '2980.00')">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+                Cotización
+              </button>
+<button class="py-2 px-2.5 rounded-lg bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed text-xs font-semibold transition-all flex items-center justify-center gap-1 shadow-sm" onclick="sendMolliePayment('CAT-2025-0894', 'Adyen Events', '2980.00')">
+<span class="material-symbols-outlined text-sm">link</span>
+                Link Mollie
+              </button>
+</div>
+<button class="w-full py-2 px-3 rounded-lg text-error hover:bg-error-container/40 text-xs font-semibold transition-all flex items-center justify-center gap-1.5" onclick="openModal('reject', 'CAT-2025-0894')">
+<span class="material-symbols-outlined text-sm">close</span>
+              Rechazar Reserva
+            </button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 4: Historical Finalized Order -->
+<article class="reservation-card opacity-90 bg-surface-container-lowest rounded-xl p-6 sm:p-7 shadow-[0_2px_12px_rgba(28,28,25,0.03)] transition-all hover:opacity-100" data-code="#CAT-2025-0870" data-name="Elena Bakker" data-status="finalizadas">
+<div class="flex flex-col xl:flex-row xl:items-start justify-between gap-6">
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2.5 mb-3">
+<span class="font-mono text-xs font-bold text-outline bg-surface-container px-2.5 py-1 rounded-md">
+              #CAT-2025-0870
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-[11px] font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">task_alt</span>
+              Servicio Finalizado y Liquidado
+            </span>
+<span class="inline-flex items-center gap-1 text-[11px] text-outline">
+              08 Nov, 2025
+            </span>
+</div>
+<h2 class="font-headline text-lg sm:text-xl font-bold text-primary mb-3">
+            Tasting Colombian Street Food (Arepas de Queso, Empanadas &amp; Pandebonos)
+          </h2>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-3 bg-surface-container-low rounded-lg px-4 mb-3">
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Cliente</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5">Elena Bakker</div>
+<div class="text-xs text-on-surface-variant">Jordaan Private Studio</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Pax &amp; Formato</div>
+<div class="text-sm font-semibold text-on-surface mt-0.5">20 Pax · Retiro en Local</div>
+<div class="text-xs text-on-surface-variant">Cajas térmicas selladas</div>
+</div>
+<div>
+<div class="text-[10px] uppercase font-bold tracking-wider text-outline">Facturación Total</div>
+<div class="text-sm font-bold text-primary mt-0.5">€ 520.00 (Pagado 100%)</div>
+<div class="text-xs text-secondary font-medium">Factura Mollie #MO-9821</div>
+</div>
+</div>
+</div>
+<div class="w-full xl:w-64 flex flex-row xl:flex-col justify-end items-center xl:items-end gap-3 self-stretch">
+<div class="text-right hidden xl:block">
+<div class="text-xs font-medium text-outline">Calificación del cliente</div>
+<div class="flex items-center justify-end gap-1 text-tertiary-container mt-0.5">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold ml-1 text-primary">5.0</span>
+</div>
+</div>
+<button class="py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-xs font-medium text-primary transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">replay</span>
+            Replicar para otra fecha
+          </button>
+</div>
+</div>
+</article>
+</div>
+<!-- Operational Notes / Kitchen Sync Card -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl">
+<div class="flex items-center gap-2 mb-2 text-secondary">
+<span class="material-symbols-outlined">inventory</span>
+<span class="text-xs font-bold uppercase tracking-wider">Stock &amp; Insumos Importados</span>
+</div>
+<h3 class="font-headline text-base font-bold text-primary mb-1">Masa de Maíz Trillado &amp; Hojas de Plátano</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+        Inventario suficiente para 120 tamales adicionales. Próximo embarque desde Bogotá llega el viernes al puerto de Rotterdam.
+      </p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl">
+<div class="flex items-center gap-2 mb-2 text-secondary">
+<span class="material-symbols-outlined">thermostat</span>
+<span class="text-xs font-bold uppercase tracking-wider">Protocolo Térmico HACCP</span>
+</div>
+<h3 class="font-headline text-base font-bold text-primary mb-1">Menaje Caliente &amp; Cadena de Frío</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+        Los contenedores isotérmicos mantienen la lechona a &gt;68°C durante traslados de hasta 90 minutos dentro del anillo A10 de Ámsterdam.
+      </p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-xs font-bold uppercase tracking-wider">Pasarela Mollie NL</span>
+</div>
+<h3 class="font-headline text-base font-bold text-primary mb-1">iDeal, Bancontact &amp; Tarjetas</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+        Los enlaces generados expiran en 48 horas. Se aplica un recargo automático del 50% como adelanto para confirmar la fecha del catering.
+      </p>
+</div>
+</div>
+<!-- Rejection Modal (Hidden by default) -->
+<div class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" id="modal-reject">
+<div class="bg-surface-container-lowest max-w-md w-full rounded-xl p-6 shadow-2xl animate-in fade-in zoom-in-95 duration-150">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined">cancel</span>
+<h3 class="font-headline text-lg font-bold">Rechazar Reserva</h3>
+</div>
+<button class="text-outline hover:text-on-surface" onclick="closeModal('reject')">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<p class="text-xs text-on-surface-variant mb-4">
+        Indica el motivo para notificar al cliente cordialmente por correo y liberar la fecha en el calendario de cocina.
+      </p>
+<div class="space-y-2 mb-4">
+<label class="flex items-center gap-2 p-2.5 rounded-lg bg-surface-container-low text-xs cursor-pointer hover:bg-surface-container">
+<input checked="" class="accent-secondary" name="reject_reason" type="radio" value="capacidad">
+<span>Capacidad de cocina al máximo en esta fecha</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-lg bg-surface-container-low text-xs cursor-pointer hover:bg-surface-container">
+<input class="accent-secondary" name="reject_reason" type="radio" value="distancia">
+<span>Ubicación fuera del radio logístico de Ámsterdam</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-lg bg-surface-container-low text-xs cursor-pointer hover:bg-surface-container">
+<input class="accent-secondary" name="reject_reason" type="radio" value="insumos">
+<span>Ingredientes o menaje artesanal no disponibles</span>
+</label>
+</div>
+<textarea class="w-full bg-surface-container-low text-xs p-3 rounded-lg outline-none placeholder:text-outline mb-5 focus:bg-surface-container" placeholder="Mensaje personalizado opcional para el cliente..." rows="2"></textarea>
+<div class="flex items-center justify-end gap-2">
+<button class="px-4 py-2 rounded-lg text-xs font-semibold text-on-surface-variant hover:bg-surface-container" onclick="closeModal('reject')">
+          Cancelar
+        </button>
+<button class="px-4 py-2 rounded-lg text-xs font-semibold bg-error text-on-error hover:opacity-90" onclick="executeReject()">
+          Confirmar Rechazo
+        </button>
+</div>
+</div>
+</div>
+<!-- Adjust Quote Modal (Hidden by default) -->
+<div class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" id="modal-adjust">
+<div class="bg-surface-container-lowest max-w-lg w-full rounded-xl p-6 shadow-2xl">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-secondary">request_quote</span>
+<h3 class="font-headline text-lg font-bold">Ajustar Cotización de Catering</h3>
+</div>
+<button class="text-outline hover:text-on-surface" onclick="closeModal('adjust')">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<div class="space-y-4 mb-6">
+<div>
+<label class="text-[11px] font-bold uppercase tracking-wider text-outline block mb-1">Reserva Seleccionada</label>
+<div class="font-mono text-sm font-semibold text-secondary" id="modal-adjust-code">#CAT-2025-XXXX</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="text-[11px] font-bold uppercase tracking-wider text-outline block mb-1">Monto Base (€ sin BTW)</label>
+<input class="w-full bg-surface-container-low text-sm font-semibold p-2.5 rounded-lg outline-none focus:bg-surface-container" id="input-subtotal" type="number" value="1600.91">
+</div>
+<div>
+<label class="text-[11px] font-bold uppercase tracking-wider text-outline block mb-1">Tasa BTW Aplicable</label>
+<select class="w-full bg-surface-container-low text-sm p-2.5 rounded-lg outline-none">
+<option value="9">9% (Alimentos y bebidas)</option>
+<option value="21">21% (Servicio de garzones/alquiler)</option>
+<option value="mixto">Mixto (9% + 21%)</option>
+</select>
+</div>
+</div>
+<div>
+<label class="text-[11px] font-bold uppercase tracking-wider text-outline block mb-1">Costos Adicionales / Descuentos</label>
+<div class="flex items-center gap-2">
+<input class="flex-1 bg-surface-container-low text-xs p-2.5 rounded-lg outline-none" placeholder="Ej. Envío térmico especial Noord" type="text">
+<input class="w-24 bg-surface-container-low text-xs p-2.5 rounded-lg outline-none" placeholder="€ + / -" type="number">
+</div>
+</div>
+<div class="p-3 bg-secondary-fixed/30 rounded-lg flex items-center justify-between">
+<span class="text-xs font-medium text-on-secondary-fixed-variant">Total Recalculado (con BTW):</span>
+<span class="font-headline text-lg font-bold text-primary" id="recalculated-total">€ 1,745.00</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2">
+<button class="px-4 py-2 rounded-lg text-xs font-semibold text-on-surface-variant hover:bg-surface-container" onclick="closeModal('adjust')">
+          Descartar
+        </button>
+<button class="px-5 py-2 rounded-lg text-xs font-semibold bg-primary text-on-primary hover:bg-primary-container" onclick="saveQuote()">
+          Guardar &amp; Notificar Cliente
+        </button>
+</div>
+</div>
+</div>
+<!-- Toast Notification Template -->
+<div class="fixed bottom-6 right-6 bg-primary text-on-primary px-4 py-3 rounded-lg shadow-xl flex items-center gap-2 text-xs font-medium translate-y-24 opacity-0 transition-all duration-300 z-50" id="toast">
+<span class="material-symbols-outlined text-secondary text-base" id="toast-icon">check_circle</span>
+<span id="toast-message">Operación completada con éxito</span>
+</div>
+</div>
+<script>
+  let activeRejectCode = null;
+
+  function showToast(message, icon = 'check_circle') {
+    const toast = document.getElementById('toast');
+    const msgEl = document.getElementById('toast-message');
+    const iconEl = document.getElementById('toast-icon');
+    msgEl.innerText = message;
+    iconEl.innerText = icon;
+    toast.classList.remove('translate-y-24', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+    setTimeout(() => {
+      toast.classList.add('translate-y-24', 'opacity-0');
+      toast.classList.remove('translate-y-0', 'opacity-100');
+    }, 3200);
+  }
+
+  function setFilter(status, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('bg-primary', 'text-on-primary', 'font-semibold');
+      b.classList.add('text-on-surface-variant', 'font-medium');
+    });
+    btn.classList.add('bg-primary', 'text-on-primary', 'font-semibold');
+    btn.classList.remove('text-on-surface-variant');
+
+    const cards = document.querySelectorAll('.reservation-card');
+    cards.forEach(card => {
+      if (status === 'todas' || card.getAttribute('data-status') === status) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function filterCards() {
+    const query = document.getElementById('reservation-search').value.toLowerCase();
+    const cards = document.querySelectorAll('.reservation-card');
+    cards.forEach(card => {
+      const code = (card.getAttribute('data-code') || '').toLowerCase();
+      const name = (card.getAttribute('data-name') || '').toLowerCase();
+      const content = card.innerText.toLowerCase();
+      if (code.includes(query) || name.includes(query) || content.includes(query)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function confirmReservation(code) {
+    showToast(`Reserva ${code} confirmada. Se notificó al equipo de cocina y al cliente.`, 'task_alt');
+  }
+
+  function sendMolliePayment(code, client, amount) {
+    showToast(`Enlace de pago Mollie (€${amount}) generado y enviado a ${client}`, 'link');
+  }
+
+  function sendFinalPayment(code, client, amount) {
+    showToast(`Enlace para saldo restante de €${amount} enviado por SMS/WhatsApp`, 'payments');
+  }
+
+  function openModal(type, code, amount) {
+    if (type === 'reject') {
+      activeRejectCode = code;
+      document.getElementById('modal-reject').classList.remove('hidden');
+    } else if (type === 'adjust') {
+      document.getElementById('modal-adjust-code').innerText = code;
+      if (amount) {
+        document.getElementById('recalculated-total').innerText = '€ ' + amount;
+      }
+      document.getElementById('modal-adjust').classList.remove('hidden');
+    }
+  }
+
+  function closeModal(type) {
+    if (type === 'reject') {
+      document.getElementById('modal-reject').classList.add('hidden');
+    } else if (type === 'adjust') {
+      document.getElementById('modal-adjust').classList.add('hidden');
+    }
+  }
+
+  function executeReject() {
+    closeModal('reject');
+    showToast(`Reserva ${activeRejectCode || ''} ha sido rechazada. Notificación despachada.`, 'cancel');
+  }
+
+  function saveQuote() {
+    closeModal('adjust');
+    showToast(`Cotización actualizada con desglose BTW y menaje listo.`, 'price_check');
+  }
+</script></main></div></body></html>

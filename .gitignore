@@ -1,8 +1,18 @@
-node_modules/
-build/
-dist/
-coverage/
+# Dependencias
+**/node_modules/
+
+# Builds y archivos generados (en cualquier subcarpeta)
+**/.next/
+**/dist/
+**/build/
+**/coverage/
+**/next-env.d.ts
+*.tsbuildinfo
+
+# Variables de entorno: solo se versiona el ejemplo
+**/.env*
+!**/.env.example
+
+# Sistema y logs
 .DS_Store
 *.log
-.env*
-!.env.example

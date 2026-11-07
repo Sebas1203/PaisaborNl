@@ -1,20 +1,42 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Paisabor — El Sabor de Casa
 
-# Run and deploy your AI Studio app
+Tienda gourmet y restaurante de cocina tradicional colombiana: despensa artesanal, menú de platos típicos y panel de administración.
 
-This contains everything you need to run your app locally.
+## Estructura del repositorio
 
-View your app in AI Studio: https://ai.studio/apps/56e0d057-b6d7-4843-b0e9-f9d1951658d4
+```
+.
+├── frontend/   # App web en Next.js (App Router) + React + TypeScript + Tailwind CSS v4
+├── backend/    # Supabase: migraciones, seed y Edge Functions (pagos con Mollie)
+└── docs/       # Documentación del proyecto
+```
 
-## Run Locally
+### Rutas del frontend
 
-**Prerequisites:**  Node.js
+| Ruta                | Vista                     |
+|---------------------|---------------------------|
+| `/`                 | Redirige a `/catalogo`    |
+| `/catalogo`         | Nuestra despensa          |
+| `/catalogo/firmas`  | Platos típicos            |
+| `/admin`            | Perfil del administrador  |
+| `/admin/inventario` | Inventario                |
 
+## Cómo correr el frontend
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Requisitos: Node.js.
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+La app queda en http://localhost:3000.
+
+Otros comandos, también desde `frontend/`:
+
+- `npm run build`: build de producción
+- `npm run start`: sirve el build de producción
+- `npm run lint`: revisión de tipos con `tsc --noEmit`
+
+Las variables de entorno del frontend están documentadas en `frontend/.env.example`. Solo se admiten variables `NEXT_PUBLIC_`; las claves secretas van en el backend (ver `backend/README.md`).

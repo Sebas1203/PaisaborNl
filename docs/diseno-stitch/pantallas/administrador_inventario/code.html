@@ -1,0 +1,600 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,600;0,700;0,800;1,400&amp;family=Work+Sans:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-high":"#ebe8e3","tertiary-container":"#54330c","surface-dim":"#dcdad5","on-error-container":"#93000a","on-background":"#1c1c19","outline":"#80756c","on-error":"#ffffff","secondary-fixed-dim":"#ffb599","surface-container-lowest":"#ffffff","on-primary-container":"#bd9f83","on-tertiary-fixed":"#2c1600","inverse-primary":"#e1c1a4","background":"#fcf9f4","secondary-container":"#ff956a","on-primary-fixed":"#291806","on-secondary-fixed":"#370e00","on-secondary-container":"#762c08","surface-container-low":"#f6f3ee","secondary-fixed":"#ffdbce","on-surface":"#1c1c19","surface-container":"#f0ede8","surface-container-highest":"#e5e2dd","outline-variant":"#d2c4ba","error":"#ba1a1a","error-container":"#ffdad6","on-tertiary-fixed-variant":"#623f18","surface-tint":"#725a42","tertiary-fixed":"#ffdcbd","tertiary":"#391e00","on-tertiary":"#ffffff","on-tertiary-container":"#cb9b6c","on-primary":"#ffffff","primary-fixed-dim":"#e1c1a4","surface-bright":"#fcf9f4","tertiary-fixed-dim":"#f0bd8b","inverse-surface":"#31302d","surface-variant":"#e5e2dd","primary":"#33210d","on-secondary":"#ffffff","secondary":"#994621","on-surface-variant":"#4e453d","inverse-on-surface":"#f3f0eb","on-primary-fixed-variant":"#59422c","primary-container":"#4b3621","surface":"#fcf9f4","on-secondary-fixed-variant":"#7b2f0b","primary-fixed":"#fedcbe"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{},fontFamily:{headline:["Epilogue"],display:["Epilogue"],body:["Work Sans"],label:["Work Sans"]},fontSize:{}}}}</script></head><body class="bg-surface font-body text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-6 pb-6 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="px-6 mb-8 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center"><span class="text-primary font-headline font-bold text-lg tracking-tight">P</span></div><div><div class="font-headline text-lg font-bold tracking-tight text-primary leading-tight">Paisabor</div><div class="text-xs text-secondary font-medium tracking-wide uppercase">Hearth &amp; Co.</div></div></div><div class="px-6 mb-3"><span class="text-[11px] font-semibold tracking-widest uppercase text-on-surface-variant">Administración</span></div><nav class="flex-1 px-3 space-y-1.5" data-active-classes="bg-primary-container text-on-primary font-semibold"><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="panel" href="#"><span class="material-symbols-outlined text-[20px]">space_dashboard</span><span>Panel</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="productos" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span>Productos</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="menus" href="#"><span class="material-symbols-outlined text-[20px]">restaurant_menu</span><span>Menús</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="pedidos" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span>Pedidos</span></a><a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="reservas" href="#"><span class="material-symbols-outlined text-[20px]">event_available</span><span>Reservas</span></a><a aria-current="page" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg transition-all bg-primary-container text-on-primary font-semibold" data-path="inventario" href="#"><span class="material-symbols-outlined text-[20px]">shelves</span><span>Inventario</span></a></nav><div class="px-4 mt-auto pt-4"><div class="p-3 bg-surface rounded-lg flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">pin_drop</span><div class="text-xs"><div class="font-medium text-on-surface">Sede Central</div><div class="text-on-surface-variant">Ámsterdam, NL</div></div></div><span class="w-2 h-2 rounded-full bg-secondary"></span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 w-full px-8 flex items-center justify-between"><div class="flex items-center gap-4"><span class="font-headline text-lg font-bold tracking-tight text-primary">Paisabor Admin</span><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-xs font-medium text-on-surface-variant"><span class="material-symbols-outlined text-sm text-secondary">location_on</span><span>Ámsterdam</span></div></div><div class="flex items-center gap-6"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-outline text-lg pointer-events-none">search</span><input class="w-72 bg-surface-container-low text-xs text-on-surface pl-9 pr-4 py-2 rounded-lg placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors" placeholder="Buscar pedidos, platos o insumos..." type="text"></div><div class="flex items-center gap-3 pl-2"><div class="text-right hidden sm:block"><div class="text-xs font-medium text-on-surface">Mayordomo</div><div class="text-[11px] text-secondary font-medium">Admin General</div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VDeI_wO3h2Ypsq_ZLb3paIiXqbhbxxPg4DQ3mS0tHlU-iT9PkISzXBry48naEWfgxC1PgLtcDvz5clucpfNumLU6iVDrQRcoYDMF3HFCkJjAyzu-chGzBcaW7trn0PJD-aRGAH9CNHDdtJ0JtK_0GLheAHgxZZfTzF1-Sel9vVzgELje3PD2115_OpTXGsgITIhKtqwTfFGbDFaZ8HoOlAQ0dbQ6262JWR5qOpczdNx96XHzldmOyllV22JJcJOBaZaNRIDtVAkA"></div></div></div></header><main class="relative pt-16 w-full bg-surface min-h-screen px-8 py-8"><div class="flex flex-col w-full space-y-8">
+<!-- Top Editorial Header & Warehouse Banner -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low p-6 md:p-8">
+<div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-2 max-w-2xl">
+<div class="flex items-center gap-2">
+<span class="text-[11px] font-semibold tracking-widest uppercase text-secondary font-body">Cámara Fría &amp; Despensa Seca</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="text-xs text-on-surface-variant font-body">Kloveniersburgwal, Ámsterdam</span>
+</div>
+<h1 class="font-headline text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-primary leading-tight">
+          Control de Inventario y Movimientos de Stock
+        </h1>
+<p class="text-sm text-on-surface-variant font-body">
+          Gestión de materias primas artesanales colombianas, trazabilidad de lotes importados y consumos del fogón en tiempo real.
+        </p>
+</div>
+<!-- Quick KPI Stats Bar -->
+<div class="flex items-center gap-3">
+<div class="bg-surface-container-lowest px-4 py-3 rounded-lg shadow-sm flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">package_2</span>
+</div>
+<div>
+<div class="text-[10px] uppercase tracking-wider text-on-surface-variant font-medium">Insumos Activos</div>
+<div class="text-lg font-bold font-headline text-primary leading-none mt-0.5">38 Skus</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest px-4 py-3 rounded-lg shadow-sm flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div>
+<div class="text-[10px] uppercase tracking-wider text-on-surface-variant font-medium">Bajo Stock</div>
+<div class="text-lg font-bold font-headline text-secondary leading-none mt-0.5">3 Críticos</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Ambient Subtle Gradient Ring Glow -->
+<div class="absolute -right-16 -top-24 w-80 h-80 rounded-full bg-secondary-container/15 blur-3xl pointer-events-none"></div>
+</div>
+<!-- Bento Grid: Form (Módulo 1) & Stock Status (Módulo 2) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- MÓDULO 1: Formulario Registrar Entrada de Inventario (lg:col-span-5) -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-xl p-6 md:p-7 shadow-sm relative">
+<div class="flex items-center justify-between pb-5">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+</div>
+<div>
+<h2 class="font-headline font-bold text-lg text-primary leading-none">Registrar Entrada de Inventario</h2>
+<span class="text-[11px] text-on-surface-variant font-body">Recepción de cargamento y reabastecimiento</span>
+</div>
+</div>
+<span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed">Nuevo Lote</span>
+</div>
+<form class="space-y-4 pt-1" id="inventory-form" onsubmit="event.preventDefault(); window.registerNewStock();">
+<!-- Selector Insumo -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-1.5" for="insumo-select">
+            Insumo / Producto
+          </label>
+<div class="relative">
+<select class="w-full bg-surface-container-low text-sm text-on-surface rounded-lg px-3.5 py-2.5 appearance-none focus:outline-none focus:bg-surface-container-high transition-colors cursor-pointer" id="insumo-select" required="">
+<option disabled="" selected="" value="">Seleccionar insumo...</option>
+<option value="Queso Costeño Curado">Queso Costeño Curado (Artesanal)</option>
+<option value="Harina P.A.N. Amarilla">Harina P.A.N. Amarilla (Caja 10kg)</option>
+<option value="Café Huila Especialidad">Café Huila Especialidad (Lavado - Grano)</option>
+<option value="Panela Trapiche Redonda">Panela Trapiche Redonda (Bloque 500g)</option>
+<option value="Arepas de Chócolo Congeladas">Arepas de Chócolo Congeladas (Pack x6)</option>
+<option value="Plátano Macho Verde">Plátano Macho Verde (Exportación)</option>
+<option value="Pulpa de Guayaba Agria">Pulpa de Guayaba Agria (Ultra Congelada)</option>
+<option value="Bocadillo Veleño">Bocadillo Veleño (Caja de Hojas)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-base pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Cantidad + Unidad -->
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-1.5" for="qty-input">
+              Cantidad a Ingresar
+            </label>
+<input class="w-full bg-surface-container-low text-sm text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="qty-input" min="1" placeholder="Ej. 25" required="" step="0.1" type="number">
+</div>
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-1.5" for="unit-select">
+              Unidad de Medida
+            </label>
+<div class="relative">
+<select class="w-full bg-surface-container-low text-sm text-on-surface rounded-lg px-3.5 py-2.5 appearance-none focus:outline-none focus:bg-surface-container-high transition-colors cursor-pointer" id="unit-select">
+<option value="kg">Kilogramos (kg)</option>
+<option value="unidades">Unidades (uds)</option>
+<option value="bolsas">Bolsas / Empaques</option>
+<option value="cajas">Cajas Maestras</option>
+<option value="litros">Litros (L)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-base pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Fecha Recepción + Proveedor -->
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-1.5" for="date-input">
+              Fecha de Entrada
+            </label>
+<input class="w-full bg-surface-container-low text-sm text-on-surface px-3 py-2.5 rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="date-input" required="" type="date" value="2024-10-24">
+</div>
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-1.5" for="provider-input">
+              Lote o Proveedor
+            </label>
+<input class="w-full bg-surface-container-low text-sm text-on-surface px-3.5 py-2.5 rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="provider-input" placeholder="Lote / Importador" required="" type="text">
+</div>
+</div>
+<!-- Costo Unitario (€) -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-1.5" for="cost-input">
+            Costo Unitario (€) &amp; Referencia
+          </label>
+<div class="relative">
+<span class="absolute left-3.5 top-2.5 text-sm font-medium text-outline">€</span>
+<input class="w-full bg-surface-container-low text-sm text-on-surface pl-8 pr-3.5 py-2.5 rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="cost-input" min="0" placeholder="0.00" step="0.01" type="number">
+</div>
+</div>
+<!-- Notas de Recepción -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-1.5" for="notes-input">
+            Notas de Calidad / Condición
+          </label>
+<textarea class="w-full bg-surface-container-low text-sm text-on-surface px-3.5 py-2 rounded-lg resize-none focus:outline-none focus:bg-surface-container-high transition-colors" id="notes-input" placeholder="Ej. Empaque sellado al vacío, cadena de frío verificada..." rows="2"></textarea>
+</div>
+<!-- Botón de Acción -->
+<div class="pt-2">
+<button class="w-full py-3 px-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-sm active:scale-[0.99]" type="submit">
+<span class="material-symbols-outlined text-[19px]">archive</span>
+<span>Registrar Entrada de Stock</span>
+</button>
+</div>
+</form>
+<!-- Feedback Banner (Hidden by default, triggered on submit) -->
+<div class="hidden mt-4 p-3 rounded-lg bg-surface-container flex items-center gap-2.5 text-primary text-xs font-medium animate-fadeIn" id="success-banner">
+<span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+<span>Entrada asentada en el libro mayor de Ámsterdam con éxito.</span>
+</div>
+</div>
+<!-- MÓDULO 2: Resumen rápido de stock disponible (lg:col-span-7) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Top Section: Overview & Filter Chips -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">shelves</span>
+<h2 class="font-headline font-bold text-lg text-primary">Niveles de Stock Críticos</h2>
+</div>
+<p class="text-xs text-on-surface-variant font-body mt-0.5">Insumos clave para la cocina y la tienda física</p>
+</div>
+<!-- Status Indicator Legend -->
+<div class="flex items-center gap-2 text-[11px] font-medium">
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span> Óptimo
+            </span>
+<span class="flex items-center gap-1 text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Bajo
+            </span>
+<span class="flex items-center gap-1 text-error">
+<span class="w-2 h-2 rounded-full bg-error"></span> Agotado
+            </span>
+</div>
+</div>
+<!-- Insumos Gauges Grid -->
+<div class="space-y-4">
+<!-- Item 1: Queso Costeño (Bajo) -->
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2.5">
+<span class="text-xs font-bold font-headline text-primary">Queso Costeño Artesanal</span>
+<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed uppercase tracking-wider">Stock Bajo</span>
+</div>
+<div class="text-right">
+<span class="text-sm font-bold font-headline text-secondary">4.2 kg</span>
+<span class="text-xs text-on-surface-variant"> / 25 kg min</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-2 rounded-full transition-all duration-500" style="width: 17%"></div>
+</div>
+<div class="flex justify-between items-center mt-2 text-[11px] text-on-surface-variant">
+<span>Cámara Refrigerada #2</span>
+<span>Reorden sugerida: +20 kg (Llegada estimada Martes)</span>
+</div>
+</div>
+<!-- Item 2: Harina P.A.N. (Óptimo) -->
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2.5">
+<span class="text-xs font-bold font-headline text-primary">Harina P.A.N. (Amarilla / Blanca)</span>
+<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant uppercase tracking-wider">Óptimo</span>
+</div>
+<div class="text-right">
+<span class="text-sm font-bold font-headline text-primary">82 bolsas</span>
+<span class="text-xs text-on-surface-variant"> / 30 bolsas min</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-primary-container h-2 rounded-full transition-all duration-500" style="width: 88%"></div>
+</div>
+<div class="flex justify-between items-center mt-2 text-[11px] text-on-surface-variant">
+<span>Almacén Central (Estiba 04)</span>
+<span>Cobertura: ~22 días de servicio</span>
+</div>
+</div>
+<!-- Item 3: Café Huila Especialidad (Óptimo) -->
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2.5">
+<span class="text-xs font-bold font-headline text-primary">Café Huila Micro-lote (Grano)</span>
+<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant uppercase tracking-wider">Óptimo</span>
+</div>
+<div class="text-right">
+<span class="text-sm font-bold font-headline text-primary">18.5 kg</span>
+<span class="text-xs text-on-surface-variant"> / 10 kg min</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-primary-container h-2 rounded-full transition-all duration-500" style="width: 74%"></div>
+</div>
+<div class="flex justify-between items-center mt-2 text-[11px] text-on-surface-variant">
+<span>Barra de Café &amp; Bodega Seca</span>
+<span>Tueste fresco: 12 Octubre (La Finca)</span>
+</div>
+</div>
+<!-- Item 4: Panela Trapiche (Stock Bajo) -->
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2.5">
+<span class="text-xs font-bold font-headline text-primary">Panela Campesina en Bloque</span>
+<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed uppercase tracking-wider">Stock Bajo</span>
+</div>
+<div class="text-right">
+<span class="text-sm font-bold font-headline text-secondary">6.0 kg</span>
+<span class="text-xs text-on-surface-variant"> / 20 kg min</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-2 rounded-full transition-all duration-500" style="width: 25%"></div>
+</div>
+<div class="flex justify-between items-center mt-2 text-[11px] text-on-surface-variant">
+<span>Despensa Repostería</span>
+<span>Demanda alta en fines de semana (Aguapanela / Glaseados)</span>
+</div>
+</div>
+<!-- Item 5: Arepas de Chócolo (Agotado) -->
+<div class="p-3.5 rounded-lg bg-error-container/40 hover:bg-error-container/60 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2.5">
+<span class="text-xs font-bold font-headline text-error">Arepas de Chócolo (Pack x6)</span>
+<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-error text-on-error uppercase tracking-wider">Agotado</span>
+</div>
+<div class="text-right">
+<span class="text-sm font-bold font-headline text-error">0 packs</span>
+<span class="text-xs text-on-error-container"> / 15 packs min</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-error/20 rounded-full h-2 overflow-hidden">
+<div class="bg-error h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+</div>
+<div class="flex justify-between items-center mt-2 text-[11px] text-on-error-container font-medium">
+<span>Congelador #1</span>
+<span class="underline cursor-pointer">Llegada de Rotterdam prevista hoy 18:00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Editorial Card: Ambient Visual Note -->
+<div class="bg-primary text-on-primary rounded-xl p-5 flex items-center justify-between gap-6 shadow-sm">
+<div class="space-y-1">
+<div class="text-[10px] uppercase tracking-widest text-secondary-fixed font-semibold">Trazabilidad Colombo-Holandesa</div>
+<div class="font-headline font-bold text-sm md:text-base">Control de Temperatura y Sanidad NVWA</div>
+<p class="text-xs text-on-primary-container max-w-md">
+            Todos los lácteos y cárnicos cuentan con registro fitosanitario de ingreso por el Puerto de Rotterdam.
+          </p>
+</div>
+<div class="hidden sm:flex flex-col items-end shrink-0">
+<span class="px-3 py-1.5 rounded-lg bg-primary-container text-xs font-semibold text-primary-fixed">Certificado NVWA-OK</span>
+</div>
+</div>
+</div>
+</div>
+<!-- MÓDULO 3: Historial de Movimientos de Stock -->
+<div class="bg-surface-container-lowest rounded-xl p-6 md:p-7 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6">
+<div>
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl">receipt_long</span>
+<h2 class="font-headline font-bold text-lg text-primary">Historial de Movimientos de Stock</h2>
+</div>
+<p class="text-xs text-on-surface-variant font-body mt-0.5">Registro auditado de compras, despachos de cocina, ventas de mostrador y mermas</p>
+</div>
+<!-- Movement Type Filter Pills -->
+<div class="flex flex-wrap items-center gap-1.5 text-xs" id="filter-container">
+<button class="filter-btn active-filter px-3 py-1.5 rounded-lg bg-primary text-on-primary font-medium transition-colors" onclick="window.filterMovements('all', this)">
+          Todos
+        </button>
+<button class="filter-btn px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors font-medium" onclick="window.filterMovements('Entrada', this)">
+          Entradas
+        </button>
+<button class="filter-btn px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors font-medium" onclick="window.filterMovements('Cocina', this)">
+          Consumo Cocina
+        </button>
+<button class="filter-btn px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors font-medium" onclick="window.filterMovements('Tienda', this)">
+          Venta Tienda
+        </button>
+<button class="filter-btn px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors font-medium" onclick="window.filterMovements('Merma', this)">
+          Ajuste / Merma
+        </button>
+</div>
+</div>
+<!-- Movements Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[11px] uppercase font-semibold text-on-surface-variant tracking-wider bg-surface-container-low/60">
+<th class="py-3 px-4 rounded-l-lg">Fecha &amp; Hora</th>
+<th class="py-3 px-4">Tipo de Movimiento</th>
+<th class="py-3 px-4">Producto / Insumo</th>
+<th class="py-3 px-4 text-right">Cantidad</th>
+<th class="py-3 px-4 rounded-r-lg">Responsable</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-sm font-body" id="movements-tbody">
+<!-- Row 1: Entrada Compra -->
+<tr class="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Entrada">
+<td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
+              24 Oct 2024 • 09:15
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[15px] text-secondary">input</span>
+<span>Entrada por compra</span>
+</span>
+</td>
+<td class="py-3.5 px-4 font-medium text-primary">
+              Café Huila Especialidad
+              <span class="block text-[11px] text-on-surface-variant font-normal">Lote HUI-2024-88 (Direct Trade)</span>
+</td>
+<td class="py-3.5 px-4 text-right font-headline font-bold text-primary">
+<span class="text-secondary font-semibold">+</span> 15.0 kg
+            </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-on-secondary-fixed">AP</div>
+<span class="text-xs font-medium text-on-surface">Admin Paisabor</span>
+</div>
+</td>
+</tr>
+<!-- Row 2: Consumo Cocina -->
+<tr class="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Cocina">
+<td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
+              24 Oct 2024 • 11:30
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-tertiary-fixed/60 text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[15px] text-tertiary">soup_kitchen</span>
+<span>Consumo en cocina</span>
+</span>
+</td>
+<td class="py-3.5 px-4 font-medium text-primary">
+              Queso Costeño Curado
+              <span class="block text-[11px] text-on-surface-variant font-normal">Para preparación de Bandejas Paisa y Arepas</span>
+</td>
+<td class="py-3.5 px-4 text-right font-headline font-bold text-on-surface">
+<span class="text-error font-semibold">-</span> 4.5 kg
+            </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[10px] font-bold text-primary">CM</div>
+<span class="text-xs font-medium text-on-surface">Chef Mayordomo</span>
+</div>
+</td>
+</tr>
+<!-- Row 3: Venta Tienda -->
+<tr class="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Tienda">
+<td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
+              24 Oct 2024 • 13:42
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-outline">point_of_sale</span>
+<span>Salida venta tienda</span>
+</span>
+</td>
+<td class="py-3.5 px-4 font-medium text-primary">
+              Harina P.A.N. Amarilla
+              <span class="block text-[11px] text-on-surface-variant font-normal">Venta mostrador ticket #1094</span>
+</td>
+<td class="py-3.5 px-4 text-right font-headline font-bold text-on-surface">
+<span class="text-error font-semibold">-</span> 4 unidades
+            </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[10px] font-bold text-outline">ST</div>
+<span class="text-xs font-medium text-on-surface">Sistema Tienda</span>
+</div>
+</td>
+</tr>
+<!-- Row 4: Ajuste por Merma -->
+<tr class="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Merma">
+<td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
+              23 Oct 2024 • 19:10
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-error-container text-on-error-container">
+<span class="material-symbols-outlined text-[15px] text-error">delete_outline</span>
+<span>Ajuste por merma</span>
+</span>
+</td>
+<td class="py-3.5 px-4 font-medium text-primary">
+              Plátano Macho Maduro
+              <span class="block text-[11px] text-on-surface-variant font-normal">Maduración excesiva en tránsito</span>
+</td>
+<td class="py-3.5 px-4 text-right font-headline font-bold text-error">
+<span class="font-semibold">-</span> 3.0 kg
+            </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[10px] font-bold text-primary">CM</div>
+<span class="text-xs font-medium text-on-surface">Chef Mayordomo</span>
+</div>
+</td>
+</tr>
+<!-- Row 5: Entrada Compra -->
+<tr class="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Entrada">
+<td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
+              23 Oct 2024 • 08:00
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[15px] text-secondary">input</span>
+<span>Entrada por compra</span>
+</span>
+</td>
+<td class="py-3.5 px-4 font-medium text-primary">
+              Panela Trapiche Redonda
+              <span class="block text-[11px] text-on-surface-variant font-normal">Importación Lote COL-901</span>
+</td>
+<td class="py-3.5 px-4 text-right font-headline font-bold text-primary">
+<span class="text-secondary font-semibold">+</span> 12.0 kg
+            </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-on-secondary-fixed">AP</div>
+<span class="text-xs font-medium text-on-surface">Admin Paisabor</span>
+</div>
+</td>
+</tr>
+<!-- Row 6: Consumo Cocina -->
+<tr class="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Cocina">
+<td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
+              22 Oct 2024 • 17:50
+            </td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-tertiary-fixed/60 text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[15px] text-tertiary">soup_kitchen</span>
+<span>Consumo en cocina</span>
+</span>
+</td>
+<td class="py-3.5 px-4 font-medium text-primary">
+              Arepas de Chócolo Congeladas
+              <span class="block text-[11px] text-on-surface-variant font-normal">Servicio cena especial 'Noche Paisa'</span>
+</td>
+<td class="py-3.5 px-4 text-right font-headline font-bold text-on-surface">
+<span class="text-error font-semibold">-</span> 15 packs
+            </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[10px] font-bold text-primary">CM</div>
+<span class="text-xs font-medium text-on-surface">Chef Mayordomo</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Paginación Elegante -->
+<div class="pt-6 mt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="text-xs text-on-surface-variant font-body">
+        Mostrando <span class="font-semibold text-on-surface">1 - 6</span> de <span class="font-semibold text-on-surface">42</span> registros auditados
+      </div>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Página anterior">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-headline text-xs font-bold">
+          1
+        </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-low text-on-surface font-headline text-xs hover:bg-surface-container transition-colors">
+          2
+        </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-low text-on-surface font-headline text-xs hover:bg-surface-container transition-colors">
+          3
+        </button>
+<span class="px-1 text-xs text-outline">...</span>
+<button class="w-8 h-8 rounded-lg bg-surface-container-low text-on-surface font-headline text-xs hover:bg-surface-container transition-colors">
+          7
+        </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Página siguiente">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Filter logic for movements table
+  window.filterMovements = function(type, btnElement) {
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(b => {
+      b.classList.remove('bg-primary', 'text-on-primary');
+      b.classList.add('bg-surface-container', 'text-on-surface-variant');
+    });
+    btnElement.classList.add('bg-primary', 'text-on-primary');
+    btnElement.classList.remove('bg-surface-container', 'text-on-surface-variant');
+
+    const rows = document.querySelectorAll('.movement-row');
+    rows.forEach(row => {
+      const rowType = row.getAttribute('data-type');
+      if (type === 'all' || rowType === type) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  };
+
+  // Form registration micro-interaction
+  window.registerNewStock = function() {
+    const banner = document.getElementById('success-banner');
+    const form = document.getElementById('inventory-form');
+    
+    // Animate banner appearance
+    banner.classList.remove('hidden');
+    
+    // Add dynamic row to movements table
+    const insumo = document.getElementById('insumo-select').value;
+    const qty = document.getElementById('qty-input').value;
+    const unit = document.getElementById('unit-select').value;
+    const provider = document.getElementById('provider-input').value;
+    
+    if (insumo && qty) {
+      const tbody = document.getElementById('movements-tbody');
+      const now = new Date();
+      const timeStr = 'Hoy • ' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+      
+      const newTr = document.createElement('tr');
+      newTr.className = 'hover:bg-surface-container-low/40 transition-colors movement-row bg-surface-container-low/20';
+      newTr.setAttribute('data-type', 'Entrada');
+      newTr.innerHTML = `
+        <td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
+          ${timeStr}
+        </td>
+        <td class="py-3.5 px-4">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-primary">
+            <span class="material-symbols-outlined text-[15px] text-secondary">input</span>
+            <span>Entrada por compra</span>
+          </span>
+        </td>
+        <td class="py-3.5 px-4 font-medium text-primary">
+          ${insumo}
+          <span class="block text-[11px] text-on-surface-variant font-normal">Lote: ${provider || 'Registro Inmediato'}</span>
+        </td>
+        <td class="py-3.5 px-4 text-right font-headline font-bold text-primary">
+          <span class="text-secondary font-semibold">+</span> ${qty} ${unit}
+        </td>
+        <td class="py-3.5 px-4">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-on-secondary-fixed">AP</div>
+            <span class="text-xs font-medium text-on-surface">Admin Paisabor</span>
+          </div>
+        </td>
+      `;
+      tbody.insertBefore(newTr, tbody.firstChild);
+      form.reset();
+      
+      setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 4000);
+    }
+  };
+</script></main></div></body></html>

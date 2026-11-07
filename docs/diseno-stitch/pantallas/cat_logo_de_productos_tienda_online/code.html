@@ -1,0 +1,315 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Paisabor - Productos</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#e1c1a4",
+                        "tertiary": "#391e00",
+                        "surface-dim": "#dcdad5",
+                        "primary-container": "#4b3621",
+                        "outline-variant": "#d2c4ba",
+                        "surface-container": "#f0ede8",
+                        "outline": "#80756c",
+                        "surface-container-highest": "#e5e2dd",
+                        "secondary-fixed": "#ffdbce",
+                        "secondary-fixed-dim": "#ffb599",
+                        "on-secondary-fixed-variant": "#7b2f0b",
+                        "background": "#fcf9f4",
+                        "on-surface-variant": "#4e453d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#370e00",
+                        "tertiary-fixed": "#ffdcbd",
+                        "surface-variant": "#e5e2dd",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#ebe8e3",
+                        "on-primary-fixed-variant": "#59422c",
+                        "primary-fixed": "#fedcbe",
+                        "on-secondary-container": "#762c08",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1c1c19",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#f0bd8b",
+                        "on-background": "#1c1c19",
+                        "surface-bright": "#fcf9f4",
+                        "inverse-surface": "#31302d",
+                        "on-tertiary-fixed": "#2c1600",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#bd9f83",
+                        "surface": "#fcf9f4",
+                        "on-tertiary-container": "#cb9b6c",
+                        "on-primary-fixed": "#291806",
+                        "primary": "#33210d",
+                        "primary-fixed-dim": "#e1c1a4",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "secondary": "#994621",
+                        "inverse-on-surface": "#f3f0eb",
+                        "surface-container-low": "#f6f3ee",
+                        "surface-tint": "#725a42",
+                        "secondary-container": "#ff956a",
+                        "tertiary-container": "#54330c",
+                        "on-tertiary-fixed-variant": "#623f18"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Epilogue"],
+                        "display": ["Epilogue"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    },
+                    "fontSize": {}
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased" data-mode="connect">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl shadow-sm shadow-on-surface/5 transition-all">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto hidden md:flex">
+<!-- Brand -->
+<a class="font-display text-2xl font-bold tracking-tight text-primary" href="#"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB20-V1-mXFATcu9UhhBi59V-sWka7AVitysLGTs5KIGJTJSsRThopREIC3CEN6ANxAF4jwdtPv4wnbnAl5xmQxD7o6VNTqrBGUFsJ-NdmCO3qc2VEkiYvBZWuaFp40S4In-s60Hv5chWnPCssIrFWORKHI20iroUcgOghE5OmFJEZMTCQHs9TSEjuYBk6dHTbFQar4axuMMiLqIWl7_4qJuqdEdh9t1he17ijInZHz6ANS6XEAsExSw5_KjntXVixXg" alt="Paisabor Logo" class="h-[45px] w-auto object-contain"></a>
+<!-- Links -->
+<div class="flex space-x-8">
+<a class="font-body text-label-sm tracking-[0.1em] uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">
+                    Quienes Somos
+                </a>
+<a class="font-body text-label-sm tracking-[0.1em] uppercase text-secondary border-b-2 border-secondary pb-1 transition-colors duration-300" href="#">
+                    Productos
+                </a>
+<a class="font-body text-label-sm tracking-[0.1em] uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Menu</a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center space-x-4">
+<button class="text-primary hover:text-secondary transition-all active:scale-95 duration-300 relative">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-24 pb-32 md:pb-24 max-w-7xl mx-auto px-4 md:px-8">
+<!-- Header Section -->
+<header class="mb-12 text-center md:text-left mt-8">
+<h1 class="font-display text-5xl md:text-6xl font-bold tracking-tight text-primary mb-4">Nuestra Despensa</h1>
+<p class="font-body text-lg text-on-surface-variant max-w-2xl">Lleva a tu hogar los sabores auténticos de Colombia. Horneados frescos, cafés de origen y las delicias que te conectan con tus raíces.</p>
+</header>
+<!-- Layout Wrapper -->
+<div class="flex flex-col md:flex-row gap-12">
+<!-- Sidebar / Filtering -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="sticky top-28 bg-surface-container-lowest p-6 rounded-lg shadow-[0_-4px_40px_-10px_rgba(28,28,25,0.05)] md:shadow-none md:bg-transparent md:p-0">
+<!-- Search -->
+<div class="mb-8 relative">
+<input class="w-full bg-surface-container border-b-2 border-surface-container-highest focus:border-secondary focus:ring-0 px-4 py-3 rounded-t-lg font-body text-on-surface placeholder-on-surface-variant transition-all outline-none" placeholder="Buscar productos..." type="text">
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline">search</span>
+</div>
+<!-- Categories -->
+<div class="mb-8">
+<h3 class="font-headline text-sm font-bold uppercase tracking-[0.1em] text-primary mb-4">Categorías</h3>
+<ul class="space-y-3">
+<li class="">
+<a class="flex items-center justify-between text-secondary font-medium group" href="#">
+<span class="">Panadería</span>
+<span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-xs">12</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="">Café</span>
+<span class="bg-surface-container text-on-surface-variant px-2 py-0.5 rounded text-xs group-hover:bg-primary-container/10">8</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="">Dulces &amp; Postres</span>
+<span class="bg-surface-container text-on-surface-variant px-2 py-0.5 rounded text-xs group-hover:bg-primary-container/10">15</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="">Congelados</span>
+<span class="bg-surface-container text-on-surface-variant px-2 py-0.5 rounded text-xs group-hover:bg-primary-container/10">6</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Sort -->
+<div>
+<h3 class="font-headline text-sm font-bold uppercase tracking-[0.1em] text-primary mb-4">Ordenar por</h3>
+<select class="w-full bg-surface border-b-2 border-surface-container-highest focus:border-secondary focus:ring-0 px-4 py-2 font-body text-on-surface outline-none cursor-pointer">
+<option>Relevancia</option>
+<option>Precio: Menor a Mayor</option>
+<option>Precio: Mayor a Menor</option>
+<option>Más Vendidos</option>
+</select>
+</div>
+</div>
+</aside>
+<!-- Product Grid (Bento/Asymmetric feel) -->
+<div class="flex-grow">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Product Card 1 (Large) -->
+<article class="col-span-1 sm:col-span-2 lg:col-span-2 group flex flex-col sm:flex-row bg-surface-container-lowest rounded-lg overflow-hidden relative">
+<div class="absolute top-4 left-4 z-10 flex gap-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-xs font-bold px-3 py-1 rounded-full shadow-sm">Nuevo</span>
+</div>
+<div class="sm:w-1/2 bg-surface-container-low h-64 sm:h-auto overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A close-up, high-quality editorial shot of freshly baked Colombian Pandebonos resting on a rustic wooden cooling rack. Warm, natural light streams from a side window, highlighting the golden crust and soft texture. The background is a soft, out-of-focus Hacienda-style kitchen with terracotta and ivory tones. High resolution, appetizing." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTLsrf5TwS38muBycFS2KzL5KrhYivYetcECzWHo7AnFf25umUOvUhHo-gTHRFW1_7Xgpcd1aaaoG05cs-0pTopoKry-Z29jfwk5LX49BuuPocjA7Icqs7D-6kb008Fpqp-5aGWrRFcYgU2YZDYy-7-hu9hGYh01Ga2roWfWuGQ-OJ0mU8c3N1iHIA9WYaJzhgHapjU3DnUHSCG9DI6525iTuNM3PTlSZg653a-9XyCm4Yms7gnElo')"></div>
+</div>
+<div class="sm:w-1/2 p-6 flex flex-col justify-center bg-surface">
+<h2 class="font-display text-2xl font-bold text-primary mb-2">Pandebono Clásico</h2>
+<p class="font-body text-on-surface-variant text-sm mb-4 line-clamp-3">El auténtico sabor del Valle del Cauca. Suave por dentro, con la corteza perfecta, elaborado con queso fresco y almidón de yuca.</p>
+<div class="flex items-end justify-between mt-auto">
+<span class="font-body text-xl font-semibold text-primary">€8.50 <span class="text-xs text-on-surface-variant font-normal">/ 6 unid.</span></span>
+<button class="bg-primary text-on-primary rounded-lg p-3 hover:bg-primary-container hover:-translate-y-0.5 transition-all duration-300 shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 2 -->
+<article class="group flex flex-col bg-surface-container-lowest rounded-lg overflow-hidden">
+<div class="bg-surface-container-low h-56 overflow-hidden relative">
+<div class="absolute top-3 left-3 z-10">
+<span class="bg-secondary text-on-secondary text-xs font-bold px-3 py-1 rounded-full shadow-sm">Favorito</span>
+</div>
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Overhead view of several golden, fried Colombian Empanadas served on a pristine white ceramic plate. A small bowl of vibrant green Aji sauce sits nearby. The setting is a minimalist, warm wooden table with subtle soft directional lighting creating a premium, inviting food photography aesthetic. Earthy tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtukvDK-lyT_XTc3DBzvlLzsUuICaV650zxX5IVo2bAbbyyi7zM7MkRlIdUVudEz0Z764v-PRiZ2HLYbyeyV6vE3bqLimS0axKEVcFxrkBkzzn3GrlJ2i3TXGob_kFsyU3Bt2Y2B32h1GI9ylOoBL8oZzJXQOC3gSZHgFffXgLRImDdmJpUmbNfGM5Ey8hLZ_ooNNAvcyEWsoFN7IfnQz3ldf04Qn8px7Xtc7PEmPuzM4fW5rJxokj')"></div>
+</div>
+<div class="p-5 flex flex-col flex-grow bg-surface">
+<h3 class="font-display text-xl font-bold text-primary mb-1">Empanadas de Carne</h3>
+<p class="font-body text-on-surface-variant text-sm mb-4 flex-grow line-clamp-2">Crujientes empanadas de maíz con guiso de carne y papa.</p>
+<div class="flex items-center justify-between">
+<span class="font-body text-lg font-semibold text-primary">€12.00</span>
+<button class="bg-primary text-on-primary rounded-lg p-2 hover:bg-primary-container hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="group flex flex-col bg-surface-container-lowest rounded-lg overflow-hidden">
+<div class="bg-surface-container-low h-56 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A premium bag of Colombian specialty coffee beans next to a freshly brewed cup of dark espresso on a dark roasted brown saucer. Soft, elegant styling with a hint of steam rising from the cup. The background is a muted, creamy ivory surface, creating high contrast. Luxurious and sensory." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcQG46EWBT_XM9q6qzHtiGuK0be8AzYw7-C_1Sy6WlP1vFnXvx8XE29h6alZSZw6IJUcCGjAaPYG0aMwpY4zS753MG31ZYbT5OvuNzJVKqP97F9xhRdEt7D58W0dx0K37J4ns5P6DFrJb9gSAIFCHfU0A4yMX9SMs8zztxsnsIlZPUbM3tXrTJzT3xX3BrAm0Gy0iDPUfUavqF6O-1Ld1FYnfdilzA1jsM-X3hLOpQhODH3zF9HP1O')"></div>
+</div>
+<div class="p-5 flex flex-col flex-grow bg-surface">
+<h3 class="font-display text-xl font-bold text-primary mb-1">Café Origen Huila</h3>
+<p class="font-body text-on-surface-variant text-sm mb-4 flex-grow line-clamp-2">Tueste medio, notas a panela y frutos rojos. 250g.</p>
+<div class="flex items-center justify-between">
+<span class="font-body text-lg font-semibold text-primary">€15.50</span>
+<button class="bg-primary text-on-primary rounded-lg p-2 hover:bg-primary-container hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 4 -->
+<article class="group flex flex-col bg-surface-container-lowest rounded-lg overflow-hidden">
+<div class="bg-surface-container-low h-56 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A macro shot of a slice of traditional Colombian Torta Negra (black cake) rich with fruits and wine, plated on a matte terracotta plate. A silver dessert fork rests alongside. Warm, moody lighting emphasizing the texture of the dark cake against the soft cream background of the table." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCfv7udgs-GU7K7j_yv1m8CBPVT9TZdkRMb8OGjOM1YZs401q0oosiWBQr5Zl1W6RvfvLSx2-bIHGIpduRRVCQO_e-lND_gHF-2IJ6uvUCCYY7KCke3IJiZ6FPvgKU1TT83-qqnRVSaiaS6WtiC-ky1ht677bb6rtTI_eA3y5uXmEGg_Jic79lejGLQaH6oHy2HgxBjGUVaIdUxRdQLbiuvHIzSlwBxwGjo3ZJJTCwNIKRFZLsgELbA')"></div>
+</div>
+<div class="p-5 flex flex-col flex-grow bg-surface">
+<h3 class="font-display text-xl font-bold text-primary mb-1">Torta Negra</h3>
+<p class="font-body text-on-surface-variant text-sm mb-4 flex-grow line-clamp-2">Tradicional torta envinada, rica en especias y frutos secos.</p>
+<div class="flex items-center justify-between">
+<span class="font-body text-lg font-semibold text-primary">€24.00</span>
+<button class="bg-primary text-on-primary rounded-lg p-2 hover:bg-primary-container hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 5 -->
+<article class="group flex flex-col bg-surface-container-lowest rounded-lg overflow-hidden">
+<div class="bg-surface-container-low h-56 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A stack of golden, round Arepas de Choclo (sweet corn arepas) with melted white cheese oozing between the layers. Placed on a rustic wooden board in a softly lit, modern editorial setting. The palette is dominated by warm yellows and soft browns against an ivory backdrop." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDNs6masAciLabYPvgidviSvPFzTmllyIruQfFPyDJU9yi56OXV9fzAWHqAe7c2Ty8VixqoE5nA_jHR39_ght1jF5xXrIuTVH5xxEp_IjLSapB0bM3MSAQLH5UJhFbzWFuw8Z7Tkdt1CFDqZ3ygyJmW6dy1ysMHj35vdSmM5rTYjLaq-5d0f8TxdsvLTzRHnT0UBnJP3mdqUBot0GAcOWqpzVrHE8aE4z-9KKsD3ojyoHTcmFk5mdc-')"></div>
+</div>
+<div class="p-5 flex flex-col flex-grow bg-surface">
+<h3 class="font-display text-xl font-bold text-primary mb-1">Arepa de Choclo</h3>
+<p class="font-body text-on-surface-variant text-sm mb-4 flex-grow line-clamp-2">Maíz tierno molido, lista para calentar. Paquete x4.</p>
+<div class="flex items-center justify-between">
+<span class="font-body text-lg font-semibold text-primary">€7.80</span>
+<button class="bg-primary text-on-primary rounded-lg p-2 hover:bg-primary-container hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination / Load More -->
+<div class="mt-12 flex justify-center">
+<button class="bg-transparent border border-outline-variant/30 text-primary font-body font-medium px-8 py-3 rounded-lg hover:bg-surface-container transition-colors duration-300">
+                        Cargar más productos
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 md:hidden bg-surface/70 backdrop-blur-xl shadow-[0_-4px_40px_-10px_rgba(28,28,25,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:bg-surface-container-high transition-transform duration-200 active:scale-90 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-body text-[10px] font-medium mt-1">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg px-3 py-1.5 transition-transform duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="font-body text-[10px] font-medium mt-1">Tienda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:bg-surface-container-high transition-transform duration-200 active:scale-90 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-body text-[10px] font-medium mt-1">Eventos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:bg-surface-container-high transition-transform duration-200 active:scale-90 rounded-lg relative" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="absolute top-1 right-2 bg-secondary text-on-secondary text-[8px] w-3 h-3 rounded-full flex items-center justify-center font-bold">3</span>
+<span class="font-body text-[10px] font-medium mt-1">Carrito</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-low flex flex-col md:flex-row justify-between items-center px-8 py-12 mt-20">
+<div class="font-display text-lg font-bold text-primary mb-4 md:mb-0">
+            Paisabor
+        </div>
+<div class="font-body text-label-sm text-primary text-center md:text-left mb-4 md:mb-0">
+            © 2024 Paisabor. El Corazón de Colombia en tu Mesa.
+        </div>
+<div class="flex space-x-6">
+<a class="font-body text-label-sm text-on-surface-variant hover:text-secondary hover:underline decoration-secondary transition-all opacity-80 hover:opacity-100" href="#">Privacidad</a>
+<a class="font-body text-label-sm text-on-surface-variant hover:text-secondary hover:underline decoration-secondary transition-all opacity-80 hover:opacity-100" href="#">Términos</a>
+<a class="font-body text-label-sm text-on-surface-variant hover:text-secondary hover:underline decoration-secondary transition-all opacity-80 hover:opacity-100" href="#">Contacto</a>
+</div>
+</footer>
+
+
+</body></html>

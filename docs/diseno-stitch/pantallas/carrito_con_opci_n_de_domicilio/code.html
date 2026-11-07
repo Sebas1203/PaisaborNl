@@ -1,0 +1,258 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fcf9f4",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#584000",
+                        "surface-bright": "#fcf9f4",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface": "#fcf9f4",
+                        "on-secondary-container": "#783916",
+                        "on-secondary-fixed-variant": "#733512",
+                        "outline": "#86736b",
+                        "primary-container": "#755700",
+                        "surface-variant": "#e5e2dd",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-fixed": "#ffdbcc",
+                        "primary-fixed-dim": "#f9bd14",
+                        "tertiary-container": "#ba001e",
+                        "on-tertiary-container": "#ffc6c2",
+                        "on-secondary-fixed": "#351000",
+                        "on-primary-fixed": "#251a00",
+                        "on-tertiary-fixed-variant": "#930015",
+                        "on-tertiary-fixed": "#410004",
+                        "secondary-container": "#ffa67a",
+                        "on-primary-fixed-variant": "#5b4300",
+                        "inverse-primary": "#f9bd14",
+                        "on-surface": "#1c1c19",
+                        "on-background": "#1c1c19",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#904c27",
+                        "surface-container-highest": "#e5e2dd",
+                        "outline-variant": "#d9c2b8",
+                        "tertiary": "#8d0014",
+                        "primary-fixed": "#ffdf9d",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#54433c",
+                        "surface-container-high": "#ebe8e3",
+                        "surface-tint": "#785900",
+                        "surface-container": "#f0ede8",
+                        "inverse-on-surface": "#f3f0eb",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "on-primary-container": "#ffcd5b",
+                        "inverse-surface": "#31302d",
+                        "surface-dim": "#dcdad5",
+                        "surface-container-low": "#f6f3ee",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#ffb693",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Epilogue"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #fcf9f4; }
+        h1, h2, h3, .font-headline { font-family: 'Epilogue', sans-serif; }
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            background-color: rgba(252, 249, 244, 0.8);
+        }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-secondary-container">
+<!-- Top Navigation Shell -->
+<header class="w-full top-0 sticky z-50 bg-[#fcf9f4] border-b-[0.5px] border-[#584000]/15">
+<nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto font-['Epilogue'] tracking-tight">
+<div class="flex items-center gap-4">
+<img alt="Paisabor Logo" class="h-12 w-auto" data-alt="Paisabor brand logo featuring rustic elements and artisanal typography reflecting Colombian culinary heritage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaIvD0UjxoUYJs7FFqIDTmoNJW9VndhY8ODgcGnbOLPDKjEGgJtT5_tDRfXJkmZXyEgGLrlD9-6-J3nILxMLtgr9cOl-ke4nP5QN7ZhUm-ojSdk2bVt-Us6EwyYm1qFrJbLIFlkf1sOHnxhKUkWdHY7eYPf-idLuPM12C4LtaP_u2YjiL7s8tLzYRe1Zk_-H7sdRNobqG4FVDYYYo9T1NugQVtGsuOIGrYIRIIENABXCauDiyLFxqfNRnALW-W_u7tx1FOVvBjl6g">
+<span class="text-2xl font-bold text-[#584000] dark:text-[#fcf9f4]">Paisabor</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#584000]/70 dark:text-[#fcf9f4]/70 hover:text-[#904c27] transition-colors duration-300" href="#">Quienes Somos</a>
+<a class="text-[#584000]/70 dark:text-[#fcf9f4]/70 hover:text-[#904c27] transition-colors duration-300" href="#">Productos</a>
+<a class="text-[#584000]/70 dark:text-[#fcf9f4]/70 hover:text-[#904c27] transition-colors duration-300" href="#">Eventos</a>
+<a class="text-[#584000]/70 dark:text-[#fcf9f4]/70 hover:text-[#904c27] transition-colors duration-300" href="#">Galería</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="scale-95 active:transition-transform text-[#584000] relative">
+<span class="material-symbols-outlined" data-icon="shopping_basket">shopping_basket</span>
+<span class="absolute -top-2 -right-2 bg-secondary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-8 py-12 md:py-20">
+<!-- Editorial Header -->
+<div class="mb-16">
+<h1 class="text-5xl md:text-7xl font-bold text-primary tracking-tighter mb-4">Tu Canasta</h1>
+<p class="text-lg text-on-surface-variant max-w-xl">Lleva contigo el sabor de nuestra tierra. Cada producto ha sido seleccionado con amor artesanal.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+<!-- Cart Items Section -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Item 1 -->
+<div class="flex flex-col md:flex-row gap-8 items-center bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="w-full md:w-40 h-40 flex-shrink-0 rounded-lg overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional Colombian arepas stacked on a wooden board, golden brown and crispy with soft steam rising" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcU8O5hzfy2MGtvUCeXqWE0Bx_FsdejhdGmEmVuxYeTNxNNMPVagz4QSzvXPPwGYM8HyWyxg2UzSnN8kRf7W2IvOmlVE-D0amQLdoh8lTk86RzAqbwZhU2fuz3AuLLGkLJPe1vHlJhn0xVMd9KJ1nojK_oWGc1OosQa4NC1dkWy8CAvJk9TyiZiuK1k9fhkZrvpE2CJ9B467Ztm0jx7_6ADUnEfxLt2XnhoHsVltKKZuvVx4ThqaJWGkdwclV9TKLULp47gJghWaw">
+</div>
+<div class="flex-grow flex flex-col justify-between h-full">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-bold text-primary mb-1">Arepa de Choclo Artesanal</h3>
+<p class="text-sm text-outline font-medium tracking-wide">PAQUETE X 5 UNIDADES</p>
+</div>
+<button class="text-outline hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+<div class="flex justify-between items-end mt-8">
+<div class="flex items-center bg-surface-container-high rounded-full px-4 py-2">
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-outline-variant/20 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="mx-4 font-bold text-lg min-w-[20px] text-center">2</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-outline-variant/20 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+<p class="text-2xl font-headline font-bold text-secondary">€14.50</p>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex flex-col md:flex-row gap-8 items-center bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="w-full md:w-40 h-40 flex-shrink-0 rounded-lg overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Roasted whole coffee beans in a rustic burlap sack with a wooden scoop and warm natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA63laAv7umTl-srda7zQ__Eamg0_OeOLLiO04JiJCko3YzRk_AXL9UE1v6fwklHJ3-F_M7rzK4u1Vkc02n0-mkQWwPjKCJpLtMKxnR3nP43MkBJp7RVbFajndGEf-IXjAFb6aFySdUvrzZyK-_z-PjSg0gDQyWNaargN3RWUr1KMDfK1PulrUJ9xAyhzdRmFgsv0YOV5y7X4bk5-0e_0Lzh43XCETFU_v2CetDhNH2Vv2xGEPcOj9sfzRNEl7_69TCirPOtrhAf8g">
+</div>
+<div class="flex-grow flex flex-col justify-between h-full">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-bold text-primary mb-1">Café de Origen - Quindío</h3>
+<p class="text-sm text-outline font-medium tracking-wide">GRANO ENTERO / 500G</p>
+</div>
+<button class="text-outline hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+<div class="flex justify-between items-end mt-8">
+<div class="flex items-center bg-surface-container-high rounded-full px-4 py-2">
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-outline-variant/20 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="mx-4 font-bold text-lg min-w-[20px] text-center">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-outline-variant/20 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+<p class="text-2xl font-headline font-bold text-secondary">€18.90</p>
+</div>
+</div>
+</div>
+<!-- Empty state nudge / Suggested item -->
+<div class="mt-16 p-8 rounded-xl border border-dashed border-outline-variant/40 bg-surface-container-lowest flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-4xl text-outline-variant mb-4" data-icon="rebase_edit">rebase_edit</span>
+<h4 class="text-xl font-bold text-primary mb-2">¿Algo más para tu mesa?</h4>
+<p class="text-on-surface-variant mb-6">Completa tu pedido con nuestras mermeladas artesanales de guayaba.</p>
+<button class="text-primary font-bold hover:text-secondary transition-colors underline decoration-outline-variant underline-offset-4">Explorar catálogo</button>
+</div>
+</div>
+<!-- Summary Section -->
+<aside class="lg:col-span-4 sticky top-32">
+<div class="bg-surface-container-high p-8 rounded-xl border-t-4 border-secondary shadow-sm">
+<h2 class="text-2xl font-bold text-primary mb-8 border-b border-outline-variant/20 pb-4">Resumen del Pedido</h2>
+<div class="mb-8 space-y-4 p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/20" id="delivery-form"><h3 class="text-sm font-bold text-primary">Datos de Envío</h3><div class="space-y-3"><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20" placeholder="Dirección" type="text"><div class="grid grid-cols-2 gap-3"><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20" placeholder="Ciudad" type="text"><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20" placeholder="Código Postal" type="text"></div><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20" placeholder="País" type="text"><div class="grid grid-cols-2 gap-3"><div class="space-y-1"><label class="text-[10px] uppercase font-bold text-outline">Fecha</label><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg" type="date"></div><div class="space-y-1"><label class="text-[10px] uppercase font-bold text-outline">Hora</label><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg" type="time"></div></div><textarea class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20 h-20" placeholder="Observaciones (Instrucciones especiales)"></textarea></div></div><div class="mb-8 space-y-4"><p class="text-sm font-bold text-primary uppercase tracking-widest">Método de Entrega</p><div class="grid grid-cols-2 gap-2"><label class="flex items-center justify-center p-3 border-2 border-secondary bg-secondary/5 rounded-lg cursor-pointer transition-all"><input class="hidden" name="delivery_method" type="radio" value="pickup"><span class="text-sm font-bold text-secondary">Recogida</span></label><label class="flex items-center justify-center p-3 border border-outline-variant/30 rounded-lg cursor-pointer hover:bg-surface-container-highest transition-all"><input checked="" class="hidden" name="delivery_method" type="radio" value="delivery"><span class="text-sm font-bold text-on-surface-variant">Domicilio</span></label></div></div><div class="mb-8 space-y-4 p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/20" id="delivery-form"><h3 class="text-sm font-bold text-primary">Datos de Envío</h3><div class="space-y-3"><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20" placeholder="Dirección" type="text"><div class="grid grid-cols-2 gap-3"><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20" placeholder="Ciudad" type="text"><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20" placeholder="Código Postal" type="text"></div><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20" placeholder="País" type="text"><div class="grid grid-cols-2 gap-3"><div class="space-y-1"><label class="text-[10px] uppercase font-bold text-outline">Fecha</label><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg" type="date"></div><div class="space-y-1"><label class="text-[10px] uppercase font-bold text-outline">Hora</label><input class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg" type="time"></div></div><textarea class="w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20 h-20" placeholder="Observaciones (Instrucciones especiales)"></textarea></div></div><div class="space-y-4 mb-8">
+<div class="flex justify-between text-on-surface-variant">
+<span class="">Subtotal</span>
+<span class="font-medium text-on-surface">€33.40</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="">Costo de Envío</span>
+<span class="font-medium text-on-surface">€4.95</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="">Impuestos (IVA 9%)</span>
+<span class="font-medium text-on-surface">€3.01</span>
+</div>
+</div>
+<div class="flex justify-between items-baseline mb-10 pt-4 border-t border-outline-variant/30">
+<span class="text-lg font-bold text-primary">Total</span>
+<div class="text-right">
+<span class="block text-4xl font-headline font-extrabold text-primary">€41.36</span>
+<span class="text-xs text-outline font-medium tracking-widest uppercase">EUR incl. IVA</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary-container text-white py-5 rounded-lg font-bold text-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3">
+<span class="">PAGAR AHORA</span>
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</button>
+<div class="mt-8 flex items-center justify-center gap-4">
+<span class="material-symbols-outlined text-outline-variant text-3xl" data-icon="credit_card">credit_card</span>
+<span class="material-symbols-outlined text-outline-variant text-3xl" data-icon="account_balance">account_balance</span>
+<span class="material-symbols-outlined text-outline-variant text-3xl" data-icon="local_shipping">local_shipping</span>
+</div>
+<p class="mt-8 text-center text-xs text-on-surface-variant leading-relaxed">
+                        Envío refrigerado disponible para asegurar la frescura de tus productos. 
+                        Tiempos de entrega estimados: 1-3 días laborales.
+                    </p>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full mt-20 bg-[#f2eee3] dark:bg-stone-800">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-12 max-w-7xl mx-auto font-['Be_Vietnam_Pro'] text-sm text-[#584000] dark:text-[#fcf9f4]">
+<div class="space-y-4">
+<div class="mb-4"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9-W5XfRqKZR1_9zhhv2hikGGYEdFsqUsgvpDuqprs1fVLxmT0yyYsXFLoEw4H7wqwMNc1fkdC_-2qXNYitXixW3Jj4ZYm0FkIZzemNB13yH0nRqI-c5DL4-fWoLIha0sSR5OkeTYopi1HIyxbm6P5JxiLCT4sif4aBf6iV87Cqi1NIZpkN47WO-uGW6lkNJFZAWWxYOxiseErpSva-wGq1kpxAh5rbPipf4bVnOXF4aVPz0ZkOtEY12V_iRwhI3fjvQ" alt="Paisabor Logo" class="h-8 w-auto object-contain"></div>
+<p class="text-[#584000]/80 leading-relaxed">Traemos la esencia culinaria de Colombia directamente a tu hogar en el corazón de Europa.</p>
+<p class="text-[#584000]/60">© 2024 Paisabor. Sabor de Casa en Países Bajos.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-3 flex flex-col">
+<a class="text-[#584000]/80 hover:underline decoration-[#904c27] transition-opacity hover:opacity-80" href="#">Contacto</a>
+<a class="text-[#584000]/80 hover:underline decoration-[#904c27] transition-opacity hover:opacity-80" href="#">Envíos</a>
+<a class="text-[#584000]/80 hover:underline decoration-[#904c27] transition-opacity hover:opacity-80" href="#">Términos</a>
+</div>
+<div class="space-y-3 flex flex-col">
+<a class="text-[#584000]/80 hover:underline decoration-[#904c27] transition-opacity hover:opacity-80" href="#">Instagram</a>
+<a class="text-[#584000]/80 hover:underline decoration-[#904c27] transition-opacity hover:opacity-80" href="#">Facebook</a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold">Suscríbete al sabor</h4>
+<div class="flex flex-col gap-2">
+<input class="bg-surface-container-high border-none border-b-2 border-outline/20 focus:border-secondary focus:ring-0 text-primary p-3 rounded-t-md" placeholder="Tu correo electrónico" type="email">
+<button class="bg-primary text-white py-2 px-4 rounded-b-md font-bold hover:bg-primary-container transition-colors">UNIRME</button>
+</div>
+</div>
+</div>
+</footer>
+
+
+</body></html>

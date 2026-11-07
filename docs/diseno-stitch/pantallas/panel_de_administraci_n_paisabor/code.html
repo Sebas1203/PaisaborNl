@@ -1,0 +1,298 @@
+<!DOCTYPE html><html class="h-full bg-background antialiased" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Paisabor - Admin Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f6f3ee",
+                    "on-surface-variant": "#4e453d",
+                    "on-secondary-fixed": "#370e00",
+                    "tertiary-fixed": "#ffdcbd",
+                    "secondary-fixed-dim": "#ffb599",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#59422c",
+                    "primary": "#33210d",
+                    "surface-bright": "#fcf9f4",
+                    "secondary-container": "#ff956a",
+                    "on-secondary-container": "#762c08",
+                    "surface": "#fcf9f4",
+                    "on-tertiary-fixed-variant": "#623f18",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#f0ede8",
+                    "on-background": "#1c1c19",
+                    "on-tertiary-container": "#cb9b6c",
+                    "secondary": "#994621",
+                    "background": "#fcf9f4",
+                    "surface-container-high": "#ebe8e3",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e5e2dd",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#f0bd8b",
+                    "surface-variant": "#e5e2dd",
+                    "on-surface": "#1c1c19",
+                    "inverse-surface": "#31302d",
+                    "on-tertiary-fixed": "#2c1600",
+                    "tertiary-container": "#54330c",
+                    "outline-variant": "#d2c4ba",
+                    "primary-fixed": "#fedcbe",
+                    "inverse-on-surface": "#f3f0eb",
+                    "secondary-fixed": "#ffdbce",
+                    "tertiary": "#391e00",
+                    "surface-tint": "#725a42",
+                    "primary-container": "#4b3621",
+                    "surface-dim": "#dcdad5",
+                    "inverse-primary": "#e1c1a4",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline": "#80756c",
+                    "on-primary-fixed": "#291806",
+                    "on-primary-container": "#bd9f83",
+                    "on-secondary-fixed-variant": "#7b2f0b",
+                    "primary-fixed-dim": "#e1c1a4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Epilogue", "sans-serif"],
+                    "display": ["Epilogue", "sans-serif"],
+                    "body": ["Work Sans", "sans-serif"],
+                    "label": ["Work Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .soil-shadow {
+            box-shadow: -10px 0 40px rgba(28,28,25,0.05);
+        }
+        .card-ambient-shadow {
+            box-shadow: 0 4px 40px rgba(28,28,25,0.05);
+        }
+    </style>
+</head>
+<body class="h-full flex font-body text-on-surface">
+<!-- SideNavBar (From JSON) -->
+<nav class="bg-surface-container-low h-screen w-64 fixed left-0 top-0 soil-shadow flex flex-col h-full py-6 z-40 hidden md:flex">
+<!-- Header -->
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest shrink-0 border border-outline-variant/30">
+<img alt="Admin Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBFhdLB6K5ELyXC-tjxdZLa41ysfgt4zesm66UfuaCe_yhYB0SejwJydE7-GxMMu8UCIRGmtcG9bGnKczxQ77KQVqwiaSAd0R8EAWdUozGd-GqwSWQl5SmsnnfEW1qcXO5fzd4v-KYoHKzi7PJGA6O9Sk0WFzFW_WL304SAx01e8dYg3e-b0iz2B4xDCbu_53pBg-fjy77rm6PX5HtLAOMV5_OY5MCYd-fmM9-BDQwxBxud-JrZJNbkbQeJp7yJRpvEA">
+</div>
+<div>
+<h2 class="font-headline font-bold text-xl text-primary leading-tight">Admin Portal</h2>
+<p class="font-body text-label-sm text-on-surface-variant">Manage the Hacienda</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<ul class="flex-1 space-y-2 overflow-y-auto font-body text-label-lg">
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<!-- Active -->
+<li>
+<a class="bg-secondary text-on-secondary rounded-lg font-medium mx-2 px-4 py-3 active:opacity-80 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+                    Products
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">restaurant_menu</span>
+                    Menu
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+                    Content
+                </a>
+</li>
+<!-- Inactive -->
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 transition-all hover:translate-x-1 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<!-- Bottom CTA -->
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary rounded-lg py-3 font-medium transition-all hover:bg-primary-container hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Product
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 bg-background min-h-screen">
+<!-- Top App Bar (Mobile Only - simplified for context) -->
+<header class="md:hidden flex items-center justify-between p-4 bg-surface-container-low border-b border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Admin Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASXXzS7wZRNzeBNNHqN7qcDdA3Zp_sNSMoNA8ypBivsLGE7ZgjSDn24xMReorxinZptz3Luv_CAaZRI0Fi8lURC7jJ8-xMif435JUBqAWO1cFxclHt2PbSq6riCgvCYtnqGXwCiz2xWOM-LXFB16GwZPwGcfJGAspEMsAUamHOBp1Kfnbr7D6nwMnJotK9wSkMzDWcx7Gs0fINyKD5uvAzyc9RxY82jwQ-1jof-3MJAbV8kiLzfRvYN6GmJglWIlRktg">
+</div>
+<h1 class="font-headline font-bold text-lg text-primary">Products</h1>
+</div>
+<button class="text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<div class="p-6 md:p-12 max-w-7xl mx-auto space-y-12">
+<!-- Page Header & Stats Summary -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-headline text-display-sm tracking-tight text-primary leading-none mb-2">Products Inventory</h1>
+<p class="text-on-surface-variant font-body text-lg max-w-xl">Gestión de Productos. Manage your coffee beans, brewing equipment, and merchandise.</p>
+</div>
+<div class="flex gap-4">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 pr-8 card-ambient-shadow">
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Total Ventas</p>
+<p class="font-headline text-2xl font-bold text-primary">€4,250</p>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 pr-8 card-ambient-shadow">
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Productos Activos</p>
+<p class="font-headline text-2xl font-bold text-primary">24</p>
+</div>
+</div>
+</section>
+<!-- Search and Filter Bar -->
+<section class="flex flex-col sm:flex-row gap-4 justify-between items-center bg-surface-container-lowest p-2 rounded-xl card-ambient-shadow">
+<div class="relative w-full sm:w-96 flex-1">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50">search</span>
+<input class="w-full bg-transparent border-0 border-b-2 border-surface-container-highest focus:border-secondary focus:ring-0 pl-12 pr-4 py-3 font-body text-on-surface transition-colors placeholder:text-on-surface-variant/50" placeholder="Buscar productos..." type="text">
+</div>
+<div class="flex gap-2 w-full sm:w-auto">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filtros
+                    </button>
+<button class="md:hidden flex-1 bg-primary text-on-primary rounded-lg py-2 px-4 font-medium transition-all hover:bg-primary-container">
+                        Nuevo
+                    </button>
+</div>
+</section>
+<!-- Product Grid (Bento/Card Style) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Product Card 1 -->
+<article class="bg-surface-container-low rounded-xl overflow-hidden group">
+<div class="h-48 bg-surface-container-highest relative overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A meticulously lit close-up of a rustic burlap sack filled with premium, glossy dark-roast coffee beans. The lighting is warm and directional, emphasizing the texture of the beans against a soft, cream-colored background in a high-end editorial culinary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2UwTsWqLOj9NaCSpmUZCgke3USMEg9lSqz35QxSzsSwS47F9pssO5HGQ1qNToTZBormzip3VcWraV0WLonvs6l9KtbLFouyRYKm8e7ZEq6BNlaHQVGfZfq9n5-1SbvbvvZR7bdhfxYaWqgFQ-gbeRc6OZj_puIFxIRoBuyAxPWRCWR1USWICdBhSn6RMd5adw_Y27CoA10Baykl_Rwuv8KvzcK7ePjkiQphSVE8yhuci1ZuQjsS6A">
+<div class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                            Grano Entero
+                        </div>
+</div>
+<div class="bg-surface p-6 flex flex-col justify-between h-48">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline font-bold text-xl text-primary">Sierra Nevada Dark Roast</h3>
+<span class="font-body font-medium text-secondary">€18.50</span>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-2">Notas de cacao oscuro, panela y nuez tostada. Cosechado a 1500m.</p>
+</div>
+<div class="flex justify-between items-center pt-4 mt-4 border-t border-outline-variant/20">
+<span class="text-xs text-on-surface-variant">Stock: 45</span>
+<div class="flex gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-error/70 hover:text-error transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Product Card 2 -->
+<article class="bg-surface-container-low rounded-xl overflow-hidden group">
+<div class="h-48 bg-surface-container-highest relative overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A high-end editorial photo of a sleek, minimalist ceramic coffee pour-over set resting on a raw wooden table. The lighting is soft and diffused, creating a serene, modern light-mode aesthetic with warm earthy accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2hBNEaQ88xm5LorgUgRERrrjgSGp9_OE5HncJ4PAVjC19r5rDfjuffrAIu2O7E497H2VIami7xy7gYsOddb-Xx3hw73BpC-wKRGRM9lPG73hByLySZUfmsGZnvAX9CZ3Y5Wbxi_UZmzvolFJ_9tLr5L2Wop2ov2wC_2NQAbbHDR2_7AXLjSi5P4isGk3DMO9UOfOnqyAzIEy3GbSoqpSuFCwzfgz_kRRK56I9ZwHkmoE4eR24TxnK">
+<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                            Equipo
+                        </div>
+</div>
+<div class="bg-surface p-6 flex flex-col justify-between h-48">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline font-bold text-xl text-primary">Set V60 Cerámica</h3>
+<span class="font-body font-medium text-secondary">€45.00</span>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-2">Kit completo de preparación manual. Incluye cono, jarra y filtros.</p>
+</div>
+<div class="flex justify-between items-center pt-4 mt-4 border-t border-outline-variant/20">
+<span class="text-xs text-error font-medium">Stock: 2 (Bajo)</span>
+<div class="flex gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-error/70 hover:text-error transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="bg-surface-container-low rounded-xl overflow-hidden group">
+<div class="h-48 bg-surface-container-highest relative overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A beautifully styled shot of a rustic, artisan-crafted jar of Colombian panela syrup next to a small wooden spoon. The scene is warmly lit, evoking a premium, traditional hacienda kitchen feel against a pristine clotted cream surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSe1I5h5oASBR53jCmYF0nh0ZfIstNse1jlXkm54hp_5hFSnQ1ly0lXqMdmy6AFFtxkjOQhriPI4R2tlAtO_5wAKNjm781TIYtZEBweX3D1DVrTy8vS9payRBdcqYW9V5xJut6BjaLai4X70k4wsPFO2O_sQoG8ATShPFLmvuQtIF3RdOJVowBgYo0KXohfhX7OJjomQe5wme6NYkY4U0wV11xRKM7nRWH6tWiHQFEGf_pyrwtZLpe">
+<div class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                            Despensa
+                        </div>
+</div>
+<div class="bg-surface p-6 flex flex-col justify-between h-48">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline font-bold text-xl text-primary">Miel de Panela Artesanal</h3>
+<span class="font-body font-medium text-secondary">€12.00</span>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-2">Endulzante natural colombiano, perfecto para café y repostería.</p>
+</div>
+<div class="flex justify-between items-center pt-4 mt-4 border-t border-outline-variant/20">
+<span class="text-xs text-on-surface-variant">Stock: 18</span>
+<div class="flex gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-error/70 hover:text-error transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</section>
+</div>
+</main>
+</body></html>

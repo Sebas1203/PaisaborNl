@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Iniciar Sesión - Paisabor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;800&amp;family=Work+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#e5e2dd",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#ff956a",
+                        "tertiary": "#391e00",
+                        "surface-tint": "#725a42",
+                        "surface-bright": "#fcf9f4",
+                        "primary-fixed": "#fedcbe",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#2c1600",
+                        "on-secondary-fixed": "#370e00",
+                        "surface-dim": "#dcdad5",
+                        "surface-container": "#f0ede8",
+                        "primary": "#33210d",
+                        "inverse-surface": "#31302d",
+                        "on-secondary-fixed-variant": "#7b2f0b",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#4e453d",
+                        "on-primary-fixed": "#291806",
+                        "tertiary-fixed-dim": "#f0bd8b",
+                        "secondary": "#994621",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f6f3ee",
+                        "tertiary-fixed": "#ffdcbd",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#d2c4ba",
+                        "tertiary-container": "#54330c",
+                        "on-primary-fixed-variant": "#59422c",
+                        "on-tertiary-container": "#cb9b6c",
+                        "secondary-fixed-dim": "#ffb599",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fcf9f4",
+                        "primary-container": "#4b3621",
+                        "primary-fixed-dim": "#e1c1a4",
+                        "inverse-on-surface": "#f3f0eb",
+                        "on-surface": "#1c1c19",
+                        "secondary-fixed": "#ffdbce",
+                        "outline": "#80756c",
+                        "on-primary-container": "#bd9f83",
+                        "on-tertiary-fixed-variant": "#623f18",
+                        "surface-container-highest": "#e5e2dd",
+                        "background": "#fcf9f4",
+                        "on-secondary-container": "#762c08",
+                        "on-background": "#1c1c19",
+                        "surface-container-high": "#ebe8e3",
+                        "inverse-primary": "#e1c1a4"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Epilogue", "sans-serif"],
+                        "display": ["Epilogue", "sans-serif"],
+                        "body": ["Work Sans", "sans-serif"],
+                        "label": ["Work Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface h-screen w-full relative overflow-hidden flex items-center justify-center">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0 bg-cover bg-center" data-alt="A beautifully blurred, atmospheric photograph of a traditional Colombian coffee hacienda at dawn. The scene features warm, golden morning light filtering through lush green coffee plants, casting a soft, inviting glow. The colors are dominated by rich earthy browns, terracotta accents, and soft cream highlights. The image is highly cinematic, deliberately out of focus to serve as an elegant, serene UI background that exudes a premium, tactile, and tranquil aesthetic without overwhelming the foreground." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHNjMaHKwtopWEt4Hoal5DTHdSy1HYEVCSA3iDXMQqP6evzwbbzZx56PXoqGNFO_macvX9B9_gwOwrRP_oYuTUVulzsL1J87WN9JejFSxmDfkVqueOWJjmv2HxbB6A7k00iI5Q-U81sEc3FhoqjDgE5N8wOU_6tUIOr6IivH0wSWFy2oq6709oLzow4KBMajaltxuM_GE1Dhio03vlDt_AVxBB6LWghZFWKvasFDSBIOnYFzlngVe4')">
+</div>
+<!-- Gradient Overlay for readability -->
+<div class="absolute inset-0 z-0 bg-gradient-to-t from-primary/80 via-primary/40 to-surface/30 mix-blend-multiply"></div>
+<div class="absolute inset-0 z-0 bg-surface/20 backdrop-blur-sm"></div>
+<!-- Central Login Card -->
+<main class="relative z-10 w-full max-w-md mx-4 md:mx-auto bg-surface-container-lowest rounded-xl p-8 md:p-12 shadow-[0_40px_40px_-10px_rgba(28,28,25,0.05)]">
+<header class="mb-10 text-center"><div class="flex justify-center mb-4"><div class="h-20 w-20 rounded-full bg-surface-container-high border border-surface-container-highest overflow-hidden flex items-center justify-center shadow-sm"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYNzKV1q-8t7Ox2DJSYKLn9qkiC4A3gGX6x2QXKYieoKbn3dc8iT_OSwgvIow3lGEOtY0FfB-bwCpvJk3m4SoqiJRZItb5tBAIoo8YTMc4rvzWZq8EZsL_LJbhNGxjVepNlaBbHSamREbcGQbwpVEohEd53UmhIYUcLdF-De4kV7xHQy_xA1NwxODMswdCetUTbKol940iFCE9E93K23UrZUzxFZBh2O_Dxrk3rTgG1IXFXjEevpebv4Y8IKqgwY7jCQ" alt="Paisabor Logo" class="w-full h-full object-contain p-2"></div></div>
+<h1 class="font-headline text-display text-4xl md:text-5xl font-extrabold text-primary tracking-tighter mb-2 mt-2">Paisabor</h1>
+<p class="font-body text-on-surface-variant text-sm md:text-base">Del Corazón de Colombia</p>
+</header>
+<form action="#" class="flex flex-col gap-8" method="POST">
+<!-- Username Input -->
+<div class="relative group">
+<label class="block font-body text-xs text-on-surface-variant mb-2 uppercase tracking-[0.1em] font-medium" for="username">Nombre de Usuario</label>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b-2 border-surface-container-highest px-0 py-2 text-on-surface font-body text-lg focus:ring-0 focus:border-secondary transition-colors placeholder-outline-variant/50" id="username" name="username" placeholder="Ingresa tu usuario" required="" type="text">
+<span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-secondary transition-colors" data-icon="person">person</span>
+</div>
+</div>
+<!-- Password Input -->
+<div class="relative group">
+<label class="block font-body text-xs text-on-surface-variant mb-2 uppercase tracking-[0.1em] font-medium" for="password">Contraseña</label>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b-2 border-surface-container-highest px-0 py-2 text-on-surface font-body text-lg focus:ring-0 focus:border-secondary transition-colors placeholder-outline-variant/50" id="password" name="password" placeholder="••••••••" required="" type="password">
+<button aria-label="Mostrar contraseña" class="absolute right-0 top-1/2 -translate-y-1/2 text-outline-variant hover:text-secondary group-focus-within:text-secondary transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Forgot Password Link -->
+<div class="flex justify-end -mt-4">
+<a class="font-body text-sm text-secondary hover:text-primary transition-colors duration-300" href="#">¿Olvidé mi contraseña?</a>
+</div>
+<!-- Main Action Button -->
+<button class="w-full mt-4 bg-primary text-on-primary font-headline font-bold text-lg py-4 rounded-lg hover:bg-primary-container hover:-translate-y-1 transition-all duration-300 shadow-lg shadow-primary/20" type="submit">
+                Entrar
+            </button>
+</form>
+<!-- Footer / Create Account -->
+<div class="mt-10 text-center border-t border-surface-container-highest pt-6">
+<p class="font-body text-on-surface-variant text-sm">
+                ¿Aún no tienes el sabor en casa? 
+                <a class="font-headline font-bold text-secondary hover:text-primary transition-colors ml-1" href="#">Crear cuenta</a>
+</p>
+</div>
+</main>
+
+
+</body></html>

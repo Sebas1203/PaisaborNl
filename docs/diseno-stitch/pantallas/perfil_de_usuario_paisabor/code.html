@@ -1,0 +1,260 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Paisabor - Mi Perfil</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f6f3ee",
+                        "on-surface-variant": "#4e453d",
+                        "on-secondary-fixed": "#370e00",
+                        "tertiary-fixed": "#ffdcbd",
+                        "secondary-fixed-dim": "#ffb599",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#59422c",
+                        "primary": "#33210d",
+                        "surface-bright": "#fcf9f4",
+                        "secondary-container": "#ff956a",
+                        "on-secondary-container": "#762c08",
+                        "surface": "#fcf9f4",
+                        "on-tertiary-fixed-variant": "#623f18",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0ede8",
+                        "on-background": "#1c1c19",
+                        "on-tertiary-container": "#cb9b6c",
+                        "secondary": "#994621",
+                        "background": "#fcf9f4",
+                        "surface-container-high": "#ebe8e3",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e5e2dd",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#f0bd8b",
+                        "surface-variant": "#e5e2dd",
+                        "on-surface": "#1c1c19",
+                        "inverse-surface": "#31302d",
+                        "on-tertiary-fixed": "#2c1600",
+                        "tertiary-container": "#54330c",
+                        "outline-variant": "#d2c4ba",
+                        "primary-fixed": "#fedcbe",
+                        "inverse-on-surface": "#f3f0eb",
+                        "secondary-fixed": "#ffdbce",
+                        "tertiary": "#391e00",
+                        "surface-tint": "#725a42",
+                        "primary-container": "#4b3621",
+                        "surface-dim": "#dcdad5",
+                        "inverse-primary": "#e1c1a4",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "outline": "#80756c",
+                        "on-primary-fixed": "#291806",
+                        "on-primary-container": "#bd9f83",
+                        "on-secondary-fixed-variant": "#7b2f0b",
+                        "primary-fixed-dim": "#e1c1a4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Epilogue"],
+                        "display": ["Epilogue"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    },
+                    "fontSize": {}
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-secondary/20 min-h-screen flex">
+<!-- Side Navigation Shell (from JSON) -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-container-highest shadow-[-10px_0_40px_rgba(28,28,25,0.05)] py-6 z-40">
+<div class="px-6 mb-8 flex items-center justify-center">
+<img alt="Paisabor Logo" class="w-24 h-24 object-cover rounded-full shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATNG9O1AUTRniz4rtbOD7DGH6OH_S-wJRmzimdLvkcnKFzZsp4WrOBQ_9u1jNmEnMEMIBgkSH7itnUokHng_ublMQPSQxOg7-3Fe-Dm5A3A4ATVOj_-s0mJOTW1-suUuq5qsfIDJ6LfljyETd16ab_e73R5WFZZ3HxoyZyot9ccMQmmofrkdMLv1Bx8nEOF1Nou_GrInL5tw9Kps-86FldSULBMgJ6GLsBKNnlXp1LNt3qf9OyOHBc5bABe6-E2jLxqw">
+</div>
+<div class="px-6 mb-6">
+<h1 class="font-headline font-bold text-xl text-primary">Admin Portal</h1>
+<p class="font-body text-label-lg text-on-surface-variant">Manage the Hacienda</p>
+</div>
+<ul class="flex flex-col gap-2 flex-grow mt-4 px-2">
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-all hover:translate-x-1 active:opacity-80 font-body text-label-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-all hover:translate-x-1 active:opacity-80 font-body text-label-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">inventory_2</span>
+                    Products
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-all hover:translate-x-1 active:opacity-80 font-body text-label-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">restaurant_menu</span>
+                    Menu
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-all hover:translate-x-1 active:opacity-80 font-body text-label-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">edit_note</span>
+                    Content
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-4 bg-secondary text-on-secondary rounded-lg font-medium px-4 py-3 transition-all hover:translate-x-1 active:opacity-80 font-body text-label-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<div class="px-4 mt-auto">
+<button class="w-full py-3 bg-primary text-on-primary rounded-lg font-medium hover:bg-primary-container transition-colors shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                 New Product
+             </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="w-full md:ml-64 p-8 lg:p-16">
+<header class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div>
+<h2 class="font-headline text-display-lg text-primary tracking-tight -ml-1">Mi Perfil</h2>
+<p class="font-body text-on-surface-variant text-lg mt-2">Bienvenido de vuelta, Juan Pérez.</p>
+</div>
+<button class="px-6 py-2 border border-outline-variant/30 text-on-surface rounded-lg hover:bg-surface-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">edit</span> Editar Perfil
+            </button>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- User Info Card (Glassmorphism inspired, though solid here per rules) -->
+<div class="col-span-1 bg-surface-container-lowest p-8 rounded-xl shadow-[-10px_0_40px_rgba(28,28,25,0.05)] flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-6 ring-4 ring-surface-container border-2 border-surface-container-low relative group">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A high-quality portrait photograph of a young Colombian man smiling warmly, shot in a well-lit modern kitchen. The lighting is soft and natural, casting gentle shadows. The color palette features deep roasted browns and creamy whites, reflecting the premium Paisabor brand identity. The image feels authentic, professional, and culinary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCbGLxMuesiJnl4ri7vSA2tvM20pYlCM6GnzibUTu_CCeph19mRSQ9rRa-CshJikW7HdYPNVVff7wqlbEt29AUYUNoyq3weJHdEEZCLKpTd4ZwgJ-Ak0UWizPFhHwiPnUxll013DY8tT2wbWWgywMHn3SzJ7c1kae-31pC5i_adIksh92IF6W4pvVGhuzQTVCgFY7fYMqg_i5C0J-pOzDYvsq6NWUxGb96rN_7mWRVkiwg-wLhLE1x">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-on-primary">photo_camera</span>
+</div>
+</div>
+<h3 class="font-headline text-2xl font-bold text-primary mb-1">Juan Pérez</h3>
+<p class="text-on-surface-variant font-medium mb-6">juan.perez@ejemplo.co</p>
+<div class="w-full border-t border-surface-variant my-4"></div>
+<div class="w-full flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Miembro desde</span>
+<span class="font-medium text-primary">Marzo 2023</span>
+</div>
+<div class="w-full flex justify-between items-center text-sm mt-3">
+<span class="text-on-surface-variant">Puntos Sabor</span>
+<span class="font-bold text-secondary">1,450</span>
+</div>
+</div>
+<!-- Recent Orders (Bento Style) -->
+<div class="col-span-1 lg:col-span-2 bg-surface-container-lowest rounded-xl shadow-[-10px_0_40px_rgba(28,28,25,0.05)] p-8">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline text-2xl font-bold text-primary">Pedidos Recientes</h3>
+<a class="text-secondary hover:text-secondary-container text-sm font-medium transition-colors flex items-center gap-1" href="#">Ver todos <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Order Item 1 -->
+<div class="bg-surface-container-low p-5 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:bg-surface-container transition-colors group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-md overflow-hidden bg-surface-container-highest shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up, beautifully styled macro shot of freshly roasted Colombian coffee beans resting in a rustic, handmade ceramic bowl. The lighting is dramatic, highlighting the oily sheen and rich, dark brown textures of the beans. The background is a soft, warm cream color, emphasizing a premium, artisanal culinary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFdHfROPu7gMnpJN9toJ5oe9dscBypLKus8gTPOk6xDUyrDZYmjdyF2EpSg4DMXAev-cek2_t0wyolEPwZr0TsfZ4mQqkIvlUpm5E_D50KUnEPWU3WXD2DmXzNq41KzpU8Rdxgoagq1TWjZtE1La-MPz31X67sB5AvbVWKAD5LM3g7-IP2wVIOXBVB_sOxfV6sHOJDKbgOZrECXH3iaO6mvlMrqn_2aheINCI7ysgmGVwdFrq2_I6O">
+</div>
+<div>
+<p class="font-headline font-bold text-lg text-primary group-hover:text-secondary transition-colors">Café Excelso - Origen Tolima</p>
+<p class="text-sm text-on-surface-variant">Pedido #4092 • 15 Oct, 2023</p>
+</div>
+</div>
+<div class="flex flex-row sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto mt-2 sm:mt-0">
+<span class="font-medium text-primary bg-tertiary-fixed/40 px-3 py-1 rounded-full text-xs text-on-tertiary-fixed mb-0 sm:mb-2 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> Enviado</span>
+<span class="font-bold text-primary">€24.50</span>
+</div>
+</div>
+<!-- Order Item 2 -->
+<div class="bg-surface-container-low p-5 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:bg-surface-container transition-colors group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-md overflow-hidden bg-surface-container-highest shrink-0">
+<img class="w-full h-full object-cover" data-alt="An editorial style flat lay image of golden, perfectly fried Colombian empanadas arranged on an earthy terracotta plate. The lighting creates soft, appetizing highlights on the crispy crusts. The scene includes a small ramekin of vibrant aji sauce, set against a pristine, textured white surface, evoking a high-end food magazine feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuilZeNdmihOAIR9sn7AeHJfj-nAZN439qtJaGij7218tdROWCjmqc6fKYe8Y0fccoiRy3LxpgmSFTJXNnfpCCTmSbGWY7LG-733vz7aGgzUYSlVlwvr9R8prqzPVsliULYqMQ2Z5f1Kd6o7NDTrsyVceIJs904PkWwE_9IyOWYb9u_wCaBldWaIp_wLi3-f0fpFmVFJegXbIaCHjehHflsYAMCTGAP6vQNqVJK0KfxBtuGbyqQ8Lt">
+</div>
+<div>
+<p class="font-headline font-bold text-lg text-primary group-hover:text-secondary transition-colors">Kit Empanadas Tradicionales</p>
+<p class="text-sm text-on-surface-variant">Pedido #4088 • 02 Oct, 2023</p>
+</div>
+</div>
+<div class="flex flex-row sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto mt-2 sm:mt-0">
+<span class="font-medium text-primary bg-surface-variant px-3 py-1 rounded-full text-xs text-on-surface-variant mb-0 sm:mb-2 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-outline"></span> Entregado</span>
+<span class="font-bold text-primary">€32.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Preferences & Address (Asymmetric Layout) -->
+<div class="col-span-1 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+<!-- Delivery Address -->
+<div class="bg-surface-container p-8 rounded-xl shadow-sm border border-outline-variant/10 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-32 h-32 bg-secondary/5 rounded-full blur-3xl"></div>
+<div class="flex justify-between items-center mb-6 relative z-10">
+<h4 class="font-headline text-xl font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+                             Dirección Principal
+                        </h4>
+<button class="text-on-surface-variant hover:text-secondary transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+</div>
+<div class="relative z-10 text-on-surface-variant leading-relaxed">
+<p class="font-medium text-primary mb-1">Juan Pérez</p>
+<p>Prinsengracht 263-267</p>
+<p>1016 GV Amsterdam</p>
+<p>Países Bajos</p>
+<p class="mt-4 text-sm"><span class="font-medium">Tel:</span> +31 06 12345678</p>
+</div>
+</div>
+<!-- Dietary Preferences -->
+<div class="bg-surface-container-low p-8 rounded-xl shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline text-xl font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">tune</span>
+                             Preferencias
+                        </h4>
+<button class="text-on-surface-variant hover:text-secondary transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+</div>
+<div class="space-y-6">
+<div>
+<p class="text-sm font-medium text-on-surface-variant mb-3 uppercase tracking-wider">Perfil de Sabor (Café)</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1.5 rounded-full text-sm font-medium">Afrutado</span>
+<span class="bg-surface-variant text-on-surface-variant px-3 py-1.5 rounded-full text-sm">Cuerpo Medio</span>
+<span class="bg-surface-variant text-on-surface-variant px-3 py-1.5 rounded-full text-sm">Acidez Baja</span>
+</div>
+</div>
+<div>
+<p class="text-sm font-medium text-on-surface-variant mb-3 uppercase tracking-wider">Restricciones Dietéticas</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1.5 rounded-full text-sm font-medium">Sin Gluten</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Nav Header -->
+<div class="md:hidden fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-surface-variant px-4 py-3 flex justify-between items-center">
+<img alt="Paisabor Logo" class="w-10 h-10 object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS2Ygi9ZmyrCdTH4rs596I0kh5k70H2XSRSj-prpjepCodLIxINOmMN7TbdQGYa0BZDSTZRcYoDWRyKrqWrlzCWSUtVWrOpS6sJtzW_hUkW8qmWHSE3IZ8pbPsWYgiEMn0ksLhJFGAQtpe6gD2-Zi86PEPY-_0IpPcMq8pYPrKa8GOXaLOE7Xvmw3hL398tr4f9gbxgG2r24C1YaUT1b56DeDSLQxpTZ4hDuDy8LdokWl1P1Fy0Q72Ae1ZdYsJMXjQnA">
+<h1 class="font-headline font-bold text-lg text-primary">Mi Perfil</h1>
+<button class="text-primary"><span class="material-symbols-outlined">menu</span></button>
+</div>
+</body></html>

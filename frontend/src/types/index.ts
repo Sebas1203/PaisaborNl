@@ -1,73 +1,72 @@
-export type ProductCategory = 'todos' | 'panaderia' | 'cafe' | 'dulces' | 'congelados' | 'despensa' | 'equipo';
+// Tipos de dominio de la demo. Los datos que los usan (src/data) son mock.
+
+export type ProductCategory = 'panaderia' | 'cafe' | 'dulces' | 'congelados';
 
 export interface Product {
   id: string;
   name: string;
   description: string;
+  /** Precio en EUR con BTW incluido */
   price: number;
   unit?: string;
   category: ProductCategory;
   image: string;
-  badge?: 'Nuevo' | 'Favorito' | 'Artesanal' | 'Orgánico';
-  origin?: string;
-  weight?: string;
-  stock?: number;
-}
-
-export interface MenuItem {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  tags: string[];
-  category: 'principales' | 'entradas' | 'sopas' | 'bebidas';
+  badge?: string;
 }
 
 export interface CartItem {
-  id: string;
+  productId: string;
   name: string;
+  /** Precio unitario en EUR con BTW incluido */
   price: number;
+  unit?: string;
   image: string;
   quantity: number;
-  unit?: string;
 }
 
-export interface OrderItem {
-  id: string;
-  title: string;
-  orderNumber: string;
-  date: string;
-  status: 'Enviado' | 'Entregado' | 'En preparación' | 'Cancelado';
-  total: number;
-  image: string;
-}
+export type OrderStatus =
+  | 'pendiente'
+  | 'confirmado'
+  | 'en_preparacion'
+  | 'listo'
+  | 'enviado'
+  | 'entregado'
+  | 'cancelado';
 
-export interface UserProfile {
+export type DeliveryMethod = 'domicilio' | 'recogida';
+
+export interface OrderLine {
   name: string;
-  email: string;
-  avatar: string;
-  memberSince: string;
-  saborPoints: number;
-  address: {
-    name: string;
-    street: string;
-    postalCodeCity: string;
-    country: string;
-    phone: string;
-  };
-  coffeeProfile: string[];
-  dietaryRestrictions: string[];
-}
-
-export interface InventoryProduct {
-  id: string;
-  name: string;
-  tag: string;
-  category: string;
+  quantity: number;
   price: number;
+}
+
+export interface Order {
+  id: string;
+  /** Fecha ISO (YYYY-MM-DD) */
+  date: string;
+  status: OrderStatus;
+  delivery: DeliveryMethod;
+  lines: OrderLine[];
+  total: number;
+}
+
+export interface ReservableMenu {
+  id: string;
+  name: string;
   description: string;
-  stock: number;
-  lowStock?: boolean;
+  pricePerPerson: number;
   image: string;
+}
+
+export type ReservationStatus = 'pendiente' | 'confirmada' | 'finalizada' | 'rechazada';
+
+export interface Reservation {
+  id: string;
+  menuName: string;
+  /** Fecha ISO (YYYY-MM-DD) */
+  eventDate: string;
+  guests: number;
+  status: ReservationStatus;
+  total: number;
 }

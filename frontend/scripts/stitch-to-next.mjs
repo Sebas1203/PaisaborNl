@@ -122,6 +122,8 @@ const LINKS_ADMIN = [
   [/^(event available reservas|reservas|event available reservas de menus.*|outdoor grill solicitudes catering.*)$/, '/admin/reservas'],
   [/^(shelves inventario|inventario)$/, '/admin/inventario'],
   [/^(add new product|nuevo producto|agregar producto|add nuevo|nuevo)$/, '/admin/productos/nuevo'],
+  [/^ver todos \d+ arrow forward$/, '/admin/pedidos'],
+  [/volver al catalogo$/, '/admin/menus'],
 ];
 
 // Botones principales que llevan al siguiente paso del flujo (texto normalizado -> ruta)

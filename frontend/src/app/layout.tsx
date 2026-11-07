@@ -4,7 +4,6 @@ import '@fontsource-variable/epilogue';
 import '@fontsource-variable/epilogue/wght-italic.css';
 import '@fontsource-variable/work-sans';
 import '@fontsource-variable/work-sans/wght-italic.css';
-import 'material-symbols/outlined.css';
 import './globals.css';
 import { CartProvider } from '@/features/cart/CartProvider';
 

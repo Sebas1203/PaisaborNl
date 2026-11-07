@@ -671,7 +671,10 @@ function cleanStyle(css) {
     if (/^(html|body)\b|::-webkit-scrollbar|^\.material-symbols-outlined/.test(selector)) continue;
     kept.push(rule.replace(/\s+/g, ' '));
   }
-  return convertCss(kept.join('\n'));
+  if (!kept.length) return '';
+  // En Stitch el CSS de Tailwind (CDN) se inyectaba después del <style> de la pantalla, así que
+  // las utilidades y el plugin forms le ganaban; la capa base reproduce ese orden en Tailwind v4.
+  return convertCss(`@layer base {\n${kept.join('\n')}\n}`);
 }
 
 // ---------------------------------------------------------------------------

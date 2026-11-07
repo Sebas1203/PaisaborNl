@@ -6,7 +6,7 @@ type Props = { onClose: () => void; onTab: (tab: 'general' | 'canales') => void 
 export function EditarProductoCanales({ onClose, onTab }: Props) {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: ".soil-shadow { box-shadow: -10px 0 40px rgba(28,28,25,0.05); }\n.card-ambient-shadow { box-shadow: 0 4px 40px rgba(28,28,25,0.05); }" }} />
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\n.soil-shadow { box-shadow: -10px 0 40px rgba(28,28,25,0.05); }\n.card-ambient-shadow { box-shadow: 0 4px 40px rgba(28,28,25,0.05); }\n}" }} />
     <div onClick={(e) => e.target === e.currentTarget && onClose()} className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-primary/40 backdrop-blur-md overflow-y-auto">
       <div className="bg-surface relative w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col my-auto transition-all" id="edit-modal">
         <div className="h-1.5 w-full bg-linear-to-r from-secondary via-secondary-container to-primary"></div>

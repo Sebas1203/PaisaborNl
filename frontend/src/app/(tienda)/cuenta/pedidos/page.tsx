@@ -6,7 +6,7 @@ import { Go } from '@/components/ui/Go';
 export default function CuentaPedidosPage() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: "@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }" }} />
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
     <div className="bg-background font-body text-on-surface antialiased">
       <main className="w-full pt-20 bg-background min-h-screen">
         <div className="flex flex-col w-full">

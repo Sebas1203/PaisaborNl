@@ -6,8 +6,8 @@ import { Go } from '@/components/ui/Go';
 export default function CuentaPedidosIdPage() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: "@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }" }} />
-    <div className="bg-background font-body text-on-surface antialiased">
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
+    <div className="bg-background font-body text-on-surface antialiased overflow-x-clip">
       <main className="w-full pt-20 bg-background min-h-screen">
         <div className="flex flex-col w-full">
           <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-8 md:py-12">

@@ -6,7 +6,7 @@ import { Go } from '@/components/ui/Go';
 export default function RecuperarContrasenaPage() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: "@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }" }} />
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
     <div className="bg-background font-body text-on-surface antialiased">
       <main className="w-full min-h-screen bg-background flex flex-col justify-center items-center px-6 py-12">
         <div className="flex flex-col w-full items-center justify-center">

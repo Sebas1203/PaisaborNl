@@ -10,7 +10,7 @@ export default function AdminInventarioPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: "@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }" }} />
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
     <div className="bg-surface font-body text-on-surface antialiased">
       <main className="relative pt-16 w-full bg-surface min-h-screen px-8 py-8">
         <div className="flex flex-col w-full space-y-8">

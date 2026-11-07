@@ -5,7 +5,7 @@ import { AddToCartButton } from '@/features/cart/AddToCartButton';
 export default function CatalogoFirmasPage() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: ".texture-bg { background-image: url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23584000' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E\"); }\n.glass-panel { background: rgba(252, 249, 244, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }" }} />
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\n.texture-bg { background-image: url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23584000' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E\"); }\n.glass-panel { background: rgba(252, 249, 244, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }\n}" }} />
     <div className="antialiased min-h-screen flex flex-col pt-24 pb-20 md:pb-0">
       <main className="flex-grow flex flex-col">
         <section className="relative w-full min-h-[40vh] md:min-h-[50vh] flex items-center justify-center overflow-hidden bg-surface-container-low texture-bg">

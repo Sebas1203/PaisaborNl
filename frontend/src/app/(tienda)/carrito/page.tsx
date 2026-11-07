@@ -26,7 +26,7 @@ export default function CarritoPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: "h1, h2, h3, .font-headline { font-family: 'Epilogue Variable', sans-serif; }\n.glass-effect { backdrop-filter: blur(16px); background-color: rgba(252, 249, 244, 0.8); }" }} />
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\nh1, h2, h3, .font-headline { font-family: 'Epilogue Variable', sans-serif; }\n.glass-effect { backdrop-filter: blur(16px); background-color: rgba(252, 249, 244, 0.8); }\n}" }} />
       <div className="text-on-surface selection:bg-secondary-container">
         <main className="max-w-7xl mx-auto px-8 py-12 md:py-20 pt-28 md:pt-32">
           <div className="mb-16">

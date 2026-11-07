@@ -5,7 +5,7 @@ import { Go } from '@/components/ui/Go';
 export default function AdminMenusPage() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: "@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }" }} />
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
     <div className="bg-surface font-body text-on-surface">
       <main className="relative pt-16 w-full px-8 bg-surface">
         <div className="flex flex-col w-full pb-16">
@@ -262,7 +262,7 @@ export default function AdminMenusPage() {
             </div>
           </div>
           <div className="tab-panel flex flex-col gap-6 mt-6" id="tab-reservas-panel">
-            <div className="p-4 rounded-xl bg-surface-container-low shadow-[0_2px_12px_rgba(28,28,25,0.03)] flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+            <div className="p-4 rounded-xl bg-surface-container-low shadow-[0_2px_12px_rgba(28,28,25,0.03)] flex flex-col lg:flex-row lg:flex-wrap items-stretch lg:items-center justify-between gap-4">
               <div className="flex-1 flex flex-col sm:flex-row items-center gap-3">
                 <div className="relative w-full sm:w-72">
                   <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">

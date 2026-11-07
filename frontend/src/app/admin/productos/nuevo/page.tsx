@@ -6,7 +6,7 @@ import { Go } from '@/components/ui/Go';
 export default function AdminProductosNuevoPage() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: ".soil-shadow { box-shadow: -10px 0 40px rgba(28,28,25,0.05); }\n.card-ambient-shadow { box-shadow: 0 4px 40px rgba(28,28,25,0.05); }" }} />
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\n.soil-shadow { box-shadow: -10px 0 40px rgba(28,28,25,0.05); }\n.card-ambient-shadow { box-shadow: 0 4px 40px rgba(28,28,25,0.05); }\n}" }} />
     <div className="h-full flex font-body text-on-surface">
       <main className="flex-1 bg-background min-h-screen pt-16">
         <div className="flex flex-col w-full">

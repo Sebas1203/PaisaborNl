@@ -6,7 +6,7 @@ import { Go } from '@/components/ui/Go';
 export default function RegistroPage() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: ".glass-panel { background: rgba(252, 249, 244, 0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }\n.tierra-btn-primary { background: linear-gradient(135deg, #33210d 0%, #4b3621 100%); transition: all 0.3s ease; }\n.tierra-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(28, 28, 25, 0.15); }\n.input-ghost { border: none; border-bottom: 2px solid #e5e2dd; background-color: transparent; border-radius: 0; padding-left: 0; padding-right: 0; transition: border-color 0.3s ease; }\n.input-ghost:focus { outline: none; box-shadow: none; border-color: #994621; }" }} />
+      <style dangerouslySetInnerHTML={{ __html: "@layer base {\n.glass-panel { background: rgba(252, 249, 244, 0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }\n.tierra-btn-primary { background: linear-gradient(135deg, #33210d 0%, #4b3621 100%); transition: all 0.3s ease; }\n.tierra-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(28, 28, 25, 0.15); }\n.input-ghost { border: none; border-bottom: 2px solid #e5e2dd; background-color: transparent; border-radius: 0; padding-left: 0; padding-right: 0; transition: border-color 0.3s ease; }\n.input-ghost:focus { outline: none; box-shadow: none; border-color: #994621; }\n}" }} />
     <div className="bg-background text-on-background font-body min-h-screen flex flex-col md:flex-row antialiased">
       <div className="hidden md:flex md:w-1/2 lg:w-3/5 relative flex-col justify-between p-12">
         <div className="absolute inset-0 z-0">

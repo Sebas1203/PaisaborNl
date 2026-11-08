@@ -31,7 +31,7 @@ export default function CheckoutExitoPage() {
                   </span>
                   {' '}
                   <span>
-                    En Cocina / Fogón
+                    En Cocina
                   </span>
                 </div>
                 <div className="h-[2px] w-8 sm:w-16 bg-surface-dim"></div>
@@ -69,7 +69,7 @@ export default function CheckoutExitoPage() {
                     ¡Muchas gracias por tu compra!
                   </h1>
                   <p className="font-headline font-medium text-lg sm:text-xl text-primary/80 mt-1">
-                    Tu pedido está confirmado y va directo a nuestros fogones.
+                    Tu pedido está confirmado y va directo a nuestra cocina.
                   </p>
                   <div className="mt-6 inline-flex items-center gap-3 bg-surface-container-low px-5 py-2.5 rounded-lg">
                     <span className="text-xs uppercase tracking-wider text-on-surface-variant font-label">
@@ -270,7 +270,7 @@ export default function CheckoutExitoPage() {
                   "El secreto de nuestra arepa está en el maíz pelado a mano, el respeto por el tiempo y el cariño de compartir un pedacito de Colombia en los Países Bajos."
                 </p>
                 <span className="block mt-2 text-[10px] font-label uppercase tracking-widest text-secondary font-bold">
-                  — Fogón Paisabor Amsterdam
+                  — Paisabor Ámsterdam
                 </span>
               </div>
             </div>

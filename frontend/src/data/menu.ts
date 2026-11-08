@@ -3,9 +3,13 @@
 // Los especiales de fin de semana (bajoReserva) vienen de la publicación de Paisabor: sábado y domingo.
 // Pendiente de confirmar con Diana: descripción, ingredientes y alérgenos de cada plato.
 
+import { BTW_RATE } from "@/config/fiscal";
 import type { Plato } from "./tipos";
 
-export const BTW_ALIMENTOS = 0.09;
+// TODO: información de alérgenos obligatoria (UE) y descripciones/ingredientes a confirmar con Diana en cada plato.
+
+// TODO: confirmar con contador si bebidas y platos preparados llevan 9% o 21%.
+export const BTW_ALIMENTOS = BTW_RATE;
 
 /** Platos del catálogo de WhatsApp. */
 export const PLATOS: Plato[] = [

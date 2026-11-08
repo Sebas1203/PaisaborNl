@@ -1,7 +1,8 @@
 'use client';
 
+import { baseSinIva } from '@/config/fiscal';
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { BTW_ALIMENTOS, itemPorId } from '@/data';
+import { itemPorId } from '@/data';
 import { lineasConItem, type LineaConItem } from '@/data/mock';
 import type { LineaPedido } from '@/types';
 
@@ -70,7 +71,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo<CartContextValue>(() => {
     const lineas = lineasConItem(entries);
     const subtotal = lineas.reduce((acc, l) => acc + l.total, 0);
-    const base = subtotal / (1 + BTW_ALIMENTOS);
+    const base = baseSinIva(subtotal);
 
     return {
       lineas,

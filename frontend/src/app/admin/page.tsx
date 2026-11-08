@@ -1,7 +1,8 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/panel_de_administraci_n_inicio
 /* eslint-disable @next/next/no-img-element */
+import { iva } from '@/config/fiscal';
 import { ItemImage } from '@/components/ItemImage';
-import { BTW_ALIMENTOS, CATALOGO, itemPorId } from '@/data';
+import { CATALOGO, itemPorId } from '@/data';
 import { lineasConItem, PEDIDOS, RESERVAS, STOCK, STOCK_MINIMO, totales } from '@/data/mock';
 import { formatEUR, ORDER_STATUS_LABELS } from '@/lib/format';
 import Link from 'next/link';
@@ -32,7 +33,7 @@ export default function AdminPage() {
                 </span>
               </div>
               <h1 className="font-headline text-3xl md:text-4xl font-extrabold tracking-tight text-primary">
-                El Fogón Diario
+                La Cocina del Día
               </h1>
               <p className="font-body text-sm text-on-surface-variant mt-1">
                 Control de pedidos, preparaciones en cocina y despachos para hoy, sábado 24 de mayo.
@@ -179,7 +180,7 @@ export default function AdminPage() {
               </div>
               <div className="mt-4 pt-3 flex items-center justify-between text-xs text-on-primary-container bg-primary-container/40 -mx-5 -mb-5 px-5 py-2.5">
                 <span>
-                  Incluye BTW 9% &amp; 21%
+                  IVA 9% incluido
                 </span>
                 {' '}
                 <span className="text-tertiary-fixed text-[11px] font-semibold">
@@ -252,7 +253,7 @@ export default function AdminPage() {
                   <div className="flex items-center gap-6">
                     <div>
                       <span className="text-[10px] font-semibold uppercase text-on-surface-variant tracking-wider block">IVA 9% incluido (ventas demo)</span>
-                      <span className="font-headline text-base font-bold text-primary">{formatEUR(VENTAS - VENTAS / (1 + BTW_ALIMENTOS))}</span>
+                      <span className="font-headline text-base font-bold text-primary">{formatEUR(iva(VENTAS))}</span>
                     </div>
                   </div>
                 </div>

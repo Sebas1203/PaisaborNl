@@ -66,7 +66,7 @@ export default function CheckoutPage() {
                       Método de Entrega
                     </h2>
                     <span className="text-xs font-label text-on-surface-variant bg-surface-container-highest px-3 py-1 rounded-full">
-                      Ámsterdam &amp; Randstad
+                      Ámsterdam
                     </span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" id="delivery-selector">
@@ -175,12 +175,6 @@ export default function CheckoutPage() {
                         </option>
                         <option>
                           Ámsterdam Noord
-                        </option>
-                        <option>
-                          Amstelveen
-                        </option>
-                        <option>
-                          Haarlem (Envíos sábados)
                         </option>
                       </select>
                     </div>

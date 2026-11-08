@@ -7,7 +7,7 @@ export default function LoginPage() {
   return (
     <>
     <div className="bg-surface font-body text-on-surface h-screen w-full relative overflow-hidden flex items-center justify-center">
-      <div className="absolute inset-0 z-0 bg-cover bg-center" data-alt="A beautifully blurred, atmospheric photograph of a traditional Colombian coffee hacienda at dawn. The scene features warm, golden morning light filtering through lush green coffee plants, casting a soft, inviting glow. The colors are dominated by rich earthy browns, terracotta accents, and soft cream highlights. The image is highly cinematic, deliberately out of focus to serve as an elegant, serene UI background that exudes a premium, tactile, and tranquil aesthetic without overwhelming the foreground."></div>
+      <div className="absolute inset-0 z-0 bg-cover bg-center"></div>
       <div className="absolute inset-0 z-0 bg-linear-to-t from-primary/80 via-primary/40 to-surface/30 mix-blend-multiply"></div>
       <div className="absolute inset-0 z-0 bg-surface/20 backdrop-blur-xs"></div>
       <main className="relative z-10 w-full max-w-md mx-4 md:mx-auto bg-surface-container-lowest rounded-xl p-8 md:p-12 shadow-[0_40px_40px_-10px_rgba(28,28,25,0.05)]">

@@ -1,7 +1,8 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/administrador_crear_y_editar_men
 /* eslint-disable @next/next/no-img-element */
+import { baseSinIva, iva } from '@/config/fiscal';
 import { ItemImage } from '@/components/ItemImage';
-import { BTW_ALIMENTOS, ESPECIALES } from '@/data';
+import { ESPECIALES } from '@/data';
 import { formatEUR } from '@/lib/format';
 import Link from 'next/link';
 import { Go } from '@/components/ui/Go';
@@ -163,11 +164,11 @@ export default function AdminMenusEditarPage() {
                       </div>
                       <div className="flex items-center justify-between text-[11px] text-outline pt-1">
                         <span>
-                          Base neta: {formatEUR(PLATO_EDITADO.precio / (1 + BTW_ALIMENTOS))}
+                          Base neta: {formatEUR(baseSinIva(PLATO_EDITADO.precio))}
                         </span>
                         {' '}
                         <span>
-                          IVA 9%: {formatEUR(PLATO_EDITADO.precio - PLATO_EDITADO.precio / (1 + BTW_ALIMENTOS))}
+                          IVA 9%: {formatEUR(iva(PLATO_EDITADO.precio))}
                         </span>
                       </div>
                     </div>

@@ -300,7 +300,7 @@ export default function CuentaPedidosPage() {
                       ¿Deseas modificar un pedido o ajustar tu menú de catering?
                     </h2>
                     <p className="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed max-w-2xl">
-                      Entendemos que los eventos y antojos cambian. Puedes contactar directamente a nuestra jefa de taller en Ámsterdam a través de WhatsApp para ajustes de último minuto, alergias alimentarias o especificaciones de entrega en la zona Randstad.
+                      Entendemos que los eventos y antojos cambian. Puedes contactar directamente a nuestra jefa de taller en Ámsterdam a través de WhatsApp para ajustes de último minuto, alergias alimentarias o especificaciones de entrega en Ámsterdam.
                     </p>
                     <div className="pt-2 flex flex-wrap gap-4 text-xs font-label">
                       <div className="flex items-center gap-2 text-primary font-medium">

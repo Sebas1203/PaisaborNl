@@ -44,7 +44,7 @@ export default function AdminInventarioPage() {
                   Control de Inventario y Movimientos de Stock
                 </h1>
                 <p className="text-sm text-on-surface-variant font-body">
-                  Gestión de materias primas artesanales colombianas, trazabilidad de lotes importados y consumos del fogón en tiempo real.
+                  Gestión de materias primas artesanales colombianas, trazabilidad de lotes importados y consumos de cocina en tiempo real.
                 </p>
               </div>
               <div className="flex items-center gap-3">
@@ -285,7 +285,7 @@ export default function AdminInventarioPage() {
                     Control de Temperatura y Sanidad NVWA
                   </div>
                   <p className="text-xs text-on-primary-container max-w-md">
-                    Todos los lácteos y cárnicos cuentan con registro fitosanitario de ingreso por el Puerto de Rotterdam.
+                    Registro de entradas de stock (demo).
                   </p>
                 </div>
                 <div className="hidden sm:flex flex-col items-end shrink-0">

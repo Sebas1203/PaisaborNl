@@ -1,12 +1,12 @@
 'use client';
 
+import { baseSinIva, iva } from '@/config/fiscal';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ItemImage } from '@/components/ItemImage';
 import { lineasConItem, type LineaConItem } from '@/data/mock';
 import { readLastOrder, useCart } from '@/features/cart/CartProvider';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
-import { BTW_ALIMENTOS } from '@/data';
 
 // Resumen de un pedido (líneas + totales) con la plantilla del checkout de Stitch.
 // Los precios ya incluyen el IVA: la base y el IVA se calculan a partir del total, nunca se suman.
@@ -24,7 +24,7 @@ export function ResumenPedido({
   envio?: number | null;
 }) {
   const subtotal = lineas.reduce((acc, l) => acc + l.total, 0);
-  const base = subtotal / (1 + BTW_ALIMENTOS);
+  const base = baseSinIva(subtotal);
   const total = subtotal + (envio ?? 0);
   const articulos = lineas.reduce((acc, l) => acc + l.cantidad, 0);
 
@@ -106,7 +106,7 @@ export function ResumenCarrito(props: { titulo?: string; editable?: boolean; env
 export function UltimoPedidoImporte({ parte }: { parte: 'total' | 'iva' }) {
   const [total, setTotal] = useState(0);
   useEffect(() => setTotal(lineasConItem(readLastOrder()).reduce((acc, l) => acc + l.total, 0)), []);
-  const importe = parte === 'total' ? total : total - total / (1 + BTW_ALIMENTOS);
+  const importe = parte === 'total' ? total : iva(total);
   return <>{formatEUR(importe)}</>;
 }
 

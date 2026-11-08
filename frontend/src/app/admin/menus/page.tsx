@@ -31,14 +31,14 @@ export default function AdminMenusPage() {
                 </span>
                 {' '}
                 <span className="text-xs text-outline font-label tracking-wide">
-                  Ámsterdam &amp; Randstad
+                  Ámsterdam
                 </span>
               </div>
               <h1 className="text-3xl lg:text-4xl font-headline font-bold text-primary tracking-tight">
                 Gestión Unificada: Menús &amp; Reservas
               </h1>
               <p className="text-sm lg:text-base text-on-surface-variant leading-relaxed font-body">
-                Control de producción por encargo (24h–48h de anticipación), capacidad de cocina semanal y asignación de reservas de platos típicos para Ámsterdam y Randstad.
+                Control de producción por encargo (24h–48h de anticipación), capacidad de cocina semanal y asignación de reservas de platos típicos en Ámsterdam.
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-3">
@@ -188,7 +188,7 @@ export default function AdminMenusPage() {
               <div>
                 <div className="flex items-center justify-between text-outline text-xs font-semibold uppercase tracking-wider font-label mb-2">
                   <span>
-                    Logística Randstad
+                    Logística Ámsterdam
                   </span>
                   {' '}
                   <span className="material-symbols-outlined text-secondary text-lg">
@@ -319,7 +319,7 @@ export default function AdminMenusPage() {
                       Todas las modalidades
                     </option>
                     <option value="Domicilio">
-                      Domicilio Randstad
+                      Domicilio Ámsterdam
                     </option>
                     <option value="Retiro">
                       Retiro en De Pijp
@@ -487,7 +487,7 @@ export default function AdminMenusPage() {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-xl font-headline font-bold text-primary">
-                    Cronograma de Cocina &amp; Fogones de la Semana 43
+                    Cronograma de Cocina de la Semana
                   </h2>
                   <p className="text-xs text-on-surface-variant mt-0.5">
                     Control de tiempos críticos de marinado (24h) y horneado en lote (12h) para entregas óptimas.
@@ -559,7 +559,7 @@ export default function AdminMenusPage() {
                         </span>
                         {' '}
                         <span className="px-2 py-0.5 text-[10px] rounded-sm bg-tertiary-fixed text-on-tertiary-fixed">
-                          Fogón 1
+                          Cocina 1
                         </span>
                       </div>
                       <span className="text-on-surface-variant">
@@ -600,7 +600,7 @@ export default function AdminMenusPage() {
                         </span>
                         {' '}
                         <span className="px-2 py-0.5 text-[10px] rounded-sm bg-tertiary-fixed text-on-tertiary-fixed">
-                          Fogón 2
+                          Cocina 2
                         </span>
                       </div>
                       <span className="text-on-surface-variant">
@@ -618,7 +618,7 @@ export default function AdminMenusPage() {
                         </span>
                       </div>
                       <span className="text-on-surface-variant">
-                        Ruta Randstad Sur (Utrecht &amp; Róterdam térmico).
+                        Entregas a domicilio en Ámsterdam.
                       </span>
                     </div>
                   </div>

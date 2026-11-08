@@ -21,13 +21,13 @@ export default function CateringPage() {
               <div className="lg:col-span-7 space-y-6">
                 <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary-container text-xs font-semibold tracking-wide uppercase">
                   <span className="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
-                  {' '}Servicio en Randstad &amp; Todo Países Bajos
+                  {' '}Servicio en Ámsterdam
                 </div>
                 <h1 className="font-headline font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-surface-bright leading-[1.12]">
-                  Catering Auténtico Colombiano para tus Eventos y Empresas en Países Bajos
+                  Catering Auténtico Colombiano para tus Eventos y Empresas en Ámsterdam
                 </h1>
                 <p className="text-base sm:text-lg text-primary-fixed leading-relaxed max-w-2xl font-light">
-                  Llevamos la calidez, la tradición y los sabores de nuestra tierra a celebraciones corporativas, bodas, fiestas y reuniones privadas en Ámsterdam, Róterdam, La Haya y Utrecht.
+                  Llevamos la calidez, la tradición y los sabores de nuestra tierra a celebraciones corporativas, bodas, fiestas y reuniones privadas en Ámsterdam.
                 </p>
                 <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                   <a className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-medium tracking-wide transition-all duration-200 shadow-lg shadow-black/20 hover:-translate-y-0.5" href="#cotizador">
@@ -133,7 +133,7 @@ export default function CateringPage() {
                 </span>
                 {' '}
                 <span className="text-sm font-medium text-on-surface">
-                  Transporte Térmico Certificado en Toda la Randstad
+                  Transporte térmico en Ámsterdam
                 </span>
               </div>
             </div>
@@ -248,7 +248,7 @@ export default function CateringPage() {
                           Cobertura Geográfica
                         </p>
                         <p className="text-xs text-on-surface-variant">
-                          Ámsterdam, Róterdam, Utrecht, La Haya, Eindhoven y alrededores.
+                          Ámsterdam y alrededores.
                         </p>
                       </div>
                     </div>
@@ -329,7 +329,7 @@ export default function CateringPage() {
                           Ciudad o Código Postal en NL *
                         </label>
                         {' '}
-                        <input className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="city" placeholder="Ej. Ámsterdam 1012, Utrecht..." required type="text" />
+                        <input className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="city" placeholder="Ej. Ámsterdam 1012" required type="text" />
                       </div>
                     </div>
                     <div>
@@ -467,7 +467,7 @@ export default function CateringPage() {
                     </span>
                   </div>
                   <p className="text-sm text-on-surface italic leading-relaxed">
-                    "El servicio de café de especialidad y antojitos para los 50 años de mi esposo en Róterdam fue un éxito rotundo. Las empanadas son idénticas a las que comíamos en Cali."
+                    "El servicio de café de especialidad y antojitos para los 50 años de mi esposo en Ámsterdam fue un éxito rotundo. Las empanadas son idénticas a las que comíamos en Cali."
                   </p>
                   <div className="pt-2 flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs">
@@ -478,7 +478,7 @@ export default function CateringPage() {
                         Jan &amp; Valentina Van Dijk
                       </p>
                       <p className="text-[11px] text-on-surface-variant">
-                        Celebración en Róterdam
+                        Celebración en Ámsterdam
                       </p>
                     </div>
                   </div>
@@ -517,7 +517,7 @@ export default function CateringPage() {
                         Alejandro Restrepo
                       </p>
                       <p className="text-[11px] text-on-surface-variant">
-                        Boda en Utrecht
+                        Boda en Ámsterdam
                       </p>
                     </div>
                   </div>
@@ -535,7 +535,7 @@ export default function CateringPage() {
                   Atelier &amp; Cocina Central en Ámsterdam
                 </h3>
                 <p className="text-sm text-on-surface-variant leading-relaxed">
-                  Nuestra cocina profesional certificada se ubica en el área metropolitana de Ámsterdam, con rutas de despacho directo hacia La Haya, Róterdam, Utrecht y municipios aledaños.
+                  Nuestra cocina está en Ámsterdam y preparamos cada pedido con receta tradicional antioqueña.
                 </p>
               </div>
               <div className="flex items-center gap-4 flex-shrink-0">

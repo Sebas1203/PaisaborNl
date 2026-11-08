@@ -260,12 +260,6 @@ export default function AdminProductosNuevoPage() {
                           <option value="9">
                             BTW 9% (Alimentos &amp; Bebidas NL)
                           </option>
-                          <option value="21">
-                            BTW 21% (Tarifa General / Souvenirs)
-                          </option>
-                          <option value="0">
-                            BTW 0% (Exento)
-                          </option>
                         </select>
                         <span className="material-symbols-outlined absolute right-3 top-3.5 pointer-events-none text-on-surface-variant text-[20px]">
                           expand_more

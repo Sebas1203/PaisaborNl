@@ -23,7 +23,7 @@ export default function MenusPage() {
                   </div>
                   <div className="space-y-3">
                     <p className="font-headline text-xs md:text-sm uppercase tracking-[0.2em] text-secondary font-bold">
-                      Fogón Tradicional en los Países Bajos
+                      Receta tradicional antioqueña en Ámsterdam
                     </p>
                     <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight leading-[1.08]">
                       Platos Típicos Tradicionales{' '}
@@ -33,7 +33,7 @@ export default function MenusPage() {
                     </h1>
                   </div>
                   <p className="text-base sm:text-lg text-on-surface-variant leading-relaxed max-w-2xl font-normal">
-                    Cocinamos con leña, paciencia y receta de la abuela. Para garantizar frescura y calidad suprema, todos nuestros platos calientes se preparan por encargo con mínimo{' '}
+                    Preparado con receta tradicional antioqueña y sabor de casa. Para garantizar frescura y calidad suprema, todos nuestros platos calientes se preparan por encargo con mínimo{' '}
                     <span className="font-semibold text-primary">
                       24 a 48 horas de anticipación
                     </span>
@@ -72,12 +72,12 @@ export default function MenusPage() {
                 <div className="lg:col-span-5 relative">
                   <div className="relative bg-surface-container rounded-xl p-6 sm:p-8 space-y-5">
                     <div className="relative rounded-lg overflow-hidden shadow-xs aspect-[4/3]">
-                      <div className="w-full h-full bg-cover bg-center" data-alt="Close-up of a clay pot with steaming traditional Colombian stew on a rustic wooden hacienda table, surrounded by warm terracotta spices, raw panela, and corn cobs under soft atmospheric kitchen light in a deep brown and terracotta palette."></div>
+                      <div className="w-full h-full bg-cover bg-center"></div>
                       <div className="absolute bottom-3 left-3 bg-primary/90 backdrop-blur-xs text-surface px-3 py-1.5 rounded-sm text-xs font-headline font-semibold tracking-wide flex items-center gap-1.5">
                         <span className="material-symbols-outlined text-sm text-tertiary-fixed">
                           outdoor_grill
                         </span>
-                        {' '}Sabor de Fogón Auténtico
+                        {' '}Sabor de casa
                       </div>
                     </div>
                     <div className="flex items-center justify-between pt-2">
@@ -123,7 +123,7 @@ export default function MenusPage() {
                       Fija tu Entrega
                     </h4>
                     <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                      Retiro en De Pijp (Ámsterdam) o delivery en caja térmica en Randstad.
+                      Retiro en De Pijp (Ámsterdam) o delivery en caja térmica en Ámsterdam.
                     </p>
                   </div>
                 </div>
@@ -236,7 +236,7 @@ export default function MenusPage() {
                       Calendario de Entregas
                     </h3>
                     <p className="text-xs text-on-surface-variant leading-relaxed">
-                      El fuego se enciende exclusivamente para los días de reunión familiar. Recibe o recoge tus pedidos durante los turnos habilitados:
+                      Los especiales se preparan con receta tradicional antioqueña solo los fines de semana, bajo reserva. Recibe o recoge tus pedidos durante los turnos habilitados:
                     </p>
                     <ul className="space-y-2 text-xs text-on-surface-variant font-medium pt-2">
                       <li className="flex items-center justify-between p-2 rounded-sm bg-surface-container-low">
@@ -297,11 +297,11 @@ export default function MenusPage() {
                       </div>
                       <div className="p-3 rounded-lg bg-surface-container-low">
                         <span className="font-headline font-bold text-xs text-primary block">
-                          Domicilio Randstad Térmico
+                          Domicilio en Ámsterdam
                         </span>
                         {' '}
                         <span className="text-xs text-on-surface-variant">
-                          Ámsterdam, Utrecht, Haarlem, La Haya y Róterdam con empaque isotérmico ecológico.
+                          Ámsterdam, con empaque isotérmico.
                         </span>
                       </div>
                     </div>
@@ -421,7 +421,7 @@ export default function MenusPage() {
                     </span>
                   </button>
                   <div className="faq-content hidden px-6 pb-4 text-xs text-on-surface-variant leading-relaxed">
-                    Platos como la Lechona o el Sancocho requieren procesos de adobo profundo de hasta 24 horas y cocción lenta durante toda la noche en fogón. Cocinar bajo encargo garantiza que cada porción esté en su punto exacto de frescura, sin recalentados ni conservantes artificiales.
+                    Platos como la Lechona o el Sancocho requieren procesos de adobo profundo de hasta 24 horas y cocción lenta. Cocinar bajo encargo garantiza que cada porción esté en su punto exacto de frescura, sin recalentados ni conservantes artificiales.
                   </div>
                 </div>
                 <div className="rounded-lg bg-surface-container-low overflow-hidden">
@@ -595,7 +595,7 @@ export default function MenusPage() {
                   ¡Reserva Pre-Registrada!
                 </h4>
                 <p className="text-xs text-on-surface-variant max-w-sm mx-auto">
-                  Hemos apartado tus raciones en el lote del fogón. Te hemos enviado un correo de confirmación con la pasarela de pago iDeal.
+                  Hemos apartado tus raciones para el día elegido. Te hemos enviado un correo de confirmación con la pasarela de pago iDeal.
                 </p>
                 <button className="px-5 py-2 rounded-lg bg-primary text-on-primary text-xs font-headline font-semibold" type="button">
                   Entendido, volver a la carta

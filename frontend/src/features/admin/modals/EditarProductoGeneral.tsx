@@ -1,5 +1,6 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/modal_de_edici_n_de_producto_paisabor
 /* eslint-disable @next/next/no-img-element */
+import { iva } from '@/config/fiscal';
 import { ItemImage } from '@/components/ItemImage';
 import { CATEGORIAS_PRODUCTO, type ItemCatalogo, type Plato, type Producto } from '@/data';
 import { STOCK } from '@/data/mock';
@@ -142,7 +143,7 @@ export function EditarProductoGeneral({ item, onClose, onTab }: Props) {
                   </span>
                   {' '}
                   <span className="font-mono font-medium text-primary">
-                    {formatEUR(item.precio - item.precio / (1 + item.btw))} incl.
+                    {formatEUR(iva(item.precio, item.btw))} incl.
                   </span>
                 </div>
               </div>

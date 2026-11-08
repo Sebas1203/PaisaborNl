@@ -1,6 +1,7 @@
 // MOCK: pedidos, reservas y stock de demostración. Usan ids del catálogo (src/data/index.ts) y no son
 // datos reales: los clientes, fechas y cantidades son de ejemplo hasta tener backend.
-import { BTW_ALIMENTOS, itemPorId } from './index';
+import { baseSinIva } from '@/config/fiscal';
+import { itemPorId } from './index';
 import type { ItemCatalogo } from './tipos';
 import type { LineaPedido, Pedido, Reserva } from '@/types';
 
@@ -99,7 +100,7 @@ export function lineasConItem(lineas: LineaPedido[]): LineaConItem[] {
 /** Total con IVA incluido; base e IVA salen del total (los precios ya incluyen el 9 %) */
 export function totales(lineas: LineaPedido[]) {
   const total = lineasConItem(lineas).reduce((acc, l) => acc + l.total, 0);
-  const base = total / (1 + BTW_ALIMENTOS);
+  const base = baseSinIva(total);
   return { total, base, iva: total - base };
 }
 

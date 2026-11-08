@@ -3,6 +3,8 @@
 // Pendiente de confirmar con Diana: descripción, ingredientes y alérgenos, y el BTW de cada categoría.
 
 import { BTW_ALIMENTOS } from "./menu";
+
+// TODO: información de alérgenos obligatoria (UE) y descripciones/ingredientes a confirmar con Diana en cada producto.
 import type { CategoriaProducto, CategoriaProductoId, Producto } from "./tipos";
 
 export const CATEGORIAS_PRODUCTO: CategoriaProducto[] = [

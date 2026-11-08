@@ -19,7 +19,7 @@ export default function RecuperarContrasenaPage() {
                 <div className="relative mb-6 group">
                   <div className="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center p-1 transition-transform duration-300 group-hover:scale-105">
                     <div className="w-full h-full rounded-full overflow-hidden bg-primary/5 flex items-center justify-center relative">
-                      <ItemImage alt="Artisanal hand-crafted Paisa mascot portrait, warm terracotta and roasted coffee bean tones, minimalist woodblock illustration style, soft textured off-white background with Colombian culinary folklore aesthetic, warm studio lighting." className="w-full h-full object-cover" />
+                      <ItemImage alt="Paisabor" className="w-full h-full object-cover" />
                     </div>
                   </div>
                   <span className="absolute -bottom-1 right-1 bg-secondary text-on-secondary p-1 rounded-full flex items-center justify-center shadow-xs">

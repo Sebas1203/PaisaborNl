@@ -1,7 +1,8 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/reserva_pendiente_de_confirmaci_n_paisabor
 /* eslint-disable @next/next/no-img-element */
+import { iva } from '@/config/fiscal';
 import Link from 'next/link';
-import { BTW_ALIMENTOS, itemPorId } from '@/data';
+import { itemPorId } from '@/data';
 import { RESERVAS } from '@/data/mock';
 import { formatEUR, formatFecha } from '@/lib/format';
 
@@ -116,7 +117,7 @@ export default function CateringReservaPendientePage() {
                           </span>
                           {' '}
                           <span>
-                            IVA 9% incluido ({formatEUR(TOTAL - TOTAL / (1 + BTW_ALIMENTOS))})
+                            IVA 9% incluido ({formatEUR(iva(TOTAL))})
                           </span>
                         </div>
                       </div>
@@ -180,7 +181,7 @@ export default function CateringReservaPendientePage() {
                       </p>
                       <div className="flex items-center gap-2 pt-1">
                         <span className="px-2 py-0.5 rounded-sm bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-semibold font-label">
-                          Adaptación Cocina: Frijol vegetariano + Tofu al ahumado criollo
+                          Adaptación Cocina: Frijol vegetariano + Tofu criollo
                         </span>
                       </div>
                     </div>

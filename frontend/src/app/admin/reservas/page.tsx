@@ -26,13 +26,13 @@ export default function AdminReservasPage() {
               <div className="max-w-xl">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-xs font-semibold tracking-wider uppercase text-secondary mb-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  {' '}Fogón &amp; Celebraciones · Países Bajos
+                  {' '}Cocina &amp; Celebraciones · Ámsterdam
                 </div>
                 <h1 className="font-headline text-3xl sm:text-4xl font-extrabold text-primary tracking-tight leading-tight">
                   Gestión de Reservas &amp; Catering
                 </h1>
                 <p className="text-on-surface-variant text-sm mt-1 leading-relaxed">
-                  Supervisión logística de banquetes colombianos, menaje tradicional y cotizaciones activas para la comunidad en Ámsterdam, Utrecht y Randstad.
+                  Supervisión logística de banquetes colombianos, menaje tradicional y cotizaciones activas para la comunidad en Ámsterdam.
                 </p>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -201,7 +201,7 @@ export default function AdminReservasPage() {
                 Masa de Maíz Trillado &amp; Hojas de Plátano
               </h3>
               <p className="text-xs text-on-surface-variant leading-relaxed">
-                Inventario suficiente para 120 tamales adicionales. Próximo embarque desde Bogotá llega el viernes al puerto de Rotterdam.
+                Stock de insumos según el inventario (demo).
               </p>
             </div>
             <div className="bg-surface-container-low p-6 rounded-xl">
@@ -218,7 +218,7 @@ export default function AdminReservasPage() {
                 Menaje Caliente &amp; Cadena de Frío
               </h3>
               <p className="text-xs text-on-surface-variant leading-relaxed">
-                Los contenedores isotérmicos mantienen la lechona a &gt;68°C durante traslados de hasta 90 minutos dentro del anillo A10 de Ámsterdam.
+                Los contenedores isotérmicos mantienen la lechona a &gt;68°C durante traslados de hasta 90 minutos dentro de Ámsterdam.
               </p>
             </div>
             <div className="bg-surface-container-low p-6 rounded-xl">
@@ -337,12 +337,6 @@ export default function AdminReservasPage() {
                     <select className="w-full bg-surface-container-low text-sm p-2.5 rounded-lg outline-hidden">
                       <option value="9">
                         9% (Alimentos y bebidas)
-                      </option>
-                      <option value="21">
-                        21% (Servicio de garzones/alquiler)
-                      </option>
-                      <option value="mixto">
-                        Mixto (9% + 21%)
                       </option>
                     </select>
                   </div>

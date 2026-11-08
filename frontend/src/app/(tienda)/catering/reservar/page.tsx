@@ -1,8 +1,9 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/reservar_men_de_catering_paisabor
 /* eslint-disable @next/next/no-img-element */
+import { baseSinIva, iva } from '@/config/fiscal';
 import { Go } from '@/components/ui/Go';
 import { ItemImage } from '@/components/ItemImage';
-import { BTW_ALIMENTOS, PLATOS } from '@/data';
+import { PLATOS } from '@/data';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
 
 const PLATOS_CATERING = PLATOS.filter((plato) => plato.disponible);
@@ -32,7 +33,7 @@ export default function CateringReservarPage() {
                     Reservar Menú de Catering
                   </h1>
                   <p className="font-body text-base lg:text-lg text-on-surface-variant font-normal leading-relaxed">
-                    Llevamos el fogón artesanal colombiano a tu evento corporativo, cumpleaños o reunión familiar en Países Bajos.
+                    Llevamos el sabor de casa colombiano a tu evento corporativo, cumpleaños o reunión familiar en Ámsterdam.
                   </p>
                 </div>
                 <div className="flex items-center gap-3 text-xs font-label text-on-surface-variant self-start md:self-end">
@@ -198,7 +199,7 @@ export default function CateringReservarPage() {
                         </div>
                       </div>
                       <p className="text-xs text-on-surface-variant">
-                        Para eventos de más de 80 personas, incluye asesoría directa del Maestro de Fogón para coordinar estaciones en vivo.
+                        Para eventos de más de 80 personas, incluye asesoría directa de nuestro equipo de cocina para coordinar estaciones en vivo.
                       </p>
                     </div>
                   </div>
@@ -220,7 +221,7 @@ export default function CateringReservarPage() {
                               <span className="material-symbols-outlined text-secondary text-base">
                                 local_shipping
                               </span>
-                              {' '}Entrega a Domicilio con Menaje Térmico (Ámsterdam &amp; Randstad)
+                              {' '}Entrega a Domicilio con Menaje Térmico (Ámsterdam)
                             </span>
                             {' '}
                             <span className="font-body text-xs text-on-surface-variant mt-0.5">
@@ -333,11 +334,11 @@ export default function CateringReservarPage() {
                         </div>
                         <div className="flex items-center justify-between text-[11px] text-on-surface-variant">
                           <span>Base sin IVA:</span>
-                          <span className="font-medium text-on-surface-variant">{formatEUR(SUBTOTAL / (1 + BTW_ALIMENTOS))}</span>
+                          <span className="font-medium text-on-surface-variant">{formatEUR(baseSinIva(SUBTOTAL))}</span>
                         </div>
                         <div className="flex items-center justify-between text-[11px] text-on-surface-variant">
                           <span>IVA (9%) incluido:</span>
-                          <span className="font-medium text-on-surface-variant">{formatEUR(SUBTOTAL - SUBTOTAL / (1 + BTW_ALIMENTOS))}</span>
+                          <span className="font-medium text-on-surface-variant">{formatEUR(iva(SUBTOTAL))}</span>
                         </div>
                       </div>
                       <div className="pt-4 mt-2 border-t border-outline-variant/20 flex items-end justify-between">
@@ -356,7 +357,7 @@ export default function CateringReservarPage() {
                         <strong className="text-primary font-medium">
                           Revisión artesanal de cupo:
                         </strong>
-                        {' '}Al enviar la solicitud, nuestro chef revisará la disponibilidad de cupo en fogón y te confirmará en menos de 24 horas hábiles.{' '}
+                        {' '}Al enviar la solicitud, nuestro chef revisará la disponibilidad de cupo en cocina y te confirmará en menos de 24 horas hábiles.{' '}
                         <em>
                           No se realiza ningún cobro en este paso.
                         </em>

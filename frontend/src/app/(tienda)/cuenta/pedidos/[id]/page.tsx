@@ -37,7 +37,7 @@ export default async function CuentaPedidosIdPage({ params }: { params: Promise<
                   <span className="material-symbols-outlined text-sm text-secondary">
                     verified
                   </span>
-                  {' '}Fogonero Oficial Paisabor
+                  {' '}Pedido Paisabor
                 </span>
               </div>
               <div className="bg-surface-container-low rounded-xl p-6 sm:p-8 flex flex-col md:flex-row md:items-end justify-between gap-6 shadow-[0_4px_24px_-10px_rgba(51,33,13,0.06)]">

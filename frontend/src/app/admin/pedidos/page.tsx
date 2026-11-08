@@ -1,7 +1,7 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/administrador_pedidos
 /* eslint-disable @next/next/no-img-element */
+import { iva } from '@/config/fiscal';
 import { ResumenPedido } from '@/components/order/ResumenPedido';
-import { BTW_ALIMENTOS } from '@/data';
 import { lineasConItem, PEDIDOS, totales } from '@/data/mock';
 import { formatEUR, formatFecha, ORDER_STATUS_LABELS } from '@/lib/format';
 import type { OrderStatus } from '@/types';
@@ -73,7 +73,7 @@ export default function AdminPedidosPage() {
                   {formatEUR(FACTURACION)}
                 </div>
                 <span className="text-[11px] text-on-surface-variant mt-0.5">
-                  IVA 9% incluido: {formatEUR(FACTURACION - FACTURACION / (1 + BTW_ALIMENTOS))}
+                  IVA 9% incluido: {formatEUR(iva(FACTURACION))}
                 </span>
               </div>
               <div className="bg-surface-container-lowest p-3.5 rounded-lg flex flex-col shadow-xs">
@@ -107,7 +107,7 @@ export default function AdminPedidosPage() {
                   {formatEUR(TICKET)}
                 </div>
                 <span className="text-[11px] text-on-surface-variant mt-0.5">
-                  Ámsterdam + Amstelveen
+                  Ámsterdam
                 </span>
               </div>
             </div>

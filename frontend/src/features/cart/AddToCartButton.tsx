@@ -2,17 +2,17 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { getProduct } from '@/data/products';
 import { useCart } from './CartProvider';
 
 type Props = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> & {
-  productId: string;
+  /** id del ítem del catálogo */
+  itemId: string;
   /** Si se indica, después de añadir lleva a esa ruta (p. ej. /carrito) */
   href?: string;
 };
 
-// Botón del diseño que añade un producto al carrito
-export function AddToCartButton({ productId, href, type = 'button', ...props }: Props) {
+// Botón del diseño que añade un ítem del catálogo al carrito
+export function AddToCartButton({ itemId, href, type = 'button', ...props }: Props) {
   const { addItem } = useCart();
   const router = useRouter();
 
@@ -21,7 +21,7 @@ export function AddToCartButton({ productId, href, type = 'button', ...props }: 
       type={type}
       {...props}
       onClick={() => {
-        addItem(getProduct(productId));
+        addItem(itemId);
         if (href) router.push(href);
       }}
     />

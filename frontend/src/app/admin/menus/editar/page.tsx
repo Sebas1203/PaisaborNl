@@ -1,7 +1,13 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/administrador_crear_y_editar_men
 /* eslint-disable @next/next/no-img-element */
+import { ItemImage } from '@/components/ItemImage';
+import { BTW_ALIMENTOS, ESPECIALES } from '@/data';
+import { formatEUR } from '@/lib/format';
 import Link from 'next/link';
 import { Go } from '@/components/ui/Go';
+
+// Demo sin backend: el editor muestra el primer especial del catálogo
+const PLATO_EDITADO = ESPECIALES[0];
 
 export default function AdminMenusEditarPage() {
   return (
@@ -107,7 +113,7 @@ export default function AdminMenusEditarPage() {
                         </span>
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-primary font-headline text-lg font-semibold px-4 py-3 rounded-lg focus:outline-hidden focus:bg-surface-container transition-colors placeholder:text-outline/60" id="menu-name" placeholder="Ej. Sancocho de Gallina en Leña Criollo" type="text" defaultValue="Lechona Tolimense Artesanal" />
+                      <input className="w-full bg-surface-container-low text-primary font-headline text-lg font-semibold px-4 py-3 rounded-lg focus:outline-hidden focus:bg-surface-container transition-colors placeholder:text-outline/60" id="menu-name" placeholder="Ej. Arroz paisa" type="text" defaultValue={PLATO_EDITADO.nombre} />
                       {' '}
                       <span className="text-[11px] text-outline mt-1 block">
                         Visible en la carta pública de reservas y boleta de pago.
@@ -141,7 +147,7 @@ export default function AdminMenusEditarPage() {
                         Máx. 500 caracteres
                       </span>
                     </div>
-                    <textarea className="w-full bg-surface-container-low text-on-surface text-sm p-4 rounded-lg focus:outline-hidden focus:bg-surface-container transition-colors leading-relaxed placeholder:text-outline/60" id="menu-desc" placeholder="Describe el marinado de hierbas, el origen del corte y la guarnición..." rows={4} defaultValue="Cerdo tierno horneado a fuego lento durante 10 horas en adobo tradicional con cerveza negra y aliños de la casa. Servido con cuero extra crocante dorado artesanalmente, arveja amarilla guisada, arroz especiado y arepa de maíz blanco horneada sobre hoja de bijao."></textarea>
+                    <textarea className="w-full bg-surface-container-low text-on-surface text-sm p-4 rounded-lg focus:outline-hidden focus:bg-surface-container transition-colors leading-relaxed placeholder:text-outline/60" id="menu-desc" placeholder="Describe el marinado de hierbas, el origen del corte y la guarnición..." rows={4} defaultValue={PLATO_EDITADO.descripcion ?? ""}></textarea>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
                     <div className="p-4 bg-surface-container-low rounded-lg space-y-2">
@@ -153,15 +159,15 @@ export default function AdminMenusEditarPage() {
                           €
                         </span>
                         {' '}
-                        <input className="w-full bg-surface-container-lowest text-primary font-headline text-xl font-bold pl-8 pr-4 py-2.5 rounded-lg focus:outline-hidden focus:ring-0" id="menu-price" step="0.50" type="number" defaultValue="24.50" />
+                        <input className="w-full bg-surface-container-lowest text-primary font-headline text-xl font-bold pl-8 pr-4 py-2.5 rounded-lg focus:outline-hidden focus:ring-0" id="menu-price" step="0.50" type="number" defaultValue={PLATO_EDITADO.precio.toFixed(2)} />
                       </div>
                       <div className="flex items-center justify-between text-[11px] text-outline pt-1">
                         <span>
-                          Base neta: €22.48
+                          Base neta: {formatEUR(PLATO_EDITADO.precio / (1 + BTW_ALIMENTOS))}
                         </span>
                         {' '}
                         <span>
-                          BTW 9%: €2.02
+                          IVA 9%: {formatEUR(PLATO_EDITADO.precio - PLATO_EDITADO.precio / (1 + BTW_ALIMENTOS))}
                         </span>
                       </div>
                     </div>
@@ -209,7 +215,7 @@ export default function AdminMenusEditarPage() {
                     </h3>
                   </div>
                   <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-low group">
-                    <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Close up artisanal culinary presentation of Colombian Lechona Tolimense, golden crispy pork crackling skin glistening, seasoned yellow pea and spiced rice filling steaming gently on an authentic green plantain banana leaf inside an earthy terracotta plate, soft natural window light with warm rustic tones of roasted coffee beans and terracotta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAby2mubISPvj6TRoB0JzjTpi1ki20Cj0NxD1drddwDVyQIJkyxjX11P56Vy1GHStsT26LvaELeP-UyLbbb5me7UObuiC7slD2CoxyrCjsIyX67GdC-XYrPkkpPboRRjOIxAfc63wWG8_qymmT3Xklt1enCuZcxSWrnjfV2AW16nLuYTpKscZ8PxbgZNxP1AP53jm8rR6Gf0aG6yCAVCoOh1b0381FkgS7VXAsNNKCb7uCRbJL1ksPq" />
+                    <ItemImage src={PLATO_EDITADO.imagen} alt={PLATO_EDITADO.nombre} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent flex items-end p-4">
                       <span className="text-xs text-on-primary font-medium flex items-center gap-1.5 backdrop-blur-xs px-2.5 py-1 rounded-sm bg-primary/40">
                         <span className="material-symbols-outlined text-xs">
@@ -289,7 +295,7 @@ export default function AdminMenusEditarPage() {
                     </span>
                     {' '}
                     <span className="font-headline font-bold text-sm text-secondary" id="total-cost">
-                      € 18.25
+                      Por definir
                     </span>
                   </div>
                   <div className="px-3.5 py-2 rounded-lg bg-surface-container-low text-right">
@@ -298,7 +304,7 @@ export default function AdminMenusEditarPage() {
                     </span>
                     {' '}
                     <span className="font-headline font-bold text-sm text-primary">
-                      74.2%
+                      Por definir
                     </span>
                   </div>
                 </div>
@@ -376,159 +382,10 @@ export default function AdminMenusEditarPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y-0" id="ingredients-tbody">
-                    <tr className="bg-surface-container-lowest hover:bg-surface-container-low transition-colors group">
-                      <td className="py-3.5 px-4 font-medium text-primary">
-                        <div className="flex items-center gap-2">
-                          <span className="material-symbols-outlined text-secondary text-sm">
-                            inventory_2
-                          </span>
-                          {' '}
-                          <span>
-                            Carne de cerdo magra
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-3.5 px-4 font-mono font-semibold text-on-surface">
-                        2.5
-                      </td>
-                      <td className="py-3.5 px-4">
-                        <span className="px-2 py-0.5 rounded-sm bg-surface-container text-on-surface-variant font-medium">
-                          kg
-                        </span>
-                      </td>
-                      <td className="py-3.5 px-4 text-right font-mono font-semibold text-primary">
-                        € 11.20
-                      </td>
-                      <td className="py-3.5 px-4 text-center">
-                        <button className="btn-remove-row text-outline hover:text-error transition-colors p-1" title="Eliminar fila" type="button">
-                          <span className="material-symbols-outlined text-base">
-                            delete
-                          </span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr className="bg-surface-container-lowest hover:bg-surface-container-low transition-colors group">
-                      <td className="py-3.5 px-4 font-medium text-primary">
-                        <div className="flex items-center gap-2">
-                          <span className="material-symbols-outlined text-secondary text-sm">
-                            inventory_2
-                          </span>
-                          {' '}
-                          <span>
-                            Arveja amarilla seca
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-3.5 px-4 font-mono font-semibold text-on-surface">
-                        1.0
-                      </td>
-                      <td className="py-3.5 px-4">
-                        <span className="px-2 py-0.5 rounded-sm bg-surface-container text-on-surface-variant font-medium">
-                          kg
-                        </span>
-                      </td>
-                      <td className="py-3.5 px-4 text-right font-mono font-semibold text-primary">
-                        € 1.85
-                      </td>
-                      <td className="py-3.5 px-4 text-center">
-                        <button className="btn-remove-row text-outline hover:text-error transition-colors p-1" title="Eliminar fila" type="button">
-                          <span className="material-symbols-outlined text-base">
-                            delete
-                          </span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr className="bg-surface-container-lowest hover:bg-surface-container-low transition-colors group">
-                      <td className="py-3.5 px-4 font-medium text-primary">
-                        <div className="flex items-center gap-2">
-                          <span className="material-symbols-outlined text-secondary text-sm">
-                            inventory_2
-                          </span>
-                          {' '}
-                          <span>
-                            Arroz parbolizado
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-3.5 px-4 font-mono font-semibold text-on-surface">
-                        1.5
-                      </td>
-                      <td className="py-3.5 px-4">
-                        <span className="px-2 py-0.5 rounded-sm bg-surface-container text-on-surface-variant font-medium">
-                          kg
-                        </span>
-                      </td>
-                      <td className="py-3.5 px-4 text-right font-mono font-semibold text-primary">
-                        € 2.10
-                      </td>
-                      <td className="py-3.5 px-4 text-center">
-                        <button className="btn-remove-row text-outline hover:text-error transition-colors p-1" title="Eliminar fila" type="button">
-                          <span className="material-symbols-outlined text-base">
-                            delete
-                          </span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr className="bg-surface-container-lowest hover:bg-surface-container-low transition-colors group">
-                      <td className="py-3.5 px-4 font-medium text-primary">
-                        <div className="flex items-center gap-2">
-                          <span className="material-symbols-outlined text-secondary text-sm">
-                            inventory_2
-                          </span>
-                          {' '}
-                          <span>
-                            Hoja de plátano fresca
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-3.5 px-4 font-mono font-semibold text-on-surface">
-                        4
-                      </td>
-                      <td className="py-3.5 px-4">
-                        <span className="px-2 py-0.5 rounded-sm bg-surface-container text-on-surface-variant font-medium">
-                          unidades
-                        </span>
-                      </td>
-                      <td className="py-3.5 px-4 text-right font-mono font-semibold text-primary">
-                        € 1.60
-                      </td>
-                      <td className="py-3.5 px-4 text-center">
-                        <button className="btn-remove-row text-outline hover:text-error transition-colors p-1" title="Eliminar fila" type="button">
-                          <span className="material-symbols-outlined text-base">
-                            delete
-                          </span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr className="bg-surface-container-lowest hover:bg-surface-container-low transition-colors group">
-                      <td className="py-3.5 px-4 font-medium text-primary">
-                        <div className="flex items-center gap-2">
-                          <span className="material-symbols-outlined text-secondary text-sm">
-                            inventory_2
-                          </span>
-                          {' '}
-                          <span>
-                            Aliño paisa criollo
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-3.5 px-4 font-mono font-semibold text-on-surface">
-                        300
-                      </td>
-                      <td className="py-3.5 px-4">
-                        <span className="px-2 py-0.5 rounded-sm bg-surface-container text-on-surface-variant font-medium">
-                          g
-                        </span>
-                      </td>
-                      <td className="py-3.5 px-4 text-right font-mono font-semibold text-primary">
-                        € 1.50
-                      </td>
-                      <td className="py-3.5 px-4 text-center">
-                        <button className="btn-remove-row text-outline hover:text-error transition-colors p-1" title="Eliminar fila" type="button">
-                          <span className="material-symbols-outlined text-base">
-                            delete
-                          </span>
-                        </button>
+                    <tr>
+                      <td colSpan={5} className="py-6 px-4 text-center text-xs text-on-surface-variant">
+                        {/* TODO: información de alérgenos obligatoria (UE) y descripciones/ingredientes a confirmar con Diana en cada plato */}
+                        Sin ingredientes registrados para este plato.
                       </td>
                     </tr>
                   </tbody>

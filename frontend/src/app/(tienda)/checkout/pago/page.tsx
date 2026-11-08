@@ -1,7 +1,8 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/pago_seguro_con_mollie_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { Go } from '@/components/ui/Go';
+import { ResumenCarrito } from '@/components/order/ResumenPedido';
+import { PagarButton } from '@/features/cart/PagarButton';
 
 export default function CheckoutPagoPage() {
   return (
@@ -302,146 +303,9 @@ export default function CheckoutPagoPage() {
               </div>
               <div className="lg:col-span-5 flex flex-col gap-6 sticky top-28">
                 <div className="bg-surface-container-lowest p-6 lg:p-7 rounded-xl shadow-md space-y-6">
-                  <div className="flex items-center justify-between pb-3 border-b-0">
-                    <div>
-                      <span className="text-xs uppercase font-label tracking-widest text-secondary font-bold">
-                        Resumen de Canasta
-                      </span>
-                      <h2 className="font-headline font-bold text-xl text-primary">
-                        Tu Pedido Colombiano
-                      </h2>
-                    </div>
-                    <span className="px-2.5 py-1 bg-surface-container-high text-xs font-semibold rounded-full text-on-surface-variant">
-                      3 artículos
-                    </span>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
-                        <img className="w-full h-full object-cover" data-alt="Warm golden Colombian arepas de choclo with fresh artisanal curd cheese melted on top, rustic earthenware plate, dark wooden background, warm natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCST0MBlTSDkdRsqisGyBIsz1taZn54hnr4Lx0YIoHj9nEfE6mF-hVIoYHViGNmYDUunMtfAjoKLbQGVqON9Hote5g0OKQ_DsO3a2sP6x0Mtd0Kzu-tu3Lc1frKU02qVCsTzlH-2HBbx_zaLaHRlz3327Xwllcs0vyodbDfxG94z9YQ3FrzJ_GWLA8AIN020pFSSer1vZewGWtGvbQ-x4TnqcDFgMN7szE2EjFCiCjzDmXQLbSwG11O" />
-                      </div>
-                      <div className="flex-grow min-w-0">
-                        <h4 className="font-headline font-bold text-sm text-primary truncate">
-                          Arepas de Choclo con Queso (x4)
-                        </h4>
-                        <p className="text-xs text-on-surface-variant">
-                          Elaboración fresca del día
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-headline font-bold text-sm text-primary">
-                          €12.50
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
-                        <img className="w-full h-full object-cover" data-alt="Traditional freshly baked Colombian pandebonos bread rolls with cassava starch and cheese, golden crust, wooden tray with steam rising, editorial culinary photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCGuQlK1hMxXvRjA5wFemj1EdZq2jc-UeRyXZsxRkJy34HVfTCR7ia1_Xi1Md3mvcs51u0cmRIAj0jpdFjjyMszVa-T_cajQQ1uyLLR7PuXfqdPLWpFfMscTqEDqsPTvtXyKpoGmL4mvcte4veID2m4CkvXOcAKcK2n3OEkCQZs3-6lSKC3OfC8J1v3jdkB2r_4GhPxBUwTpIUbIPGd6jyV3yMZNosHWj7tSuLEkCL89h2l-9K6ytm" />
-                      </div>
-                      <div className="flex-grow min-w-0">
-                        <h4 className="font-headline font-bold text-sm text-primary truncate">
-                          Pandebonos Tradicionales (x6)
-                        </h4>
-                        <p className="text-xs text-on-surface-variant">
-                          Recién horneados
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-headline font-bold text-sm text-primary">
-                          €11.00
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
-                        <img className="w-full h-full object-cover" data-alt="Specialty Colombian coffee beans bag from Huila roasted artisanally, burlap sack details, dried coffee cherries and warm terracotta aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTFFNWFR2PAUjKi8PoTCJx-OUy-T01LSs4h9HnWL2YULiDDJ6oR1cehatfw82srMEZgOSobSZqzAWhOptx0fh8N0qOVLhcu4zqnwM7TqYbn0VaPEqcfW77KsuXngc2x5j8xu7O9kzvZeNQNuEh5tyAXd_Do0THCMl8UfLoDk9AG5Mq3yF2QnZg85mc6NjFAcOOd0KK1lRBGONymOwCD75Vr6zM6jJJK8MQYpzOztw5xNnsY8wPmisB" />
-                      </div>
-                      <div className="flex-grow min-w-0">
-                        <h4 className="font-headline font-bold text-sm text-primary truncate">
-                          Café de Origen Huila (250g)
-                        </h4>
-                        <p className="text-xs text-on-surface-variant">
-                          Tueste medio artesanal
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-headline font-bold text-sm text-primary">
-                          €14.50
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-3.5 bg-surface-container rounded-lg flex items-center justify-between text-xs">
-                    <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-secondary text-lg">
-                        local_shipping
-                      </span>
-                      <div>
-                        <p className="font-semibold text-primary">
-                          Reparto en Ámsterdam (Centrum)
-                        </p>
-                        <p className="text-[11px] text-on-surface-variant">
-                          Hoy entre 17:00 y 19:30
-                        </p>
-                      </div>
-                    </div>
-                    <span className="font-bold text-primary">
-                      €4.50
-                    </span>
-                  </div>
-                  <div className="space-y-2 pt-2 text-sm text-on-surface-variant">
-                    <div className="flex justify-between">
-                      <span>
-                        Subtotal
-                      </span>
-                      {' '}
-                      <span className="font-medium text-primary">
-                        €38.00
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>
-                        Envío refrigerado ecológico
-                      </span>
-                      {' '}
-                      <span className="font-medium text-primary">
-                        €4.50
-                      </span>
-                    </div>
-                    <div className="flex justify-between text-xs">
-                      <span>
-                        BTW (9%) incluido
-                      </span>
-                      {' '}
-                      <span>
-                        €3.51
-                      </span>
-                    </div>
-                    <div className="pt-4 flex items-baseline justify-between text-primary">
-                      <div className="flex flex-col">
-                        <span className="font-headline font-bold text-lg">
-                          Total a Pagar
-                        </span>
-                        {' '}
-                        <span className="text-[11px] text-on-surface-variant font-label">
-                          Precios en Euros (€)
-                        </span>
-                      </div>
-                      <span className="font-headline font-extrabold text-3xl tracking-tight text-primary">
-                        €42.50
-                      </span>
-                    </div>
-                  </div>
+                  <ResumenCarrito titulo="Tu Pedido" />
                   <div className="space-y-3 pt-2">
-                    <Go href="/checkout/exito" className="w-full py-4 px-6 bg-secondary text-on-secondary rounded-lg font-headline font-bold text-base flex items-center justify-center gap-3 hover:bg-on-secondary-container transition-all active:scale-[0.99] shadow-md group" type="button">
-                      <span className="material-symbols-outlined text-xl transition-transform group-hover:scale-110">
-                        lock
-                      </span>
-                      {' '}
-                      <span>
-                        Pagar €42.50
-                      </span>
-                    </Go>
+                    <PagarButton className="w-full py-4 px-6 bg-secondary text-on-secondary rounded-lg font-headline font-bold text-base flex items-center justify-center gap-3 hover:bg-on-secondary-container transition-all active:scale-[0.99] shadow-md group disabled:opacity-50" />
                     {' '}
                     <Link className="w-full py-3 px-4 text-center rounded-lg font-medium text-xs text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors flex items-center justify-center gap-1.5" data-path="carrito" href="/checkout">
                       <span className="material-symbols-outlined text-sm">

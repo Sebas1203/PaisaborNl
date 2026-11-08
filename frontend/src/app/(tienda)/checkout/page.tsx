@@ -1,6 +1,7 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/finalizar_pedido_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import { ResumenCarrito } from '@/components/order/ResumenPedido';
 import { Go } from '@/components/ui/Go';
 
 export default function CheckoutPage() {
@@ -96,7 +97,7 @@ export default function CheckoutPage() {
                         </span>
                         {' '}
                         <span className="font-headline font-bold text-sm text-secondary" id="delivery-fee-badge">
-                          €4.50
+                          Por confirmar
                         </span>
                       </div>
                     </button>
@@ -127,7 +128,7 @@ export default function CheckoutPage() {
                         </span>
                         {' '}
                         <span className="font-headline font-bold text-sm text-tertiary">
-                          Gratis (€0.00)
+                          Gratis
                         </span>
                       </div>
                     </button>
@@ -176,7 +177,7 @@ export default function CheckoutPage() {
                           Ámsterdam Noord
                         </option>
                         <option>
-                          Amstelveen (+€1.50 recargo de distancia)
+                          Amstelveen
                         </option>
                         <option>
                           Haarlem (Envíos sábados)
@@ -232,7 +233,7 @@ export default function CheckoutPage() {
                       </div>
                     </div>
                     <span className="bg-tertiary-fixed text-on-tertiary-fixed text-xs font-semibold px-3 py-1 rounded-full font-label">
-                      Coste: €0.00
+                      Sin coste
                     </span>
                   </div>
                   <div className="bg-surface-container-low p-5 rounded-lg flex flex-col md:flex-row gap-6 items-start">
@@ -403,189 +404,7 @@ export default function CheckoutPage() {
               </div>
               <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
                 <div className="bg-surface-container-low rounded-xl p-6 lg:p-8 shadow-xs space-y-6">
-                  <div className="flex items-center justify-between pb-4">
-                    <div>
-                      <h2 className="text-xl font-headline font-extrabold text-primary">
-                        Tu Canasta Artesanal
-                      </h2>
-                      <p className="text-xs text-on-surface-variant">
-                        4 artículos seleccionados con sazón
-                      </p>
-                    </div>
-                    <Link className="text-xs font-label uppercase tracking-wider text-secondary font-semibold hover:underline" data-path="carrito" href="/cuenta/editar">
-                      Editar
-                    </Link>
-                  </div>
-                  <div className="flex items-start gap-3.5 pt-3">
-                    <img className="w-16 h-16 rounded-lg object-cover bg-surface-container-high shrink-0" data-alt="Traditional golden Colombian pandebonos bread rolls freshly baked with melted Colombian coastal cheese and cassava starch, warm steam rising, placed on a terracotta plate, shot in warm rustic natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC64jK5wVniRQ8-duFI5616si6DS3W5Zs68uOsWFjVCFxmmXSM8voJf8jaAVbaP-BmRjr2CeXmXvAFVTpE6NxTV8S7X3kJhgCnlat29DQhwsu8L03sivhOEnmjYlbBqJdJE5oZhRgHnVL-ZRxRKIE2ZF4sx3Bpjivy-l0g9auegxN_JrRzGf1IdskxqV1x35xU5cTfzB1qwD5n-Hj-2vyMLJ1gC3RxTOKsoVA1grI1XR_1QzRoUpKl" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-headline font-bold text-sm text-primary truncate">
-                          Pandebonos Tradicionales (x6)
-                        </h3>
-                        <span className="font-headline font-bold text-sm text-primary shrink-0">
-                          €8.90
-                        </span>
-                      </div>
-                      <p className="text-xs text-on-surface-variant mt-0.5">
-                        Queso costeño artesanal · Horneados hoy
-                      </p>
-                      <div className="flex items-center justify-between mt-2">
-                        <span className="text-[11px] text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-sm font-label">
-                          Cant: 1 paquete
-                        </span>
-                        {' '}
-                        <span className="text-[10px] text-on-secondary-container bg-secondary-fixed px-1.5 py-0.5 rounded-sm font-label">
-                          BTW 9% incl.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3.5 pt-3">
-                    <img className="w-16 h-16 rounded-lg object-cover bg-surface-container-high shrink-0" data-alt="A premium kraft bag of specialty Colombian coffee beans from Huila with an artisanal label, next to a ceramic cup of dark rich espresso and whole roasted coffee beans on a wooden rustic kitchen counter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAWuLDUQBUB8XTABor47kEg1Mj-YTroQrRebHqpgxYakav4Uq5Na3P7mKDbmiC18ew02vgwDgiWK_4uJkmLa-msGQ-n8YOn7kvltSNj-7fj2aS4zCKce8TBnSI6Xn1RKuAyk31Ei0WKWbSvUGhGxPMxBqhIOfvxKMtJKKJDOurhczRGAPAkpffivP98NNF9IVCneU14Va0qJr0tpNuIYbmXtDQHyISh4Zr10r0ux9SNXh1ExbALkog" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-headline font-bold text-sm text-primary truncate">
-                          Café de Origen Huila (250g)
-                        </h3>
-                        <span className="font-headline font-bold text-sm text-primary shrink-0">
-                          €9.50
-                        </span>
-                      </div>
-                      <p className="text-xs text-on-surface-variant mt-0.5">
-                        Notas a panela y cítricos · Grano entero
-                      </p>
-                      <div className="flex items-center justify-between mt-2">
-                        <span className="text-[11px] text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-sm font-label">
-                          Cant: 1 bolsa
-                        </span>
-                        {' '}
-                        <span className="text-[10px] text-on-secondary-container bg-secondary-fixed px-1.5 py-0.5 rounded-sm font-label">
-                          BTW 9% incl.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3.5 pt-3">
-                    <img className="w-16 h-16 rounded-lg object-cover bg-surface-container-high shrink-0" data-alt="Golden yellow sweet corn Colombian arepas de choclo with melted thick fresh white cheese oozing over the top, griddled on an authentic cast iron skillet with charred edges" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMsHo_31zIW6W0WEIltZmtPLQ7GE7rigTBNmNkLgNLubjbnBopvaSK0nF9zlQkrX6UjZTjjcMiG8AJL2SD8yeefRrFgPz8uGZLCm7gM4yWxKEGBu9L-j9zs9W3CqNXH2qAYBXxEz_As8qnVaNOtfDfqVfHIaPrhU8fGljdAKmcdzFWsokJtMMwHpENEiOHsF6jCcbDWRCoXsE_wIjyshuyxbNlMor9tdohmlYQqMDCijDki4ACg2BU" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-headline font-bold text-sm text-primary truncate">
-                          Arepas de Choclo con Queso (x4)
-                        </h3>
-                        <span className="font-headline font-bold text-sm text-primary shrink-0">
-                          €7.80
-                        </span>
-                      </div>
-                      <p className="text-xs text-on-surface-variant mt-0.5">
-                        Maíz dulce tierno · Paquete sellado
-                      </p>
-                      <div className="flex items-center justify-between mt-2">
-                        <span className="text-[11px] text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-sm font-label">
-                          Cant: 1 paquete
-                        </span>
-                        {' '}
-                        <span className="text-[10px] text-on-secondary-container bg-secondary-fixed px-1.5 py-0.5 rounded-sm font-label">
-                          BTW 9% incl.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3.5 pt-3">
-                    <img className="w-16 h-16 rounded-lg object-cover bg-surface-container-high shrink-0" data-alt="Traditional artisanal Colombian arequipe dulce de leche in a vintage glass jar, thick creamy caramel texture visible, with a wooden spoon holding a glossy swirl of sweet milk confection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAITUJ4VDY4BsSbw-emCjjciYpwVow7BR_aTBDgYQ2MDIxBB4IjBRvsJC1qrNfgeC4Zs3dJBlvWLhRRdd2YSQMz7z0zz_8bb-7XK4ht-iwaB7cBEMpwX_SCLO9W6YYJ52EPjVk1qAPUabFjp5P2sS2Ib5oez_2ohWjE8wMvgAZpZSUT_XyNFFzanHOH2ol40yul5zgQYUWhvoz8eB2P0T50tKnPzvdWLzSJXKjeJGssWkiLEAI6HmCe" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-headline font-bold text-sm text-primary truncate">
-                          Arequipe Tradicional Paisa (280g)
-                        </h3>
-                        <span className="font-headline font-bold text-sm text-primary shrink-0">
-                          €5.20
-                        </span>
-                      </div>
-                      <p className="text-xs text-on-surface-variant mt-0.5">
-                        Elaboración lenta en paila de cobre
-                      </p>
-                      <div className="flex items-center justify-between mt-2">
-                        <span className="text-[11px] text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-sm font-label">
-                          Cant: 1 frasco
-                        </span>
-                        {' '}
-                        <span className="text-[10px] text-on-secondary-container bg-secondary-fixed px-1.5 py-0.5 rounded-sm font-label">
-                          BTW 9% incl.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="pt-6 space-y-2.5 bg-surface-container-lowest p-5 rounded-lg">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-on-surface-variant">
-                        Subtotal productos
-                      </span>
-                      {' '}
-                      <span className="font-medium text-primary">
-                        €31.40
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-on-surface-variant flex items-center gap-1.5">
-                        <span>
-                          Costo de Envío
-                        </span>
-                        {' '}
-                        <span className="text-[10px] font-label px-1.5 py-0.5 rounded-sm bg-surface-container text-on-surface-variant" id="shipping-method-tag">
-                          Ámsterdam
-                        </span>
-                      </span>
-                      {' '}
-                      <span className="font-bold text-secondary" id="shipping-price-text">
-                        €4.50
-                      </span>
-                    </div>
-                    <div className="pt-2 pb-1 space-y-1">
-                      <div className="flex items-center justify-between text-xs text-on-surface-variant">
-                        <span className="flex items-center gap-1">
-                          <span>
-                            BTW Alimentos (9%)
-                          </span>
-                          {' '}
-                          <span className="material-symbols-outlined text-[12px] text-outline cursor-help" title="Tarifa reducida para alimentos frescos en Países Bajos">
-                            info
-                          </span>
-                        </span>
-                        {' '}
-                        <span>
-                          €2.59 incl.
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs text-on-surface-variant" id="shipping-btw-row">
-                        <span className="flex items-center gap-1">
-                          <span>
-                            BTW Logística (21%)
-                          </span>
-                        </span>
-                        {' '}
-                        <span id="shipping-btw-amount">
-                          €0.78 incl.
-                        </span>
-                      </div>
-                    </div>
-                    <div className="pt-3 flex items-baseline justify-between">
-                      <div>
-                        <span className="block text-xs uppercase font-label tracking-widest text-on-surface-variant">
-                          Total Final a Pagar
-                        </span>
-                        {' '}
-                        <span className="text-[11px] text-on-surface-variant">
-                          Impuestos (BTW holandés) incluidos
-                        </span>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-headline font-black text-2xl lg:text-3xl text-primary tracking-tight" id="cart-total-price">
-                          €35.90
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <ResumenCarrito editable />
                   <Go href="/checkout/pago" className="w-full py-4 px-6 rounded-lg bg-linear-to-r from-primary via-primary to-primary-container hover:from-primary-container hover:to-primary text-on-primary font-headline font-bold text-base shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-3 group relative overflow-hidden" type="button">
                     <span className="absolute inset-y-0 left-0 w-1.5 bg-secondary"></span>
                     {' '}

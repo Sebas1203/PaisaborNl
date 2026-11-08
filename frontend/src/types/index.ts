@@ -1,30 +1,5 @@
-// Tipos de dominio de la demo. Los datos que los usan (src/data) son mock.
-
-export type ProductCategory = 'panaderia' | 'cafe' | 'dulces' | 'congelados' | 'platos';
-
-export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  /** Precio en EUR con BTW incluido */
-  price: number;
-  unit?: string;
-  category: ProductCategory;
-  image: string;
-  badge?: string;
-  /** Aparece en la cuadrícula de "Nuestra Despensa" (/catalogo) */
-  catalogo?: boolean;
-}
-
-export interface CartItem {
-  productId: string;
-  name: string;
-  /** Precio unitario en EUR con BTW incluido */
-  price: number;
-  unit?: string;
-  image: string;
-  quantity: number;
-}
+// Tipos de la app que no son del catálogo. Los del catálogo (Plato, Producto, ItemCatalogo...)
+// están en src/data/tipos.ts.
 
 export type OrderStatus =
   | 'pendiente'
@@ -37,40 +12,32 @@ export type OrderStatus =
 
 export type DeliveryMethod = 'domicilio' | 'recogida';
 
-export interface OrderLine {
-  name: string;
-  quantity: number;
-  price?: number;
+/** Línea de pedido o de carrito: id de un ítem del catálogo y cantidad */
+export interface LineaPedido {
+  id: string;
+  cantidad: number;
 }
 
-export interface Order {
+export interface Pedido {
   id: string;
   /** Fecha ISO (YYYY-MM-DD) */
-  date: string;
-  status: OrderStatus;
-  delivery: DeliveryMethod;
-  lines: OrderLine[];
-  total: number;
-}
-
-export interface ReservableMenu {
-  id: string;
-  name: string;
-  description: string;
-  /** Precio por plato en EUR con BTW incluido */
-  price: number;
-  tag: string;
+  fecha: string;
+  estado: OrderStatus;
+  entrega: DeliveryMethod;
+  cliente: string;
+  lineas: LineaPedido[];
 }
 
 export type ReservationStatus = 'pendiente' | 'confirmada' | 'finalizada' | 'rechazada';
 
-export interface Reservation {
+/** Reserva de un especial de fin de semana (bajoReserva) */
+export interface Reserva {
   id: string;
-  kind: 'catering' | 'menu';
-  menuName: string;
+  /** id de un plato de ESPECIALES */
+  platoId: string;
   /** Fecha ISO (YYYY-MM-DD) */
-  eventDate: string;
-  guests: number;
-  status: ReservationStatus;
-  total: number;
+  fecha: string;
+  porciones: number;
+  estado: ReservationStatus;
+  cliente: string;
 }

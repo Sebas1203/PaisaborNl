@@ -1,5 +1,6 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/actualizar_perfil_paisabor
 /* eslint-disable @next/next/no-img-element */
+import { ItemImage } from '@/components/ItemImage';
 import { Go } from '@/components/ui/Go';
 
 export default function CuentaEditarPage() {
@@ -72,7 +73,7 @@ export default function CuentaEditarPage() {
                     <div className="flex flex-col items-center text-center">
                       <div className="relative group">
                         <div className="w-32 h-32 rounded-full overflow-hidden p-1 bg-linear-to-tr from-secondary via-primary-fixed to-secondary-container shadow-md">
-                          <img alt="Juan Carlos Pérez Restrepo" className="w-full h-full object-cover rounded-full" id="live-avatar-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeMdM7SohkbXCXbvEHbDwwR7U_0U5PxRDeisqRgMSCaOZIdwOuobGusNsPV6SAGboY0Ss81RaVrkgV27cfB1zEfnDxNL6eM_v0aqjtTLNw6l2OBlNKql35zETSSIslZnukXA9de8aop6qYj0QJKkK6m-Dp_KXQqBhIjGhe7JrLkJGnXrpHkVOaB88uPdzupaKTtjiMQvJ-6dfdXvBIDNiNYg1TC55M3NVJ7MLqeVx_S4VF2Xt-g4Hg" />
+                          <ItemImage alt="Juan Carlos Pérez Restrepo" className="w-full h-full object-cover rounded-full" />
                         </div>
                         <div className="absolute -bottom-2 -right-1 bg-surface-container-lowest p-1 rounded-full shadow-md">
                           <div className="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
@@ -222,7 +223,7 @@ export default function CuentaEditarPage() {
                         </div>
                         <div className="bg-surface-container-low rounded-xl p-6 flex flex-col md:flex-row items-center gap-6">
                           <div className="relative shrink-0">
-                            <img alt="Juan Carlos avatar" className="w-24 h-24 rounded-full object-cover shadow-md" id="form-avatar-thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeMdM7SohkbXCXbvEHbDwwR7U_0U5PxRDeisqRgMSCaOZIdwOuobGusNsPV6SAGboY0Ss81RaVrkgV27cfB1zEfnDxNL6eM_v0aqjtTLNw6l2OBlNKql35zETSSIslZnukXA9de8aop6qYj0QJKkK6m-Dp_KXQqBhIjGhe7JrLkJGnXrpHkVOaB88uPdzupaKTtjiMQvJ-6dfdXvBIDNiNYg1TC55M3NVJ7MLqeVx_S4VF2Xt-g4Hg" />
+                            <ItemImage alt="Juan Carlos avatar" className="w-24 h-24 rounded-full object-cover shadow-md" />
                             <div className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-sm">
                               <span className="material-symbols-outlined text-xs">
                                 photo_camera

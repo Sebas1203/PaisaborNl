@@ -1,5 +1,6 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/formulario_de_nuevo_producto_paisabor
 /* eslint-disable @next/next/no-img-element */
+import { CATEGORIAS_PRODUCTO } from '@/data';
 import Link from 'next/link';
 import { Go } from '@/components/ui/Go';
 
@@ -13,7 +14,7 @@ export default function AdminProductosNuevoPage() {
           <header className="w-full px-6 lg:px-10 py-5 flex flex-wrap items-center justify-between gap-4 bg-surface-container-low">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-surface-container overflow-hidden p-1 shadow-xs shrink-0">
-                <img alt="Paisabor Emblema Hacienda" className="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VDeI_wO3h2Ypsq_ZLb3paIiXqbhbxxPg4DQ3mS0tHlU-iT9PkISzXBry48naEWfgxC1PgLtcDvz5clucpfNumLU6iVDrQRcoYDMF3HFCkJjAyzu-chGzBcaW7trn0PJD-aRGAH9CNHDdtJ0JtK_0GLheAHgxZZfTzF1-Sel9vVzgELje3PD2115_OpTXGsgITIhKtqwTfFGbDFaZ8HoOlAQ0dbQ6262JWR5qOpczdNx96XHzldmOyllV22JJcJOBaZaNRIDtVAkA" />
+                <img alt="Paisabor Emblema Hacienda" className="w-full h-full object-contain" src="/images/logo/paisabor-logo-64.png" />
               </div>
               <div>
                 <Link className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-secondary hover:text-primary transition-colors" href="/admin/productos">
@@ -72,7 +73,7 @@ export default function AdminProductosNuevoPage() {
                     Agregar Nuevo Producto
                   </h1>
                   <p className="font-body text-sm text-on-surface-variant mt-2 max-w-2xl leading-relaxed">
-                    Ingresa los detalles, inventario y multimedia del producto para publicarlo en la tienda online. El stock ingresado registrará automáticamente un movimiento inicial en el almacén de La Haya.
+                    Ingresa los detalles, inventario y multimedia del producto para publicarlo en la tienda online. El stock ingresado registrará automáticamente un movimiento inicial en el almacén de Ámsterdam.
                   </p>
                 </div>
                 <div className="bg-surface-container p-3 rounded-xl flex items-center gap-3 shrink-0 self-start lg:self-auto">
@@ -123,7 +124,7 @@ export default function AdminProductosNuevoPage() {
                         </span>
                       </label>
                       {' '}
-                      <input className="form-input w-full px-4 py-3 bg-surface-container-high text-on-surface placeholder:text-outline text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" id="prod_name" placeholder="ej. Café Especial Sierra Nevada 500g (Tueste Medio)" required type="text" />
+                      <input className="form-input w-full px-4 py-3 bg-surface-container-high text-on-surface placeholder:text-outline text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" id="prod_name" placeholder="ej. Empanada de pollo" required type="text" />
                       <p className="text-[11px] text-on-surface-variant mt-1.5 flex items-center gap-1">
                         <span className="material-symbols-outlined text-[14px]">
                           info
@@ -162,7 +163,7 @@ export default function AdminProductosNuevoPage() {
                           </button>
                         </div>
                       </div>
-                      <textarea className="form-textarea w-full p-4 bg-surface-container-high text-on-surface placeholder:text-outline text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all resize-y" id="prod_desc" placeholder="Notas de cata a panela y frutos rojos, cultivado a 1.700 msnm por familias campesinas de la Sierra Nevada de Santa Marta. 100% Arábica con certificación de comercio justo..." rows={5}></textarea>
+                      <textarea className="form-textarea w-full p-4 bg-surface-container-high text-on-surface placeholder:text-outline text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all resize-y" id="prod_desc" placeholder="Descripción del producto (opcional, a confirmar con Diana)" rows={5}></textarea>
                     </div>
                     <div className="p-4 rounded-xl bg-surface-container-low flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                       <div className="flex items-start gap-3">
@@ -229,7 +230,7 @@ export default function AdminProductosNuevoPage() {
                           €
                         </span>
                         {' '}
-                        <input className="form-input w-full pl-8 pr-4 py-3 bg-surface-container-high text-on-surface placeholder:text-outline text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest font-medium transition-all" id="price_sale" placeholder="12.50" required step="0.01" type="number" />
+                        <input className="form-input w-full pl-8 pr-4 py-3 bg-surface-container-high text-on-surface placeholder:text-outline text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest font-medium transition-all" id="price_sale" placeholder="0.00" required step="0.01" type="number" />
                       </div>
                       <p className="text-[11px] text-on-surface-variant mt-1.5">
                         Precio final en euros al consumidor
@@ -244,7 +245,7 @@ export default function AdminProductosNuevoPage() {
                           €
                         </span>
                         {' '}
-                        <input className="form-input w-full pl-8 pr-4 py-3 bg-surface-container-high text-on-surface placeholder:text-outline text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest font-medium transition-all" id="price_compare" placeholder="14.00" step="0.01" type="number" />
+                        <input className="form-input w-full pl-8 pr-4 py-3 bg-surface-container-high text-on-surface placeholder:text-outline text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest font-medium transition-all" id="price_compare" placeholder="0.00" step="0.01" type="number" />
                       </div>
                       <p className="text-[11px] text-on-surface-variant mt-1.5">
                         Mostrará badge tachado de oferta
@@ -321,7 +322,7 @@ export default function AdminProductosNuevoPage() {
                         </span>
                       </label>
                       <div className="relative">
-                        <input className="form-input w-full px-4 py-3 bg-surface-container-high text-on-surface placeholder:text-outline font-mono text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" id="sku_code" placeholder="PSB-CAF-SN500" required type="text" />
+                        <input className="form-input w-full px-4 py-3 bg-surface-container-high text-on-surface placeholder:text-outline font-mono text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" id="sku_code" placeholder="ej. empanada-de-pollo" required type="text" />
                         {' '}
                         <button className="absolute right-2.5 top-2.5 text-xs px-2 py-1 rounded-sm bg-surface hover:bg-surface-container text-on-surface-variant font-medium" title="Generar SKU Automático" type="button">
                           Auto
@@ -369,7 +370,7 @@ export default function AdminProductosNuevoPage() {
                         </span>
                       </label>
                       <div className="relative">
-                        <input className="form-input w-full px-4 py-3 bg-surface-container-high text-on-surface text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest font-semibold transition-all" id="stock_initial" min="0" required type="number" defaultValue="48" />
+                        <input className="form-input w-full px-4 py-3 bg-surface-container-high text-on-surface text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest font-semibold transition-all" id="stock_initial" min="0" required type="number" defaultValue="0" />
                         {' '}
                         <span className="absolute right-3.5 top-3.5 text-xs text-on-surface-variant">
                           uds.
@@ -518,25 +519,12 @@ export default function AdminProductosNuevoPage() {
                         </button>
                       </div>
                       <div className="relative">
-                        <select className="form-select w-full px-4 py-3 bg-surface-container-high text-on-surface text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all appearance-none cursor-pointer pr-10 font-medium" id="product_cat" defaultValue="cafe">
-                          <option value="cafe">
-                            ☕ Café de Origen &amp; Tostión
-                          </option>
-                          <option value="panaderia">
-                            🥖 Panadería &amp; Arepas Artesanales
-                          </option>
-                          <option value="dulces">
-                            🍯 Dulces Tradicionales &amp; Panela
-                          </option>
-                          <option value="salsas">
-                            🌶️ Salsas &amp; Condimentos Paisas
-                          </option>
-                          <option value="platos">
-                            🍲 Platos Típicos &amp; Cocina
-                          </option>
-                          <option value="souvenirs">
-                            🏺 Souvenirs &amp; Artesanías de Barro
-                          </option>
+                        <select className="form-select w-full px-4 py-3 bg-surface-container-high text-on-surface text-sm rounded-lg border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all appearance-none cursor-pointer pr-10 font-medium" id="product_cat" defaultValue="empanadas">
+                          <option value="platos">Platos típicos</option>
+                          <option value="especiales">Especiales de fin de semana</option>
+                          {CATEGORIAS_PRODUCTO.map((c) => (
+                            <option key={c.id} value={c.id}>{c.nombre}</option>
+                          ))}
                         </select>
                         <span className="material-symbols-outlined absolute right-3 top-3.5 pointer-events-none text-on-surface-variant text-[20px]">
                           expand_more
@@ -675,7 +663,7 @@ export default function AdminProductosNuevoPage() {
                           <input defaultChecked className="form-checkbox rounded-sm text-secondary focus:ring-primary h-4 w-4" type="checkbox" />
                           {' '}
                           <span>
-                            Domicilio Express Local (La Haya / Randstad)
+                            Domicilio (Ámsterdam)
                           </span>
                         </label>
                         {' '}

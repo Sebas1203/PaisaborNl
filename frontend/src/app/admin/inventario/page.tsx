@@ -4,9 +4,21 @@
 
 import { useState } from 'react';
 import { EditarProductoModal } from '@/features/admin/EditarProductoModal';
+import { CATALOGO, itemPorId } from '@/data';
+import { lineasConItem, PEDIDOS, STOCK, STOCK_MINIMO } from '@/data/mock';
+import { formatFecha } from '@/lib/format';
+
+// MOCK: stock y movimientos de demostración a partir del catálogo y de los pedidos de ejemplo
+const STOCK_ITEMS = Object.entries(STOCK).flatMap(([id, stock]) => {
+  const item = itemPorId(id);
+  return item ? [{ item, stock }] : [];
+});
+const MOVIMIENTOS = PEDIDOS.filter((p) => p.estado !== "cancelado").flatMap((p) =>
+  lineasConItem(p.lineas).map((l) => ({ key: p.id + l.item.id, fecha: p.fecha, pedido: p.id, nombre: l.item.nombre, cantidad: l.cantidad }))
+);
 
 export default function AdminInventarioPage() {
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState<string | null>(null);
 
   return (
     <>
@@ -102,30 +114,11 @@ export default function AdminInventarioPage() {
                       <option disabled value="">
                         Seleccionar insumo...
                       </option>
-                      <option value="Queso Costeño Curado">
-                        Queso Costeño Curado (Artesanal)
-                      </option>
-                      <option value="Harina P.A.N. Amarilla">
-                        Harina P.A.N. Amarilla (Caja 10kg)
-                      </option>
-                      <option value="Café Huila Especialidad">
-                        Café Huila Especialidad (Lavado - Grano)
-                      </option>
-                      <option value="Panela Trapiche Redonda">
-                        Panela Trapiche Redonda (Bloque 500g)
-                      </option>
-                      <option value="Arepas de Chócolo Congeladas">
-                        Arepas de Chócolo Congeladas (Pack x6)
-                      </option>
-                      <option value="Plátano Macho Verde">
-                        Plátano Macho Verde (Exportación)
-                      </option>
-                      <option value="Pulpa de Guayaba Agria">
-                        Pulpa de Guayaba Agria (Ultra Congelada)
-                      </option>
-                      <option value="Bocadillo Veleño">
-                        Bocadillo Veleño (Caja de Hojas)
-                      </option>
+                      {CATALOGO.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.nombre}
+                        </option>
+                      ))}
                     </select>
                     <span className="material-symbols-outlined absolute right-3 top-3 text-outline text-base pointer-events-none">
                       expand_more
@@ -258,176 +251,29 @@ export default function AdminInventarioPage() {
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <div role="button" tabIndex={0} onClick={() => setEditing(true)} className="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-xs font-bold font-headline text-primary">
-                          Queso Costeño Artesanal
-                        </span>
-                        {' '}
-                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed uppercase tracking-wider">
-                          Stock Bajo
-                        </span>
+                  {STOCK_ITEMS.map(({ item, stock }) => {
+                    const bajo = stock < STOCK_MINIMO;
+                    const pct = Math.min(100, Math.round((stock / (STOCK_MINIMO * 4)) * 100));
+                    return (
+                      <div key={item.id} role="button" tabIndex={0} onClick={() => setEditing(item.id)} className="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-xs font-bold font-headline text-primary">{item.nombre}</span>
+                            <span className={"text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider " + (bajo ? "bg-secondary-fixed text-on-secondary-fixed" : "bg-surface-container-high text-on-surface-variant")}>
+                              {bajo ? "Stock Bajo" : "Óptimo"}
+                            </span>
+                          </div>
+                          <div className="text-right">
+                            <span className={"text-sm font-bold font-headline " + (bajo ? "text-secondary" : "text-primary")}>{stock} uds</span>{" "}
+                            <span className="text-xs text-on-surface-variant">/ {STOCK_MINIMO} uds min</span>
+                          </div>
+                        </div>
+                        <div className="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+                          <div className={(bajo ? "bg-secondary" : "bg-primary-container") + " h-2 rounded-full transition-all duration-500"} style={{ width: pct + "%" }}></div>
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <span className="text-sm font-bold font-headline text-secondary">
-                          4.2 kg
-                        </span>
-                        {' '}
-                        <span className="text-xs text-on-surface-variant">
-                          / 25 kg min
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
-                      <div className="bg-secondary h-2 rounded-full transition-all duration-500" style={{ width: "17%" }}></div>
-                    </div>
-                    <div className="flex justify-between items-center mt-2 text-[11px] text-on-surface-variant">
-                      <span>
-                        Cámara Refrigerada #2
-                      </span>
-                      {' '}
-                      <span>
-                        Reorden sugerida: +20 kg (Llegada estimada Martes)
-                      </span>
-                    </div>
-                  </div>
-                  <div role="button" tabIndex={0} onClick={() => setEditing(true)} className="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-xs font-bold font-headline text-primary">
-                          Harina P.A.N. (Amarilla / Blanca)
-                        </span>
-                        {' '}
-                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant uppercase tracking-wider">
-                          Óptimo
-                        </span>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-sm font-bold font-headline text-primary">
-                          82 bolsas
-                        </span>
-                        {' '}
-                        <span className="text-xs text-on-surface-variant">
-                          / 30 bolsas min
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
-                      <div className="bg-primary-container h-2 rounded-full transition-all duration-500" style={{ width: "88%" }}></div>
-                    </div>
-                    <div className="flex justify-between items-center mt-2 text-[11px] text-on-surface-variant">
-                      <span>
-                        Almacén Central (Estiba 04)
-                      </span>
-                      {' '}
-                      <span>
-                        Cobertura: ~22 días de servicio
-                      </span>
-                    </div>
-                  </div>
-                  <div role="button" tabIndex={0} onClick={() => setEditing(true)} className="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-xs font-bold font-headline text-primary">
-                          Café Huila Micro-lote (Grano)
-                        </span>
-                        {' '}
-                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant uppercase tracking-wider">
-                          Óptimo
-                        </span>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-sm font-bold font-headline text-primary">
-                          18.5 kg
-                        </span>
-                        {' '}
-                        <span className="text-xs text-on-surface-variant">
-                          / 10 kg min
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
-                      <div className="bg-primary-container h-2 rounded-full transition-all duration-500" style={{ width: "74%" }}></div>
-                    </div>
-                    <div className="flex justify-between items-center mt-2 text-[11px] text-on-surface-variant">
-                      <span>
-                        Barra de Café &amp; Bodega Seca
-                      </span>
-                      {' '}
-                      <span>
-                        Tueste fresco: 12 Octubre (La Finca)
-                      </span>
-                    </div>
-                  </div>
-                  <div role="button" tabIndex={0} onClick={() => setEditing(true)} className="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-xs font-bold font-headline text-primary">
-                          Panela Campesina en Bloque
-                        </span>
-                        {' '}
-                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed uppercase tracking-wider">
-                          Stock Bajo
-                        </span>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-sm font-bold font-headline text-secondary">
-                          6.0 kg
-                        </span>
-                        {' '}
-                        <span className="text-xs text-on-surface-variant">
-                          / 20 kg min
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
-                      <div className="bg-secondary h-2 rounded-full transition-all duration-500" style={{ width: "25%" }}></div>
-                    </div>
-                    <div className="flex justify-between items-center mt-2 text-[11px] text-on-surface-variant">
-                      <span>
-                        Despensa Repostería
-                      </span>
-                      {' '}
-                      <span>
-                        Demanda alta en fines de semana (Aguapanela / Glaseados)
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-3.5 rounded-lg bg-error-container/40 hover:bg-error-container/60 transition-colors">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-xs font-bold font-headline text-error">
-                          Arepas de Chócolo (Pack x6)
-                        </span>
-                        {' '}
-                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-error text-on-error uppercase tracking-wider">
-                          Agotado
-                        </span>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-sm font-bold font-headline text-error">
-                          0 packs
-                        </span>
-                        {' '}
-                        <span className="text-xs text-on-error-container">
-                          / 15 packs min
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-full bg-error/20 rounded-full h-2 overflow-hidden">
-                      <div className="bg-error h-2 rounded-full transition-all duration-500" style={{ width: "0%" }}></div>
-                    </div>
-                    <div className="flex justify-between items-center mt-2 text-[11px] text-on-error-container font-medium">
-                      <span>
-                        Congelador #1
-                      </span>
-                      {' '}
-                      <span className="underline cursor-pointer">
-                        Llegada de Rotterdam prevista hoy 18:00
-                      </span>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
               <div className="bg-primary text-on-primary rounded-xl p-5 flex items-center justify-between gap-6 shadow-xs">
@@ -509,234 +355,25 @@ export default function AdminInventarioPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y-0 text-sm font-body" id="movements-tbody">
-                  <tr className="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Entrada">
-                    <td className="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
-                      24 Oct 2024 • 09:15
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-primary">
-                        <span className="material-symbols-outlined text-[15px] text-secondary">
-                          input
+                  {MOVIMIENTOS.map((mov) => (
+                    <tr key={mov.key} className="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Tienda">
+                      <td className="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">{formatFecha(mov.fecha)}</td>
+                      <td className="py-3.5 px-4">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-primary">
+                          <span className="material-symbols-outlined text-[15px] text-secondary">storefront</span> <span>Venta tienda</span>
                         </span>
-                        {' '}
-                        <span>
-                          Entrada por compra
-                        </span>
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 font-medium text-primary">
-                      Café Huila Especialidad{' '}
-                      <span className="block text-[11px] text-on-surface-variant font-normal">
-                        Lote HUI-2024-88 (Direct Trade)
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-right font-headline font-bold text-primary">
-                      <span className="text-secondary font-semibold">
-                        +
-                      </span>
-                      {' '}15.0 kg
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-on-secondary-fixed">
-                          AP
-                        </div>
-                        <span className="text-xs font-medium text-on-surface">
-                          Admin Paisabor
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Cocina">
-                    <td className="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
-                      24 Oct 2024 • 11:30
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-tertiary-fixed/60 text-on-tertiary-fixed">
-                        <span className="material-symbols-outlined text-[15px] text-tertiary">
-                          soup_kitchen
-                        </span>
-                        {' '}
-                        <span>
-                          Consumo en cocina
-                        </span>
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 font-medium text-primary">
-                      Queso Costeño Curado{' '}
-                      <span className="block text-[11px] text-on-surface-variant font-normal">
-                        Para preparación de Bandejas Paisa y Arepas
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-right font-headline font-bold text-on-surface">
-                      <span className="text-error font-semibold">
-                        -
-                      </span>
-                      {' '}4.5 kg
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[10px] font-bold text-primary">
-                          CM
-                        </div>
-                        <span className="text-xs font-medium text-on-surface">
-                          Chef Mayordomo
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Tienda">
-                    <td className="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
-                      24 Oct 2024 • 13:42
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant">
-                        <span className="material-symbols-outlined text-[15px] text-outline">
-                          point_of_sale
-                        </span>
-                        {' '}
-                        <span>
-                          Salida venta tienda
-                        </span>
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 font-medium text-primary">
-                      Harina P.A.N. Amarilla{' '}
-                      <span className="block text-[11px] text-on-surface-variant font-normal">
-                        Venta mostrador ticket #1094
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-right font-headline font-bold text-on-surface">
-                      <span className="text-error font-semibold">
-                        -
-                      </span>
-                      {' '}4 unidades
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[10px] font-bold text-outline">
-                          ST
-                        </div>
-                        <span className="text-xs font-medium text-on-surface">
-                          Sistema Tienda
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Merma">
-                    <td className="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
-                      23 Oct 2024 • 19:10
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-error-container text-on-error-container">
-                        <span className="material-symbols-outlined text-[15px] text-error">
-                          delete_outline
-                        </span>
-                        {' '}
-                        <span>
-                          Ajuste por merma
-                        </span>
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 font-medium text-primary">
-                      Plátano Macho Maduro{' '}
-                      <span className="block text-[11px] text-on-surface-variant font-normal">
-                        Maduración excesiva en tránsito
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-right font-headline font-bold text-error">
-                      <span className="font-semibold">
-                        -
-                      </span>
-                      {' '}3.0 kg
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[10px] font-bold text-primary">
-                          CM
-                        </div>
-                        <span className="text-xs font-medium text-on-surface">
-                          Chef Mayordomo
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Entrada">
-                    <td className="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
-                      23 Oct 2024 • 08:00
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-primary">
-                        <span className="material-symbols-outlined text-[15px] text-secondary">
-                          input
-                        </span>
-                        {' '}
-                        <span>
-                          Entrada por compra
-                        </span>
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 font-medium text-primary">
-                      Panela Trapiche Redonda{' '}
-                      <span className="block text-[11px] text-on-surface-variant font-normal">
-                        Importación Lote COL-901
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-right font-headline font-bold text-primary">
-                      <span className="text-secondary font-semibold">
-                        +
-                      </span>
-                      {' '}12.0 kg
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-on-secondary-fixed">
-                          AP
-                        </div>
-                        <span className="text-xs font-medium text-on-surface">
-                          Admin Paisabor
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-surface-container-low/40 transition-colors movement-row" data-type="Cocina">
-                    <td className="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">
-                      22 Oct 2024 • 17:50
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-tertiary-fixed/60 text-on-tertiary-fixed">
-                        <span className="material-symbols-outlined text-[15px] text-tertiary">
-                          soup_kitchen
-                        </span>
-                        {' '}
-                        <span>
-                          Consumo en cocina
-                        </span>
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 font-medium text-primary">
-                      Arepas de Chócolo Congeladas{' '}
-                      <span className="block text-[11px] text-on-surface-variant font-normal">
-                        Servicio cena especial 'Noche Paisa'
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-right font-headline font-bold text-on-surface">
-                      <span className="text-error font-semibold">
-                        -
-                      </span>
-                      {' '}15 packs
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[10px] font-bold text-primary">
-                          CM
-                        </div>
-                        <span className="text-xs font-medium text-on-surface">
-                          Chef Mayordomo
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                      <td className="py-3.5 px-4 font-medium text-primary">
+                        {mov.nombre} <span className="block text-[11px] text-on-surface-variant font-normal">Pedido #{mov.pedido}</span>
+                      </td>
+                      <td className="py-3.5 px-4 text-right font-headline font-bold text-primary">
+                        <span className="text-error font-semibold">-</span> {mov.cantidad} uds
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <span className="text-xs font-medium text-on-surface">Sistema (demo)</span>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -790,7 +427,7 @@ export default function AdminInventarioPage() {
         </div>
       </main>
     </div>
-    <EditarProductoModal open={editing} onClose={() => setEditing(false)} />
+    <EditarProductoModal itemId={editing} onClose={() => setEditing(null)} />
     </>
   );
 }

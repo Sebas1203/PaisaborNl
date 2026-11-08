@@ -1,5 +1,6 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/recuperar_contrase_a_paisabor
 /* eslint-disable @next/next/no-img-element */
+import { ItemImage } from '@/components/ItemImage';
 import Link from 'next/link';
 import { Go } from '@/components/ui/Go';
 
@@ -18,7 +19,7 @@ export default function RecuperarContrasenaPage() {
                 <div className="relative mb-6 group">
                   <div className="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center p-1 transition-transform duration-300 group-hover:scale-105">
                     <div className="w-full h-full rounded-full overflow-hidden bg-primary/5 flex items-center justify-center relative">
-                      <img className="w-full h-full object-cover" data-alt="Artisanal hand-crafted Paisa mascot portrait, warm terracotta and roasted coffee bean tones, minimalist woodblock illustration style, soft textured off-white background with Colombian culinary folklore aesthetic, warm studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiRgfl7YFm7PTrIz_M63FZ04ZqXuI-jgfG4xYYJzj0Yrqk9VarLe40kLZ-YTWLWPHtu-getRXGmxxAJhTdn_tDqYbCiyOw_K2avMheTR_4FlyTUpqH0BtMoOOKq9oM9wxRlWLJnowp6BANyF7fX8V2y0uGyDHtXX_0RtZln-JItR-bENxF6oUAZcAGvn7YJmX0L3cB76qLGnMPh8eEde4ge9gCMVAjZbK24gKFzDvdjfxwHXRfm0s0" />
+                      <ItemImage alt="Artisanal hand-crafted Paisa mascot portrait, warm terracotta and roasted coffee bean tones, minimalist woodblock illustration style, soft textured off-white background with Colombian culinary folklore aesthetic, warm studio lighting." className="w-full h-full object-cover" />
                     </div>
                   </div>
                   <span className="absolute -bottom-1 right-1 bg-secondary text-on-secondary p-1 rounded-full flex items-center justify-center shadow-xs">

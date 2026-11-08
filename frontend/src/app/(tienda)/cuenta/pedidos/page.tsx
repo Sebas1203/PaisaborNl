@@ -2,6 +2,15 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { Go } from '@/components/ui/Go';
+import { ItemImage } from '@/components/ItemImage';
+import { itemPorId } from '@/data';
+import { lineasConItem, PEDIDOS, RESERVAS, totales } from '@/data/mock';
+import { formatEUR, formatFecha, IVA_INCLUIDO, ORDER_STATUS_LABELS } from '@/lib/format';
+
+// MOCK: pedidos y reservas de ejemplo del cliente
+const MIS_PEDIDOS = PEDIDOS.filter((p) => p.cliente === "Cliente de ejemplo 1");
+const MIS_RESERVAS = RESERVAS.filter((r) => r.cliente === "Cliente de ejemplo 1");
+const RESERVA_LABELS = { pendiente: "Pendiente de confirmación", confirmada: "Confirmada", finalizada: "Finalizada", rechazada: "Rechazada" } as const;
 
 export default function CuentaPedidosPage() {
   return (
@@ -142,378 +151,93 @@ export default function CuentaPedidosPage() {
                 </div>
               </div>
               <div className="space-y-5" id="ordersList">
-                <article className="order-card group bg-surface-container-lowest rounded-lg shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden" data-category="shop" data-status="Confirmado">
-                  <div className="p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                    <div className="flex items-start gap-4 sm:gap-5 flex-1 min-w-0">
-                      <div className="w-14 h-14 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0 overflow-hidden relative">
-                        <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Golden baked Colombian arepas and savory empanadas arranged rustic style on dark handmade ceramic pottery with soft natural window illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGEHOe6RF4evyU9dC1q6ecHFerKBM0BmdifSJ6vgnOOg7-hWosqGy8MXi8o2gb1pNK4ZH7TD6LqFVfGJSBbLL55nNtAVg-nljrqg_46B2YN75fR-FMt47yGRxyPJ4rFK3bulyknNJhOHbn9BhrIvpbr4uCb4d9vFJLS2AWCeOwf9a7JS6Do00uPKSu0gpUh2EF7EWQUa_Yc-eIvN5goykVnzSHcyf0mUkQnEuLCh5VbTlGOqtLMaA9" />
-                        <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-primary/80 flex items-center justify-center">
-                          <span className="material-symbols-outlined text-[12px] text-on-primary">
-                            storefront
-                          </span>
+                {MIS_PEDIDOS.map((pedido) => {
+                  const lineas = lineasConItem(pedido.lineas);
+                  return (
+                    <article key={pedido.id} className="order-card group bg-surface-container-lowest rounded-lg shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden" data-category="shop" data-status={ORDER_STATUS_LABELS[pedido.estado]}>
+                      <div className="p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                        <div className="flex items-start gap-4 sm:gap-5 flex-1 min-w-0">
+                          <div className="w-14 h-14 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0 overflow-hidden relative">
+                            <ItemImage src={lineas[0]?.item.imagen} alt={lineas[0]?.item.nombre ?? pedido.id} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                            <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-primary/80 flex items-center justify-center">
+                              <span className="material-symbols-outlined text-[12px] text-on-primary">storefront</span>
+                            </div>
+                          </div>
+                          <div className="space-y-1.5 min-w-0">
+                            <div className="flex flex-wrap items-center gap-2.5">
+                              <span className={"font-headline font-bold text-base text-primary tracking-tight" + (pedido.estado === "cancelado" ? " line-through opacity-60" : "")}>
+                                Pedido #{pedido.id}
+                              </span>
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-label font-semibold bg-surface-container-high text-on-surface-variant">
+                                {ORDER_STATUS_LABELS[pedido.estado]}
+                              </span>
+                            </div>
+                            <div className="flex flex-wrap items-center text-xs font-label text-outline gap-x-4 gap-y-1">
+                              <span className="flex items-center gap-1">
+                                <span className="material-symbols-outlined text-sm text-secondary">calendar_today</span> {formatFecha(pedido.fecha)}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <span className="material-symbols-outlined text-sm text-secondary">{pedido.entrega === "domicilio" ? "local_shipping" : "storefront"}</span>{" "}
+                                {pedido.entrega === "domicilio" ? "Domicilio" : "Recogida en tienda"}
+                              </span>
+                            </div>
+                            <p className="text-xs font-body text-on-surface-variant line-clamp-1 pt-0.5">
+                              <strong className="font-semibold text-primary">Artículos:</strong>{" "}
+                              {lineas.map((l) => l.item.nombre + " (x" + l.cantidad + ")").join(", ")}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-4 pt-4 lg:pt-0 shrink-0">
+                          <div className="text-left lg:text-right">
+                            <span className="text-[10px] font-label uppercase tracking-widest text-outline block">Total · {IVA_INCLUIDO}</span>
+                            <span className="font-headline text-2xl font-bold text-primary">{formatEUR(totales(pedido.lineas).total)}</span>
+                          </div>
+                          <Go href={"/cuenta/pedidos/" + pedido.id} className="px-4 py-2 rounded-lg bg-primary text-on-primary font-label text-xs font-medium hover:bg-primary-container transition-all flex items-center gap-1.5 shadow-xs">
+                            <span>Ver Detalle del Pedido</span> <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                          </Go>
                         </div>
                       </div>
-                      <div className="space-y-1.5 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2.5">
-                          <span className="font-headline font-bold text-base text-primary tracking-tight">
-                            Pedido Tienda #PSB-2025-4892
-                          </span>
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-label font-semibold bg-[#e7efe6] text-[#24532b]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#24532b] animate-pulse"></span>
-                            {' '}Confirmado
-                          </span>
+                    </article>
+                  );
+                })}
+                {MIS_RESERVAS.map((reserva) => {
+                  const plato = itemPorId(reserva.platoId);
+                  if (!plato) return null;
+                  return (
+                    <article key={reserva.id} className="order-card group bg-surface-container-lowest rounded-lg shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden" data-category="catering">
+                      <div className="p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                        <div className="flex items-start gap-4 sm:gap-5 flex-1 min-w-0">
+                          <div className="w-14 h-14 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0 overflow-hidden relative">
+                            <ItemImage src={plato.imagen} alt={plato.nombre} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                          </div>
+                          <div className="space-y-1.5 min-w-0">
+                            <div className="flex flex-wrap items-center gap-2.5">
+                              <span className="font-headline font-bold text-base text-primary tracking-tight">Reserva #{reserva.id}</span>
+                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-label font-semibold bg-secondary-fixed text-on-secondary-fixed-variant">
+                                {RESERVA_LABELS[reserva.estado]}
+                              </span>
+                            </div>
+                            <div className="flex flex-wrap items-center text-xs font-label text-outline gap-x-4 gap-y-1">
+                              <span className="flex items-center gap-1 font-medium text-secondary">
+                                <span className="material-symbols-outlined text-sm">event</span> {formatFecha(reserva.fecha)}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <span className="material-symbols-outlined text-sm">group</span> {reserva.porciones} porciones
+                              </span>
+                            </div>
+                            <p className="text-xs font-body text-on-surface-variant line-clamp-1 pt-0.5">
+                              <strong className="font-semibold text-primary">Especial:</strong> {plato.nombre} · Solo fines de semana · bajo reserva
+                            </p>
+                          </div>
                         </div>
-                        <div className="flex flex-wrap items-center text-xs font-label text-outline gap-x-4 gap-y-1">
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm text-secondary">
-                              calendar_today
-                            </span>
-                            {' '}Hoy, 18 Mayo 2025
-                          </span>
-                          {' '}
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm text-secondary">
-                              local_shipping
-                            </span>
-                            {' '}Domicilio Ámsterdam (Hoy 18:00 - 20:00)
-                          </span>
-                        </div>
-                        <p className="text-xs font-body text-on-surface-variant line-clamp-1 pt-0.5">
-                          <strong className="font-semibold text-primary">
-                            Artículos:
-                          </strong>
-                          {' '}Pack Arepas de Choclo (x2), Docena Empanadas Paisas (x1), Arequipe de Antaño
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-4 pt-4 lg:pt-0 shrink-0">
-                      <div className="text-left lg:text-right">
-                        <span className="text-[10px] font-label uppercase tracking-widest text-outline block">
-                          Total pagado
-                        </span>
-                        {' '}
-                        <span className="font-headline text-2xl font-bold text-primary">
-                          €42.50
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Go href="/cuenta/pedidos/PSB-2025-4892" className="px-4 py-2 rounded-lg bg-primary text-on-primary font-label text-xs font-medium hover:bg-primary-container transition-all flex items-center gap-1.5 shadow-xs">
-                          <span>
-                            Ver Detalle del Pedido
-                          </span>
-                          {' '}
-                          <span className="material-symbols-outlined text-sm">
-                            arrow_forward
-                          </span>
-                        </Go>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-surface-container-low px-6 sm:px-7 py-2.5 flex items-center justify-between text-xs font-label">
-                    <span className="flex items-center gap-2 text-on-surface-variant">
-                      <span className="material-symbols-outlined text-secondary text-base">
-                        moped
-                      </span>
-                      {' '}En preparación artesanal en taller Prinsengracht para ruta vespertina.
-                    </span>
-                    {' '}
-                    <span className="text-secondary font-semibold hover:underline cursor-pointer hidden sm:inline">
-                      Rastrear envío →
-                    </span>
-                  </div>
-                </article>
-                <article className="order-card group bg-surface-container-lowest rounded-lg shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden" data-category="catering" data-status="Pendiente">
-                  <div className="p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                    <div className="flex items-start gap-4 sm:gap-5 flex-1 min-w-0">
-                      <div className="w-14 h-14 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0 overflow-hidden relative">
-                        <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Artisanal long banquet table prepared for private catering in Amsterdam, rustic terracotta plateware, warm candlelight, fresh plantain chips and Colombian culinary banquet presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbJqbZDKgvbRq7wx06-N_8iDVwpWeBl65GWRjh5jq93kyVlbqYcLybsl32t2wSQqsjJJhNfQNve_b3KhMgzR-pbcA2GzSYLL2u-XOfvFEwscrl-QT0y1grVEAFm1UlyAfJguCshnV--rL7n8emexjxZYG4-8XdFWVHV5cZGPXXJMYPvGWflcZyLm6fdEYR17KGLurvZXkeb_4KD2QbrLS1o8Qln6A052Wblq5M4esq5wPiC60JbSPV" />
-                        <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-secondary flex items-center justify-center">
-                          <span className="material-symbols-outlined text-[12px] text-on-secondary">
-                            outdoor_grill
-                          </span>
+                        <div className="text-left lg:text-right shrink-0">
+                          <span className="text-[10px] font-label uppercase tracking-widest text-outline block">Importe estimado · {IVA_INCLUIDO}</span>
+                          <span className="font-headline text-2xl font-bold text-primary">{formatEUR(plato.precio * reserva.porciones)}</span>
                         </div>
                       </div>
-                      <div className="space-y-1.5 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2.5">
-                          <span className="font-headline font-bold text-base text-primary tracking-tight">
-                            Reserva Catering #CAT-2025-0814
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-label font-semibold bg-secondary-fixed text-on-secondary-fixed-variant">
-                            <span className="material-symbols-outlined text-[13px]">
-                              pending
-                            </span>
-                            {' '}Reserva pendiente de confirmación
-                          </span>
-                        </div>
-                        <div className="flex flex-wrap items-center text-xs font-label text-outline gap-x-4 gap-y-1">
-                          <span className="flex items-center gap-1 font-medium text-secondary">
-                            <span className="material-symbols-outlined text-sm">
-                              event
-                            </span>
-                            {' '}Fecha de evento: 14 Junio 2025
-                          </span>
-                          {' '}
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm">
-                              group
-                            </span>
-                            {' '}25 comensales
-                          </span>
-                          {' '}
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm">
-                              room_service
-                            </span>
-                            {' '}Servicio a domicilio con chef
-                          </span>
-                        </div>
-                        <p className="text-xs font-body text-on-surface-variant line-clamp-1 pt-0.5">
-                          <strong className="font-semibold text-primary">
-                            Servicio:
-                          </strong>
-                          {' '}Banquete Fiesta Tradicional Paisa (Cazuelas de fríjoles, chicharrón crocante, plátano maduro y arepa de arriero)
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-4 pt-4 lg:pt-0 shrink-0">
-                      <div className="text-left lg:text-right">
-                        <span className="text-[10px] font-label uppercase tracking-widest text-outline block">
-                          Presupuesto estimado
-                        </span>
-                        {' '}
-                        <span className="font-headline text-2xl font-bold text-primary">
-                          €525.00
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Go href="/cuenta/pedidos/PSB-2025-4892" className="px-4 py-2 rounded-lg bg-surface-container-high text-primary font-label text-xs font-medium hover:bg-surface-variant transition-all flex items-center gap-1.5">
-                          <span>
-                            Ver Detalle
-                          </span>
-                          {' '}
-                          <span className="material-symbols-outlined text-sm">
-                            arrow_forward
-                          </span>
-                        </Go>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-surface-container-low/70 px-6 sm:px-7 py-2.5 flex items-center justify-between text-xs font-label">
-                    <span className="flex items-center gap-2 text-on-surface-variant">
-                      <span className="material-symbols-outlined text-secondary text-base">
-                        info
-                      </span>
-                      {' '}Nuestro equipo culinario está revisando requerimientos de cocina y disponibilidad logística.
-                    </span>
-                    {' '}
-                    <span className="text-secondary font-semibold hover:underline cursor-pointer hidden sm:inline">
-                      Modificar solicitud
-                    </span>
-                  </div>
-                </article>
-                <article className="order-card group bg-surface-container-lowest rounded-lg shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden" data-category="shop" data-status="Entregado">
-                  <div className="p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                    <div className="flex items-start gap-4 sm:gap-5 flex-1 min-w-0">
-                      <div className="w-14 h-14 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0 overflow-hidden relative">
-                        <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Freshly baked Colombian pandebono cheese breads resting on linen kitchen fabric beside a small artisanal cup of specialty black coffee." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2yyifx65VjG5R_Z1ZjSBRQno5nQU4tNz_d5ZR1W6lJn0aHzc-9pgfdq9kk9kcPqnijTaNenK5M1p68Z1lJTOXyFA6bmlKihrkBn28XUTBf0VN5PpSUeEPjnWfuupmfuvZoAzi1YqALAPKykGG-fSjo_Fh0ZzEddm8rxcLyZPDsYUsRoxHOXT_YRw6HCeoxv41x-77qS0fTWGqgK1acbnocJer7aKOKPhG4g-Zunc182NseOm31GM3" />
-                        <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-primary/80 flex items-center justify-center">
-                          <span className="material-symbols-outlined text-[12px] text-on-primary">
-                            storefront
-                          </span>
-                        </div>
-                      </div>
-                      <div className="space-y-1.5 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2.5">
-                          <span className="font-headline font-bold text-base text-primary tracking-tight">
-                            Pedido Tienda #PSB-2025-3910
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-label font-semibold bg-surface-container-high text-primary">
-                            <span className="material-symbols-outlined text-[13px]">
-                              check_circle
-                            </span>
-                            {' '}Entregado
-                          </span>
-                        </div>
-                        <div className="flex flex-wrap items-center text-xs font-label text-outline gap-x-4 gap-y-1">
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm text-secondary">
-                              calendar_today
-                            </span>
-                            {' '}02 Mayo 2025
-                          </span>
-                          {' '}
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm text-secondary">
-                              pin_drop
-                            </span>
-                            {' '}Retiro en Taller Prinsengracht
-                          </span>
-                        </div>
-                        <p className="text-xs font-body text-on-surface-variant line-clamp-1 pt-0.5">
-                          <strong className="font-semibold text-primary">
-                            Artículos:
-                          </strong>
-                          {' '}Pandebonos tradicionales x6, Café Huila 250g (Grano entero tueste medio)
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-4 pt-4 lg:pt-0 shrink-0">
-                      <div className="text-left lg:text-right">
-                        <span className="text-[10px] font-label uppercase tracking-widest text-outline block">
-                          Total pagado
-                        </span>
-                        {' '}
-                        <span className="font-headline text-2xl font-bold text-primary">
-                          €35.90
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Go href="/cuenta/pedidos/PSB-2025-4892" className="px-3.5 py-2 rounded-lg bg-surface-container-low text-primary font-label text-xs font-medium hover:bg-surface-container transition-all">
-                          Ver Detalle
-                        </Go>
-                        {' '}
-                        <Go href="/carrito" className="px-4 py-2 rounded-lg bg-secondary text-on-secondary font-label text-xs font-medium hover:bg-secondary/90 transition-all flex items-center gap-1.5 shadow-xs">
-                          <span className="material-symbols-outlined text-sm">
-                            replay
-                          </span>
-                          {' '}
-                          <span>
-                            Repetir Pedido
-                          </span>
-                        </Go>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-                <article className="order-card group bg-surface-container-lowest rounded-lg shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden" data-category="catering" data-status="Entregado">
-                  <div className="p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                    <div className="flex items-start gap-4 sm:gap-5 flex-1 min-w-0">
-                      <div className="w-14 h-14 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0 overflow-hidden relative">
-                        <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Traditional gourmet Colombian lechona served in clay baking dish with crispy roasted skin, seasoned yellow rice and peas, garnished with lime wedges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2FgSvVwP0LC-lp9y3BhbLr8NNcG4sbZHNyMGQd0jB-KH24AGRGOwrhxNE5zn4rgCbbZ2s2JKTZkLo3lpXO4pD2CxRXL6lLjqGNJsmMwRB6bzVrKlzuKu2R4CoYqwpHPkc9RKdI_TkQgty2hIjeWSUX9WG0uX7FYchrTS-_3XZT8wCO-k0iTFenSSRjTS7TltI2Q8WoEl0TMD3YdmHQ0nz7CW-abTwc2lIr8ETDwn2tko6m0tUd070" />
-                        <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-secondary flex items-center justify-center">
-                          <span className="material-symbols-outlined text-[12px] text-on-secondary">
-                            restaurant_menu
-                          </span>
-                        </div>
-                      </div>
-                      <div className="space-y-1.5 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2.5">
-                          <span className="font-headline font-bold text-base text-primary tracking-tight">
-                            Reserva Menú #RES-2025-0211
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-label font-semibold bg-surface-container-high text-primary">
-                            <span className="material-symbols-outlined text-[13px]">
-                              check_circle
-                            </span>
-                            {' '}Entregado
-                          </span>
-                        </div>
-                        <div className="flex flex-wrap items-center text-xs font-label text-outline gap-x-4 gap-y-1">
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm text-secondary">
-                              event
-                            </span>
-                            {' '}Fecha de evento: 26 Abril 2025
-                          </span>
-                          {' '}
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm text-secondary">
-                              diversity_3
-                            </span>
-                            {' '}8 Pax
-                          </span>
-                        </div>
-                        <p className="text-xs font-body text-on-surface-variant line-clamp-1 pt-0.5">
-                          <strong className="font-semibold text-primary">
-                            Menú Especial:
-                          </strong>
-                          {' '}Lechona Tolimense Familiar (8 Pax) con arepas redondas y ají casero paisa
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-4 pt-4 lg:pt-0 shrink-0">
-                      <div className="text-left lg:text-right">
-                        <span className="text-[10px] font-label uppercase tracking-widest text-outline block">
-                          Total pagado
-                        </span>
-                        {' '}
-                        <span className="font-headline text-2xl font-bold text-primary">
-                          €74.00
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Go href="/cuenta/pedidos/PSB-2025-4892" className="px-4 py-2 rounded-lg bg-surface-container-high text-primary font-label text-xs font-medium hover:bg-surface-variant transition-all flex items-center gap-1.5">
-                          <span>
-                            Ver Detalle
-                          </span>
-                          {' '}
-                          <span className="material-symbols-outlined text-sm">
-                            arrow_forward
-                          </span>
-                        </Go>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-                <article className="order-card group bg-surface-container-lowest rounded-lg shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden opacity-85 hover:opacity-100" data-category="shop" data-status="Cancelado">
-                  <div className="p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                    <div className="flex items-start gap-4 sm:gap-5 flex-1 min-w-0">
-                      <div className="w-14 h-14 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0 overflow-hidden relative">
-                        <img className="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-300" data-alt="Traditional raw corn dough and wooden rolling pin on flour-dusted dark wooden board in an artisanal kitchen setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhRFFxoH1nJTKAbFbXHAYERNMwxOmNr3Tq2zcIRaFysIKLxXhlW_Yh5-O8m3NkUNd9hSB19dw38CYvRGhuNBX75cD-aCxE4PXL1JU0lFosq7jpNJAhe3cuV-dPH31f5TCcw9PDFrI6KY13C6kLHYfHTHn-Al_9xznjCG1ew3dMYiCrOMFuJMURU0oATN7Veuj4OjcBb0f1fWoUJ51b9qV2U1tpdwr_MXE8D2YBDKpGfrY6-KrGLW2l" />
-                        <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-outline flex items-center justify-center">
-                          <span className="material-symbols-outlined text-[12px] text-on-primary">
-                            close
-                          </span>
-                        </div>
-                      </div>
-                      <div className="space-y-1.5 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2.5">
-                          <span className="font-headline font-bold text-base text-primary/80 tracking-tight line-through">
-                            Pedido Tienda #PSB-2025-1049
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-label font-semibold bg-error-container/70 text-on-error-container">
-                            <span className="material-symbols-outlined text-[13px]">
-                              cancel
-                            </span>
-                            {' '}Cancelado
-                          </span>
-                        </div>
-                        <div className="flex flex-wrap items-center text-xs font-label text-outline gap-x-4 gap-y-1">
-                          <span className="flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm">
-                              calendar_today
-                            </span>
-                            {' '}15 Marzo 2025
-                          </span>
-                          {' '}
-                          <span className="text-error font-medium">
-                            Motivo: Cancelado a solicitud del cliente
-                          </span>
-                        </div>
-                        <p className="text-xs font-body text-outline line-clamp-1 pt-0.5">
-                          Pack Arepas de Queso Doble Crema x4, Suero Costeño Artesanal (200g)
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-4 pt-4 lg:pt-0 shrink-0">
-                      <div className="text-left lg:text-right">
-                        <span className="text-[10px] font-label uppercase tracking-widest text-outline block">
-                          Reembolsado
-                        </span>
-                        {' '}
-                        <span className="font-headline text-2xl font-bold text-outline">
-                          €28.00
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Go href="/cuenta/pedidos/PSB-2025-4892" className="px-4 py-2 rounded-lg bg-surface-container-low text-primary font-label text-xs font-medium hover:bg-surface-container transition-all">
-                          Ver Detalle
-                        </Go>
-                      </div>
-                    </div>
-                  </div>
-                </article>
+                    </article>
+                  );
+                })}
               </div>
               <div className="hidden py-16 text-center space-y-3 bg-surface-container-low rounded-lg" id="noResultsState">
                 <span className="material-symbols-outlined text-4xl text-outline">

@@ -1,18 +1,14 @@
 import type { OrderStatus } from '@/types';
 
-// Los precios de la tienda incluyen BTW: 9 % en alimentos, 21 % en servicios (logística).
-export const BTW_ALIMENTOS = 0.09;
-export const BTW_SERVICIOS = 0.21;
+// "€ 17,00". Es el formato de nl-NL; es-NL formatearía "17,00 €".
+const EUR = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' });
 
-/** Formato del diseño: "€8.50" */
 export function formatEUR(amount: number): string {
-  return `€${amount.toFixed(2)}`;
+  return EUR.format(amount);
 }
 
-/** Parte de BTW contenida en un importe que ya la incluye */
-export function btwIncluido(total: number, tasa: number = BTW_ALIMENTOS): number {
-  return total - total / (1 + tasa);
-}
+/** Texto que acompaña a los precios: el catálogo ya incluye el IVA (BTW) */
+export const IVA_INCLUIDO = 'IVA 9% incluido';
 
 export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
   pendiente: 'Pendiente',
@@ -23,3 +19,10 @@ export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
   entregado: 'Entregado',
   cancelado: 'Cancelado',
 };
+
+const DIAS: Record<string, string> = { sabado: 'Sábado', domingo: 'Domingo' };
+export const formatDias = (dias: string[] = []) => dias.map((d) => DIAS[d] ?? d).join(' · ');
+
+export function formatFecha(iso: string): string {
+  return new Date(`${iso}T12:00:00`).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+}

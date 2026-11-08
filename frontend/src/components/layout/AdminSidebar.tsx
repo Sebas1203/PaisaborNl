@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 // Sidebar y header de administración (variante "Hearth & Co." de administrador_inventario)
 const AVATAR_URL =
-  'https://lh3.googleusercontent.com/aida/AEtjO1VDeI_wO3h2Ypsq_ZLb3paIiXqbhbxxPg4DQ3mS0tHlU-iT9PkISzXBry48naEWfgxC1PgLtcDvz5clucpfNumLU6iVDrQRcoYDMF3HFCkJjAyzu-chGzBcaW7trn0PJD-aRGAH9CNHDdtJ0JtK_0GLheAHgxZZfTzF1-Sel9vVzgELje3PD2115_OpTXGsgITIhKtqwTfFGbDFaZ8HoOlAQ0dbQ6262JWR5qOpczdNx96XHzldmOyllV22JJcJOBaZaNRIDtVAkA';
+  '/images/logo/paisabor-logo-192.png';
 
 const LINKS = [
   { href: '/admin', label: 'Panel', icon: 'space_dashboard' },

@@ -1,12 +1,11 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/pago_exitoso_pedido_confirmado_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { ClearCartOnMount } from '@/features/cart/ClearCartOnMount';
+import { ResumenUltimoPedido, UltimoPedidoImporte } from '@/components/order/ResumenPedido';
 
 export default function CheckoutExitoPage() {
   return (
     <>
-      <ClearCartOnMount />
       <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
     <div className="bg-surface font-body text-on-surface selection:bg-secondary-container selection:text-on-secondary-container antialiased">
       <main className="w-full pt-28 bg-surface min-h-[calc(100vh-16rem)]">
@@ -180,7 +179,7 @@ export default function CheckoutExitoPage() {
                         Total Facturado
                       </p>
                       <div className="font-headline font-extrabold text-3xl sm:text-4xl text-surface-bright mt-1 tracking-tight">
-                        €42.50
+                        <UltimoPedidoImporte parte="total" />
                       </div>
                     </div>
                     <div className="mt-4 pt-3 text-[11px] text-surface-variant/80 flex items-center justify-between">
@@ -189,156 +188,13 @@ export default function CheckoutExitoPage() {
                       </span>
                       {' '}
                       <span className="font-semibold text-surface-bright">
-                        9% BTW (€3.51 incl.)
+                        IVA 9% (<UltimoPedidoImporte parte="iva" /> incl.)
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className="mt-12">
-                  <div className="flex items-center justify-between mb-6">
-                    <div>
-                      <span className="text-xs uppercase font-label font-bold tracking-wider text-secondary">
-                        La Canasta
-                      </span>
-                      <h2 className="font-headline font-bold text-xl text-primary">
-                        Desglose de Productos
-                      </h2>
-                    </div>
-                    <span className="text-xs font-label text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-full">
-                      3 ítems artesanales
-                    </span>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-surface-container-low p-4 rounded-xl gap-4">
-                      <div className="flex items-center gap-4 min-w-0">
-                        <img alt="Pack Arepas de Choclo" className="w-16 h-16 rounded-lg object-cover shrink-0 shadow-xs" data-alt="Close up artisanal Colombian arepas de choclo golden yellow with fresh melted cheese, rustic terracotta board, cozy warm atmospheric kitchen lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6jQcfQQ6o5WBjlEoV8c-sUPjsf9LUC3eBVS9OJg4yY10twalxpgCP5DVe2WmqLo7zeqZVs7ze8o-_-VXA9DERZTXSGCmb15sz075HXMaqr10Ke-Ma1BTkNAp00p8Ank1RByDLbx08hyxD-BLLtO9VEEg4qiauHB4xac4XoGsoclT7NvtxUveFQGoA-9U6xHFHHLxfkWpEnN1mH_nxBkiuvjc0ZYdrf9DwD1iPSPjWYJhrPfBqZPrE" />
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-2">
-                            <h3 className="font-headline font-bold text-base text-primary truncate">
-                              Pack Arepas de Choclo Tradicionales
-                            </h3>
-                            <span className="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase">
-                              Maíz Dulce
-                            </span>
-                          </div>
-                          <p className="text-xs text-on-surface-variant mt-0.5">
-                            4 unidades al vacío · Elaboradas con maíz tierno y queso campesino fresco
-                          </p>
-                          <p className="text-xs text-primary/70 font-medium mt-1">
-                            Cantidad: 2 paquetes
-                          </p>
-                        </div>
-                      </div>
-                      <div className="text-right shrink-0 self-end sm:self-center">
-                        <p className="font-headline font-bold text-base text-primary">
-                          €15.00
-                        </p>
-                        <p className="text-[11px] text-on-surface-variant">
-                          €7.50 c/u
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-surface-container-low p-4 rounded-xl gap-4">
-                      <div className="flex items-center gap-4 min-w-0">
-                        <img alt="Empanadas Artesanales" className="w-16 h-16 rounded-lg object-cover shrink-0 shadow-xs" data-alt="Traditional Colombian empanadas crispy golden pastry with beef and potato filling served with spicy aji sauce in small ceramic ramekin, natural moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBig5yYctk_ctb7f3QMLa2k0ryOCb3j7tYWoN1GXa-MM1TxA2J4SVTpm91gjT7oL3Uqn6GFZTOiSfjWKTHjsXs3o6irJSa8AakLFFl6W3L1nNBNOBqiwTEoSVBotBQH6VmW1aTt6bpjTwSGn8ycNO70zE9f06GgzF0ln4ir3qtX_q5peROLOtF4uVE5k-53eHCRiN9HdNzC-aRIdjkT2htS7CL4G4T-nYu2W0gltoFmp1UP1x9pjPXN" />
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-2">
-                            <h3 className="font-headline font-bold text-base text-primary truncate">
-                              Docena de Empanadas Paisas Horneadas
-                            </h3>
-                            <span className="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase">
-                              Horno de Barro
-                            </span>
-                          </div>
-                          <p className="text-xs text-on-surface-variant mt-0.5">
-                            Masa crujiente de maíz, guiso de sobrebarriga y papa criolla + Ají casero (150ml)
-                          </p>
-                          <p className="text-xs text-primary/70 font-medium mt-1">
-                            Cantidad: 1 docena
-                          </p>
-                        </div>
-                      </div>
-                      <div className="text-right shrink-0 self-end sm:self-center">
-                        <p className="font-headline font-bold text-base text-primary">
-                          €19.50
-                        </p>
-                        <p className="text-[11px] text-on-surface-variant">
-                          Incluye ají
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-surface-container-low p-4 rounded-xl gap-4">
-                      <div className="flex items-center gap-4 min-w-0">
-                        <img alt="Arequipe de Paila" className="w-16 h-16 rounded-lg object-cover shrink-0 shadow-xs" data-alt="Artisanal glass jar of Colombian Arequipe dulce de leche spread, wooden spoon dripping caramel, warm earthy tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmLMsuWCUbJHBzQfMwVnrt9Os-FNDOBs42vnBzxbunzmK3C7Evj3iU-lpJUlY_YfcyXkALFpveZC1yVBzemo2sI31lnjaLOr6dNVpIHylxCIhNj2-BfVzO235T1bPyiXCfT0kAougGQZhEYfq9xjIEYzRz1imh9RnCRQV-vwrDl_j2Yn_jmfR0_8OVZLgDfnidZaBOYpX56O_f3gosxbAc8OlYXIgxqv62ajBklGOBxT-smAPoki9L" />
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-2">
-                            <h3 className="font-headline font-bold text-base text-primary truncate">
-                              Arequipe de Antaño a Fuego Lento
-                            </h3>
-                            <span className="bg-surface-variant text-on-surface-variant text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase">
-                              250g Frasco
-                            </span>
-                          </div>
-                          <p className="text-xs text-on-surface-variant mt-0.5">
-                            Leche entera de granja holandesa y panela orgánica de caña colombiana
-                          </p>
-                          <p className="text-xs text-primary/70 font-medium mt-1">
-                            Cantidad: 1 frasco
-                          </p>
-                        </div>
-                      </div>
-                      <div className="text-right shrink-0 self-end sm:self-center">
-                        <p className="font-headline font-bold text-base text-primary">
-                          €5.50
-                        </p>
-                        <p className="text-[11px] text-on-surface-variant">
-                          Envase de vidrio
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-6 p-6 bg-surface-container rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div className="space-y-1">
-                      <p className="text-xs text-on-surface-variant">
-                        Dirección de entrega seleccionada:
-                      </p>
-                      <p className="font-medium text-sm text-primary flex items-center gap-1.5">
-                        <span className="material-symbols-outlined text-secondary text-sm">
-                          pin_drop
-                        </span>
-                        {' '}Herengracht 342, 1016 CG Ámsterdam (De Pijp / Jordaan Hub)
-                      </p>
-                    </div>
-                    <div className="w-full sm:w-64 space-y-2 text-xs">
-                      <div className="flex justify-between text-on-surface-variant">
-                        <span>
-                          Subtotal alimentos
-                        </span>
-                        {' '}
-                        <span className="font-medium text-on-surface">
-                          €40.00
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-on-surface-variant">
-                        <span>
-                          Envío express local
-                        </span>
-                        {' '}
-                        <span className="font-medium text-secondary">
-                          €2.50
-                        </span>
-                      </div>
-                      <div className="flex justify-between font-bold text-sm text-primary pt-2">
-                        <span>
-                          Total cancelado
-                        </span>
-                        {' '}
-                        <span>
-                          €42.50
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                <div className="mt-12 bg-surface-container-low rounded-xl p-6 space-y-4">
+                  <ResumenUltimoPedido titulo="Desglose de Productos" />
                 </div>
                 <div className="mt-10 p-6 bg-surface-bright rounded-xl shadow-xs">
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

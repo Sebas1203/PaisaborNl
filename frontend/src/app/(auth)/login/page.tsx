@@ -7,14 +7,14 @@ export default function LoginPage() {
   return (
     <>
     <div className="bg-surface font-body text-on-surface h-screen w-full relative overflow-hidden flex items-center justify-center">
-      <div className="absolute inset-0 z-0 bg-cover bg-center" data-alt="A beautifully blurred, atmospheric photograph of a traditional Colombian coffee hacienda at dawn. The scene features warm, golden morning light filtering through lush green coffee plants, casting a soft, inviting glow. The colors are dominated by rich earthy browns, terracotta accents, and soft cream highlights. The image is highly cinematic, deliberately out of focus to serve as an elegant, serene UI background that exudes a premium, tactile, and tranquil aesthetic without overwhelming the foreground." style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHNjMaHKwtopWEt4Hoal5DTHdSy1HYEVCSA3iDXMQqP6evzwbbzZx56PXoqGNFO_macvX9B9_gwOwrRP_oYuTUVulzsL1J87WN9JejFSxmDfkVqueOWJjmv2HxbB6A7k00iI5Q-U81sEc3FhoqjDgE5N8wOU_6tUIOr6IivH0wSWFy2oq6709oLzow4KBMajaltxuM_GE1Dhio03vlDt_AVxBB6LWghZFWKvasFDSBIOnYFzlngVe4')" }}></div>
+      <div className="absolute inset-0 z-0 bg-cover bg-center" data-alt="A beautifully blurred, atmospheric photograph of a traditional Colombian coffee hacienda at dawn. The scene features warm, golden morning light filtering through lush green coffee plants, casting a soft, inviting glow. The colors are dominated by rich earthy browns, terracotta accents, and soft cream highlights. The image is highly cinematic, deliberately out of focus to serve as an elegant, serene UI background that exudes a premium, tactile, and tranquil aesthetic without overwhelming the foreground."></div>
       <div className="absolute inset-0 z-0 bg-linear-to-t from-primary/80 via-primary/40 to-surface/30 mix-blend-multiply"></div>
       <div className="absolute inset-0 z-0 bg-surface/20 backdrop-blur-xs"></div>
       <main className="relative z-10 w-full max-w-md mx-4 md:mx-auto bg-surface-container-lowest rounded-xl p-8 md:p-12 shadow-[0_40px_40px_-10px_rgba(28,28,25,0.05)]">
         <header className="mb-10 text-center">
           <div className="flex justify-center mb-4">
             <div className="h-20 w-20 rounded-full bg-surface-container-high border border-surface-container-highest overflow-hidden flex items-center justify-center shadow-xs">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYNzKV1q-8t7Ox2DJSYKLn9qkiC4A3gGX6x2QXKYieoKbn3dc8iT_OSwgvIow3lGEOtY0FfB-bwCpvJk3m4SoqiJRZItb5tBAIoo8YTMc4rvzWZq8EZsL_LJbhNGxjVepNlaBbHSamREbcGQbwpVEohEd53UmhIYUcLdF-De4kV7xHQy_xA1NwxODMswdCetUTbKol940iFCE9E93K23UrZUzxFZBh2O_Dxrk3rTgG1IXFXjEevpebv4Y8IKqgwY7jCQ" alt="Paisabor Logo" className="w-full h-full object-contain p-2" />
+              <img alt="Paisabor" className="w-full h-full object-contain p-2" src="/images/logo/paisabor-logo-192.png" />
             </div>
           </div>
           <h1 className="font-headline text-display text-4xl md:text-5xl font-extrabold text-primary tracking-tighter mb-2 mt-2">

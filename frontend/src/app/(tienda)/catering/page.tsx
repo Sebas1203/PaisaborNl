@@ -1,6 +1,11 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/catering_paisabor
 /* eslint-disable @next/next/no-img-element */
 import { Go } from '@/components/ui/Go';
+import { ItemImage } from '@/components/ItemImage';
+import { PLATOS } from '@/data';
+import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
+
+const PLATOS_CATERING = PLATOS.filter((plato) => plato.disponible);
 
 export default function CateringPage() {
   return (
@@ -72,7 +77,7 @@ export default function CateringPage() {
               <div className="lg:col-span-5 relative">
                 <div className="relative mx-auto max-w-md lg:max-w-none">
                   <div className="rounded-xl overflow-hidden shadow-2xl bg-primary-container p-2 transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                    <img className="w-full h-80 sm:h-96 object-cover rounded-lg" data-alt="A lavish banquet buffet table styled with authentic Colombian earthenware and cazuelas de barro, featuring roasted lechona tolimense with crisp golden crackling, steaming arepitas, and vibrant plantain chips, set in an elegant warm-lit contemporary dining hall in the Netherlands with lush floral accents and terracotta tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOxeNldMzWaT2mM4py1LCZVU9JhacxxJBSIWc3sKBYzGfjaSww_pkz0aojHhHWvoUB7Mb4Jsv8v7MZJNl64MrHSKyxZy3GmcFkfJbYJf0LWCGLKieJrxp5RKYVFwkWtERXImhjTR27WoQCtynGOU8FgVrzhqOiUWuxxQOE3D6gYvJaC1enojfNVs-DS7kE0xzPpAAx8vjQB051Kswn8nbI_6TBoTNc9U-Pm34DDqjqoqVVx4xTh_cZ" />
+                    <ItemImage alt="A lavish banquet buffet table styled with authentic Colombian earthenware and cazuelas de barro, featuring roasted lechona tolimense with crisp golden crackling, steaming arepitas, and vibrant plantain chips, set in an elegant warm-lit contemporary dining hall in the Netherlands with lush floral accents and terracotta tones." className="w-full h-80 sm:h-96 object-cover rounded-lg" />
                   </div>
                   <div className="absolute -bottom-6 -left-4 sm:-left-8 bg-surface-container-lowest text-on-surface p-4 sm:p-5 rounded-xl shadow-xl max-w-xs flex items-center gap-3.5">
                     <div className="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed flex-shrink-0">
@@ -140,211 +145,33 @@ export default function CateringPage() {
                   Nuestra Oferta Culinaria
                 </span>
                 <h2 className="font-headline font-bold text-3xl sm:text-4xl text-primary tracking-tight">
-                  Paquetes de Catering Diseñados para Impactar
+                  Lo que preparamos para tu evento
                 </h2>
                 <p className="text-on-surface-variant text-base leading-relaxed">
-                  Desde celebraciones informales hasta recepciones diplomáticas de alta gama. Cada paquete incluye opción de servicio asistido con personal o entrega gourmet en bandejas de mantenimiento térmico.
+                  Platos típicos de nuestro menú, además de empanadas, fritos y bebidas. El presupuesto final se confirma según el número de invitados.
                 </p>
+                <p className="font-label text-xs uppercase tracking-widest text-on-surface-variant">Precios por plato · {IVA_INCLUIDO}</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-                <div className="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className="relative bg-surface-container-low h-64 overflow-hidden">
-                    <img className="w-full h-full object-cover" data-alt="Generous platter of authentic golden mini Colombian empanadas with fresh aji picante dips, warm cheese pandebonos, and round buñuelos served alongside artisanal pour-over specialty coffee in rustic ceramic cups." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhSo9MncmocSsbwYxdbueNQ0U-ArK4FmvftUQBqnoF66NgpF98Ox2eokVfWTmnQY5YuUZK9Agvr9tRT23vOQ8R9-s5a7-VwnxZScp_y9xuapBy5OTcdNxaiSHel2bvgnKU5b9leUn4zxiFG8BA7i-KsbFLIA1MFsGlxaiEfEr-ebjKZF28gXs7eQhH7PjRySf1tognxZJcur9lLVbzyVz0t5hOEenfltqRgjp04vQTkp_EqJTo4d9M" />
-                    <div className="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
-                      Cóctel &amp; Antojitos
+                {PLATOS_CATERING.map((plato) => (
+                  <div key={plato.id} className="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative bg-surface-container-low h-64 overflow-hidden">
+                      <ItemImage src={plato.imagen} alt={plato.nombre} className="w-full h-full object-cover" />
+                      <div className="absolute bottom-4 right-4 bg-primary/85 backdrop-blur-md text-surface-bright px-3 py-1 rounded-lg text-sm font-bold">
+                        {formatEUR(plato.precio)} <span className="text-xs font-normal text-primary-fixed">/ plato</span>
+                      </div>
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-primary/85 backdrop-blur-md text-surface-bright px-3 py-1 rounded-lg text-sm font-bold">
-                      Desde €14.50{' '}
-                      <span className="text-xs font-normal text-primary-fixed">
-                        / persona
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-6 sm:p-8 flex flex-col flex-grow justify-between space-y-6">
-                    <div className="space-y-3">
-                      <h3 className="font-headline font-bold text-xl text-primary">
-                        Fiesta Cafetera &amp; Antojos
-                      </h3>
-                      <p className="text-xs text-secondary font-medium tracking-wide">
-                        Mínimo 15 personas • Ideal para recepciones ligeras y pausas corporativas
-                      </p>
-                      <ul className="text-sm text-on-surface-variant space-y-2.5 pt-2">
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Mini empanaditas vallunas de carne y papa criolla con ají casero.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Arepitas de choclo y queso campesino hechas a mano.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Pandebonos recién horneados y buñuelos crocantes.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Barra libre de café de especialidad de origen (Sierra Nevada &amp; Huila).
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <a className="w-full py-3 text-center rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-primary font-medium text-sm transition-colors duration-200" href="#cotizador">
-                      Elegir Este Menú
-                    </a>
-                  </div>
-                </div>
-                <div className="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative">
-                  <div className="bg-secondary text-on-secondary text-[11px] font-bold uppercase tracking-widest text-center py-1.5">
-                    El Más Aclamado por la Comunidad
-                  </div>
-                  <div className="relative bg-surface-container-low h-64 overflow-hidden">
-                    <img className="w-full h-full object-cover" data-alt="Traditional Colombian country-style buffet setup with carved lechona tolimense, yellow rice with pulled chicken, crisp fried patacones with rich tomato-scallion hogao sauce, and creamy avocado salad served in rustic clay bowls." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP8QJVndYRRqJEBF4QnwOhId3LcaCeM_rxOmGxZ8mU04DZmxqXK63_ORa7vZA507rqYZp1gOuZ8H-7FOen-ImmD0MyAe1Ej0YqnX4iPhJs_VbiTIxz-L3dJ1c4YVw78u1oNQlfcDH9DcFqtnhNNSwHZFNbzgTTmbzlXtWAaizBjszADdCV7JuT9EYXelf72XbPn1g3PszPuxkA9IH2VbX5DSboqY1dEr1Oozmm8AVCG1c4YD6S-YcA" />
-                    <div className="absolute top-4 left-4 bg-secondary-fixed text-on-secondary-fixed text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
-                      Banquete Campesino
-                    </div>
-                    <div className="absolute bottom-4 right-4 bg-primary/85 backdrop-blur-md text-surface-bright px-3 py-1 rounded-lg text-sm font-bold">
-                      Desde €24.00{' '}
-                      <span className="text-xs font-normal text-primary-fixed">
-                        / persona
-                      </span>
+                    <div className="p-6 sm:p-8 flex flex-col flex-grow justify-between space-y-6">
+                      <div className="space-y-3">
+                        <h3 className="font-headline font-bold text-xl text-primary">{plato.nombre}</h3>
+                        {plato.descripcion && <p className="text-sm text-on-surface-variant">{plato.descripcion}</p>}
+                      </div>
+                      <a className="w-full py-3 text-center rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-primary font-medium text-sm transition-colors duration-200" href="#cotizador">
+                        Elegir este plato
+                      </a>
                     </div>
                   </div>
-                  <div className="p-6 sm:p-8 flex flex-col flex-grow justify-between space-y-6">
-                    <div className="space-y-3">
-                      <h3 className="font-headline font-bold text-xl text-primary">
-                        Banquete Criollo Tradicional
-                      </h3>
-                      <p className="text-xs text-secondary font-medium tracking-wide">
-                        Mínimo 20 personas • Servicio tipo buffet campesino en cazuelas
-                      </p>
-                      <ul className="text-sm text-on-surface-variant space-y-2.5 pt-2">
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Lechona tolimense artesanal con piel ultra-crocante y arroz arveja adobado.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Opción alternativa: Arroz con pollo campesino o mini Bandeja Paisa.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Patacones de plátano verde con hogao criollo sofrito a fuego lento.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Ensalada fresca de aguacate Hass, cilantro y vinagreta cítrica.
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <a className="w-full py-3 text-center rounded-lg bg-primary hover:bg-primary-container text-on-primary font-medium text-sm transition-colors duration-200 shadow-xs" href="#cotizador">
-                      Elegir Este Menú
-                    </a>
-                  </div>
-                </div>
-                <div className="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className="relative bg-surface-container-low h-64 overflow-hidden">
-                    <img className="w-full h-full object-cover" data-alt="Plated fine dining Colombian dinner course featuring tender braised flank steak sobrebarriga in artisan criolla reduction sauce, accompanied by tropical lulo mocktail welcome drink and a decadent slice of tres leches cake garnished with Physalis fruit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFone8TdLpwYiq5BgoGWBclsHKb_VnZ1ZxozkQarFuP42UQzV83T7UVp683TeRyGptTZZYGd8jQcNJ2WklJ-LoaCNeQCIc_Rjfm12poBh8aNqPiODukoV8Kp2rtocd0Lv7X9LgTIWYbMSG4ubOLKSawy4IVNDf1oFVWbp90cToRr1TntLpSRQ5Pz8EfkTz_VPPuvbb3BlRjWSFLfbLZyQsKuOsix7nZAmBriwebsxN7BCzsAX0oZiA" />
-                    <div className="absolute top-4 left-4 bg-tertiary-fixed-dim text-on-tertiary-fixed-variant text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
-                      Alta Gastronomía
-                    </div>
-                    <div className="absolute bottom-4 right-4 bg-primary/85 backdrop-blur-md text-surface-bright px-3 py-1 rounded-lg text-sm font-bold">
-                      Desde €38.00{' '}
-                      <span className="text-xs font-normal text-primary-fixed">
-                        / persona
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-6 sm:p-8 flex flex-col flex-grow justify-between space-y-6">
-                    <div className="space-y-3">
-                      <h3 className="font-headline font-bold text-xl text-primary">
-                        Experiencia Hacienda Gourmet
-                      </h3>
-                      <p className="text-xs text-secondary font-medium tracking-wide">
-                        Mínimo 12 personas • Cena servida a la mesa o estación premium
-                      </p>
-                      <ul className="text-sm text-on-surface-variant space-y-2.5 pt-2">
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Bebida de bienvenida: Lulada valluna fresca o cóctel de maracuyá.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Entrada de ceviche de chicharrón crocante o ceviche vegetal de plátano.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Plato fuerte: Sobrebarriga al horno con reducción criolla y puré de yuca.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <span className="material-symbols-outlined text-secondary text-base mt-0.5">
-                            check_circle
-                          </span>
-                          {' '}
-                          <span>
-                            Postre de Tres Leches con uchuvas maceradas y maridaje de café filtrado.
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <a className="w-full py-3 text-center rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-primary font-medium text-sm transition-colors duration-200" href="#cotizador">
-                      Elegir Este Menú
-                    </a>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </section>
@@ -510,15 +337,11 @@ export default function CateringPage() {
                         Paquete de Interés *
                       </label>
                       <select className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="package-select" required defaultValue="Banquete Criollo Tradicional">
-                        <option value="Fiesta Cafetera & Antojos">
-                          Fiesta Cafetera &amp; Antojos (Desde €14.50 / pers)
-                        </option>
-                        <option value="Banquete Criollo Tradicional">
-                          Banquete Criollo Tradicional (Desde €24.00 / pers)
-                        </option>
-                        <option value="Experiencia Hacienda Gourmet">
-                          Experiencia Hacienda Gourmet (Desde €38.00 / pers)
-                        </option>
+                        {PLATOS_CATERING.map((plato) => (
+                          <option key={plato.id} value={plato.nombre}>
+                            {plato.nombre} ({formatEUR(plato.precio)} / plato)
+                          </option>
+                        ))}
                         <option value="Personalizado">
                           Menú Personalizado / A Medida
                         </option>

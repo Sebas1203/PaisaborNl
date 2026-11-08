@@ -2,6 +2,12 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { Go } from '@/components/ui/Go';
+import { ItemImage } from '@/components/ItemImage';
+import { lineasConItem, PEDIDOS, totales } from '@/data/mock';
+import { formatEUR, formatFecha, ORDER_STATUS_LABELS } from '@/lib/format';
+
+// MOCK: pedidos de ejemplo del cliente
+const PEDIDOS_RECIENTES = PEDIDOS.filter((p) => p.cliente === 'Cliente de ejemplo 1').slice(0, 2);
 
 export default function CuentaPage() {
   return (
@@ -27,7 +33,7 @@ export default function CuentaPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="col-span-1 bg-surface-container-lowest p-8 rounded-xl shadow-[-10px_0_40px_rgba(28,28,25,0.05)] flex flex-col items-center text-center">
             <div className="w-32 h-32 rounded-full overflow-hidden mb-6 ring-4 ring-surface-container border-2 border-surface-container-low relative group">
-              <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A high-quality portrait photograph of a young Colombian man smiling warmly, shot in a well-lit modern kitchen. The lighting is soft and natural, casting gentle shadows. The color palette features deep roasted browns and creamy whites, reflecting the premium Paisabor brand identity. The image feels authentic, professional, and culinary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCbGLxMuesiJnl4ri7vSA2tvM20pYlCM6GnzibUTu_CCeph19mRSQ9rRa-CshJikW7HdYPNVVff7wqlbEt29AUYUNoyq3weJHdEEZCLKpTd4ZwgJ-Ak0UWizPFhHwiPnUxll013DY8tT2wbWWgywMHn3SzJ7c1kae-31pC5i_adIksh92IF6W4pvVGhuzQTVCgFY7fYMqg_i5C0J-pOzDYvsq6NWUxGb96rN_7mWRVkiwg-wLhLE1x" />
+              <img alt="Paisabor" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" src="/images/logo/paisabor-logo-192.png" />
               <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
                 <span className="material-symbols-outlined text-on-primary">
                   photo_camera
@@ -73,56 +79,34 @@ export default function CuentaPage() {
               </Link>
             </div>
             <div className="flex flex-col gap-4">
-              <div className="bg-surface-container-low p-5 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:bg-surface-container transition-colors group cursor-pointer">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-md overflow-hidden bg-surface-container-highest shrink-0">
-                    <img className="w-full h-full object-cover" data-alt="A close-up, beautifully styled macro shot of freshly roasted Colombian coffee beans resting in a rustic, handmade ceramic bowl. The lighting is dramatic, highlighting the oily sheen and rich, dark brown textures of the beans. The background is a soft, warm cream color, emphasizing a premium, artisanal culinary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFdHfROPu7gMnpJN9toJ5oe9dscBypLKus8gTPOk6xDUyrDZYmjdyF2EpSg4DMXAev-cek2_t0wyolEPwZr0TsfZ4mQqkIvlUpm5E_D50KUnEPWU3WXD2DmXzNq41KzpU8Rdxgoagq1TWjZtE1La-MPz31X67sB5AvbVWKAD5LM3g7-IP2wVIOXBVB_sOxfV6sHOJDKbgOZrECXH3iaO6mvlMrqn_2aheINCI7ysgmGVwdFrq2_I6O" />
-                  </div>
-                  <div>
-                    <p className="font-headline font-bold text-lg text-primary group-hover:text-secondary transition-colors">
-                      Café Excelso - Origen Tolima
-                    </p>
-                    <p className="text-sm text-on-surface-variant">
-                      Pedido #4092 • 15 Oct, 2023
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto mt-2 sm:mt-0">
-                  <span className="font-medium text-primary bg-tertiary-fixed/40 px-3 py-1 rounded-full text-xs text-on-tertiary-fixed mb-0 sm:mb-2 flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-secondary"></span>
-                    {' '}Enviado
-                  </span>
-                  {' '}
-                  <span className="font-bold text-primary">
-                    €24.50
-                  </span>
-                </div>
-              </div>
-              <div className="bg-surface-container-low p-5 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:bg-surface-container transition-colors group cursor-pointer">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-md overflow-hidden bg-surface-container-highest shrink-0">
-                    <img className="w-full h-full object-cover" data-alt="An editorial style flat lay image of golden, perfectly fried Colombian empanadas arranged on an earthy terracotta plate. The lighting creates soft, appetizing highlights on the crispy crusts. The scene includes a small ramekin of vibrant aji sauce, set against a pristine, textured white surface, evoking a high-end food magazine feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuilZeNdmihOAIR9sn7AeHJfj-nAZN439qtJaGij7218tdROWCjmqc6fKYe8Y0fccoiRy3LxpgmSFTJXNnfpCCTmSbGWY7LG-733vz7aGgzUYSlVlwvr9R8prqzPVsliULYqMQ2Z5f1Kd6o7NDTrsyVceIJs904PkWwE_9IyOWYb9u_wCaBldWaIp_wLi3-f0fpFmVFJegXbIaCHjehHflsYAMCTGAP6vQNqVJK0KfxBtuGbyqQ8Lt" />
-                  </div>
-                  <div>
-                    <p className="font-headline font-bold text-lg text-primary group-hover:text-secondary transition-colors">
-                      Kit Empanadas Tradicionales
-                    </p>
-                    <p className="text-sm text-on-surface-variant">
-                      Pedido #4088 • 02 Oct, 2023
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto mt-2 sm:mt-0">
-                  <span className="font-medium text-primary bg-surface-variant px-3 py-1 rounded-full text-xs text-on-surface-variant mb-0 sm:mb-2 flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-outline"></span>
-                    {' '}Entregado
-                  </span>
-                  {' '}
-                  <span className="font-bold text-primary">
-                    €32.00
-                  </span>
-                </div>
-              </div>
+              {PEDIDOS_RECIENTES.map((pedido) => {
+                const lineas = lineasConItem(pedido.lineas);
+                const principal = lineas[0]?.item;
+                return (
+                  <Link key={pedido.id} href={`/cuenta/pedidos/${pedido.id}`} className="bg-surface-container-low p-5 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:bg-surface-container transition-colors group cursor-pointer">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-md overflow-hidden bg-surface-container-highest shrink-0">
+                        <ItemImage src={principal?.imagen} alt={principal?.nombre ?? pedido.id} className="w-full h-full object-cover" />
+                      </div>
+                      <div>
+                        <p className="font-headline font-bold text-lg text-primary group-hover:text-secondary transition-colors">
+                          {principal?.nombre}
+                          {lineas.length > 1 && ` y ${lineas.length - 1} más`}
+                        </p>
+                        <p className="text-sm text-on-surface-variant">
+                          Pedido #{pedido.id} • {formatFecha(pedido.fecha)}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto mt-2 sm:mt-0">
+                      <span className="font-medium text-primary bg-tertiary-fixed/40 px-3 py-1 rounded-full text-xs text-on-tertiary-fixed mb-0 sm:mb-2 flex items-center gap-1">
+                        <span className="w-2 h-2 rounded-full bg-secondary"></span> {ORDER_STATUS_LABELS[pedido.estado]}
+                      </span>
+                      <span className="font-bold text-primary">{formatEUR(totales(pedido.lineas).total)}</span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
           <div className="col-span-1 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">

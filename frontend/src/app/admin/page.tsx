@@ -1,6 +1,19 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/panel_de_administraci_n_inicio
 /* eslint-disable @next/next/no-img-element */
+import { ItemImage } from '@/components/ItemImage';
+import { BTW_ALIMENTOS, CATALOGO, itemPorId } from '@/data';
+import { lineasConItem, PEDIDOS, RESERVAS, STOCK, STOCK_MINIMO, totales } from '@/data/mock';
+import { formatEUR, ORDER_STATUS_LABELS } from '@/lib/format';
 import Link from 'next/link';
+
+// MOCK: cifras calculadas con los pedidos, reservas y stock de ejemplo
+const EN_CURSO = PEDIDOS.filter((p) => ["pendiente", "confirmado", "en_preparacion", "listo", "enviado"].includes(p.estado));
+const VENTAS = PEDIDOS.filter((p) => p.estado !== "cancelado").reduce((acc, p) => acc + totales(p.lineas).total, 0);
+const PROXIMAS = RESERVAS.filter((r) => r.estado === "pendiente" || r.estado === "confirmada");
+const STOCK_BAJO = Object.entries(STOCK).flatMap(([id, stock]) => {
+  const item = itemPorId(id);
+  return item && stock < STOCK_MINIMO ? [{ item, stock }] : [];
+});
 
 export default function AdminPage() {
   return (
@@ -58,7 +71,7 @@ export default function AdminPage() {
                   </span>
                   <div className="mt-2 flex items-baseline gap-2">
                     <span className="font-headline text-3xl font-extrabold text-primary">
-                      7
+                      {EN_CURSO.length}
                     </span>
                     {' '}
                     <span className="text-xs font-medium text-secondary">
@@ -78,7 +91,7 @@ export default function AdminPage() {
                 </span>
                 {' '}
                 <strong className="font-headline text-primary font-bold">
-                  €310,00
+                  {formatEUR(EN_CURSO.reduce((acc, p) => acc + totales(p.lineas).total, 0))}
                 </strong>
               </div>
             </div>
@@ -90,7 +103,7 @@ export default function AdminPage() {
                   </span>
                   <div className="mt-2 flex items-baseline gap-2">
                     <span className="font-headline text-3xl font-extrabold text-primary">
-                      4
+                      {PROXIMAS.length}
                     </span>
                     {' '}
                     <span className="text-xs font-medium text-on-surface-variant">
@@ -110,7 +123,7 @@ export default function AdminPage() {
                 </span>
                 {' '}
                 <strong className="font-headline text-primary font-bold">
-                  78 comensales
+                  {PROXIMAS.reduce((acc, r) => acc + r.porciones, 0)} porciones
                 </strong>
               </div>
             </div>
@@ -122,7 +135,7 @@ export default function AdminPage() {
                   </span>
                   <div className="mt-2 flex items-baseline gap-2">
                     <span className="font-headline text-3xl font-extrabold text-secondary">
-                      3
+                      {STOCK_BAJO.length}
                     </span>
                     {' '}
                     <span className="text-xs font-medium text-secondary">
@@ -138,7 +151,7 @@ export default function AdminPage() {
               </div>
               <div className="mt-4 pt-3 flex items-center justify-between text-xs text-on-surface-variant bg-surface-container/60 -mx-5 -mb-5 px-5 py-2.5">
                 <span className="truncate max-w-[130px]">
-                  Queso costeño y peto
+                  {STOCK_BAJO.map((s) => s.item.nombre).slice(0, 2).join(" y ")}
                 </span>
                 {' '}
                 <span className="text-secondary font-semibold text-[11px] uppercase tracking-wider">
@@ -154,7 +167,7 @@ export default function AdminPage() {
                   </span>
                   <div className="mt-2">
                     <span className="font-headline text-2xl lg:text-3xl font-extrabold text-on-primary">
-                      €14.820
+                      {formatEUR(VENTAS)}
                     </span>
                   </div>
                 </div>
@@ -196,7 +209,7 @@ export default function AdminPage() {
                   </div>
                   <Link className="text-xs font-semibold text-secondary hover:underline flex items-center gap-1" href="/admin/pedidos">
                     <span>
-                      Ver todos (23)
+                      Ver todos ({PEDIDOS.length})
                     </span>
                     {' '}
                     <span className="material-symbols-outlined text-sm">
@@ -205,200 +218,25 @@ export default function AdminPage() {
                   </Link>
                 </div>
                 <div className="space-y-3.5 mt-2" id="orders-container">
-                  <div className="p-4 rounded-lg bg-surface-container-low transition-all hover:bg-surface-container flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-headline font-bold text-sm text-primary">
-                          #CO-1092
-                        </span>
-                        {' '}
-                        <span className="text-xs font-medium text-on-surface-variant">
-                          • 12:42 PM (Hace 8m)
-                        </span>
-                        {' '}
-                        <span className="px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed">
-                          Recogida Jordaan
-                        </span>
-                      </div>
-                      <p className="font-body text-xs font-medium text-on-surface">
-                        2x Bandeja Paisa Criolla, 1x Porción Arepas de Chócolo, 2x Club Colombia Dorada
-                      </p>
-                      <div className="text-[11px] text-on-surface-variant flex items-center gap-3 pt-0.5">
-                        <span>
-                          Cliente:{' '}
-                          <strong>
-                            Lars van Dijk
-                          </strong>
-                        </span>
-                        {' '}
-                        <span>
-                          Importe:{' '}
-                          <strong>
-                            €48,50
-                          </strong>
-                        </span>
+                  {EN_CURSO.map((pedido) => (
+                    <div key={pedido.id} className="p-4 rounded-lg bg-surface-container-low transition-all hover:bg-surface-container flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-headline font-bold text-sm text-primary">#{pedido.id}</span>
+                          <span className="px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed">
+                            {pedido.entrega === "domicilio" ? "Domicilio" : "Recogida"} · {ORDER_STATUS_LABELS[pedido.estado]}
+                          </span>
+                        </div>
+                        <p className="font-body text-xs font-medium text-on-surface">
+                          {lineasConItem(pedido.lineas).map((l) => l.cantidad + "x " + l.item.nombre).join(", ")}
+                        </p>
+                        <div className="text-[11px] text-on-surface-variant flex items-center gap-3 pt-0.5">
+                          <span>Cliente: <strong>{pedido.cliente}</strong></span>
+                          <span>Importe: <strong>{formatEUR(totales(pedido.lineas).total)}</strong></span>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5 self-end md:self-center shrink-0">
-                      <button className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-surface-container-high text-on-surface hover:bg-secondary hover:text-on-secondary transition-colors flex items-center gap-1" title="Mover a Cocina">
-                        <span className="material-symbols-outlined text-sm">
-                          microwave
-                        </span>
-                        {' '}
-                        <span>
-                          Cocinar
-                        </span>
-                      </button>
-                      {' '}
-                      <button className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors flex items-center gap-1" title="Marcar como Listo">
-                        <span className="material-symbols-outlined text-sm">
-                          check_circle
-                        </span>
-                        {' '}
-                        <span>
-                          Listo
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-4 rounded-lg bg-surface-container-low transition-all hover:bg-surface-container flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-headline font-bold text-sm text-primary">
-                          #CO-1091
-                        </span>
-                        {' '}
-                        <span className="text-xs font-medium text-on-surface-variant">
-                          • 12:31 PM
-                        </span>
-                        {' '}
-                        <span className="px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-tertiary-fixed text-on-tertiary-fixed">
-                          En Fogón
-                        </span>
-                      </div>
-                      <p className="font-body text-xs font-medium text-on-surface">
-                        1x Ajiaco Santafereño Clásico con crema y alcaparras, 1x Postre Tres Leches Tradicional
-                      </p>
-                      <div className="text-[11px] text-on-surface-variant flex items-center gap-3 pt-0.5">
-                        <span>
-                          Cliente:{' '}
-                          <strong>
-                            Sofía Mejía (De Pijp)
-                          </strong>
-                        </span>
-                        {' '}
-                        <span>
-                          Importe:{' '}
-                          <strong>
-                            €31,00
-                          </strong>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 self-end md:self-center shrink-0">
-                      <button className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-secondary text-on-secondary hover:bg-on-secondary-container transition-colors flex items-center gap-1 shadow-xs">
-                        <span className="material-symbols-outlined text-sm">
-                          check_circle
-                        </span>
-                        {' '}
-                        <span>
-                          Empacar
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-4 rounded-lg bg-surface-container-low transition-all hover:bg-surface-container flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-headline font-bold text-sm text-primary">
-                          #CO-1089
-                        </span>
-                        {' '}
-                        <span className="text-xs font-medium text-on-surface-variant">
-                          • 12:15 PM
-                        </span>
-                        {' '}
-                        <span className="px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-surface-variant text-on-surface-variant">
-                          Domicilio Zuid
-                        </span>
-                      </div>
-                      <p className="font-body text-xs font-medium text-on-surface">
-                        3x Sancocho Trifásico de Finca, 3x Aguapanela Fría con Limón Tahití
-                      </p>
-                      <div className="text-[11px] text-on-surface-variant flex items-center gap-3 pt-0.5">
-                        <span>
-                          Cliente:{' '}
-                          <strong>
-                            Wouter B.
-                          </strong>
-                        </span>
-                        {' '}
-                        <span>
-                          Importe:{' '}
-                          <strong>
-                            €64,50
-                          </strong>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 self-end md:self-center shrink-0">
-                      <button className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-secondary text-on-secondary hover:bg-on-secondary-container transition-colors flex items-center gap-1 shadow-xs">
-                        <span className="material-symbols-outlined text-sm">
-                          moped
-                        </span>
-                        {' '}
-                        <span>
-                          Despachar
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-4 rounded-lg bg-surface-container-low/60 opacity-80 transition-all hover:opacity-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-headline font-bold text-sm text-primary">
-                          #CO-1088
-                        </span>
-                        {' '}
-                        <span className="text-xs font-medium text-on-surface-variant">
-                          • 12:02 PM
-                        </span>
-                        {' '}
-                        <span className="px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-surface-container-highest text-primary">
-                          Listo en Barra
-                        </span>
-                      </div>
-                      <p className="font-body text-xs font-medium text-on-surface">
-                        12x Empanadas Vallunas de Carne, Ají Casero de la Casa (250ml)
-                      </p>
-                      <div className="text-[11px] text-on-surface-variant flex items-center gap-3 pt-0.5">
-                        <span>
-                          Cliente:{' '}
-                          <strong>
-                            Camila Torres
-                          </strong>
-                        </span>
-                        {' '}
-                        <span>
-                          Importe:{' '}
-                          <strong>
-                            €34,00
-                          </strong>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 self-end md:self-center shrink-0">
-                      <span className="text-xs font-medium text-primary flex items-center gap-1 px-3 py-1.5 bg-surface-container rounded-lg">
-                        <span className="material-symbols-outlined text-sm text-secondary">
-                          done_all
-                        </span>
-                        {' '}
-                        <span>
-                          Esperando retiro
-                        </span>
-                      </span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
               <div className="bg-surface-container-low rounded-xl p-6">
@@ -413,22 +251,8 @@ export default function AdminPage() {
                   </div>
                   <div className="flex items-center gap-6">
                     <div>
-                      <span className="text-[10px] font-semibold uppercase text-on-surface-variant block">
-                        BTW Alimentos (9%)
-                      </span>
-                      {' '}
-                      <span className="font-headline text-base font-bold text-primary">
-                        €1.124,10
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-semibold uppercase text-on-surface-variant block">
-                        BTW Bebidas (21%)
-                      </span>
-                      {' '}
-                      <span className="font-headline text-base font-bold text-primary">
-                        €428,70
-                      </span>
+                      <span className="text-[10px] font-semibold uppercase text-on-surface-variant tracking-wider block">IVA 9% incluido (ventas demo)</span>
+                      <span className="font-headline text-base font-bold text-primary">{formatEUR(VENTAS - VENTAS / (1 + BTW_ALIMENTOS))}</span>
                     </div>
                   </div>
                 </div>
@@ -453,135 +277,31 @@ export default function AdminPage() {
                     </div>
                   </div>
                   <span className="text-xs font-bold text-secondary bg-secondary-fixed/40 px-2 py-0.5 rounded-sm">
-                    4 Confirmados
+                    {RESERVAS.filter((r) => r.estado === "confirmada").length} Confirmadas
                   </span>
                 </div>
                 <div className="space-y-3 mt-2">
-                  <div className="p-3.5 rounded-lg bg-surface-container-low flex items-start gap-3.5">
-                    <div className="w-12 text-center shrink-0 py-1 rounded-sm bg-surface-container text-primary">
-                      <span className="block text-[10px] uppercase font-bold tracking-wider text-secondary">
-                        Hoy
-                      </span>
-                      {' '}
-                      <span className="block font-headline text-lg font-extrabold leading-none">
-                        24
-                      </span>
-                      {' '}
-                      <span className="block text-[9px] font-semibold text-on-surface-variant">
-                        MAY
-                      </span>
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-1">
-                        <h4 className="font-headline text-xs font-bold text-primary truncate">
-                          Cena Privada Embajada &amp; Amigos
-                        </h4>
-                        <span className="text-[11px] font-bold text-secondary shrink-0">
-                          18 pers.
-                        </span>
+                  {PROXIMAS.map((reserva) => {
+                    const plato = itemPorId(reserva.platoId);
+                    const fecha = new Date(reserva.fecha + "T12:00:00");
+                    return (
+                      <div key={reserva.id} className="p-3.5 rounded-lg bg-surface-container-low flex items-start gap-3.5">
+                        <div className="w-12 text-center shrink-0 py-1 rounded-sm bg-surface-container text-primary">
+                          <span className="block font-headline text-lg font-extrabold leading-none">{fecha.getDate()}</span>
+                          <span className="block text-[9px] font-semibold text-on-surface-variant uppercase">
+                            {fecha.toLocaleDateString("es-ES", { month: "short" })}
+                          </span>
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center justify-between gap-1">
+                            <h4 className="font-headline text-xs font-bold text-primary truncate">{plato?.nombre}</h4>
+                            <span className="text-[11px] font-bold text-secondary shrink-0">{reserva.porciones} porc.</span>
+                          </div>
+                          <p className="text-xs text-on-surface-variant mt-0.5">{reserva.cliente} · Reserva #{reserva.id}</p>
+                        </div>
                       </div>
-                      <p className="text-xs text-on-surface-variant mt-0.5 flex items-center gap-1">
-                        <span className="material-symbols-outlined text-[13px] text-outline">
-                          location_on
-                        </span>
-                        {' '}
-                        <span className="truncate">
-                          Keizersgracht 421, Grachtengordel
-                        </span>
-                      </p>
-                      <div className="mt-2 flex items-center gap-2">
-                        <span className="text-[10px] bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-sm font-medium">
-                          Menú 4 Tiempos
-                        </span>
-                        {' '}
-                        <span className="text-[10px] text-on-surface-variant">
-                          Chef a domicilio (19:30)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-3.5 rounded-lg bg-surface-container-low flex items-start gap-3.5">
-                    <div className="w-12 text-center shrink-0 py-1 rounded-sm bg-surface-container text-primary">
-                      <span className="block text-[10px] uppercase font-bold tracking-wider text-on-surface-variant">
-                        Dom
-                      </span>
-                      {' '}
-                      <span className="block font-headline text-lg font-extrabold leading-none">
-                        25
-                      </span>
-                      {' '}
-                      <span className="block text-[9px] font-semibold text-on-surface-variant">
-                        MAY
-                      </span>
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-1">
-                        <h4 className="font-headline text-xs font-bold text-primary truncate">
-                          Catering Corporativo FinTech
-                        </h4>
-                        <span className="text-[11px] font-bold text-secondary shrink-0">
-                          35 pers.
-                        </span>
-                      </div>
-                      <p className="text-xs text-on-surface-variant mt-0.5 flex items-center gap-1">
-                        <span className="material-symbols-outlined text-[13px] text-outline">
-                          location_on
-                        </span>
-                        {' '}
-                        <span className="truncate">
-                          Zuidas Business District (WTC Torre C)
-                        </span>
-                      </p>
-                      <div className="mt-2 flex items-center gap-2">
-                        <span className="text-[10px] bg-surface-container-highest text-primary px-2 py-0.5 rounded-sm font-medium">
-                          Estación de Arepas &amp; Café
-                        </span>
-                        {' '}
-                        <span className="text-[10px] text-on-surface-variant">
-                          Almuerzo buffet (13:00)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-3.5 rounded-lg bg-surface-container-low flex items-start gap-3.5">
-                    <div className="w-12 text-center shrink-0 py-1 rounded-sm bg-surface-container text-primary">
-                      <span className="block text-[10px] uppercase font-bold tracking-wider text-on-surface-variant">
-                        Vie
-                      </span>
-                      {' '}
-                      <span className="block font-headline text-lg font-extrabold leading-none">
-                        30
-                      </span>
-                      {' '}
-                      <span className="block text-[9px] font-semibold text-on-surface-variant">
-                        MAY
-                      </span>
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-1">
-                        <h4 className="font-headline text-xs font-bold text-primary truncate">
-                          Cumpleaños Familiar Carvajal
-                        </h4>
-                        <span className="text-[11px] font-bold text-secondary shrink-0">
-                          25 pers.
-                        </span>
-                      </div>
-                      <p className="text-xs text-on-surface-variant mt-0.5 flex items-center gap-1">
-                        <span className="material-symbols-outlined text-[13px] text-outline">
-                          location_on
-                        </span>
-                        {' '}
-                        <span className="truncate">
-                          Westergas Paviljoen, Westerpark
-                        </span>
-                      </p>
-                      <div className="mt-2 flex items-center gap-2">
-                        <span className="text-[10px] bg-surface-container-highest text-primary px-2 py-0.5 rounded-sm font-medium">
-                          Lechona Tolimense Clásica
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
               <div className="bg-surface-container-lowest rounded-xl p-6 shadow-xs">
@@ -597,7 +317,7 @@ export default function AdminPage() {
                         Inventario en Riesgo
                       </h2>
                       <p className="font-body text-xs text-on-surface-variant">
-                        3 ingredientes de importación bajo umbral
+                        {STOCK_BAJO.length} ítems bajo el mínimo (demo)
                       </p>
                     </div>
                   </div>
@@ -612,102 +332,18 @@ export default function AdminPage() {
                   </button>
                 </div>
                 <div className="space-y-2 mt-2">
-                  <div className="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-sm bg-surface flex items-center justify-center text-secondary font-bold text-xs">
-                        🧀
+                  {STOCK_BAJO.map(({ item, stock }) => (
+                    <div key={item.id} className="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <ItemImage src={item.imagen} alt={item.nombre} className="w-8 h-8 rounded-sm object-cover" />
+                        <h4 className="font-headline text-xs font-bold text-primary">{item.nombre}</h4>
                       </div>
-                      <div>
-                        <h4 className="font-headline text-xs font-bold text-primary">
-                          Queso Costeño Fresco
-                        </h4>
-                        <p className="text-[11px] text-on-surface-variant">
-                          Productor artesanal Noord-Brabant
-                        </p>
+                      <div className="text-right">
+                        <span className="block text-xs font-bold text-error">{stock} unidades</span>
+                        <span className="text-[10px] text-on-surface-variant">Mín: {STOCK_MINIMO} unid.</span>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-xs font-bold text-error flex items-center justify-end gap-1">
-                        <span className="material-symbols-outlined text-xs">
-                          trending_down
-                        </span>
-                        {' '}
-                        <span>
-                          1,8 kg
-                        </span>
-                      </div>
-                      <span className="text-[10px] text-on-surface-variant">
-                        Mín: 6,0 kg
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-sm bg-surface flex items-center justify-center text-secondary font-bold text-xs">
-                        🌽
-                      </div>
-                      <div>
-                        <h4 className="font-headline text-xs font-bold text-primary">
-                          Harina de Maíz Peto Blanco
-                        </h4>
-                        <p className="text-[11px] text-on-surface-variant">
-                          Saco importado 25kg
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xs font-bold text-error flex items-center justify-end gap-1">
-                        <span className="material-symbols-outlined text-xs">
-                          trending_down
-                        </span>
-                        {' '}
-                        <span>
-                          4,2 kg
-                        </span>
-                      </div>
-                      <span className="text-[10px] text-on-surface-variant">
-                        Mín: 15,0 kg
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-sm bg-surface flex items-center justify-center text-secondary font-bold text-xs">
-                        🪵
-                      </div>
-                      <div>
-                        <h4 className="font-headline text-xs font-bold text-primary">
-                          Panela Redonda Orgánica
-                        </h4>
-                        <p className="text-[11px] text-on-surface-variant">
-                          Trapiche Santander (caja)
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xs font-bold text-secondary flex items-center justify-end gap-1">
-                        <span className="material-symbols-outlined text-xs">
-                          priority_high
-                        </span>
-                        {' '}
-                        <span>
-                          3 unidades
-                        </span>
-                      </div>
-                      <span className="text-[10px] text-on-surface-variant">
-                        Mín: 10 unid.
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4 p-3 rounded-lg bg-surface-container-high/60 flex items-center justify-between text-xs text-on-surface-variant">
-                  <span>
-                    Próximo embarque programado:
-                  </span>
-                  {' '}
-                  <strong className="text-primary font-headline">
-                    Lunes, 09:00 AM (Puerto Róterdam)
-                  </strong>
+                  ))}
                 </div>
               </div>
             </div>
@@ -738,21 +374,9 @@ export default function AdminPage() {
                     Producto
                   </label>
                   <select className="w-full bg-surface-container-low text-xs text-on-surface p-2.5 rounded-lg focus:outline-hidden focus:bg-surface-container-high">
-                    <option>
-                      Queso Costeño Fresco
-                    </option>
-                    <option>
-                      Harina de Maíz Peto Blanco
-                    </option>
-                    <option>
-                      Panela Redonda Orgánica
-                    </option>
-                    <option>
-                      Plátano Macho Verde (Caja)
-                    </option>
-                    <option>
-                      Café Huila Especial (Granos)
-                    </option>
+                    {CATALOGO.map((item) => (
+                      <option key={item.id} value={item.id}>{item.nombre}</option>
+                    ))}
                   </select>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -788,7 +412,7 @@ export default function AdminPage() {
                     Costo Total Factura (€ con BTW)
                   </label>
                   {' '}
-                  <input className="w-full bg-surface-container-low text-xs text-on-surface p-2.5 rounded-lg focus:outline-hidden focus:bg-surface-container-high" placeholder="€ 120,50" type="text" />
+                  <input className="w-full bg-surface-container-low text-xs text-on-surface p-2.5 rounded-lg focus:outline-hidden focus:bg-surface-container-high" placeholder="0,00" type="text" />
                 </div>
                 <div className="pt-2 flex items-center justify-end gap-2">
                   <button className="px-4 py-2 text-xs font-semibold text-on-surface-variant hover:text-on-surface" type="button">

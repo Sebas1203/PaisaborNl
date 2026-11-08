@@ -1,6 +1,14 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/reserva_pendiente_de_confirmaci_n_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import { BTW_ALIMENTOS, itemPorId } from '@/data';
+import { RESERVAS } from '@/data/mock';
+import { formatEUR, formatFecha } from '@/lib/format';
+
+// MOCK: muestra la primera reserva de ejemplo con su especial del catálogo
+const RESERVA = RESERVAS[0];
+const PLATO = itemPorId(RESERVA.platoId)!;
+const TOTAL = PLATO.precio * RESERVA.porciones;
 
 export default function CateringReservaPendientePage() {
   return (
@@ -47,7 +55,7 @@ export default function CateringReservaPendientePage() {
                   </span>
                   {' '}
                   <span className="font-headline text-lg sm:text-xl font-bold tracking-wider text-primary" id="booking-code">
-                    #CAT-2025-0814
+                    #{RESERVA.id}
                   </span>
                   {' '}
                   <button className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-surface-container text-primary hover:bg-surface-container-high transition-colors text-xs font-label font-medium" id="copy-btn" type="button">
@@ -84,14 +92,14 @@ export default function CateringReservaPendientePage() {
                       </span>
                       <div className="flex items-baseline gap-3 flex-wrap">
                         <h2 className="font-headline text-2xl font-bold text-primary">
-                          Fiesta Tradicional Paisa
+                          {PLATO.nombre}
                         </h2>
                         <span className="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-xs font-label font-semibold">
-                          25 Comensales
+                          {RESERVA.porciones} porciones
                         </span>
                       </div>
                       <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                        Bandeja montañera desestructurada para servicio buffet: arepas de maíz peto asadas al carbón, frijoles cargamanto en cocción lenta de 12h, chicharrón crujiente, carne desmechada al hogao criollo, plátano maduro al horno y aguacate Hass.
+                        {PLATO.descripcion}
                       </p>
                     </div>
                     <div className="md:col-span-4 bg-surface-container-low p-4 rounded-lg flex flex-col justify-between self-stretch">
@@ -100,7 +108,7 @@ export default function CateringReservaPendientePage() {
                       </span>
                       <div className="mt-2">
                         <div className="text-2xl sm:text-3xl font-headline font-extrabold text-primary">
-                          €525,00
+                          {formatEUR(TOTAL)}
                         </div>
                         <div className="text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5">
                           <span className="material-symbols-outlined text-xs text-secondary">
@@ -108,7 +116,7 @@ export default function CateringReservaPendientePage() {
                           </span>
                           {' '}
                           <span>
-                            9% BTW incluido (€43,35)
+                            IVA 9% incluido ({formatEUR(TOTAL - TOTAL / (1 + BTW_ALIMENTOS))})
                           </span>
                         </div>
                       </div>
@@ -130,7 +138,7 @@ export default function CateringReservaPendientePage() {
                         </span>
                         {' '}
                         <span className="text-sm font-headline font-bold text-primary block mt-0.5">
-                          Sábado, 14 de Junio de 2025
+                          {formatFecha(RESERVA.fecha)}
                         </span>
                         {' '}
                         <span className="text-xs font-body text-on-surface-variant">
@@ -282,7 +290,7 @@ export default function CateringReservaPendientePage() {
                         4. Elaboración Artesanal y Entrega en Ámsterdam
                       </span>
                       <p className="text-xs sm:text-sm text-on-surface-variant/80 mt-1">
-                        Preparación la misma mañana del 14 de Junio, empaquetado en cajas térmicas de hoja de plátano sellada y entrega puntual en Keizersgracht 421 con instrucciones de servicio.
+                        Preparado el día de la reserva, listo para recoger o para la entrega acordada.
                       </p>
                     </div>
                   </div>

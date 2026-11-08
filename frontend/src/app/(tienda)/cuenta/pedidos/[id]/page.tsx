@@ -1,9 +1,17 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/detalle_del_pedido_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { Go } from '@/components/ui/Go';
+import { ResumenPedido } from '@/components/order/ResumenPedido';
+import { lineasConItem, pedidoPorId } from '@/data/mock';
+import { formatFecha, ORDER_STATUS_LABELS } from '@/lib/format';
 
-export default function CuentaPedidosIdPage() {
+export default async function CuentaPedidosIdPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  // MOCK: pedido de ejemplo por id (src/data/mock.ts)
+  const pedido = pedidoPorId(id);
+  if (!pedido) notFound();
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
@@ -48,7 +56,7 @@ export default function CuentaPedidosIdPage() {
                   <h1 className="font-headline text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-primary">
                     Detalle del Pedido{' '}
                     <span className="text-secondary font-light">
-                      #PSB-2025-4892
+                      #{pedido.id}
                     </span>
                   </h1>
                   <p className="text-xs sm:text-sm text-on-surface-variant flex items-center gap-2">
@@ -57,14 +65,7 @@ export default function CuentaPedidosIdPage() {
                     </span>
                     {' '}
                     <span>
-                      Emitido el{' '}
-                      <strong>
-                        18 de Mayo de 2025
-                      </strong>
-                      {' '}a las{' '}
-                      <strong>
-                        11:24 CET
-                      </strong>
+                      Fecha del pedido: <strong>{formatFecha(pedido.fecha)}</strong>
                     </span>
                   </p>
                 </div>
@@ -77,7 +78,7 @@ export default function CuentaPedidosIdPage() {
                     </span>
                     {' '}
                     <span className="font-label text-xs sm:text-sm font-bold tracking-wider uppercase">
-                      Confirmado • En Preparación Artesanal
+                      {ORDER_STATUS_LABELS[pedido.estado]}
                     </span>
                   </div>
                   <span className="text-[11px] font-label text-on-surface-variant text-right">
@@ -89,233 +90,7 @@ export default function CuentaPedidosIdPage() {
             <div className="mt-8 lg:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
               <section className="lg:col-span-7 space-y-8">
                 <div className="bg-surface-container-lowest rounded-xl p-6 sm:p-8 shadow-[0_8px_32px_-12px_rgba(51,33,13,0.06)] space-y-6">
-                  <div className="flex items-center justify-between pb-4">
-                    <div>
-                      <h2 className="font-headline text-lg sm:text-xl font-bold text-primary tracking-tight">
-                        Cesta Gastronómica
-                      </h2>
-                      <p className="text-xs text-on-surface-variant">
-                        Productos frescos elaborados esta mañana en obrero de leña y piedra.
-                      </p>
-                    </div>
-                    <span className="font-label text-xs uppercase tracking-widest text-secondary font-semibold bg-secondary-fixed/50 px-2.5 py-1 rounded-full">
-                      3 ítems
-                    </span>
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-5 p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container">
-                    <div className="relative w-full sm:w-28 h-28 rounded-lg overflow-hidden shrink-0 bg-surface-container-high">
-                      <img className="w-full h-full object-cover" data-alt="Editorial overhead photograph of artisanal Colombian sweet corn arepas de choclo with melting fresh white cheese, golden yellow charred texture, warm terracotta tones on raw linen cloth, soft morning daylight, fine culinary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5I07zXiDBeI-wuUInZ8cniI6JU3n_dtZ6pFnAYLU2-zSiWD5Z1SDl5Q86M1JmWBym2rBvd619hzBKCe3pLTRXE4-h0DR_a0ye1TeJCql6LyRFuOlSc-DSsGRzXLlSR9Mr1p4BwtLkX5-BUco7s53y2Tm3F-14f4oLx-RRSEFCy2FMTSYOyNi5fkssmrDvtITToXNIFN2m91Z5MnUj2sUe8HX9qOQv8TRXJgPtLetER1cGbokdm1tL" />
-                      {' '}
-                      <span className="absolute top-2 left-2 bg-primary/90 text-on-primary text-[10px] font-label px-2 py-0.5 rounded-sm font-medium">
-                        2 packs
-                      </span>
-                    </div>
-                    <div className="flex-1 flex flex-col justify-between">
-                      <div className="space-y-1">
-                        <div className="flex items-start justify-between gap-2">
-                          <h3 className="font-headline font-bold text-base text-primary leading-snug">
-                            Pack Arepas de Choclo Tradicionales
-                          </h3>
-                          <span className="font-headline font-bold text-base text-primary whitespace-nowrap">
-                            €15.00
-                          </span>
-                        </div>
-                        <p className="text-xs text-on-surface-variant leading-relaxed">
-                          4 unidades al vacío por paquete. Maíz tierno molido en piedra con generoso queso campesino fresco derretible. Sin conservantes artificiales.
-                        </p>
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          <span className="inline-block text-[10px] font-label font-medium bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-sm">
-                            Maíz Tierno
-                          </span>
-                          {' '}
-                          <span className="inline-block text-[10px] font-label font-medium bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded-sm">
-                            Sin Gluten
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-[11px] font-label text-outline pt-2 flex items-center justify-between">
-                        <span>
-                          Desglose: 2 paquetes × €7.50 / pack
-                        </span>
-                        {' '}
-                        <span className="text-on-surface-variant font-medium">
-                          BTW 9% incl.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-5 p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container">
-                    <div className="relative w-full sm:w-28 h-28 rounded-lg overflow-hidden shrink-0 bg-surface-container-high">
-                      <img className="w-full h-full object-cover" data-alt="Close up photography of crispy golden Colombian fried empanadas paisas served on a terracotta artisan plate with homemade fresh aji dipping sauce in a small glass jar, warm clotted cream background and roasted bean accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv_8h7AZR4ixOQljqvkQCgc5eLlrHVkxy7DD8pEV4CD1_hDwYuK5_Was3N-Df-JkZszt05AneDjJTBP6zxOXpByzo8hVZZOTihNcUTYwaVIHXnV2a8VivVvnu7P5bzfwkxkf4inhocqtpnBchQvMG3g0KlD3KogLwvXTacTzxcL9EJyKCAatUfF749aXJZMFaih_uSf0M-RjGZT5k_K1fHNdn8HotslG7uT_0TwXynEER6DzWgOEcA" />
-                      {' '}
-                      <span className="absolute top-2 left-2 bg-primary/90 text-on-primary text-[10px] font-label px-2 py-0.5 rounded-sm font-medium">
-                        1 docena
-                      </span>
-                    </div>
-                    <div className="flex-1 flex flex-col justify-between">
-                      <div className="space-y-1">
-                        <div className="flex items-start justify-between gap-2">
-                          <h3 className="font-headline font-bold text-base text-primary leading-snug">
-                            Docena de Empanadas Paisas Horneadas
-                          </h3>
-                          <span className="font-headline font-bold text-base text-primary whitespace-nowrap">
-                            €19.50
-                          </span>
-                        </div>
-                        <p className="text-xs text-on-surface-variant leading-relaxed">
-                          Carne de res mechada cocinada a fuego lento con papa criolla andina sazonada con comino y cilantro. Incluye frasco de ají casero (150 ml).
-                        </p>
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          <span className="inline-block text-[10px] font-label font-medium bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-sm">
-                            Papa Criolla
-                          </span>
-                          {' '}
-                          <span className="inline-block text-[10px] font-label font-medium bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded-sm">
-                            Listo para calentar
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-[11px] font-label text-outline pt-2 flex items-center justify-between">
-                        <span>
-                          Desglose: 1 docena (12 uds) × €19.50
-                        </span>
-                        {' '}
-                        <span className="text-on-surface-variant font-medium">
-                          BTW 9% incl.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-5 p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container">
-                    <div className="relative w-full sm:w-28 h-28 rounded-lg overflow-hidden shrink-0 bg-surface-container-high">
-                      <img className="w-full h-full object-cover" data-alt="Gourmet glass jar of traditional artisanal Colombian dulce de leche arequipe with golden brown caramelized texture, wooden spoon with dripping caramel, warm earthy lighting, minimal kitchen background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5UdBzAGE24DD0DcAYT7Tva2nNtM3x4kM5E3dpeieGvuE8UJC35h1RNoatzTwHjJyXomPREmxK7Qzckr1KxZDZhAmmKqbw_IKMhTQUYyAO2asAXCuGUevoQ2-Wdsk2ZTadgjkndK3hjjxBxJ9bb9qnSLRY0_rkt1Z-7Sv3DzVVyoKdRTBRlB_oPpwTtkcOPdbU3lGf19yO50BZVh6Ls_xbcrJOdF0VMr2ctAneRT4fkBY02DgbN8nI" />
-                      {' '}
-                      <span className="absolute top-2 left-2 bg-primary/90 text-on-primary text-[10px] font-label px-2 py-0.5 rounded-sm font-medium">
-                        1 frasco
-                      </span>
-                    </div>
-                    <div className="flex-1 flex flex-col justify-between">
-                      <div className="space-y-1">
-                        <div className="flex items-start justify-between gap-2">
-                          <h3 className="font-headline font-bold text-base text-primary leading-snug">
-                            Arequipe de Antaño a Fuego Lento
-                          </h3>
-                          <span className="font-headline font-bold text-base text-primary whitespace-nowrap">
-                            €5.50
-                          </span>
-                        </div>
-                        <p className="text-xs text-on-surface-variant leading-relaxed">
-                          Frasco de vidrio de 250 g. Receta colonial elaborada con leche entera de granja holandesa y raspadura pura de panela de trapiche.
-                        </p>
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          <span className="inline-block text-[10px] font-label font-medium bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-sm">
-                            Panela Natural
-                          </span>
-                          {' '}
-                          <span className="inline-block text-[10px] font-label font-medium bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded-sm">
-                            Hecho a Mano
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-[11px] font-label text-outline pt-2 flex items-center justify-between">
-                        <span>
-                          Desglose: 1 frasco × €5.50
-                        </span>
-                        {' '}
-                        <span className="text-on-surface-variant font-medium">
-                          BTW 9% incl.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-surface-container rounded-xl p-6 sm:p-8 space-y-6">
-                  <div className="flex items-center justify-between pb-2">
-                    <h3 className="font-headline font-bold text-lg text-primary">
-                      Resumen Contable
-                    </h3>
-                    <span className="font-label text-xs uppercase tracking-wider text-outline">
-                      Euros (EUR €)
-                    </span>
-                  </div>
-                  <div className="space-y-3 font-label text-sm">
-                    <div className="flex justify-between items-center text-on-surface-variant">
-                      <span>
-                        Subtotal Alimentos Artesanales
-                      </span>
-                      {' '}
-                      <span className="font-medium text-primary">
-                        €40.00
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center text-on-surface-variant">
-                      <span className="flex items-center gap-1.5">
-                        <span className="material-symbols-outlined text-base text-secondary">
-                          pedal_bike
-                        </span>
-                        {' '}
-                        <span>
-                          Envío Ecológico Cargo-Bike (Ámsterdam Centro)
-                        </span>
-                      </span>
-                      {' '}
-                      <span className="font-medium text-primary">
-                        €2.50
-                      </span>
-                    </div>
-                    <div className="bg-surface-container-low rounded-lg p-3.5 space-y-1.5 text-xs text-on-surface-variant">
-                      <div className="flex justify-between items-center font-medium text-primary">
-                        <span>
-                          Impuesto Holandés (BTW) Desglosado:
-                        </span>
-                        {' '}
-                        <span>
-                          €3.73 total
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center text-outline pl-2">
-                        <span>
-                          • 9% BTW sobre Alimentos (€40.00 base imponible)
-                        </span>
-                        {' '}
-                        <span>
-                          €3.30
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center text-outline pl-2">
-                        <span>
-                          • 21% BTW sobre Servicio Logístico (€2.50 base imponible)
-                        </span>
-                        {' '}
-                        <span>
-                          €0.43
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-primary text-on-primary rounded-xl p-5 flex items-center justify-between shadow-[0_12px_24px_-8px_rgba(51,33,13,0.25)]">
-                    <div>
-                      <span className="block text-[11px] font-label uppercase tracking-widest text-on-primary-container">
-                        Importe Total Pagado
-                      </span>
-                      {' '}
-                      <span className="font-headline text-2xl sm:text-3xl font-extrabold tracking-tight">
-                        €42.50
-                      </span>
-                    </div>
-                    <div className="text-right">
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-sm bg-secondary text-on-secondary text-xs font-label font-bold uppercase tracking-wider">
-                        <span className="material-symbols-outlined text-xs">
-                          check_circle
-                        </span>
-                        {' '}Saldado
-                      </span>
-                      {' '}
-                      <span className="block text-[10px] text-on-primary-container mt-1 font-label">
-                        Precios con BTW incluido
-                      </span>
-                    </div>
-                  </div>
+                  <ResumenPedido lineas={lineasConItem(pedido.lineas)} titulo="Cesta del Pedido" envio={pedido.entrega === "domicilio" ? null : undefined} />
                 </div>
               </section>
               <section className="lg:col-span-5 space-y-6">
@@ -551,7 +326,7 @@ export default function CuentaPedidosIdPage() {
                   Factura Generada
                 </p>
                 <p className="text-[11px] text-on-primary-container font-label">
-                  Descargando comprobante fiscal #PSB-2025-4892.pdf
+                  Descargando comprobante fiscal #{pedido.id}.pdf
                 </p>
               </div>
             </div>

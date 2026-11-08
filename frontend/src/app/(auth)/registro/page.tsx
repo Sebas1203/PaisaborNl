@@ -10,12 +10,12 @@ export default function RegistroPage() {
     <div className="bg-background text-on-background font-body min-h-screen flex flex-col md:flex-row antialiased">
       <div className="hidden md:flex md:w-1/2 lg:w-3/5 relative flex-col justify-between p-12">
         <div className="absolute inset-0 z-0">
-          <img alt="Paisabor Kitchen" className="object-cover w-full h-full" data-alt="A warm, inviting scene in a modern Colombian kitchen set in a Dutch home. Sunlight streams through large windows, illuminating a rustic wooden table scattered with fresh ingredients: bright red tomatoes, vibrant yellow corn, and rich dark coffee beans. The atmosphere is high-end yet deeply personal, blending the earthy textures of traditional Colombian cooking with sleek, minimalist European design. The overall palette is grounded in warm roasted browns and soft creamy surfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA26qVlCH7CI5W3ok0DbVAzV2wuQu6BOzSV7Zg72o8hGVJYyYqnlGB_tsQqh9g4Ezy-EALtDRc89LC53bXoIQMWTf118VExwXB2S02rKNmK78cEtis8j42I9b4dLlZBlrwvbSzkK_6Fr42o1txTLJPQwCoJ6mnE57PyGVPGn5STElJrTuqj16zbRs6DzQy_ypNgIArD-0Ke0_yrAiUBGDJpAoEEOh8LlunMyPYc0Rd1AkSgz2nM7FoB" />
+          <img alt="Paisabor" className="object-contain w-full h-full" src="/images/logo/paisabor-logo-192.png" />
           <div className="absolute inset-0 bg-primary/40 mix-blend-multiply"></div>
         </div>
         <div className="relative z-10">
           <div className="flex items-center gap-2">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC95Ob11_XuRbXdNGey8I0nz9nKt4MR0GqsfXBPgLHr5BhZYgPnqbDIcNTlNlnXkOaPRQhTUswLwc4qZ2b0TFJU66T4gtctb3zbDmC7EFqdJ7WpkR88NVM9sR_anWZDFG4FKjiNS-888DI8yvuXOK4pm62Q8YRnjEpsWk5xebpg7hAZ4VSjDQ1PS9P02Ro0QnqUvDl63GeuJtrHuu-jgiPdI4_UrhcnTfQM8cR4Pz6OW8hW_BekbqYETjNGyHM7Jvg8kA" alt="Paisabor Logo" className="h-12 w-12 rounded-full object-cover border border-on-primary/20" />
+            <img alt="Paisabor" className="h-12 w-12 rounded-full object-contain border border-on-primary/20" src="/images/logo/paisabor-logo-192.png" />
             <h1 className="font-headline text-3xl font-bold text-on-primary tracking-tighter">
               Paisabor
             </h1>
@@ -33,7 +33,7 @@ export default function RegistroPage() {
       <div className="w-full md:w-1/2 lg:w-2/5 flex flex-col justify-center px-8 py-12 md:px-16 lg:px-24 bg-surface min-h-screen relative z-10 shadow-[-40px_0_40px_-10px_rgba(28,28,25,0.05)]">
         <div className="md:hidden mb-12 text-center">
           <div className="flex items-center justify-center gap-2">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMcfDUWMgMgwtbeh2mspPe_Tag9ZcQjWfGoV0bz-z90fq4Gs6fD3XoKvjr83NMi-mHj1Punu7CE03kBq1iijliGFz7dK5pWh73GCdruTDodTRmhAqkQjchhIzoT4f8s-w8nbUuJpUqJwfsNN1SXn6XgZCk58likxhSoTK-6TChwazvEtUahLv9Okn9aWbOQfuNpb1_UnOhjwWWKcC6qSICkRn49UG5bEGSar8CPmuIFoCGEcngcEPYY6HyMm_RAeojHg" alt="Paisabor Logo" className="h-10 w-10 rounded-full object-cover border border-primary/10" />
+            <img alt="Paisabor" className="h-10 w-10 rounded-full object-contain border border-primary/10" src="/images/logo/paisabor-logo-192.png" />
             <h1 className="font-headline text-2xl font-bold text-primary tracking-tighter">
               Paisabor
             </h1>

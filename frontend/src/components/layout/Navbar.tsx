@@ -6,17 +6,17 @@ import { useCart } from '@/features/cart/CartProvider';
 
 // Navbar del catálogo (cat_logo_de_productos_tienda_online), compartido por las pantallas de cliente
 const LOGO_URL =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCB20-V1-mXFATcu9UhhBi59V-sWka7AVitysLGTs5KIGJTJSsRThopREIC3CEN6ANxAF4jwdtPv4wnbnAl5xmQxD7o6VNTqrBGUFsJ-NdmCO3qc2VEkiYvBZWuaFp40S4In-s60Hv5chWnPCssIrFWORKHI20iroUcgOghE5OmFJEZMTCQHs9TSEjuYBk6dHTbFQar4axuMMiLqIWl7_4qJuqdEdh9t1he17ijInZHz6ANS6XEAsExSw5_KjntXVixXg';
+  '/images/logo/paisabor-logo-192.png';
 
 const isProductos = (path: string) =>
-  path === '/productos' || (path.startsWith('/catalogo') && !path.startsWith('/catalogo/firmas'));
-const isMenus = (path: string) => path.startsWith('/menus') || path.startsWith('/catalogo/firmas');
+  path.startsWith('/catalogo') && !path.startsWith('/catalogo/platos-tipicos');
+const isMenus = (path: string) => path.startsWith('/menus') || path.startsWith('/catalogo/platos-tipicos');
 const isCatering = (path: string) => path.startsWith('/catering');
 
 const TOP_LINKS = [
   { href: '/', label: 'Quienes Somos', active: () => false },
   { href: '/catalogo', label: 'Productos', active: isProductos },
-  { href: '/menus', label: 'Menu', active: isMenus },
+  { href: '/catalogo/platos-tipicos', label: 'Menu', active: isMenus },
   { href: '/catering', label: 'Catering', active: isCatering },
 ];
 

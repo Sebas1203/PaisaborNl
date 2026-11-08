@@ -1,6 +1,15 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/reservar_men_de_catering_paisabor
 /* eslint-disable @next/next/no-img-element */
 import { Go } from '@/components/ui/Go';
+import { ItemImage } from '@/components/ItemImage';
+import { BTW_ALIMENTOS, PLATOS } from '@/data';
+import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
+
+const PLATOS_CATERING = PLATOS.filter((plato) => plato.disponible);
+// El resumen parte del primer plato y de los 25 comensales que propone el diseño
+const PLATO_INICIAL = PLATOS_CATERING[0];
+const COMENSALES_INICIALES = 25;
+const SUBTOTAL = PLATO_INICIAL.precio * COMENSALES_INICIALES;
 
 export default function CateringReservarPage() {
   return (
@@ -66,129 +75,23 @@ export default function CateringReservarPage() {
                       </span>
                     </div>
                     <div className="grid grid-cols-1 gap-4" id="menu-selector-group">
-                      <label className="group relative flex flex-col sm:flex-row gap-4 p-4 rounded-xl cursor-pointer transition-all duration-200 bg-surface-container-low hover:bg-surface-container shadow-xs border-2 border-transparent has-[:checked]:bg-surface-container-lowest has-[:checked]:border-secondary has-[:checked]:shadow-md">
-                        <input defaultChecked className="sr-only" data-name="Banquete Campesino Lechona & Tamal" data-price="18.50" name="catering_menu" type="radio" value="campesino" />
-                        <div className="w-full sm:w-32 h-28 sm:h-auto rounded-lg overflow-hidden shrink-0 relative bg-surface-container">
-                          <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Traditional Colombian lechona tolimense with golden crackling skin and steaming mini tamales wrapped in bijao leaves on a rustic clay plate, warm amber atmospheric restaurant lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiQhOc7r0WNHWDUApQ1QnZppRSMLbcXlDSKHexuAMbmN9vDgpdmIBPA_hA54_vxoORIhnfuPXARQcupYMaq7HtmkjK-sv0HEKw4-sXldjZ2wew7gMQYaBUyamYOHAQqy3POdGZOHIT2uF2JymkFQvp8gmynFBO7uY7Pj54tuUb0BpIpCGZ9SIsTI1wlE81VYIBQMjCSCA1oUjflndm6gamy5jZiD8jExbEAsgWDVfVgB-r3rg332so" />
-                          {' '}
-                          <span className="absolute top-2 left-2 px-2 py-0.5 rounded-sm bg-primary/80 backdrop-blur-xs text-[10px] text-on-primary font-label font-medium uppercase tracking-wider">
-                            Tradición
-                          </span>
-                        </div>
-                        <div className="flex flex-col justify-between flex-grow gap-2">
-                          <div>
+                      {PLATOS_CATERING.map((plato, i) => (
+                        <label key={plato.id} className="group relative flex flex-col sm:flex-row gap-4 p-4 rounded-xl cursor-pointer transition-all duration-200 bg-surface-container-low hover:bg-surface-container shadow-xs border-2 border-transparent has-[:checked]:bg-surface-container-lowest has-[:checked]:border-secondary has-[:checked]:shadow-md">
+                          <input defaultChecked={i === 0} className="sr-only" name="catering_menu" type="radio" value={plato.id} />
+                          <div className="w-full sm:w-32 h-28 sm:h-auto rounded-lg overflow-hidden shrink-0 relative bg-surface-container">
+                            <ItemImage src={plato.imagen} alt={plato.nombre} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                          </div>
+                          <div className="flex flex-col justify-between flex-grow gap-2">
                             <div className="flex items-start justify-between gap-2">
-                              <h3 className="font-headline font-bold text-base text-primary group-hover:text-secondary transition-colors">
-                                Banquete Campesino Lechona &amp; Tamal
-                              </h3>
+                              <h3 className="font-headline font-bold text-base text-primary group-hover:text-secondary transition-colors">{plato.nombre}</h3>
                               <span className="font-headline font-bold text-base text-secondary whitespace-nowrap">
-                                €18.50{' '}
-                                <span className="text-[11px] font-normal text-on-surface-variant">
-                                  / pax
-                                </span>
+                                {formatEUR(plato.precio)} <span className="text-[11px] font-normal text-on-surface-variant">/ plato</span>
                               </span>
                             </div>
-                            <p className="font-body text-xs text-on-surface-variant mt-1 leading-relaxed">
-                              Lechona tolimense auténtica de piel crujiente, mini tamales campesinos envueltos en hoja de plátano y arepitas de maíz peto tostadas.
-                            </p>
+                            {plato.descripcion && <p className="font-body text-xs text-on-surface-variant mt-1 leading-relaxed">{plato.descripcion}</p>}
                           </div>
-                          <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                            <span className="text-[11px] font-label font-medium bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-sm">
-                              Piel crujiente
-                            </span>
-                            {' '}
-                            <span className="text-[11px] font-label font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-sm">
-                              Ají casero
-                            </span>
-                            {' '}
-                            <span className="text-[11px] font-label font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-sm">
-                              Sin gluten
-                            </span>
-                          </div>
-                        </div>
-                      </label>
-                      <label className="group relative flex flex-col sm:flex-row gap-4 p-4 rounded-xl cursor-pointer transition-all duration-200 bg-surface-container-low hover:bg-surface-container shadow-xs border-2 border-transparent has-[:checked]:bg-surface-container-lowest has-[:checked]:border-secondary has-[:checked]:shadow-md">
-                        <input className="sr-only" data-name="Fiesta Tradicional Paisa" data-price="21.00" name="catering_menu" type="radio" value="paisa" />
-                        <div className="w-full sm:w-32 h-28 sm:h-auto rounded-lg overflow-hidden shrink-0 relative bg-surface-container">
-                          <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Mini bandeja paisa Colombian banquet served in handcrafted black clay bowls with crispy chicharron pork belly, avocado, slow cooked red beans and sweet plantains, earthy warm Dutch loft background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIN9M07NXXcPn4r8c5DT5Yw9McJzi61zDwas3TR-UFZ8WVp9wSRC4XJ_0MjsWSRdy_O19th7c0hYb9x9ewixx7HjjHxbgc5oFtxDNsiz-wCHdG74SzQL79kBUgdCmKbItME43mMHLL4NocG2wXEINKHWv0O_PIBjpzKdu4ml2LaG4hkdkjnTKe5iUw3B9-BuXX6AXLD7KedlaKKkcpFpt4bxDeXE9Q5LzkanEHdicFFSf8RbHFDQcs" />
-                          {' '}
-                          <span className="absolute top-2 left-2 px-2 py-0.5 rounded-sm bg-secondary text-[10px] text-on-secondary font-label font-medium uppercase tracking-wider">
-                            Favorito
-                          </span>
-                        </div>
-                        <div className="flex flex-col justify-between flex-grow gap-2">
-                          <div>
-                            <div className="flex items-start justify-between gap-2">
-                              <h3 className="font-headline font-bold text-base text-primary group-hover:text-secondary transition-colors">
-                                Fiesta Tradicional Paisa
-                              </h3>
-                              <span className="font-headline font-bold text-base text-secondary whitespace-nowrap">
-                                €21.00{' '}
-                                <span className="text-[11px] font-normal text-on-surface-variant">
-                                  / pax
-                                </span>
-                              </span>
-                            </div>
-                            <p className="font-body text-xs text-on-surface-variant mt-1 leading-relaxed">
-                              Mini bandejas paisas servidas en vajilla artesanal de barro negro, chicharrón crocante al punto, cazuelitas de frijoles con hogao y aguacate fresco.
-                            </p>
-                          </div>
-                          <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                            <span className="text-[11px] font-label font-medium bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-sm">
-                              Chicharrón artesanal
-                            </span>
-                            {' '}
-                            <span className="text-[11px] font-label font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-sm">
-                              Hogao criollo
-                            </span>
-                            {' '}
-                            <span className="text-[11px] font-label font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-sm">
-                              Vajilla de barro
-                            </span>
-                          </div>
-                        </div>
-                      </label>
-                      <label className="group relative flex flex-col sm:flex-row gap-4 p-4 rounded-xl cursor-pointer transition-all duration-200 bg-surface-container-low hover:bg-surface-container shadow-xs border-2 border-transparent has-[:checked]:bg-surface-container-lowest has-[:checked]:border-secondary has-[:checked]:shadow-md">
-                        <input className="sr-only" data-name="Tardes de Fogón & Amasijos" data-price="14.00" name="catering_menu" type="radio" value="amasijos" />
-                        <div className="w-full sm:w-32 h-28 sm:h-auto rounded-lg overflow-hidden shrink-0 relative bg-surface-container">
-                          <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Selection of warm Colombian baked goods pandebono golden buñuelos and corn empanadas next to specialty brewed dark coffee in a ceramic cup, warm morning lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2CBdnaQeaN4FANQGIjL4Oe6ZiqKVJ8_d4NNQiTiEEss5hK2-grCgzdN14NTWsjJP8LYm5z09dCKCJ7cH-UoknTxVGGzHtOj3f-93iYRm5g8Ratt5qW5uNO_31XHF8dIVMd2yIBzJlDG5QloPgmyGicNG5qxO6ssZV32jfecz2d7gs88WmIwOORGYtvyiffGXrLEATkABMP56wgwuKoLBKolAIePAbUHW6nGaIGbhsSq2qJBUp65ws" />
-                          {' '}
-                          <span className="absolute top-2 left-2 px-2 py-0.5 rounded-sm bg-tertiary text-[10px] text-tertiary-fixed font-label font-medium uppercase tracking-wider">
-                            Cocktail &amp; Merienda
-                          </span>
-                        </div>
-                        <div className="flex flex-col justify-between flex-grow gap-2">
-                          <div>
-                            <div className="flex items-start justify-between gap-2">
-                              <h3 className="font-headline font-bold text-base text-primary group-hover:text-secondary transition-colors">
-                                Tardes de Fogón &amp; Amasijos
-                              </h3>
-                              <span className="font-headline font-bold text-base text-secondary whitespace-nowrap">
-                                €14.00{' '}
-                                <span className="text-[11px] font-normal text-on-surface-variant">
-                                  / pax
-                                </span>
-                              </span>
-                            </div>
-                            <p className="font-body text-xs text-on-surface-variant mt-1 leading-relaxed">
-                              Surtido de pandebonos calientes recién horneados, buñuelos esponjosos, empanaditas de carne con ají dulce y termos de café especial de Huila.
-                            </p>
-                          </div>
-                          <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                            <span className="text-[11px] font-label font-medium bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-sm">
-                              Café Huila 100%
-                            </span>
-                            {' '}
-                            <span className="text-[11px] font-label font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-sm">
-                              Horneado al día
-                            </span>
-                            {' '}
-                            <span className="text-[11px] font-label font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-sm">
-                              Opciones Vegetarianas
-                            </span>
-                          </div>
-                        </div>
-                      </label>
+                        </label>
+                      ))}
                     </div>
                   </div>
                   <div className="flex flex-col gap-4">
@@ -321,7 +224,7 @@ export default function CateringReservarPage() {
                             </span>
                             {' '}
                             <span className="font-body text-xs text-on-surface-variant mt-0.5">
-                              Llegada en cajas térmicas herméticas con calentadores chafing dish biodegradables. Transporte: €25.00 dentro del anillo A10 (€35.00 resto de Randstad).
+                              Llegada en cajas térmicas herméticas con calentadores chafing dish biodegradables. Tarifa de transporte por confirmar.
                             </span>
                           </div>
                         </div>
@@ -411,71 +314,38 @@ export default function CateringReservarPage() {
                     <div className="py-6 space-y-4">
                       <div className="flex flex-col gap-1 pb-3 border-b border-outline-variant/15">
                         <div className="flex items-center justify-between text-xs font-semibold text-primary">
-                          <span className="truncate max-w-[240px]" id="summary-menu-name">
-                            Banquete Campesino Lechona &amp; Tamal
-                          </span>
-                          {' '}
-                          <span className="whitespace-nowrap font-headline" id="summary-menu-rate">
-                            €18.50 / pax
-                          </span>
+                          <span className="truncate max-w-[240px]">{PLATO_INICIAL.nombre}</span>
+                          <span className="whitespace-nowrap font-headline">{formatEUR(PLATO_INICIAL.precio)} / plato</span>
                         </div>
                         <div className="flex items-center justify-between text-[11px] text-on-surface-variant font-label">
-                          <span>
-                            Asistentes seleccionados:
-                          </span>
-                          {' '}
-                          <span className="font-semibold text-primary" id="summary-guest-count">
-                            25 personas
-                          </span>
+                          <span>Asistentes seleccionados:</span>
+                          <span className="font-semibold text-primary">{COMENSALES_INICIALES} personas</span>
                         </div>
                       </div>
                       <div className="space-y-2 text-xs">
                         <div className="flex items-center justify-between text-on-surface-variant">
-                          <span>
-                            Subtotal Menú base:
-                          </span>
-                          {' '}
-                          <span className="font-medium text-primary" id="summary-base-subtotal">
-                            €462.50
-                          </span>
+                          <span>Subtotal platos:</span>
+                          <span className="font-medium text-primary">{formatEUR(SUBTOTAL)}</span>
                         </div>
                         <div className="flex items-center justify-between text-on-surface-variant">
-                          <span className="flex items-center gap-1">
-                            Logística &amp; menaje térmico:{' '}
-                            <span className="material-symbols-outlined text-[13px] text-outline cursor-help" title="Mantenimiento en calor garantizado por 3 horas">
-                              info
-                            </span>
-                          </span>
-                          {' '}
-                          <span className="font-medium text-primary" id="summary-delivery-fee">
-                            €25.00
-                          </span>
+                          <span>Logística y transporte:</span>
+                          <span className="font-medium text-primary">Por confirmar</span>
                         </div>
                         <div className="flex items-center justify-between text-[11px] text-on-surface-variant">
-                          <span>
-                            BTW holandés (9% alimentos + 21% logística):
-                          </span>
-                          {' '}
-                          <span className="font-medium text-on-surface-variant" id="summary-tax">
-                            €46.88
-                          </span>
+                          <span>Base sin IVA:</span>
+                          <span className="font-medium text-on-surface-variant">{formatEUR(SUBTOTAL / (1 + BTW_ALIMENTOS))}</span>
+                        </div>
+                        <div className="flex items-center justify-between text-[11px] text-on-surface-variant">
+                          <span>IVA (9%) incluido:</span>
+                          <span className="font-medium text-on-surface-variant">{formatEUR(SUBTOTAL - SUBTOTAL / (1 + BTW_ALIMENTOS))}</span>
                         </div>
                       </div>
                       <div className="pt-4 mt-2 border-t border-outline-variant/20 flex items-end justify-between">
                         <div className="flex flex-col">
-                          <span className="text-xs uppercase tracking-wider font-label font-bold text-primary">
-                            Total Estimado
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-on-surface-variant">
-                            Impuestos BTW incluidos
-                          </span>
+                          <span className="text-xs uppercase tracking-wider font-label font-bold text-primary">Total Estimado</span>
+                          <span className="text-[10px] text-on-surface-variant">{IVA_INCLUIDO}</span>
                         </div>
-                        <div className="flex items-baseline gap-1 text-right">
-                          <span className="font-headline text-3xl font-extrabold text-secondary tracking-tight" id="summary-grand-total">
-                            €534.38
-                          </span>
-                        </div>
+                        <span className="font-headline text-3xl font-extrabold text-secondary tracking-tight">{formatEUR(SUBTOTAL)}</span>
                       </div>
                     </div>
                     <div className="bg-surface-container-lowest/80 backdrop-blur-xs p-4 rounded-xl flex items-start gap-3 text-xs text-on-surface-variant leading-relaxed">

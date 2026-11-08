@@ -1,9 +1,18 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/modal_de_edici_n_de_producto_paisabor
 /* eslint-disable @next/next/no-img-element */
+import { ItemImage } from '@/components/ItemImage';
+import { CATEGORIAS_PRODUCTO, type ItemCatalogo, type Plato, type Producto } from '@/data';
+import { STOCK } from '@/data/mock';
+import { formatEUR } from '@/lib/format';
 
-type Props = { onClose: () => void; onTab: (tab: 'general' | 'canales') => void };
+type Props = { item: ItemCatalogo; onClose: () => void; onTab: (tab: 'general' | 'canales') => void };
 
-export function EditarProductoGeneral({ onClose, onTab }: Props) {
+// Categorías del catálogo (src/data) para el selector del modal
+const CATEGORIAS_MODAL = [{ id: 'platos', nombre: 'Platos típicos' }, { id: 'especiales', nombre: 'Especiales de fin de semana' }, ...CATEGORIAS_PRODUCTO];
+const categoriaDe = (item: ItemCatalogo) =>
+  item.tipo === 'producto' ? (item as Producto).categoria : (item as Plato).bajoReserva ? 'especiales' : 'platos';
+
+export function EditarProductoGeneral({ item, onClose, onTab }: Props) {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: "@layer base {\n.soil-shadow { box-shadow: -10px 0 40px rgba(28,28,25,0.05); }\n.card-ambient-shadow { box-shadow: 0 4px 40px rgba(28,28,25,0.05); }\n}" }} />
@@ -20,7 +29,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
             <div>
               <div className="flex items-center gap-2.5 flex-wrap">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant font-mono">
-                  SKU #PRD-0042
+                  {item.id}
                 </span>
                 {' '}
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-fixed text-on-secondary-fixed flex items-center gap-1">
@@ -29,7 +38,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
                 </span>
                 {' '}
                 <span className="text-xs text-on-surface-variant hidden sm:inline">
-                  • Sierra Nevada de Santa Marta
+                  • {item.tipo === "producto" ? "Producto" : "Menú"}
                 </span>
               </div>
               <h2 className="font-headline font-bold text-2xl sm:text-3xl text-primary mt-1 tracking-tight">
@@ -79,7 +88,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
                 Nombre Oficial del Producto *
               </label>
               {' '}
-              <input className="form-input w-full bg-surface-container-high px-4 py-3 rounded-lg text-primary font-headline font-semibold text-base focus:outline-hidden focus:ring-0 focus:bg-surface-container-highest transition-colors" type="text" defaultValue="Café de Origen - Sierra Nevada Dark Roast" />
+              <input className="form-input w-full bg-surface-container-high px-4 py-3 rounded-lg text-primary font-headline font-semibold text-base focus:outline-hidden focus:ring-0 focus:bg-surface-container-highest transition-colors" type="text" defaultValue={item.nombre} />
               <p className="text-xs text-on-surface-variant">
                 Visible públicamente en vitrina digital y cartas de restaurante Paisabor.
               </p>
@@ -89,22 +98,10 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
                 Categoría EDR *
               </label>
               <div className="relative">
-                <select className="form-select w-full bg-surface-container-high px-4 py-3 rounded-lg text-primary font-medium text-sm appearance-none focus:outline-hidden focus:ring-0 focus:bg-surface-container-highest pr-10 cursor-pointer transition-colors" defaultValue="cafe_grano">
-                  <option value="cafe_grano">
-                    Café en Grano (Tostado)
-                  </option>
-                  <option value="despensa">
-                    Despensa Tradicional
-                  </option>
-                  <option value="panaderia">
-                    Panadería y Amasijos
-                  </option>
-                  <option value="menu_tipico">
-                    Menú Típico Hacienda
-                  </option>
-                  <option value="dulces">
-                    Dulces &amp; Golosinas
-                  </option>
+                <select className="form-select w-full bg-surface-container-high px-4 py-3 rounded-lg text-primary font-medium text-sm appearance-none focus:outline-hidden focus:ring-0 focus:bg-surface-container-highest pr-10 cursor-pointer transition-colors" defaultValue={categoriaDe(item)}>
+                  {CATEGORIAS_MODAL.map((c) => (
+                    <option key={c.id} value={c.id}>{c.nombre}</option>
+                  ))}
                 </select>
                 <span className="material-symbols-outlined pointer-events-none absolute right-3 top-3.5 text-on-surface-variant text-lg">
                   expand_more
@@ -124,7 +121,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
                 {' '}Precios y Existencias en Bodega
               </div>
               <span className="text-xs text-on-surface-variant">
-                Unidad: Paquete 500g sellado al vacío
+                Precio con IVA (9%) incluido
               </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -137,7 +134,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
                     €
                   </span>
                   {' '}
-                  <input className="form-input w-full bg-surface-container-highest pl-8 pr-4 py-2.5 rounded-lg text-primary font-bold text-lg focus:outline-hidden" type="text" defaultValue="18.50" />
+                  <input className="form-input w-full bg-surface-container-highest pl-8 pr-4 py-2.5 rounded-lg text-primary font-bold text-lg focus:outline-hidden" type="text" defaultValue={item.precio.toFixed(2)} />
                 </div>
                 <div className="flex items-center justify-between text-[11px] text-on-surface-variant pt-1">
                   <span>
@@ -145,7 +142,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
                   </span>
                   {' '}
                   <span className="font-mono font-medium text-primary">
-                    €1.53 incl.
+                    {formatEUR(item.precio - item.precio / (1 + item.btw))} incl.
                   </span>
                 </div>
               </div>
@@ -155,7 +152,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
                 </label>
                 <div className="flex items-center gap-2">
                   <div className="relative flex-1">
-                    <input className="form-input w-full bg-surface-container-highest px-4 py-2.5 rounded-lg text-primary font-headline font-bold text-lg focus:outline-hidden cursor-default" readOnly type="text" defaultValue="45" />
+                    <input className="form-input w-full bg-surface-container-highest px-4 py-2.5 rounded-lg text-primary font-headline font-bold text-lg focus:outline-hidden cursor-default" readOnly type="text" defaultValue={String(STOCK[item.id] ?? 0)} />
                     {' '}
                     <span className="absolute right-3.5 top-3 text-xs text-on-surface-variant font-medium">
                       unidades
@@ -198,7 +195,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-surface-container-low p-4 rounded-xl">
               <div className="md:col-span-5 relative group overflow-hidden rounded-lg aspect-[16/10] bg-surface-container-highest">
-                <img alt="Café de Origen Sierra Nevada Dark Roast en empaque artesanal Paisabor" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1UHH1jTOYefikynnvTjP2etuAXDLDRTbV1mX9IcJPrhohn-dmGT3TnpKAV58wFHOrobewTsIZBBpiHqzuL9QuMPZBsxGmq5AWSK2ZDwTarjhBFi3RIuKdQYCdviUw-frgB4Ivm1c4DRqWQdmZ1i6pfEGpYq__6f1ruLhgqidyl3Ab4Khzsldy3nXM785QgObPLShx5L4vAyHkTZy6IsPx4mlA_YDqABijN8zxzpklFs342xD_QeZ7pnT2vA8OlhzEhrX7qHS6kz" />
+                <ItemImage src={item.imagen} alt={item.nombre} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-linear-to-t from-primary/70 via-transparent to-transparent flex items-end p-3">
                   <span className="text-on-primary text-xs font-medium flex items-center gap-1">
                     <span className="material-symbols-outlined text-sm">
@@ -211,10 +208,10 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
               <div className="md:col-span-7 flex flex-col justify-center space-y-3">
                 <div>
                   <h4 className="font-headline font-bold text-primary text-base">
-                    sierra-nevada-dark-500g.webp
+                    {item.imagen.split("/").pop()}
                   </h4>
                   <p className="text-xs text-on-surface-variant mt-0.5">
-                    Subido el 12 de Noviembre, 2024 • 757 × 472 px
+                    {item.imagen}
                   </p>
                 </div>
                 <div className="flex items-center gap-3 pt-2">
@@ -248,7 +245,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
                 Español • Tienda Europea
               </span>
             </div>
-            <textarea className="form-textarea w-full bg-surface-container-high p-4 rounded-lg text-primary text-sm leading-relaxed focus:outline-hidden focus:ring-0 focus:bg-surface-container-highest transition-colors" rows={3} defaultValue="Café colombiano 100% Arábica con notas a chocolate amargo, panela y frutos secos. Cultivado por caficultores de la Sierra Nevada de Santa Marta a 1.700 msnm. Tueste medio-oscuro artesanal con cuerpo sedoso y acidez brillante."></textarea>
+            <textarea className="form-textarea w-full bg-surface-container-high p-4 rounded-lg text-primary text-sm leading-relaxed focus:outline-hidden focus:ring-0 focus:bg-surface-container-highest transition-colors" rows={3} defaultValue={item.descripcion ?? ""}></textarea>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
             <div className="space-y-4 bg-surface-container-low p-5 rounded-xl">
@@ -290,7 +287,7 @@ export function EditarProductoGeneral({ onClose, onTab }: Props) {
               <label className="block text-xs uppercase tracking-wider font-semibold text-on-surface-variant">
                 Notas Internas de Bodega
               </label>
-              <textarea className="form-textarea w-full bg-surface-container-high p-3.5 rounded-xl text-primary text-xs leading-relaxed focus:outline-hidden focus:ring-0 focus:bg-surface-container-highest" placeholder="Ej: Lote SN-2024-B importado vía puerto de Rotterdam. Almacenar lejos de humedad..." rows={4} defaultValue="Lote de cosecha fresca importado en Octubre. Mantener estiba sobre tarima a 18°C. No mezclar con bultos de arequipe."></textarea>
+              <textarea className="form-textarea w-full bg-surface-container-high p-3.5 rounded-xl text-primary text-xs leading-relaxed focus:outline-hidden focus:ring-0 focus:bg-surface-container-highest" placeholder="Notas internas del producto" rows={4} defaultValue="Lote de cosecha fresca importado en Octubre. Mantener estiba sobre tarima a 18°C. No mezclar con bultos de arequipe."></textarea>
               <p className="text-[11px] text-on-surface-variant">
                 Solo visible para el personal administrativo de Paisabor.
               </p>

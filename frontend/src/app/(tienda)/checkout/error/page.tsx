@@ -1,6 +1,7 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/pago_no_completado_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import { ResumenCarrito } from '@/components/order/ResumenPedido';
 
 export default function CheckoutErrorPage() {
   return (
@@ -204,125 +205,7 @@ export default function CheckoutErrorPage() {
               </div>
               <div className="lg:col-span-5 space-y-6">
                 <div className="rounded-xl bg-surface-container p-6 sm:p-7 space-y-5">
-                  <div className="flex items-center justify-between pb-2">
-                    <div>
-                      <span className="text-[10px] uppercase font-label tracking-widest font-bold text-secondary">
-                        Tu Selección Reservada
-                      </span>
-                      <h2 className="font-headline font-bold text-xl text-primary">
-                        Canasta en Espera
-                      </h2>
-                    </div>
-                    <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-surface-container-lowest text-primary">
-                      3 ítems
-                    </span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="p-3.5 rounded-lg bg-surface-container-lowest flex items-center gap-3.5 shadow-xs">
-                      <div className="w-14 h-14 rounded-md overflow-hidden bg-surface-container-high flex-shrink-0">
-                        <img className="w-full h-full object-cover" data-alt="Traditional golden Colombian cheese arepas with melted queso blanco on a dark rustic ceramic plate, soft natural kitchen light, artisanal Colombian food styling in Amsterdam" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoro5t5-TiIS2QqE0KE-K_loIF1LHXQfP7bjOQ1tF5dzTIB7isLL_ZvBVHeC9pFqURx8FXvrPAww4lfj8aW01aZ6aSazPtpOqJdNlxMN0suSnh97nKnr3NLb0RpcVL1ZcU_CapyJ_gDeFwZO4ssQS7dcXJq9nGCrRLFLOTaQq9graYL5q-52y31iT9fu-3JvWwADedTclDUyNR_dhAtOYzI88m5plPBSIv28me4ikhtzvajNVz8p8U" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-headline text-xs font-bold text-primary truncate">
-                          Arepas de Choclo con Queso Campesino
-                        </h4>
-                        <p className="text-[11px] text-on-surface-variant">
-                          Pack artesanal x 4 unidades
-                        </p>
-                        <div className="mt-1 flex items-center gap-1.5">
-                          <span className="inline-block px-1.5 py-0.2 rounded-sm bg-tertiary-fixed text-on-tertiary-fixed text-[9px] font-semibold uppercase">
-                            Maíz Dulce
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-on-surface-variant font-mono">
-                            Cant: 1
-                          </span>
-                        </div>
-                      </div>
-                      <span className="font-mono text-xs font-bold text-primary">
-                        € 14,50
-                      </span>
-                    </div>
-                    <div className="p-3.5 rounded-lg bg-surface-container-lowest flex items-center gap-3.5 shadow-xs">
-                      <div className="w-14 h-14 rounded-md overflow-hidden bg-surface-container-high flex-shrink-0">
-                        <img className="w-full h-full object-cover" data-alt="Crispy golden Colombian beef and potato empanadas served with homemade spicy ají sauce in a terracotta bowl, warm ambient light, gourmet Colombian bakery aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH7ut-Q0tNdWQ9xm2iQ2WrhU1PkkruO2ZNWocZ0ysbvSHxXah3kni11gpB1Z42c3TWMcbWKH3BORHiIBEsuURBwtXxpBx1X9Goe_EbQOWzdqAm5bbQPuJhvQLO58te4tjJFB_LjAJTDQzgordgs8DoX73h5kkZVxvjm6F1KdbyJBqA3zVyXrZZheYy0Hy8svG1XN3jerAG3I8hd7rWwALOrWvQnHam1OX5uhMeF0Jjw9cruxXi-R-Q" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-headline text-xs font-bold text-primary truncate">
-                          Empanadas Paisas Horneadas
-                        </h4>
-                        <p className="text-[11px] text-on-surface-variant">
-                          Carne mechada y papa criolla x 6
-                        </p>
-                        <div className="mt-1 flex items-center gap-1.5">
-                          <span className="inline-block px-1.5 py-0.2 rounded-sm bg-tertiary-fixed text-on-tertiary-fixed text-[9px] font-semibold uppercase">
-                            Ají Casero
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-on-surface-variant font-mono">
-                            Cant: 2
-                          </span>
-                        </div>
-                      </div>
-                      <span className="font-mono text-xs font-bold text-primary">
-                        € 22,00
-                      </span>
-                    </div>
-                    <div className="p-3.5 rounded-lg bg-surface-container-lowest flex items-center gap-3.5 shadow-xs">
-                      <div className="w-14 h-14 rounded-md overflow-hidden bg-surface-container-high flex-shrink-0">
-                        <img className="w-full h-full object-cover" data-alt="Specialty Colombian coffee beans from Huila in a minimalist kraft package, roasted dark brown coffee beans, warm wooden table setting, Amsterdam artisan vibe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcuFL2GI_UU-Mm7vx7RjMS_WYc1yIH0Og2JByMpzCp6enlqcnFW9ff7rSTrNT4p_Q38CKdMLAThBqZELPE8niXeNGu4I9VV_WvHu1vaUEmaES5HZpa-bv2GRYd-PCXLidcYfme08rD3MA_ng8o6hlKiZUowc07YK2HmNPIqYu974bOTSLeQIIv-TUx12D60KDNM-Zq8Y2sY_Q93CQRaQtG_c3dCWdofuTGCqupMKNN4VqfOh4R8ZtD" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-headline text-xs font-bold text-primary truncate">
-                          Café de Origen Huila (Tueste Medio)
-                        </h4>
-                        <p className="text-[11px] text-on-surface-variant">
-                          Grano entero · 250g
-                        </p>
-                        <div className="mt-1 flex items-center gap-1.5">
-                          <span className="inline-block px-1.5 py-0.2 rounded-sm bg-secondary-fixed text-on-secondary-fixed text-[9px] font-semibold uppercase">
-                            Notas a Panela
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-on-surface-variant font-mono">
-                            Cant: 1
-                          </span>
-                        </div>
-                      </div>
-                      <span className="font-mono text-xs font-bold text-primary">
-                        € 11,80
-                      </span>
-                    </div>
-                  </div>
-                  <div className="pt-4 space-y-2 text-xs">
-                    <div className="flex justify-between text-on-surface-variant">
-                      <span>
-                        Subtotal productos
-                      </span>
-                      {' '}
-                      <span className="font-mono">
-                        € 48,30
-                      </span>
-                    </div>
-                    <div className="flex justify-between text-on-surface-variant">
-                      <span>
-                        Envío en bicicleta (Ámsterdam Centro)
-                      </span>
-                      {' '}
-                      <span className="font-mono">
-                        € 3,50
-                      </span>
-                    </div>
-                    <div className="pt-2 flex justify-between text-sm font-bold text-primary">
-                      <span className="font-headline">
-                        Total retenido para compra
-                      </span>
-                      {' '}
-                      <span className="font-mono text-base text-secondary">
-                        € 51,80
-                      </span>
-                    </div>
-                  </div>
+                  <ResumenCarrito titulo="Canasta en Espera" editable />
                 </div>
                 <div className="p-5 rounded-xl bg-surface-container-lowest space-y-3 shadow-xs">
                   <div className="flex items-center gap-3">

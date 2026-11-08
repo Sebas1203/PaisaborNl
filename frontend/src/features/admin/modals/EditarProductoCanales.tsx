@@ -1,9 +1,10 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/modal_de_edici_n_canales_y_disponibilidad_paisabor
 /* eslint-disable @next/next/no-img-element */
+import type { ItemCatalogo } from '@/data';
 
-type Props = { onClose: () => void; onTab: (tab: 'general' | 'canales') => void };
+type Props = { item: ItemCatalogo; onClose: () => void; onTab: (tab: 'general' | 'canales') => void };
 
-export function EditarProductoCanales({ onClose, onTab }: Props) {
+export function EditarProductoCanales({ item, onClose, onTab }: Props) {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: "@layer base {\n.soil-shadow { box-shadow: -10px 0 40px rgba(28,28,25,0.05); }\n.card-ambient-shadow { box-shadow: 0 4px 40px rgba(28,28,25,0.05); }\n}" }} />
@@ -20,7 +21,7 @@ export function EditarProductoCanales({ onClose, onTab }: Props) {
             <div>
               <div className="flex items-center gap-2.5 flex-wrap">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant font-mono">
-                  SKU #PRD-0042
+                  {item.id}
                 </span>
                 {' '}
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-fixed text-on-secondary-fixed flex items-center gap-1">
@@ -29,7 +30,7 @@ export function EditarProductoCanales({ onClose, onTab }: Props) {
                 </span>
                 {' '}
                 <span className="text-xs text-on-surface-variant hidden sm:inline">
-                  • Sierra Nevada de Santa Marta
+                  • {item.tipo === "producto" ? "Producto" : "Menú"}
                 </span>
               </div>
               <h2 className="font-headline font-bold text-2xl sm:text-3xl text-primary mt-1 tracking-tight">

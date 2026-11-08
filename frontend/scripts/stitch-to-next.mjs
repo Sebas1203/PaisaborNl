@@ -36,8 +36,8 @@ const PEDIDO_DEMO = '/cuenta/pedidos/PSB-2025-4892';
 // ---------------------------------------------------------------------------
 const SCREENS = {
   cat_logo_de_productos_tienda_online: { route: '(tienda)/catalogo', kind: 'tienda' },
-  men_de_productos_completo: { route: '(tienda)/productos', kind: 'tienda' },
-  men_de_platos_t_picos: { route: '(tienda)/catalogo/firmas', kind: 'tienda' },
+  men_de_productos_completo: { route: '(tienda)/catalogo/productos', kind: 'tienda' },
+  men_de_platos_t_picos: { route: '(tienda)/catalogo/platos-tipicos', kind: 'tienda' },
   men_bajo_reserva_paisabor: { route: '(tienda)/menus', kind: 'tienda' },
   catering_paisabor: { route: '(tienda)/catering', kind: 'tienda' },
   reservar_men_de_catering_paisabor: { route: '(tienda)/catering/reservar', kind: 'tienda' },

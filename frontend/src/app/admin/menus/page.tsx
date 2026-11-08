@@ -1,6 +1,20 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/panel_de_administraci_n_unificado_gesti_n_de_men_s_y_reservas_paisabor
 /* eslint-disable @next/next/no-img-element */
+import { ItemImage } from '@/components/ItemImage';
+import { ESPECIALES, itemPorId } from '@/data';
+import { RESERVAS } from '@/data/mock';
+import { formatDias, formatEUR, formatFecha } from '@/lib/format';
 import { Go } from '@/components/ui/Go';
+
+// MOCK: cifras calculadas con las reservas de ejemplo
+const RESERVA_LABELS = { pendiente: "Pendiente", confirmada: "Confirmada", finalizada: "Finalizada", rechazada: "Rechazada" } as const;
+const CONFIRMADAS = RESERVAS.filter((r) => r.estado === "confirmada");
+const importe = (r: (typeof RESERVAS)[number]) => (itemPorId(r.platoId)?.precio ?? 0) * r.porciones;
+const IMPORTE_CONFIRMADAS = CONFIRMADAS.reduce((acc, r) => acc + importe(r), 0);
+const PORCIONES = RESERVAS.filter((r) => r.estado !== "rechazada").reduce((acc, r) => acc + r.porciones, 0);
+const MAS_RESERVADO = [...ESPECIALES].sort(
+  (a, b) => RESERVAS.filter((r) => r.platoId === b.id).length - RESERVAS.filter((r) => r.platoId === a.id).length
+)[0];
 
 export default function AdminMenusPage() {
   return (
@@ -74,7 +88,7 @@ export default function AdminMenusPage() {
                 </div>
                 <div className="flex items-baseline gap-3">
                   <span className="text-3xl font-headline font-bold text-primary tracking-tight">
-                    88%
+                    {PORCIONES}
                   </span>
                   {' '}
                   <span className="text-xs font-medium text-secondary font-body bg-secondary-fixed/50 px-2 py-0.5 rounded-full">
@@ -113,11 +127,11 @@ export default function AdminMenusPage() {
                 </div>
                 <div className="flex items-baseline gap-3">
                   <span className="text-3xl font-headline font-bold text-primary tracking-tight">
-                    14
+                    {CONFIRMADAS.length}
                   </span>
                   {' '}
                   <span className="text-sm font-semibold text-secondary font-headline">
-                    €842.50
+                    {formatEUR(IMPORTE_CONFIRMADAS)}
                   </span>
                 </div>
                 <p className="text-xs text-on-surface-variant mt-1.5 leading-snug">
@@ -147,8 +161,8 @@ export default function AdminMenusPage() {
                   </span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-lg font-headline font-bold text-primary truncate" title="Lechona Tolimense Tradicional">
-                    Lechona Tolimense
+                  <span className="text-lg font-headline font-bold text-primary truncate" title={MAS_RESERVADO.nombre}>
+                    {MAS_RESERVADO.nombre}
                   </span>
                   <div className="flex items-center gap-2 mt-0.5">
                     <span className="text-xs font-semibold text-tertiary-container bg-tertiary-fixed px-2 py-0.5 rounded-full font-label">
@@ -222,7 +236,7 @@ export default function AdminMenusPage() {
                   </span>
                   {' '}Reservas Activas de Menús{' '}
                   <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-secondary-fixed text-on-secondary-fixed ml-1">
-                    14
+                    {RESERVAS.length}
                   </span>
                 </span>
               </button>
@@ -234,7 +248,7 @@ export default function AdminMenusPage() {
                   </span>
                   {' '}Catálogo de Menús (Bajo Reserva){' '}
                   <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-outline ml-1">
-                    4
+                    {ESPECIALES.length}
                   </span>
                 </span>
               </button>
@@ -276,21 +290,11 @@ export default function AdminMenusPage() {
                     <option value="all">
                       Todos los menús
                     </option>
-                    <option value="Lechona Tolimense">
-                      Lechona Tolimense
-                    </option>
-                    <option value="Bandeja Paisa">
-                      Bandeja Paisa
-                    </option>
-                    <option value="Ajiaco Santafereño">
-                      Ajiaco Santafereño
-                    </option>
-                    <option value="Sancocho Trifásico">
-                      Sancocho Trifásico
-                    </option>
-                    <option value="Sobrebarriga">
-                      Sobrebarriga en Salsa Criolla
-                    </option>
+                    {ESPECIALES.map((plato) => (
+                      <option key={plato.id} value={plato.id}>
+                        {plato.nombre}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="relative w-full sm:w-auto">
@@ -369,705 +373,39 @@ export default function AdminMenusPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y-0 text-xs font-body text-on-surface" id="reservas-table-body">
-                    <tr className="res-row hover:bg-surface-container-low transition-colors duration-150" data-client="Lukas van den Berg" data-day="Sábado" data-menu="Lechona Tolimense" data-type="Domicilio">
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            #RES-2024-089
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline font-label">
-                            23 Oct, 11:20 CET
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Lukas van den Berg
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant">
-                            +31 6 4821 9901
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline">
-                            lukas.vdb@gmail.com
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="font-semibold text-primary">
-                            Lechona Tolimense Tradicional
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1.5 text-[11px] text-secondary font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                            {' '}2 Fuentes Familiares (8 porciones)
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline italic">
-                            Nota: Sin cuero extra para niños
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Sábado 26 Oct
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-secondary font-label font-bold">
-                            13:00 - 14:00 CET
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-outline">
-                            Ventana Almuerzo
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed w-max">
-                            <span className="material-symbols-outlined text-xs">
-                              local_shipping
-                            </span>
-                            {' '}Domicilio Térmico
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant truncate max-w-[150px]" title="Singel 342, 1016 AK Amsterdam">
-                            Singel 342, Amsterdam
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            €74.00
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-medium">
-                            <span className="material-symbols-outlined text-xs">
-                              check_circle
-                            </span>
-                            {' '}iDeal Pagado
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <select className="text-xs px-2.5 py-1.5 rounded-lg bg-surface-container font-medium text-primary focus:outline-hidden focus:ring-1 focus:ring-secondary cursor-pointer" defaultValue="fogon">
-                          <option value="cola">
-                            En cola de cocción
-                          </option>
-                          <option value="fogon">
-                            En Fogón / Horneada
-                          </option>
-                          <option value="empaque">
-                            Listo para despacho
-                          </option>
-                          <option value="entregado">
-                            Entregado
-                          </option>
-                        </select>
-                      </td>
-                      <td className="py-4 px-4 align-top text-right">
-                        <div className="flex items-center justify-end gap-1">
-                          <button className="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Imprimir Etiqueta Térmica" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              print
-                            </span>
-                          </button>
-                          {' '}
-                          <button className="p-1.5 rounded-lg text-outline hover:text-secondary hover:bg-surface-container transition-colors" title="Ver Detalle / WhatsApp" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              visibility
-                            </span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="res-row hover:bg-surface-container-low transition-colors duration-150" data-client="Camila Restrepo" data-day="Sábado" data-menu="Ajiaco Santafereño" data-type="Retiro">
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            #RES-2024-090
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline font-label">
-                            23 Oct, 14:05 CET
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Camila Restrepo
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant">
-                            +31 6 1933 0082
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline">
-                            c.restrepo@outlook.com
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="font-semibold text-primary">
-                            Ajiaco Santafereño Bogotano
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1.5 text-[11px] text-secondary font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                            {' '}3 Porciones (Con alcaparras &amp; crema)
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Sábado 26 Oct
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-secondary font-label font-bold">
-                            14:15 - 15:00 CET
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-outline">
-                            Recogida Puntual
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-surface-container-high text-primary w-max">
-                            <span className="material-symbols-outlined text-xs">
-                              store
-                            </span>
-                            {' '}Retiro en Atelier
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant">
-                            Gerard Doustraat 54, De Pijp
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            €52.50
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-medium">
-                            <span className="material-symbols-outlined text-xs">
-                              check_circle
-                            </span>
-                            {' '}iDeal Pagado
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <select className="text-xs px-2.5 py-1.5 rounded-lg bg-surface-container font-medium text-primary focus:outline-hidden focus:ring-1 focus:ring-secondary cursor-pointer" defaultValue="cola">
-                          <option value="cola">
-                            En cola de cocción
-                          </option>
-                          <option value="fogon">
-                            En Fogón / Horneada
-                          </option>
-                          <option value="empaque">
-                            Listo para despacho
-                          </option>
-                          <option value="entregado">
-                            Entregado
-                          </option>
-                        </select>
-                      </td>
-                      <td className="py-4 px-4 align-top text-right">
-                        <div className="flex items-center justify-end gap-1">
-                          <button className="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Imprimir Etiqueta Térmica" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              print
-                            </span>
-                          </button>
-                          {' '}
-                          <button className="p-1.5 rounded-lg text-outline hover:text-secondary hover:bg-surface-container transition-colors" title="Ver Detalle" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              visibility
-                            </span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="res-row hover:bg-surface-container-low transition-colors duration-150" data-client="Matthijs de Boer" data-day="Domingo" data-menu="Bandeja Paisa" data-type="Domicilio">
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            #RES-2024-091
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline font-label">
-                            23 Oct, 18:40 CET
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Matthijs de Boer
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant">
-                            +31 6 9012 3456
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline">
-                            matthijs@studioarch.nl
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="font-semibold text-primary">
-                            Bandeja Paisa de la Hacienda
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1.5 text-[11px] text-secondary font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                            {' '}4 Raciones Completas (Chicharrón carnudo)
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline italic">
-                            Nota: Empacar aguacate entero por separado
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Domingo 27 Oct
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-secondary font-label font-bold">
-                            12:30 - 13:30 CET
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-outline">
-                            Utrecht Ruta Central
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed w-max">
-                            <span className="material-symbols-outlined text-xs">
-                              local_shipping
-                            </span>
-                            {' '}Domicilio Térmico
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant truncate max-w-[150px]" title="Oudegracht 118, Utrecht">
-                            Oudegracht 118, Utrecht
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            €84.00
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-medium">
-                            <span className="material-symbols-outlined text-xs">
-                              check_circle
-                            </span>
-                            {' '}iDeal Pagado
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <select className="text-xs px-2.5 py-1.5 rounded-lg bg-surface-container font-medium text-primary focus:outline-hidden focus:ring-1 focus:ring-secondary cursor-pointer" defaultValue="cola">
-                          <option value="cola">
-                            En cola de cocción
-                          </option>
-                          <option value="fogon">
-                            En Fogón / Horneada
-                          </option>
-                          <option value="empaque">
-                            Listo para despacho
-                          </option>
-                          <option value="entregado">
-                            Entregado
-                          </option>
-                        </select>
-                      </td>
-                      <td className="py-4 px-4 align-top text-right">
-                        <div className="flex items-center justify-end gap-1">
-                          <button className="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Imprimir Etiqueta Térmica" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              print
-                            </span>
-                          </button>
-                          {' '}
-                          <button className="p-1.5 rounded-lg text-outline hover:text-secondary hover:bg-surface-container transition-colors" title="Ver Detalle" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              visibility
-                            </span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="res-row hover:bg-surface-container-low transition-colors duration-150" data-client="Valeria Montoya" data-day="Domingo" data-menu="Sancocho Trifásico" data-type="Domicilio">
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            #RES-2024-092
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline font-label">
-                            24 Oct, 09:15 CET
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Valeria Montoya
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant">
-                            +31 6 7744 1290
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline">
-                            valem@company.nl
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="font-semibold text-primary">
-                            Sancocho Trifásico en Leña
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1.5 text-[11px] text-secondary font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                            {' '}2 Porciones (Costilla, pollo, cerdo)
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Domingo 27 Oct
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-secondary font-label font-bold">
-                            14:00 - 15:00 CET
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-outline">
-                            Ruta Róterdam
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed w-max">
-                            <span className="material-symbols-outlined text-xs">
-                              local_shipping
-                            </span>
-                            {' '}Domicilio Térmico
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant truncate max-w-[150px]" title="Witte de Withstraat 44, Rotterdam">
-                            Witte de Withstraat 44
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            €38.00
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-medium">
-                            <span className="material-symbols-outlined text-xs">
-                              check_circle
-                            </span>
-                            {' '}iDeal Pagado
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <select className="text-xs px-2.5 py-1.5 rounded-lg bg-surface-container font-medium text-primary focus:outline-hidden focus:ring-1 focus:ring-secondary cursor-pointer" defaultValue="cola">
-                          <option value="cola">
-                            En cola de cocción
-                          </option>
-                          <option value="fogon">
-                            En Fogón / Horneada
-                          </option>
-                          <option value="empaque">
-                            Listo para despacho
-                          </option>
-                          <option value="entregado">
-                            Entregado
-                          </option>
-                        </select>
-                      </td>
-                      <td className="py-4 px-4 align-top text-right">
-                        <div className="flex items-center justify-end gap-1">
-                          <button className="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Imprimir Etiqueta Térmica" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              print
-                            </span>
-                          </button>
-                          {' '}
-                          <button className="p-1.5 rounded-lg text-outline hover:text-secondary hover:bg-surface-container transition-colors" title="Ver Detalle" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              visibility
-                            </span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="res-row hover:bg-surface-container-low transition-colors duration-150" data-client="Sander Bakker" data-day="Sábado" data-menu="Lechona Tolimense" data-type="Retiro">
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            #RES-2024-093
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline font-label">
-                            24 Oct, 10:02 CET
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Sander Bakker
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant">
-                            +31 6 3320 8812
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline">
-                            sbakker@kpnmail.nl
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="font-semibold text-primary">
-                            Lechona Tolimense Tradicional
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1.5 text-[11px] text-secondary font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                            {' '}1 Fuente (4 porciones)
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Sábado 26 Oct
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-secondary font-label font-bold">
-                            12:00 - 12:30 CET
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-outline">
-                            Recogida Temprana
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-surface-container-high text-primary w-max">
-                            <span className="material-symbols-outlined text-xs">
-                              store
-                            </span>
-                            {' '}Retiro en Atelier
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant">
-                            Gerard Doustraat 54
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            €37.00
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-medium">
-                            <span className="material-symbols-outlined text-xs">
-                              check_circle
-                            </span>
-                            {' '}iDeal Pagado
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <select className="text-xs px-2.5 py-1.5 rounded-lg bg-surface-container font-medium text-primary focus:outline-hidden focus:ring-1 focus:ring-secondary cursor-pointer" defaultValue="fogon">
-                          <option value="cola">
-                            En cola de cocción
-                          </option>
-                          <option value="fogon">
-                            En Fogón / Horneada
-                          </option>
-                          <option value="empaque">
-                            Listo para despacho
-                          </option>
-                          <option value="entregado">
-                            Entregado
-                          </option>
-                        </select>
-                      </td>
-                      <td className="py-4 px-4 align-top text-right">
-                        <div className="flex items-center justify-end gap-1">
-                          <button className="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Imprimir Etiqueta Térmica" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              print
-                            </span>
-                          </button>
-                          {' '}
-                          <button className="p-1.5 rounded-lg text-outline hover:text-secondary hover:bg-surface-container transition-colors" title="Ver Detalle" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              visibility
-                            </span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="res-row hover:bg-surface-container-low transition-colors duration-150" data-client="Felipe Giraldo" data-day="Viernes" data-menu="Sobrebarriga" data-type="Retiro">
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            #RES-2024-088
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline font-label">
-                            22 Oct, 16:45 CET
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Felipe Giraldo
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant">
-                            +31 6 5509 2311
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-outline">
-                            fgiraldo@techadam.nl
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="font-semibold text-primary">
-                            Sobrebarriga en Salsa Criolla
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1.5 text-[11px] text-secondary font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                            {' '}2 Porciones (Con yuca al vapor)
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-primary">
-                            Viernes 25 Oct
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-secondary font-label font-bold">
-                            19:00 - 19:45 CET
-                          </span>
-                          {' '}
-                          <span className="text-[10px] text-outline">
-                            Cena de Viernes
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-surface-container-high text-primary w-max">
-                            <span className="material-symbols-outlined text-xs">
-                              store
-                            </span>
-                            {' '}Retiro en Atelier
-                          </span>
-                          {' '}
-                          <span className="text-[11px] text-on-surface-variant">
-                            Gerard Doustraat 54
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="font-headline font-bold text-primary text-sm">
-                            €36.00
-                          </span>
-                          {' '}
-                          <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-medium">
-                            <span className="material-symbols-outlined text-xs">
-                              check_circle
-                            </span>
-                            {' '}iDeal Pagado
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 align-top">
-                        <select className="text-xs px-2.5 py-1.5 rounded-lg bg-emerald-100 text-emerald-800 font-medium focus:outline-hidden focus:ring-1 focus:ring-emerald-700 cursor-pointer" defaultValue="empaque">
-                          <option value="cola">
-                            En cola de cocción
-                          </option>
-                          <option value="fogon">
-                            En Fogón / Horneada
-                          </option>
-                          <option value="empaque">
-                            Listo para despacho
-                          </option>
-                          <option value="entregado">
-                            Entregado
-                          </option>
-                        </select>
-                      </td>
-                      <td className="py-4 px-4 align-top text-right">
-                        <div className="flex items-center justify-end gap-1">
-                          <button className="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Imprimir Etiqueta Térmica" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              print
-                            </span>
-                          </button>
-                          {' '}
-                          <button className="p-1.5 rounded-lg text-outline hover:text-secondary hover:bg-surface-container transition-colors" title="Ver Detalle" type="button">
-                            <span className="material-symbols-outlined text-base">
-                              visibility
-                            </span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                    {RESERVAS.map((reserva) => {
+                      const plato = ESPECIALES.find((p) => p.id === reserva.platoId);
+                      if (!plato) return null;
+                      return (
+                        <tr key={reserva.id} className="res-row hover:bg-surface-container-low/50 transition-colors">
+                          <td className="py-4 px-4">
+                            <div className="font-mono font-bold text-secondary">#{reserva.id}</div>
+                            <div className="text-[11px] text-outline">{formatFecha(reserva.fecha)}</div>
+                          </td>
+                          <td className="py-4 px-4 font-medium text-on-surface">{reserva.cliente}</td>
+                          <td className="py-4 px-4">
+                            <div className="font-semibold text-primary">{plato.nombre}</div>
+                            <div className="text-[11px] text-outline">{reserva.porciones} porciones</div>
+                          </td>
+                          <td className="py-4 px-4 text-on-surface-variant">{formatDias(plato.dias)}</td>
+                          <td className="py-4 px-4 text-on-surface-variant">Recogida o domicilio</td>
+                          <td className="py-4 px-4">
+                            <div className="font-headline font-bold text-primary">{formatEUR(plato.precio * reserva.porciones)}</div>
+                            <div className="text-[10px] text-outline">IVA incl.</div>
+                          </td>
+                          <td className="py-4 px-4">
+                            <span className="px-2 py-1 rounded-full text-[10px] font-semibold uppercase bg-secondary-fixed text-on-secondary-fixed">{RESERVA_LABELS[reserva.estado]}</span>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
               <div className="p-4 bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-on-surface-variant font-label">
                 <div className="flex items-center gap-2">
                   <span>
-                    Mostrando 6 de 14 pedidos registrados
+                    Mostrando {RESERVAS.length} reservas de ejemplo
                   </span>
                   {' '}
                   <span className="w-1 h-1 rounded-full bg-outline"></span>
@@ -1120,274 +458,28 @@ export default function AdminMenusPage() {
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-              <div className="rounded-xl bg-surface-container-lowest shadow-[0_4px_24px_rgba(28,28,25,0.04)] overflow-hidden flex flex-col justify-between group">
-                <div>
+              {ESPECIALES.map((plato) => (
+                <div key={plato.id} className="rounded-xl bg-surface-container-lowest shadow-[0_4px_24px_rgba(28,28,25,0.04)] overflow-hidden flex flex-col justify-between group">
                   <div className="relative h-44 bg-surface-container-low overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional Colombian Lechona Tolimense served in an artisanal rustic clay platter, crispy golden pork skin, yellow peas and rice stuffing, garnished with arepa and lime wedge, warm natural overhead studio lighting on dark wooden table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcwf-rjW67LhVLKzPgYgZ_1Q2VP1wT-fLcEWykNmT7g42qj_CFcQ2YBlExoH6qC4pDI8559AG0yWEhNDAb9Lk8YE9lKUy6zi4LIpmWD4aM9h2M6XdYO1wWvX_vNZcYNMytlYDMVeA-7RHtQ6Qt1UqHv_Q4jv7SbmouGZI1FcW4P-k1WvTDfbCQDllWQOQeRjwCVAW7h4KBdFjUGEx8BLUUHyU041QeRw1L1k1NqLuwY84K0NghmPt5" />
+                    <ItemImage src={plato.imagen} alt={plato.nombre} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute top-3 left-3 flex gap-1.5">
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-tertiary-fixed text-on-tertiary-fixed font-label">
-                        Requiere 48h
-                      </span>
-                    </div>
-                    <div className="absolute top-3 right-3">
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input defaultChecked className="sr-only peer" type="checkbox" />
-                        <div className="w-9 h-5 bg-surface-container-high peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
-                      </label>
-                    </div>
-                    <div className="absolute bottom-2 left-3 right-3 flex justify-between items-center text-xs text-on-primary bg-primary/70 backdrop-blur-xs px-2.5 py-1 rounded-md">
-                      <span className="font-label text-[11px]">
-                        Cupo Fin de Semana
-                      </span>
-                      {' '}
-                      <span className="font-bold text-[11px]">
-                        18 / 20 porciones
-                      </span>
+                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-tertiary-fixed text-on-tertiary-fixed font-label">{formatDias(plato.dias)}</span>
                     </div>
                   </div>
                   <div className="p-4 flex flex-col gap-2">
                     <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-headline font-bold text-primary text-base leading-snug">
-                        Lechona Tolimense
-                      </h3>
-                      <span className="text-base font-headline font-bold text-secondary">
-                        €18.50
+                      <h3 className="font-headline font-bold text-primary text-base leading-snug">{plato.nombre}</h3>
+                      <span className="text-base font-headline font-bold text-secondary text-right">
+                        {formatEUR(plato.precio)}
+                        {/* precio provisional si precioEstimado */}
+                        {plato.precioEstimado && <span className="block text-[10px] font-normal text-on-surface-variant">Precio estimado</span>}
                       </span>
                     </div>
-                    <p className="text-xs text-on-surface-variant line-clamp-2">
-                      Cerdo relleno de arveja amarilla, arroz adobado y piel ultra crujiente horneada por 12 horas.
-                    </p>
-                    <div className="flex items-center gap-2 pt-1 text-[11px] text-outline font-label">
-                      <span className="flex items-center gap-1">
-                        <span className="material-symbols-outlined text-xs">
-                          room_service
-                        </span>
-                        {' '}48h Antelación
-                      </span>
-                      {' '}
-                      <span>
-                        •
-                      </span>
-                      {' '}
-                      <span className="text-emerald-700 font-semibold status-label">
-                        Activo en Web
-                      </span>
-                    </div>
+                    {plato.descripcion && <p className="text-xs text-on-surface-variant line-clamp-2">{plato.descripcion}</p>}
+                    <p className="text-[11px] text-outline font-label">Solo fines de semana · bajo reserva</p>
                   </div>
                 </div>
-                <div className="p-4 pt-0 flex items-center gap-2">
-                  <button className="flex-1 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-medium text-xs transition-colors" type="button">
-                    Ajustar Cupo
-                  </button>
-                  {' '}
-                  <button className="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary transition-colors" title="Editar Plato" type="button">
-                    <span className="material-symbols-outlined text-base">
-                      edit
-                    </span>
-                  </button>
-                </div>
-              </div>
-              <div className="rounded-xl bg-surface-container-lowest shadow-[0_4px_24px_rgba(28,28,25,0.04)] overflow-hidden flex flex-col justify-between group">
-                <div>
-                  <div className="relative h-44 bg-surface-container-low overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional Bandeja Paisa in an artisanal ceramic bowl, crispy Colombian pork belly chicharrón, red beans, powdered ground beef, fried ripe plantain, fried egg, avocado slice and white arepa, cinematic warm lighting, gourmet editorial Colombian feast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKm8KxJKr4ibNAIPgNJOt-xHmG_h-6TpNYN0mD6Xz79MKHXoTp6835gQ29dDYJ0hd9Wt7VM8Re5iahwRLZ9FDguTxF2JrErTBnpAMl-OJ0_OlsnmB7AiCGfWhN_IW8NKtDwJ5en6OUT2PxoCHPec4XO2oFu_Wk3HLkaGPlXPNVLYVs3A_2RIGZkCjcIbFiY51mE8ipUar8ToeJFR2y2ePGhf9B_uOkLBESv30A13we-bQa1DHYUeIt" />
-                    <div className="absolute top-3 left-3 flex gap-1.5">
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed font-label">
-                        Requiere 24h
-                      </span>
-                    </div>
-                    <div className="absolute top-3 right-3">
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input defaultChecked className="sr-only peer" type="checkbox" />
-                        <div className="w-9 h-5 bg-surface-container-high peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
-                      </label>
-                    </div>
-                    <div className="absolute bottom-2 left-3 right-3 flex justify-between items-center text-xs text-on-primary bg-primary/70 backdrop-blur-xs px-2.5 py-1 rounded-md">
-                      <span className="font-label text-[11px]">
-                        Cupo Fin de Semana
-                      </span>
-                      {' '}
-                      <span className="font-bold text-[11px]">
-                        11 / 15 porciones
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-4 flex flex-col gap-2">
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-headline font-bold text-primary text-base leading-snug">
-                        Bandeja Paisa de la Hacienda
-                      </h3>
-                      <span className="text-base font-headline font-bold text-secondary">
-                        €21.00
-                      </span>
-                    </div>
-                    <p className="text-xs text-on-surface-variant line-clamp-2">
-                      Frijoles cargamanto en leña, chicharrón de 7 cortes, carne molida especiada, chorizo santarrosano y arepa de chócolo.
-                    </p>
-                    <div className="flex items-center gap-2 pt-1 text-[11px] text-outline font-label">
-                      <span className="flex items-center gap-1">
-                        <span className="material-symbols-outlined text-xs">
-                          room_service
-                        </span>
-                        {' '}24h Antelación
-                      </span>
-                      {' '}
-                      <span>
-                        •
-                      </span>
-                      {' '}
-                      <span className="text-emerald-700 font-semibold status-label">
-                        Activo en Web
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 pt-0 flex items-center gap-2">
-                  <button className="flex-1 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-medium text-xs transition-colors" type="button">
-                    Ajustar Cupo
-                  </button>
-                  {' '}
-                  <button className="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary transition-colors" title="Editar Plato" type="button">
-                    <span className="material-symbols-outlined text-base">
-                      edit
-                    </span>
-                  </button>
-                </div>
-              </div>
-              <div className="rounded-xl bg-surface-container-lowest shadow-[0_4px_24px_rgba(28,28,25,0.04)] overflow-hidden flex flex-col justify-between group">
-                <div>
-                  <div className="relative h-44 bg-surface-container-low overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional Colombian Ajiaco soup in a traditional black La Chamba clay pot, shredded chicken, three kinds of native potatoes, corn cob wheel, fresh capers, cream swirl, and side of avocado and white rice, high culinary aesthetics, soft atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbyG-R76zsOyQwqBDTRTI_vszodFKQGiTP6vJfoMQ1jwEyd8xhoocfjiDLNfdpYXWAuOdm1sBUUyf_OrDAtVis2dUEXxUnssNGBMvhjfuSob6zKipvktgNRk2hIgJy8uSmugPWfk5AjSrxyHQyW73Fk5f1KhBi5E0utMhUFnGgGSQAZ6wAjab8Tbsg7DGw-isT9ph5PeBzAtFxBHsDiBLAsJb6AXZ6GKQ5ccHDmM2YgncHYfapAjQQ" />
-                    <div className="absolute top-3 left-3 flex gap-1.5">
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed font-label">
-                        Requiere 24h
-                      </span>
-                    </div>
-                    <div className="absolute top-3 right-3">
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input defaultChecked className="sr-only peer" type="checkbox" />
-                        <div className="w-9 h-5 bg-surface-container-high peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
-                      </label>
-                    </div>
-                    <div className="absolute bottom-2 left-3 right-3 flex justify-between items-center text-xs text-on-primary bg-primary/70 backdrop-blur-xs px-2.5 py-1 rounded-md">
-                      <span className="font-label text-[11px]">
-                        Cupo Fin de Semana
-                      </span>
-                      {' '}
-                      <span className="font-bold text-[11px]">
-                        8 / 12 porciones
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-4 flex flex-col gap-2">
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-headline font-bold text-primary text-base leading-snug">
-                        Ajiaco Santafereño
-                      </h3>
-                      <span className="text-base font-headline font-bold text-secondary">
-                        €17.50
-                      </span>
-                    </div>
-                    <p className="text-xs text-on-surface-variant line-clamp-2">
-                      Caldo denso de tres papas andinas aromatizado con guascas frescas traídas de Colombia, pollo desmechado y alcaparras.
-                    </p>
-                    <div className="flex items-center gap-2 pt-1 text-[11px] text-outline font-label">
-                      <span className="flex items-center gap-1">
-                        <span className="material-symbols-outlined text-xs">
-                          room_service
-                        </span>
-                        {' '}24h Antelación
-                      </span>
-                      {' '}
-                      <span>
-                        •
-                      </span>
-                      {' '}
-                      <span className="text-emerald-700 font-semibold status-label">
-                        Activo en Web
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 pt-0 flex items-center gap-2">
-                  <button className="flex-1 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-medium text-xs transition-colors" type="button">
-                    Ajustar Cupo
-                  </button>
-                  {' '}
-                  <button className="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary transition-colors" title="Editar Plato" type="button">
-                    <span className="material-symbols-outlined text-base">
-                      edit
-                    </span>
-                  </button>
-                </div>
-              </div>
-              <div className="rounded-xl bg-surface-container-lowest shadow-[0_4px_24px_rgba(28,28,25,0.04)] overflow-hidden flex flex-col justify-between group">
-                <div>
-                  <div className="relative h-44 bg-surface-container-low overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional Colombian Sancocho soup served in dark terracotta bowl with cuts of beef shank, pork, and chicken, plantain, yuca chunks, topped with fresh coriander, served alongside spicy aji picante and avocado, culinary food photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8n0Re6KuNtTSDhL0cCsx3ZCdaO0_vSqage6v2EZXRdJzAhjl_26SzlC7aWHjUJV4LMxX1k_aXV3g1owv9uloxtcT1IjM_0VajE5BBTIP3up1wQY1zRhSInlfqH5V5e_rAyAnfGUDA9HeLkwwS8SdaFjOcIPNuPMA1CaL-zaNt5G4m937_P0o26GYpDW7h9bGam-ffx_ctDS6Ncl8JMaEQHIfwbyp46meMKvJxFEVrZ_sAyQ9-ykne" />
-                    <div className="absolute top-3 left-3 flex gap-1.5">
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-tertiary-fixed text-on-tertiary-fixed font-label">
-                        Requiere 48h
-                      </span>
-                    </div>
-                    <div className="absolute top-3 right-3">
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input defaultChecked className="sr-only peer" type="checkbox" />
-                        <div className="w-9 h-5 bg-surface-container-high peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
-                      </label>
-                    </div>
-                    <div className="absolute bottom-2 left-3 right-3 flex justify-between items-center text-xs text-on-primary bg-primary/70 backdrop-blur-xs px-2.5 py-1 rounded-md">
-                      <span className="font-label text-[11px]">
-                        Cupo Fin de Semana
-                      </span>
-                      {' '}
-                      <span className="font-bold text-[11px]">
-                        7 / 10 porciones
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-4 flex flex-col gap-2">
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-headline font-bold text-primary text-base leading-snug">
-                        Sancocho Trifásico
-                      </h3>
-                      <span className="text-base font-headline font-bold text-secondary">
-                        €19.00
-                      </span>
-                    </div>
-                    <p className="text-xs text-on-surface-variant line-clamp-2">
-                      Sopa montañera cocida con leña: costilla de res, lomo de cerdo y gallina campesina con mazorca tierna y plátano verde.
-                    </p>
-                    <div className="flex items-center gap-2 pt-1 text-[11px] text-outline font-label">
-                      <span className="flex items-center gap-1">
-                        <span className="material-symbols-outlined text-xs">
-                          room_service
-                        </span>
-                        {' '}48h Antelación
-                      </span>
-                      {' '}
-                      <span>
-                        •
-                      </span>
-                      {' '}
-                      <span className="text-emerald-700 font-semibold status-label">
-                        Activo en Web
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 pt-0 flex items-center gap-2">
-                  <button className="flex-1 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-medium text-xs transition-colors" type="button">
-                    Ajustar Cupo
-                  </button>
-                  {' '}
-                  <button className="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary transition-colors" title="Editar Plato" type="button">
-                    <span className="material-symbols-outlined text-base">
-                      edit
-                    </span>
-                  </button>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
           <div className="tab-panel hidden flex-col gap-6 mt-6" id="tab-horneada-panel">
@@ -1471,7 +563,7 @@ export default function AdminMenusPage() {
                         </span>
                       </div>
                       <span className="text-on-surface-variant">
-                        Cocción de fondos de Ajiaco (Papas criollas y guascas).
+                        Preparación de los especiales del sábado.
                       </span>
                     </div>
                     <div className="p-3 rounded-lg bg-surface-container-lowest text-xs flex flex-col gap-1 shadow-xs">
@@ -1512,7 +604,7 @@ export default function AdminMenusPage() {
                         </span>
                       </div>
                       <span className="text-on-surface-variant">
-                        Olla de Sancocho Trifásico y fritura de chicharrones.
+                        Preparación de los especiales del domingo.
                       </span>
                     </div>
                     <div className="p-3 rounded-lg bg-surface-container-lowest text-xs flex flex-col gap-1 shadow-xs">

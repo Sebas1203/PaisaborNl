@@ -3,10 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
+import { BrandLogo } from '@/components/BrandLogo';
 
-// Sidebar y header de administración (variante "Hearth & Co." de administrador_inventario)
-const AVATAR_URL =
-  '/images/logo/paisabor-logo-192.png';
+// Sidebar y header de administración (variante de administrador_inventario)
 
 const LINKS = [
   { href: '/admin', label: 'Panel', icon: 'space_dashboard' },
@@ -30,12 +29,9 @@ export function AdminSidebar() {
   return (
     <aside className="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-6 pb-6 shadow-[0_1px_8px_rgba(0,0,0,0.03)]">
       <div className="px-6 mb-8 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
-          <span className="text-primary font-headline font-bold text-lg tracking-tight">P</span>
-        </div>
         <div>
-          <div className="font-headline text-lg font-bold tracking-tight text-primary leading-tight">Paisabor</div>
-          <div className="text-xs text-secondary font-medium tracking-wide uppercase">Hearth &amp; Co.</div>
+          <BrandLogo size="sm" withText />
+          <div className="text-xs text-secondary font-medium tracking-wide uppercase mt-1">Panel interno</div>
         </div>
       </div>
       <div className="px-6 mb-3">
@@ -102,8 +98,7 @@ export function AdminHeader() {
               <div className="text-xs font-medium text-on-surface">Mayordomo</div>
               <div className="text-[11px] text-secondary font-medium">Admin General</div>
             </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="Profile" className="w-8 h-8 rounded-full object-cover" src={AVATAR_URL} />
+            <BrandLogo size="sm" />
           </div>
         </div>
       </div>

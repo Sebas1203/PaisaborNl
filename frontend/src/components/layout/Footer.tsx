@@ -1,5 +1,6 @@
 import { whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
+import { BrandLogo } from '@/components/BrandLogo';
 
 // Footer del catálogo (cat_logo_de_productos_tienda_online), compartido por las pantallas de cliente.
 // Privacidad y Términos no tienen pantalla en el diseño: quedan sin destino por ahora.
@@ -9,7 +10,7 @@ export function Footer() {
   return (
     <footer className="w-full bg-surface-container-low flex flex-col md:flex-row justify-between items-center gap-6 px-8 py-12 mt-20">
       <div className="text-center md:text-left">
-        <div className="font-display text-lg font-bold text-primary">Paisabor</div>
+        <BrandLogo size="sm" withText />
         <address className="not-italic font-body text-label-sm text-on-surface-variant mt-1">
           {SEDE_PRINCIPAL.direccion}, {SEDE_PRINCIPAL.ciudad} · {SEDE_PRINCIPAL.pais}
         </address>

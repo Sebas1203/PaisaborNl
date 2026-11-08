@@ -4,11 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { whatsappLink } from '@/config/contact';
 import { useCart } from '@/features/cart/CartProvider';
+import { BrandLogo } from '@/components/BrandLogo';
 
 // Navbar del catálogo (cat_logo_de_productos_tienda_online), compartido por las pantallas de cliente
-const LOGO_URL =
-  '/images/logo/paisabor-logo-192.png';
-
 const isProductos = (path: string) =>
   path.startsWith('/catalogo') && !path.startsWith('/catalogo/platos-tipicos');
 const isMenus = (path: string) => path.startsWith('/menus') || path.startsWith('/catalogo/platos-tipicos');
@@ -45,9 +43,8 @@ export function Navbar() {
     <>
       <nav className="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl shadow-xs shadow-on-surface/5 transition-all">
         <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto hidden md:flex">
-          <Link className="font-display text-2xl font-bold tracking-tight text-primary" href="/">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={LOGO_URL} alt="Paisabor Logo" className="h-[45px] w-auto object-contain" />
+          <Link aria-label="Paisabor, inicio" href="/">
+            <BrandLogo size="md" withText priority />
           </Link>
           <div className="flex space-x-8">
             {TOP_LINKS.map((link) => (

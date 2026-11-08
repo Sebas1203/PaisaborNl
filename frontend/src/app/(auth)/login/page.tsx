@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { Go } from '@/components/ui/Go';
+import { BrandLogo } from '@/components/BrandLogo';
 
 export default function LoginPage() {
   return (
@@ -14,7 +15,7 @@ export default function LoginPage() {
         <header className="mb-10 text-center">
           <div className="flex justify-center mb-4">
             <div className="h-20 w-20 rounded-full bg-surface-container-high border border-surface-container-highest overflow-hidden flex items-center justify-center shadow-xs">
-              <img alt="Paisabor" className="w-full h-full object-contain p-2" src="/images/logo/paisabor-logo-192.png" />
+              <BrandLogo size="lg" priority />
             </div>
           </div>
           <h1 className="font-headline text-display text-4xl md:text-5xl font-extrabold text-primary tracking-tighter mb-2 mt-2">

@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { Go } from '@/components/ui/Go';
+import { BrandLogo } from '@/components/BrandLogo';
 
 export default function RegistroPage() {
   return (
@@ -15,9 +16,8 @@ export default function RegistroPage() {
         </div>
         <div className="relative z-10">
           <div className="flex items-center gap-2">
-            <img alt="Paisabor" className="h-12 w-12 rounded-full object-contain border border-on-primary/20" src="/images/logo/paisabor-logo-192.png" />
-            <h1 className="font-headline text-3xl font-bold text-on-primary tracking-tighter">
-              Paisabor
+            <h1>
+              <BrandLogo size="lg" withText textClassName="text-on-primary" priority />
             </h1>
           </div>
         </div>
@@ -33,9 +33,8 @@ export default function RegistroPage() {
       <div className="w-full md:w-1/2 lg:w-2/5 flex flex-col justify-center px-8 py-12 md:px-16 lg:px-24 bg-surface min-h-screen relative z-10 shadow-[-40px_0_40px_-10px_rgba(28,28,25,0.05)]">
         <div className="md:hidden mb-12 text-center">
           <div className="flex items-center justify-center gap-2">
-            <img alt="Paisabor" className="h-10 w-10 rounded-full object-contain border border-primary/10" src="/images/logo/paisabor-logo-192.png" />
-            <h1 className="font-headline text-2xl font-bold text-primary tracking-tighter">
-              Paisabor
+            <h1>
+              <BrandLogo size="md" withText />
             </h1>
           </div>
         </div>

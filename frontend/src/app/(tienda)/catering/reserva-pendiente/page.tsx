@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { itemPorId } from '@/data';
 import { RESERVAS } from '@/data/mock';
 import { formatEUR, formatFecha } from '@/lib/format';
+import { TEL_URL, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
+import { SEDE_PRINCIPAL } from '@/config/sedes';
 
 // MOCK: muestra la primera reserva de ejemplo con su especial del catálogo
 const RESERVA = RESERVAS[0];
@@ -163,7 +165,7 @@ export default function CateringReservaPendientePage() {
                         </span>
                         {' '}
                         <span className="text-xs font-body text-on-surface-variant block truncate">
-                          Keizersgracht 421, Ámsterdam
+                          Dirección de entrega por confirmar
                         </span>
                       </div>
                     </div>
@@ -223,7 +225,7 @@ export default function CateringReservaPendientePage() {
                         </span>
                       </div>
                       <p className="text-xs sm:text-sm text-on-surface-variant mt-1">
-                        Ficha de banquete generada y recibida con éxito en nuestro taller culinario en Prinsengracht.
+                        Ficha de banquete generada y recibida con éxito en nuestra cocina en {SEDE_PRINCIPAL.direccion}.
                       </p>
                     </div>
                   </div>
@@ -329,14 +331,14 @@ export default function CateringReservaPendientePage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 w-full sm:w-auto justify-center">
-                  <a className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high transition-colors text-xs font-label font-semibold" href="tel:+31208943210">
+                  <a className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high transition-colors text-xs font-label font-semibold" href={TEL_URL}>
                     <span className="material-symbols-outlined text-base text-secondary">
                       phone
                     </span>
-                    {' '}+31 20 894 3210
+                    {' '}{WHATSAPP_DISPLAY}
                   </a>
                   {' '}
-                  <a className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container transition-colors text-xs font-label font-semibold shadow-xs" href="https://wa.me/31208943210" rel="noopener noreferrer" target="_blank">
+                  <a className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container transition-colors text-xs font-label font-semibold shadow-xs" href={whatsappLink('Hola Paisabor, tengo una consulta sobre mi reserva ' + RESERVA.id)} rel="noopener noreferrer" target="_blank">
                     <span className="material-symbols-outlined text-base">
                       chat
                     </span>

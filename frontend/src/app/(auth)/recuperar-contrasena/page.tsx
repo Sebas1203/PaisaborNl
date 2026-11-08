@@ -3,6 +3,7 @@
 import { ItemImage } from '@/components/ItemImage';
 import Link from 'next/link';
 import { Go } from '@/components/ui/Go';
+import { EMAIL_CONTACTO, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
 
 export default function RecuperarContrasenaPage() {
   return (
@@ -93,10 +94,16 @@ export default function RecuperarContrasenaPage() {
                   <span className="font-semibold text-primary">
                     ¿No recibiste el correo?
                   </span>
-                  {' '}Revisa tu carpeta de correo no deseado (spam) o contacta directamente al taller en{' '}
-                  <a className="font-semibold text-secondary hover:underline transition-colors" href="mailto:contacto@paisabor.nl">
-                    contacto@paisabor.nl
-                  </a>
+                  {' '}Revisa tu carpeta de correo no deseado (spam) o contáctanos directamente{' '}
+                  {EMAIL_CONTACTO ? (
+                    <a className="font-semibold text-secondary hover:underline transition-colors" href={`mailto:${EMAIL_CONTACTO}`}>
+                      {EMAIL_CONTACTO}
+                    </a>
+                  ) : (
+                    <a className="font-semibold text-secondary hover:underline transition-colors" href={whatsappLink('Hola Paisabor, no recibí el correo para recuperar mi contraseña.')} rel="noopener noreferrer" target="_blank">
+                      por WhatsApp al {WHATSAPP_DISPLAY}
+                    </a>
+                  )}
                   .
                 </div>
               </div>

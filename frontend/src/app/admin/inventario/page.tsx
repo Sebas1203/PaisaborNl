@@ -7,6 +7,7 @@ import { EditarProductoModal } from '@/features/admin/EditarProductoModal';
 import { CATALOGO, itemPorId } from '@/data';
 import { lineasConItem, PEDIDOS, STOCK, STOCK_MINIMO } from '@/data/mock';
 import { formatFecha } from '@/lib/format';
+import { direccionCorta } from '@/config/sedes';
 
 // MOCK: stock y movimientos de demostración a partir del catálogo y de los pedidos de ejemplo
 const STOCK_ITEMS = Object.entries(STOCK).flatMap(([id, stock]) => {
@@ -37,7 +38,7 @@ export default function AdminInventarioPage() {
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>
                   {' '}
                   <span className="text-xs text-on-surface-variant font-body">
-                    Kloveniersburgwal, Ámsterdam
+                    {direccionCorta()}
                   </span>
                 </div>
                 <h1 className="font-headline text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-primary leading-tight">

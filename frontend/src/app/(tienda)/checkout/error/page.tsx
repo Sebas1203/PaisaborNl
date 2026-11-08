@@ -2,6 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { ResumenCarrito } from '@/components/order/ResumenPedido';
+import { EMAIL_CONTACTO, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
+import { SEDE_PRINCIPAL } from '@/config/sedes';
 
 export default function CheckoutErrorPage() {
   return (
@@ -181,23 +183,25 @@ export default function CheckoutErrorPage() {
                     </p>
                   </div>
                   <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-2.5 w-full sm:w-auto flex-shrink-0">
-                    <a className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-bright text-xs font-semibold text-primary shadow-xs transition-colors" href="mailto:contacto@paisabor.nl">
+                    {EMAIL_CONTACTO && (
+                    <a className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-bright text-xs font-semibold text-primary shadow-xs transition-colors" href={`mailto:${EMAIL_CONTACTO}`}>
                       <span className="material-symbols-outlined text-sm text-secondary">
                         mail
                       </span>
                       {' '}
                       <span>
-                        contacto@paisabor.nl
+                        {EMAIL_CONTACTO}
                       </span>
                     </a>
+                    )}
                     {' '}
-                    <a className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-bright text-xs font-semibold text-primary shadow-xs transition-colors" href="https://wa.me/31208943210" rel="noopener" target="_blank">
+                    <a className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-bright text-xs font-semibold text-primary shadow-xs transition-colors" href={whatsappLink('Hola Paisabor, tuve un problema al pagar mi pedido.')} rel="noopener noreferrer" target="_blank">
                       <span className="material-symbols-outlined text-sm text-secondary">
                         chat
                       </span>
                       {' '}
                       <span>
-                        WhatsApp: +31 20 894 3210
+                        WhatsApp: {WHATSAPP_DISPLAY}
                       </span>
                     </a>
                   </div>
@@ -217,14 +221,14 @@ export default function CheckoutErrorPage() {
                         Dirección de Entrega Registrada:
                       </p>
                       <p className="text-on-surface-variant">
-                        Keizersgracht 421, 1016 EK Ámsterdam
+                        La que indicaste al finalizar el pedido
                       </p>
                     </div>
                   </div>
                   <div className="text-[11px] text-on-surface-variant leading-relaxed bg-surface-container-low p-3 rounded-lg">
                     Si prefieres recoger tu pedido en nuestro taller en{' '}
                     <strong>
-                      Prinsengracht
+                      {SEDE_PRINCIPAL.direccion}
                     </strong>
                     , podrás cambiar la opción al reintentar el proceso sin recargos adicionales.
                   </div>

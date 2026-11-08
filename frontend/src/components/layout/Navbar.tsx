@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { whatsappLink } from '@/config/contact';
 import { useCart } from '@/features/cart/CartProvider';
 
 // Navbar del catálogo (cat_logo_de_productos_tienda_online), compartido por las pantallas de cliente
@@ -56,6 +57,15 @@ export function Navbar() {
             ))}
           </div>
           <div className="flex items-center space-x-4">
+            <a
+              aria-label="Escríbenos por WhatsApp"
+              className="text-primary hover:text-secondary transition-all active:scale-95 duration-300"
+              href={whatsappLink()}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span className="material-symbols-outlined">chat</span>
+            </a>
             <Link
               aria-label="Mi cuenta"
               className="text-primary hover:text-secondary transition-all active:scale-95 duration-300"

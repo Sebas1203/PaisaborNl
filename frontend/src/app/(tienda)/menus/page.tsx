@@ -5,6 +5,8 @@ import { Go } from '@/components/ui/Go';
 import { ItemImage } from '@/components/ItemImage';
 import { ESPECIALES } from '@/data';
 import { formatDias, formatEUR, IVA_INCLUIDO } from '@/lib/format';
+import { EMAIL_CONTACTO, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
+import { direccionCorta, SEDE_PRINCIPAL } from '@/config/sedes';
 
 export default function MenusPage() {
   return (
@@ -64,7 +66,7 @@ export default function MenusPage() {
                       </span>
                       {' '}
                       <span>
-                        Pickup Ámsterdam De Pijp
+                        Recogida en {SEDE_PRINCIPAL.direccion}
                       </span>
                     </div>
                   </div>
@@ -123,7 +125,7 @@ export default function MenusPage() {
                       Fija tu Entrega
                     </h4>
                     <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                      Retiro en De Pijp (Ámsterdam) o delivery en caja térmica en Ámsterdam.
+                      Retiro en {direccionCorta()} o delivery en caja térmica en Ámsterdam.
                     </p>
                   </div>
                 </div>
@@ -292,7 +294,7 @@ export default function MenusPage() {
                         </span>
                         {' '}
                         <span className="text-xs text-on-surface-variant">
-                          Prinsengracht / De Pijp, Ámsterdam. Pasa por tu pedido caliente sin costo extra.
+                          {direccionCorta()}. Pasa por tu pedido caliente sin costo extra.
                         </span>
                       </div>
                       <div className="p-3 rounded-lg bg-surface-container-low">
@@ -379,22 +381,25 @@ export default function MenusPage() {
                     Punto de Retiro
                   </span>
                   <h3 className="font-headline text-xl font-bold text-primary">
-                    Atelier Paisabor • De Pijp / Centrum
+                    {SEDE_PRINCIPAL.nombre}
                   </h3>
                   <p className="text-xs text-on-surface-variant leading-relaxed">
-                    Ven a recoger tu pedido directamente de nuestra cocina. Te recibimos con el aroma a café recién filtrado y una sonrisa de bienvenida. Fácil acceso en bici o transporte público (Metro 52 De Pijp / Tram 4 Prinsengracht).
+                    Ven a recoger tu pedido directamente de nuestra cocina. Te recibimos con el aroma a café recién filtrado y una sonrisa de bienvenida.
                   </p>
                   <div className="text-xs text-primary font-semibold space-y-1 pt-1">
                     <p>
-                      • Prinsengracht 342, 1016 HX Ámsterdam
+                      • {SEDE_PRINCIPAL.direccion}, {SEDE_PRINCIPAL.ciudad}
                     </p>
                     <p>
-                      • Tel / WhatsApp: +31 20 894 3210
+                      • WhatsApp:{' '}
+                      <a className="underline underline-offset-2 hover:text-secondary" href={whatsappLink('Hola Paisabor, quiero reservar un plato especial.')} rel="noopener noreferrer" target="_blank">
+                        {WHATSAPP_DISPLAY}
+                      </a>
                     </p>
                   </div>
                 </div>
                 <div className="w-full md:w-1/2 h-48 md:h-56 rounded-lg overflow-hidden">
-                  <div className="w-full h-full bg-cover bg-center" data-location="Prinsengracht, Amsterdam, Netherlands"></div>
+                  <div className="w-full h-full bg-cover bg-center"></div>
                 </div>
               </div>
             </div>
@@ -449,7 +454,7 @@ export default function MenusPage() {
                     </span>
                   </button>
                   <div className="faq-content hidden px-6 pb-4 text-xs text-on-surface-variant leading-relaxed">
-                    ¡Totalmente! Puedes añadir múltiples porciones de cada plato en el formulario o escribirnos directamente a reservas@paisabor.nl para configurar bandejas familiares y servicio de menaje típico en barro.
+                    ¡Totalmente! Puedes añadir múltiples porciones de cada plato en el formulario o escribirnos directamente {EMAIL_CONTACTO ? `a ${EMAIL_CONTACTO}` : `por WhatsApp al ${WHATSAPP_DISPLAY}`} para configurar bandejas familiares y servicio de menaje típico en barro.
                   </div>
                 </div>
               </div>
@@ -528,7 +533,7 @@ export default function MenusPage() {
                       <input defaultChecked className="text-secondary focus:ring-secondary" name="delivery_mode" type="radio" value="pickup" />
                       {' '}
                       <span>
-                        Recoger en De Pijp (Gratis)
+                        Recoger en {SEDE_PRINCIPAL.direccion} (Gratis)
                       </span>
                     </label>
                     {' '}
@@ -561,7 +566,7 @@ export default function MenusPage() {
                       Teléfono / WhatsApp
                     </label>
                     {' '}
-                    <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="+31 6 12345678" required type="tel" />
+                    <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="Tu número de WhatsApp" required type="tel" />
                   </div>
                 </div>
                 <div className="space-y-1.5">

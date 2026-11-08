@@ -323,7 +323,7 @@ export default function AdminPedidosPage() {
                       <span className="material-symbols-outlined text-[13px] text-outline">
                         call
                       </span>
-                      {' '}+31 6 4921 8834
+                      {' '}Teléfono del cliente pendiente
                     </div>
                   </div>
                 </div>
@@ -336,10 +336,10 @@ export default function AdminPedidosPage() {
                       Dirección de Entrega:
                     </div>
                     <div className="text-on-surface-variant text-[11px]" id="detailAddress">
-                      Herengracht 412, 1016 BZ Ámsterdam
+                      Dirección indicada en el pedido
                     </div>
                     <div className="text-[11px] text-secondary font-medium mt-1 italic">
-                      "Tocar timbre 3A. Si no respondo, dejar con vecino del 3B. Código de portón: 4910."
+                      Sin observaciones del cliente
                     </div>
                   </div>
                 </div>
@@ -401,7 +401,8 @@ export default function AdminPedidosPage() {
                   </span>
                 </button>
                 {' '}
-                <a className="py-2.5 px-3 rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white font-medium text-xs flex items-center justify-center gap-1.5 transition-colors" href="https://wa.me/31649218834" target="_blank">
+                {/* TODO: enlazar el WhatsApp del cliente cuando el pedido traiga su teléfono (backend) */}
+                <span aria-disabled="true" className="py-2.5 px-3 rounded-lg bg-emerald-800 text-white font-medium text-xs flex items-center justify-center gap-1.5 opacity-60 cursor-not-allowed" title="Teléfono del cliente pendiente">
                   <span className="material-symbols-outlined text-base">
                     chat
                   </span>
@@ -409,7 +410,7 @@ export default function AdminPedidosPage() {
                   <span>
                     WhatsApp
                   </span>
-                </a>
+                </span>
               </div>
             </div>
           </div>

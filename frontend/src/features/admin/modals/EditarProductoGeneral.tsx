@@ -275,7 +275,7 @@ export function EditarProductoGeneral({ item, onClose, onTab }: Props) {
                   </span>
                   {' '}
                   <span className="text-xs text-on-surface-variant">
-                    Entrega directa en Ámsterdam Centro &amp; De Pijp
+                    Entrega directa en Ámsterdam
                   </span>
                 </div>
                 <div className="relative">

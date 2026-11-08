@@ -166,7 +166,7 @@ export default function CuentaEditarPage() {
                           </span>
                           {' '}
                           <span className="leading-relaxed">
-                            Prinsengracht 263-267, Ámsterdam, Países Bajos
+                            Sin dirección guardada
                           </span>
                         </div>
                       </div>
@@ -326,7 +326,7 @@ export default function CuentaEditarPage() {
                                 call
                               </span>
                               {' '}
-                              <input className="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-4 py-3 placeholder:text-outline focus:outline-hidden focus:bg-surface-container-lowest transition-colors shadow-inner font-mono text-xs" id="phone-number" type="tel" defaultValue="+31 6 1234 5678" />
+                              <input className="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-4 py-3 placeholder:text-outline focus:outline-hidden focus:bg-surface-container-lowest transition-colors shadow-inner font-mono text-xs" id="phone-number" type="tel" placeholder="Tu número de WhatsApp" />
                             </div>
                             <span className="text-[11px] text-on-surface-variant block pl-1">
                               Para avisos inmediatos de despacho refrigerado y WhatsApp.

@@ -5,6 +5,8 @@ import { Go } from '@/components/ui/Go';
 import { ItemImage } from '@/components/ItemImage';
 import { PLATOS } from '@/data';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
+import { EMAIL_CONTACTO, whatsappLink } from '@/config/contact';
+import { direccionCorta, SEDE_PRINCIPAL } from '@/config/sedes';
 
 const PLATOS_CATERING = PLATOS.filter((plato) => plato.disponible);
 // El resumen parte del primer plato y de los 25 comensales que propone el diseño
@@ -231,13 +233,13 @@ export default function CateringReservarPage() {
                         </div>
                         <div className="mt-2 pl-7 grid grid-cols-1 sm:grid-cols-2 gap-3" id="address-container">
                           <div className="sm:col-span-2">
-                            <input className="w-full bg-surface-container text-xs text-primary px-3 py-2.5 rounded-lg focus:outline-hidden focus:ring-1 focus:ring-secondary" id="delivery-address" placeholder="Dirección completa (Calle, Número, Código Postal, Ciudad)" type="text" defaultValue="Keizersgracht 421, 1016 EK Ámsterdam" />
+                            <input className="w-full bg-surface-container text-xs text-primary px-3 py-2.5 rounded-lg focus:outline-hidden focus:ring-1 focus:ring-secondary" id="delivery-address" placeholder="Dirección completa (Calle, Número, Código Postal, Ciudad)" type="text" />
                           </div>
                           <div>
                             <input className="w-full bg-surface-container text-xs text-primary px-3 py-2.5 rounded-lg focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="Piso / Apartamento / Nombre en el interfono" type="text" />
                           </div>
                           <div>
-                            <input className="w-full bg-surface-container text-xs text-primary px-3 py-2.5 rounded-lg focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="Teléfono de contacto para el repartidor" type="text" defaultValue="+31 6 1234 5678" />
+                            <input className="w-full bg-surface-container text-xs text-primary px-3 py-2.5 rounded-lg focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="Teléfono de contacto para el repartidor" type="text" />
                           </div>
                         </div>
                       </label>
@@ -249,7 +251,7 @@ export default function CateringReservarPage() {
                               <span className="material-symbols-outlined text-secondary text-base">
                                 storefront
                               </span>
-                              {' '}Retiro en el Taller Paisabor (Prinsengracht, Ámsterdam)
+                              {' '}Retiro en {SEDE_PRINCIPAL.nombre} ({direccionCorta()})
                             </span>
                             {' '}
                             <span className="text-xs font-semibold text-secondary uppercase tracking-wider font-label bg-secondary/10 px-2 py-0.5 rounded-sm">
@@ -257,7 +259,7 @@ export default function CateringReservarPage() {
                             </span>
                           </div>
                           <span className="font-body text-xs text-on-surface-variant mt-0.5">
-                            Recoge tu pedido empaquetado en cajas térmicas listas para servir. Prinsengracht 1016 HK, Ámsterdam.
+                            Recoge tu pedido empaquetado en cajas térmicas listas para servir. {direccionCorta()}.
                           </span>
                         </div>
                       </label>
@@ -376,8 +378,8 @@ export default function CateringReservarPage() {
                       <span className="text-[11px] font-label uppercase tracking-widest text-on-surface-variant font-semibold">
                         ¿Dudas o requerimientos a medida?
                       </span>
-                      <div className="grid grid-cols-2 gap-2">
-                        <a className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-primary text-xs font-label font-medium" href="https://wa.me/31208943210" rel="noopener" target="_blank">
+                      <div className={`grid gap-2 ${EMAIL_CONTACTO ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                        <a className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-primary text-xs font-label font-medium" href={whatsappLink('Hola Paisabor, quiero reservar un menú de catering.')} rel="noopener noreferrer" target="_blank">
                           <span className="material-symbols-outlined text-base text-secondary">
                             chat
                           </span>
@@ -387,7 +389,8 @@ export default function CateringReservarPage() {
                           </span>
                         </a>
                         {' '}
-                        <a className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-primary text-xs font-label font-medium" href="mailto:hola@paisabor.nl?subject=Consulta%20Catering%20Paisabor">
+                        {EMAIL_CONTACTO && (
+                        <a className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-primary text-xs font-label font-medium" href={`mailto:${EMAIL_CONTACTO}?subject=Consulta%20Catering%20Paisabor`}>
                           <span className="material-symbols-outlined text-base text-secondary">
                             mail
                           </span>
@@ -396,6 +399,7 @@ export default function CateringReservarPage() {
                             Escribir Correo
                           </span>
                         </a>
+                        )}
                       </div>
                     </div>
                   </div>

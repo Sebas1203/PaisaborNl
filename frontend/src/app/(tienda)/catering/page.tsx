@@ -4,6 +4,7 @@ import { Go } from '@/components/ui/Go';
 import { ItemImage } from '@/components/ItemImage';
 import { PLATOS } from '@/data';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
+import { whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
 
 const PLATOS_CATERING = PLATOS.filter((plato) => plato.disponible);
 
@@ -261,8 +262,12 @@ export default function CateringPage() {
                           ¿Atención Urgente?
                         </p>
                         <p className="text-xs text-on-surface-variant">
-                          Escríbenos directamente a WhatsApp: +31 6 84 92 01 94
+                          Escríbenos directamente a WhatsApp: {WHATSAPP_DISPLAY}
                         </p>
+                        <a className="inline-flex items-center gap-1.5 mt-2 px-3 py-1.5 rounded-lg bg-secondary text-on-secondary text-xs font-label font-semibold hover:bg-on-secondary-container transition-colors" href={whatsappLink('Hola Paisabor, quiero información sobre catering.')} rel="noopener noreferrer" target="_blank">
+                          <span className="material-symbols-outlined text-base">chat</span>
+                          Escríbenos por WhatsApp
+                        </a>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 p-4 rounded-xl bg-surface-bright/70">
@@ -274,7 +279,7 @@ export default function CateringPage() {
                           Facturación Empresas
                         </p>
                         <p className="text-xs text-on-surface-variant">
-                          Emitimos factura con BTW desgolsado apta para deducibilidad corporativa.
+                          Emitimos factura con BTW desglosado apta para deducibilidad corporativa.
                         </p>
                       </div>
                     </div>

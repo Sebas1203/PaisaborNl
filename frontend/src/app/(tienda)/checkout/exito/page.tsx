@@ -2,6 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { ResumenUltimoPedido, UltimoPedidoImporte } from '@/components/order/ResumenPedido';
+import { EMAIL_SOPORTE, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
+import { SEDE_PRINCIPAL } from '@/config/sedes';
 
 export default function CheckoutExitoPage() {
   return (
@@ -115,7 +117,7 @@ export default function CheckoutExitoPage() {
                         Domicilio en Ámsterdam
                       </h2>
                       <p className="text-xs text-on-surface-variant leading-relaxed mb-3">
-                        Reparto artesanal directo desde nuestra cocina en Prinsengracht hasta tu puerta.
+                        Reparto artesanal directo desde nuestra cocina en {SEDE_PRINCIPAL.direccion} hasta tu puerta.
                       </p>
                     </div>
                     <div className="bg-surface-bright p-3 rounded-lg mt-2">
@@ -257,11 +259,20 @@ export default function CheckoutExitoPage() {
                   </span>
                   {' '}
                   <span>
-                    ¿Dudas con tu entrega? Escríbenos directamente a{' '}
-                    <a className="text-primary font-semibold underline underline-offset-2" href="mailto:soporte@paisabor.nl">
-                      soporte@paisabor.nl
+                    ¿Dudas con tu entrega? Escríbenos{' '}
+                    {EMAIL_SOPORTE && (
+                      <>
+                        a{' '}
+                        <a className="text-primary font-semibold underline underline-offset-2" href={`mailto:${EMAIL_SOPORTE}`}>
+                          {EMAIL_SOPORTE}
+                        </a>{' '}
+                        o{' '}
+                      </>
+                    )}
+                    por WhatsApp al{' '}
+                    <a className="text-primary font-semibold underline underline-offset-2" href={whatsappLink('Hola Paisabor, tengo una duda sobre la entrega de mi pedido.')} rel="noopener noreferrer" target="_blank">
+                      {WHATSAPP_DISPLAY}
                     </a>
-                    {' '}o por WhatsApp al +31 20 894 3210
                   </span>
                 </div>
               </div>

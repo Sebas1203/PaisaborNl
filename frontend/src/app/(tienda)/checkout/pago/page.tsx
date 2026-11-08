@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ResumenCarrito } from '@/components/order/ResumenPedido';
 import { PagarButton } from '@/features/cart/PagarButton';
+import { SEDE_PRINCIPAL } from '@/config/sedes';
 
 export default function CheckoutPagoPage() {
   return (
@@ -335,7 +336,7 @@ export default function CheckoutPagoPage() {
                   </div>
                   <div className="text-xs">
                     <p className="font-bold text-primary">
-                      Sabor auténtico en Prinsengracht
+                      Sabor de casa en {SEDE_PRINCIPAL.ciudad}
                     </p>
                     <p className="text-on-surface-variant">
                       Apoyas a artesanos colombianos residentes en Ámsterdam.

@@ -6,6 +6,8 @@ import { ItemImage } from '@/components/ItemImage';
 import { itemPorId } from '@/data';
 import { lineasConItem, PEDIDOS, RESERVAS, totales } from '@/data/mock';
 import { formatEUR, formatFecha, IVA_INCLUIDO, ORDER_STATUS_LABELS } from '@/lib/format';
+import { whatsappLink } from '@/config/contact';
+import { SEDE_PRINCIPAL } from '@/config/sedes';
 
 // MOCK: pedidos y reservas de ejemplo del cliente
 const MIS_PEDIDOS = PEDIDOS.filter((p) => p.cliente === "Cliente de ejemplo 1");
@@ -69,7 +71,7 @@ export default function CuentaPedidosPage() {
                     </span>
                     {' '}
                     <span className="font-body text-xs font-medium text-secondary">
-                      Prinsengracht 1016
+                      {SEDE_PRINCIPAL.direccion}
                     </span>
                   </div>
                 </div>
@@ -314,7 +316,7 @@ export default function CuentaPedidosPage() {
                     </div>
                   </div>
                   <div className="md:col-span-4 flex flex-col sm:flex-row md:flex-col gap-3 justify-end">
-                    <a className="px-5 py-3 rounded-lg bg-primary text-on-primary font-label text-xs sm:text-sm font-semibold hover:bg-primary-container transition-all flex items-center justify-center gap-2 shadow-xs text-center" href="https://wa.me/31208943210" rel="noopener noreferrer" target="_blank">
+                    <a className="px-5 py-3 rounded-lg bg-primary text-on-primary font-label text-xs sm:text-sm font-semibold hover:bg-primary-container transition-all flex items-center justify-center gap-2 shadow-xs text-center" href={whatsappLink('Hola Paisabor, quiero ajustar un pedido.')} rel="noopener noreferrer" target="_blank">
                       <span className="material-symbols-outlined text-lg">
                         chat
                       </span>

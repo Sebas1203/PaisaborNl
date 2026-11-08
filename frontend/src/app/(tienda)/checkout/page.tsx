@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ResumenCarrito } from '@/components/order/ResumenPedido';
 import { Go } from '@/components/ui/Go';
+import { SEDE_PRINCIPAL } from '@/config/sedes';
 
 export default function CheckoutPage() {
   return (
@@ -118,7 +119,7 @@ export default function CheckoutPage() {
                             Retiro en Local
                           </h3>
                           <p className="text-xs text-on-surface-variant">
-                            De Pijp / Prinsengracht
+                            {SEDE_PRINCIPAL.direccion}, {SEDE_PRINCIPAL.ciudad}
                           </p>
                         </div>
                       </div>
@@ -156,14 +157,14 @@ export default function CheckoutPage() {
                         Calle y Número *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright placeholder:text-outline-variant transition-colors" id="address-input" placeholder="Ej: Keizersgracht 421-B, 2º piso" type="text" defaultValue="Singel 284" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright placeholder:text-outline-variant transition-colors" id="address-input" placeholder="Ej: nombre de la calle, número y piso" type="text" />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="postcode-input">
                         Código Postal *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright uppercase font-medium placeholder:text-outline-variant transition-colors" id="postcode-input" placeholder="1016 HK" type="text" defaultValue="1016 CR" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright uppercase font-medium placeholder:text-outline-variant transition-colors" id="postcode-input" placeholder="1234 AB" type="text" />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="city-input">
@@ -205,7 +206,7 @@ export default function CheckoutPage() {
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="notes-input">
                         Observaciones para el repartidor (Opcional)
                       </label>
-                      <textarea className="w-full bg-surface-container-low text-on-surface px-4 py-2.5 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright placeholder:text-outline-variant resize-none transition-colors" id="notes-input" placeholder="Ej: Tocar el timbre con nombre 'Restrepo' o dejar con el vecino del 1er piso si no respondo..." rows={2}></textarea>
+                      <textarea className="w-full bg-surface-container-low text-on-surface px-4 py-2.5 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright placeholder:text-outline-variant resize-none transition-colors" id="notes-input" placeholder="Ej: piso, timbre o indicaciones para el repartidor" rows={2}></textarea>
                     </div>
                   </div>
                 </div>
@@ -219,10 +220,10 @@ export default function CheckoutPage() {
                       </span>
                       <div>
                         <h2 className="text-lg font-headline font-bold text-primary">
-                          Punto de Recogida en De Pijp
+                          Punto de Recogida: {SEDE_PRINCIPAL.nombre}
                         </h2>
                         <p className="text-xs text-on-surface-variant">
-                          Horno y Alacena Artesanal Paisabor
+                          Comida colombiana con receta tradicional antioqueña
                         </p>
                       </div>
                     </div>
@@ -236,39 +237,18 @@ export default function CheckoutPage() {
                         Dirección de nuestro taller:
                       </span>
                       <p className="text-base font-headline font-bold text-primary">
-                        Gerard Doustraat 82-H (Cerca a Prinsengracht)
+                        {SEDE_PRINCIPAL.direccion}
                       </p>
                       <p className="text-xs text-on-surface-variant">
-                        1072 VX Ámsterdam · Barrio De Pijp
+                        {SEDE_PRINCIPAL.ciudad} · {SEDE_PRINCIPAL.pais}
                       </p>
-                      <div className="pt-2 flex flex-wrap gap-2 text-xs text-on-surface-variant">
-                        <span className="bg-surface-container px-2.5 py-1 rounded-sm flex items-center gap-1">
-                          <span className="material-symbols-outlined text-sm text-secondary">
-                            tram
-                          </span>
-                          {' '}Tranvía 12 &amp; 24 (Parada De Pijp / Ceintuurbaan)
-                        </span>
-                        {' '}
-                        <span className="bg-surface-container px-2.5 py-1 rounded-sm flex items-center gap-1">
-                          <span className="material-symbols-outlined text-sm text-secondary">
-                            directions_bike
-                          </span>
-                          {' '}Parqueadero de bicis enfrente
-                        </span>
-                      </div>
                     </div>
                     <div className="w-full md:w-48 bg-surface-container-highest p-3 rounded-lg text-xs space-y-1">
                       <span className="font-bold text-primary uppercase font-label text-[10px] tracking-wider block">
                         Horarios de Retiro:
                       </span>
                       <p className="text-on-surface-variant">
-                        Mar – Vie: 11:00 – 19:00
-                      </p>
-                      <p className="text-on-surface-variant">
-                        Sáb – Dom: 10:00 – 18:00
-                      </p>
-                      <p className="text-secondary font-medium pt-1">
-                        Lunes cerrado por horneado
+                        Por confirmar
                       </p>
                     </div>
                   </div>
@@ -329,14 +309,14 @@ export default function CheckoutPage() {
                         Nombre Completo *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-name" placeholder="Camila Restrepo" type="text" defaultValue="Camila Restrepo" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-name" placeholder="Nombre y apellido" type="text" />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="customer-email">
                         Correo Electrónico *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-email" placeholder="camila@ejemplo.nl" type="email" defaultValue="c.restrepo@uva.nl" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-email" placeholder="tu@correo.com" type="email" />
                     </div>
                     <div className="sm:col-span-2 space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="customer-phone">
@@ -347,7 +327,7 @@ export default function CheckoutPage() {
                           +31
                         </span>
                         {' '}
-                        <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-r-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-phone" placeholder="6 1234 5678" type="tel" defaultValue="6 4829 1042" />
+                        <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-r-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-phone" placeholder="Tu número de WhatsApp" type="tel" />
                       </div>
                     </div>
                   </div>

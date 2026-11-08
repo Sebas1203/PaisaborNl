@@ -6,6 +6,8 @@ import { Go } from '@/components/ui/Go';
 import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { lineasConItem, pedidoPorId } from '@/data/mock';
 import { formatFecha, ORDER_STATUS_LABELS } from '@/lib/format';
+import { whatsappLink } from '@/config/contact';
+import { direccionCorta, SEDE_PRINCIPAL } from '@/config/sedes';
 
 export default async function CuentaPedidosIdPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -50,7 +52,7 @@ export default async function CuentaPedidosIdPage({ params }: { params: Promise<
                     <span className="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
                     {' '}
                     <span className="text-xs font-label text-on-surface-variant">
-                      Prinsengracht Atelier
+                      {SEDE_PRINCIPAL.nombre}
                     </span>
                   </div>
                   <h1 className="font-headline text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-primary">
@@ -130,16 +132,16 @@ export default async function CuentaPedidosIdPage({ params }: { params: Promise<
                       </span>
                       <div className="p-3.5 bg-surface-container rounded-lg">
                         <p className="text-sm font-bold text-primary font-headline">
-                          Herengracht 342
+                          {pedido.entrega === 'recogida' ? direccionCorta() : 'Dirección indicada en el pedido'}
                         </p>
                         <p className="text-on-surface-variant">
-                          1016 CG Ámsterdam, Países Bajos
+                          {SEDE_PRINCIPAL.ciudad}, {SEDE_PRINCIPAL.pais}
                         </p>
                         <p className="text-[11px] text-secondary font-medium mt-1 flex items-center gap-1">
                           <span className="material-symbols-outlined text-xs">
                             near_me
                           </span>
-                          {' '}Zona Grachtengordel-Zuid
+                          {' '}{pedido.entrega === 'recogida' ? 'Recogida en tienda' : 'Entrega a domicilio'}
                         </p>
                       </div>
                     </div>
@@ -172,18 +174,10 @@ export default async function CuentaPedidosIdPage({ params }: { params: Promise<
                           </span>
                           <div>
                             <p className="font-bold text-primary">
-                              Camila Restrepo
-                            </p>
-                            <p className="text-[11px] text-on-surface-variant">
-                              +31 6 4829 1042
+                              {pedido.cliente}
                             </p>
                           </div>
                         </div>
-                        <a className="p-2 text-secondary hover:bg-secondary/10 rounded-full transition-colors" href="tel:+31648291042" title="Llamar">
-                          <span className="material-symbols-outlined text-lg">
-                            call
-                          </span>
-                        </a>
                       </div>
                     </div>
                     <div className="p-3.5 bg-tertiary-fixed/30 rounded-lg space-y-1">
@@ -197,7 +191,7 @@ export default async function CuentaPedidosIdPage({ params }: { params: Promise<
                         </span>
                       </div>
                       <p className="text-xs text-on-surface italic">
-                        “Tocar timbre con nombre Restrepo, dejar en portería si no responden.”
+                        Sin observaciones del cliente
                       </p>
                     </div>
                   </div>
@@ -291,11 +285,11 @@ export default async function CuentaPedidosIdPage({ params }: { params: Promise<
                   ¿Tienes alguna pregunta sobre la preparación o entrega?
                 </h4>
                 <p className="text-xs text-on-surface-variant max-w-xl">
-                  Nuestro equipo en Prinsengracht está horneando en vivo. Puedes comunicarte directamente con el fono de despacho o solicitar cambios antes de las 16:30 CET.
+                  Nuestro equipo en {SEDE_PRINCIPAL.direccion} prepara tu pedido con receta tradicional antioqueña. Escríbenos por WhatsApp para cualquier duda o cambio.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto shrink-0">
-                <a className="w-full sm:w-auto bg-surface-container-lowest hover:bg-surface text-primary font-label text-xs font-bold px-5 py-3 rounded-lg flex items-center justify-center gap-2 shadow-xs transition-all hover:-translate-y-0.5" href="https://wa.me/31648291042?text=Hola%20Paisabor,%20tengo%20una%20consulta%20sobre%20el%20pedido%20PSB-2025-4892" rel="noopener noreferrer" target="_blank">
+                <a className="w-full sm:w-auto bg-surface-container-lowest hover:bg-surface text-primary font-label text-xs font-bold px-5 py-3 rounded-lg flex items-center justify-center gap-2 shadow-xs transition-all hover:-translate-y-0.5" href={whatsappLink(`Hola Paisabor, tengo una consulta sobre el pedido ${pedido.id}`)} rel="noopener noreferrer" target="_blank">
                   <span className="material-symbols-outlined text-base text-[#25D366]">
                     chat
                   </span>

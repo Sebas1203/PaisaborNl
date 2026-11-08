@@ -5,6 +5,7 @@ import { ESPECIALES, itemPorId } from '@/data';
 import { RESERVAS } from '@/data/mock';
 import { formatDias, formatEUR, formatFecha } from '@/lib/format';
 import { Go } from '@/components/ui/Go';
+import { SEDE_PRINCIPAL } from '@/config/sedes';
 
 // MOCK: cifras calculadas con las reservas de ejemplo
 const RESERVA_LABELS = { pendiente: "Pendiente", confirmada: "Confirmada", finalizada: "Finalizada", rechazada: "Rechazada" } as const;
@@ -171,7 +172,7 @@ export default function AdminMenusPage() {
                   </div>
                 </div>
                 <p className="text-xs text-on-surface-variant mt-2 leading-snug">
-                  Horneado lento iniciado viernes 22:00 CET en Atelier De Pijp.
+                  Preparación con receta tradicional antioqueña en {SEDE_PRINCIPAL.direccion}.
                 </p>
               </div>
               <div className="mt-4 pt-3 flex items-center gap-2 text-xs text-outline">
@@ -322,7 +323,7 @@ export default function AdminMenusPage() {
                       Domicilio Ámsterdam
                     </option>
                     <option value="Retiro">
-                      Retiro en De Pijp
+                      Retiro en {SEDE_PRINCIPAL.direccion}
                     </option>
                   </select>
                 </div>
@@ -577,7 +578,7 @@ export default function AdminMenusPage() {
                         </span>
                       </div>
                       <span className="text-on-surface-variant">
-                        Rutas Amsterdam Centro &amp; Retiros en Atelier De Pijp.
+                        Domicilios en Ámsterdam y retiros en {SEDE_PRINCIPAL.direccion}.
                       </span>
                     </div>
                   </div>

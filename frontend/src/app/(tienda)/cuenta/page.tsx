@@ -127,22 +127,16 @@ export default function CuentaPage() {
               </div>
               <div className="relative z-10 text-on-surface-variant leading-relaxed">
                 <p className="font-medium text-primary mb-1">
-                  Juan Pérez
+                  Cliente de ejemplo
                 </p>
                 <p>
-                  Prinsengracht 263-267
-                </p>
-                <p>
-                  1016 GV Amsterdam
-                </p>
-                <p>
-                  Países Bajos
+                  Sin dirección guardada
                 </p>
                 <p className="mt-4 text-sm">
                   <span className="font-medium">
                     Tel:
                   </span>
-                  {' '}+31 06 12345678
+                  {' '}Sin teléfono guardado
                 </p>
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { SEDE_PRINCIPAL } from '@/config/sedes';
 
 // Sidebar y header de administración (variante "Hearth & Co." de administrador_inventario)
 const AVATAR_URL =
@@ -63,8 +64,8 @@ export function AdminSidebar() {
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-secondary text-sm">pin_drop</span>
             <div className="text-xs">
-              <div className="font-medium text-on-surface">Sede Central</div>
-              <div className="text-on-surface-variant">Ámsterdam, NL</div>
+              <div className="font-medium text-on-surface">{SEDE_PRINCIPAL.nombre}</div>
+              <div className="text-on-surface-variant">{SEDE_PRINCIPAL.direccion}</div>
             </div>
           </div>
           <span className="w-2 h-2 rounded-full bg-secondary"></span>

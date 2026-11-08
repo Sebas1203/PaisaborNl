@@ -551,7 +551,7 @@ export default function MenusPage() {
                     Tu Nombre Completo
                   </label>
                   {' '}
-                  <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="Ej. Camila Morales" required type="text" />
+                  <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="Nombre y apellido" required type="text" />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
@@ -559,7 +559,7 @@ export default function MenusPage() {
                       Email
                     </label>
                     {' '}
-                    <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="camila@example.nl" required type="email" />
+                    <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="tu@correo.com" required type="email" />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-headline font-semibold text-primary">

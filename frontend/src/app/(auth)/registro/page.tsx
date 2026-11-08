@@ -54,14 +54,14 @@ export default function RegistroPage() {
                   Nombre
                 </label>
                 {' '}
-                <input className="form-input w-full input-ghost text-primary placeholder:text-outline-variant/50" id="nombre" name="nombre" placeholder="Ej. Carlos" required type="text" />
+                <input className="form-input w-full input-ghost text-primary placeholder:text-outline-variant/50" id="nombre" name="nombre" placeholder="Tu nombre" required type="text" />
               </div>
               <div className="w-full">
                 <label className="block font-label text-sm text-on-surface-variant mb-1" htmlFor="apellido">
                   Apellido
                 </label>
                 {' '}
-                <input className="form-input w-full input-ghost text-primary placeholder:text-outline-variant/50" id="apellido" name="apellido" placeholder="Ej. Restrepo" required type="text" />
+                <input className="form-input w-full input-ghost text-primary placeholder:text-outline-variant/50" id="apellido" name="apellido" placeholder="Tus apellidos" required type="text" />
               </div>
             </div>
             <div className="space-y-6">
@@ -70,7 +70,7 @@ export default function RegistroPage() {
                   Email
                 </label>
                 {' '}
-                <input className="form-input w-full input-ghost text-primary placeholder:text-outline-variant/50" id="email" name="email" placeholder="carlos@ejemplo.com" required type="email" />
+                <input className="form-input w-full input-ghost text-primary placeholder:text-outline-variant/50" id="email" name="email" placeholder="tu@correo.com" required type="email" />
               </div>
               <div>
                 <label className="block font-label text-sm text-on-surface-variant mb-1" htmlFor="telefono">

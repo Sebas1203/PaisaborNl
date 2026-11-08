@@ -308,12 +308,12 @@ export default function AdminPedidosPage() {
                     <span className="material-symbols-outlined text-xs">
                       verified
                     </span>
-                    {' '}Cliente Frecuente (4 pedidos)
+                    {' '}{PEDIDOS.filter((p) => p.cliente === PEDIDO_DETALLE.cliente).length} pedidos de este cliente
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-headline font-bold text-base">
-                    CR
+                    <span className="material-symbols-outlined">person</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="font-headline font-semibold text-sm text-primary" id="detailCustomerName">

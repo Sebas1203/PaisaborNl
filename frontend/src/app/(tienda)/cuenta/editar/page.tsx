@@ -73,7 +73,7 @@ export default function CuentaEditarPage() {
                     <div className="flex flex-col items-center text-center">
                       <div className="relative group">
                         <div className="w-32 h-32 rounded-full overflow-hidden p-1 bg-linear-to-tr from-secondary via-primary-fixed to-secondary-container shadow-md">
-                          <ItemImage alt="Juan Carlos Pérez Restrepo" className="w-full h-full object-cover rounded-full" />
+                          <ItemImage alt="Foto de perfil" className="w-full h-full object-cover rounded-full" />
                         </div>
                         <div className="absolute -bottom-2 -right-1 bg-surface-container-lowest p-1 rounded-full shadow-md">
                           <div className="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
@@ -93,11 +93,11 @@ export default function CuentaEditarPage() {
                         </span>
                       </div>
                       <h2 className="font-headline font-bold text-xl text-primary mt-4 tracking-tight" id="live-name-display">
-                        Juan Carlos Pérez Restrepo
+                        Tu nombre
                       </h2>
                       <div className="flex items-center gap-1.5 mt-1 text-sm text-on-surface-variant font-body">
                         <span className="truncate max-w-[200px]" id="live-email-display">
-                          juan.perez@ejemplo.co
+                          tu@correo.com
                         </span>
                       </div>
                       <div className="inline-flex items-center gap-1 text-[11px] font-medium text-secondary bg-secondary-fixed/50 px-2.5 py-0.5 rounded-full mt-2 font-label">
@@ -223,7 +223,7 @@ export default function CuentaEditarPage() {
                         </div>
                         <div className="bg-surface-container-low rounded-xl p-6 flex flex-col md:flex-row items-center gap-6">
                           <div className="relative shrink-0">
-                            <ItemImage alt="Juan Carlos avatar" className="w-24 h-24 rounded-full object-cover shadow-md" />
+                            <ItemImage alt="Foto de perfil" className="w-24 h-24 rounded-full object-cover shadow-md" />
                             <div className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-sm">
                               <span className="material-symbols-outlined text-xs">
                                 photo_camera
@@ -290,7 +290,7 @@ export default function CuentaEditarPage() {
                                 person
                               </span>
                               {' '}
-                              <input className="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-4 py-3 placeholder:text-outline focus:outline-hidden focus:bg-surface-container-lowest transition-colors shadow-inner" id="full-name" required type="text" defaultValue="Juan Carlos Pérez Restrepo" />
+                              <input className="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-4 py-3 placeholder:text-outline focus:outline-hidden focus:bg-surface-container-lowest transition-colors shadow-inner" id="full-name" required type="text" placeholder="Nombre y apellidos" />
                             </div>
                             <span className="text-[11px] text-on-surface-variant block pl-1">
                               Tal como aparecerá en tus facturas y comprobantes fiscales.
@@ -305,7 +305,7 @@ export default function CuentaEditarPage() {
                                 sentiment_satisfied
                               </span>
                               {' '}
-                              <input className="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-4 py-3 placeholder:text-outline focus:outline-hidden focus:bg-surface-container-lowest transition-colors shadow-inner" id="preferred-name" type="text" defaultValue="Juan" />
+                              <input className="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-4 py-3 placeholder:text-outline focus:outline-hidden focus:bg-surface-container-lowest transition-colors shadow-inner" id="preferred-name" type="text" placeholder="Cómo quieres que te llamemos" />
                             </div>
                             <span className="text-[11px] text-on-surface-variant block pl-1">
                               ¿Cómo te saludamos en la panadería y confirmaciones?
@@ -341,7 +341,7 @@ export default function CuentaEditarPage() {
                                 mail
                               </span>
                               {' '}
-                              <input className="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-12 py-3 placeholder:text-outline focus:outline-hidden focus:bg-surface-container-lowest transition-colors shadow-inner" id="email-address" required type="email" defaultValue="juan.perez@ejemplo.co" />
+                              <input className="w-full bg-surface-container-low text-on-surface font-body text-sm rounded-lg pl-11 pr-12 py-3 placeholder:text-outline focus:outline-hidden focus:bg-surface-container-lowest transition-colors shadow-inner" id="email-address" required type="email" placeholder="tu@correo.com" />
                               {' '}
                               <span className="material-symbols-outlined absolute right-3.5 text-secondary text-lg" title="Verificado">
                                 lock_open

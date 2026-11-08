@@ -20,7 +20,7 @@ export default function CuentaPage() {
               Mi Perfil
             </h2>
             <p className="font-body text-on-surface-variant text-lg mt-2">
-              Bienvenido de vuelta, Juan Pérez.
+              Bienvenido de vuelta.
             </p>
           </div>
           <Go href="/cuenta/editar" className="px-6 py-2 border border-outline-variant/30 text-on-surface rounded-lg hover:bg-surface-container transition-colors flex items-center gap-2">
@@ -41,10 +41,10 @@ export default function CuentaPage() {
               </div>
             </div>
             <h3 className="font-headline text-2xl font-bold text-primary mb-1">
-              Juan Pérez
+              Tu nombre
             </h3>
             <p className="text-on-surface-variant font-medium mb-6">
-              juan.perez@ejemplo.co
+              tu@correo.com
             </p>
             <div className="w-full border-t border-surface-variant my-4"></div>
             <div className="w-full flex justify-between items-center text-sm">

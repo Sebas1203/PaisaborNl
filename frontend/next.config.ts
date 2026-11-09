@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
       { source: '/cuenta/editar', destination: '/perfil/editar', permanent: false },
       { source: '/cuenta/pedidos', destination: '/mis-pedidos', permanent: false },
       { source: '/cuenta/pedidos/:id', destination: '/mis-pedidos/:id', permanent: false },
+      { source: '/admin/productos', destination: '/admin/inventario', permanent: false },
+      { source: '/admin/productos/nuevo', destination: '/admin/inventario/nuevo', permanent: false },
+      { source: '/admin/menus/editar', destination: '/admin/menus', permanent: false },
     ];
   },
 };

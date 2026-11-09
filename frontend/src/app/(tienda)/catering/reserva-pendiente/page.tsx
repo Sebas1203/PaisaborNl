@@ -1,19 +1,25 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/reserva_pendiente_de_confirmaci_n_paisabor
+// Conectado a reservasService: muestra la última reserva pendiente del usuario (o la más reciente).
+'use client';
+
 /* eslint-disable @next/next/no-img-element */
 import { iva } from '@/config/fiscal';
 import Link from 'next/link';
-import { itemPorId } from '@/data';
-import { RESERVAS } from '@/data/mock';
+import { useCarga } from '@/hooks/useCarga';
+import { useAuth } from '@/providers/AuthProvider';
+import { menusService, reservasService } from '@/services';
 import { formatEUR, formatFecha } from '@/lib/format';
 import { TEL_URL, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
 
-// MOCK: muestra la primera reserva de ejemplo con su especial del catálogo
-const RESERVA = RESERVAS[0];
-const PLATO = itemPorId(RESERVA.platoId)!;
-const TOTAL = PLATO.precio * RESERVA.porciones;
-
 export default function CateringReservaPendientePage() {
+  const { user } = useAuth();
+  const { datos } = useCarga(() => Promise.all([reservasService.listar(), menusService.listar()]), []);
+  const [reservas = [], menus = []] = datos ?? [];
+  const pendientes = reservas.filter((r) => r.estado === 'pendiente').sort((a, b) => b.creadaEn.localeCompare(a.creadaEn));
+  const RESERVA = pendientes.find((r) => user && r.clienteId === user.id) ?? pendientes[0];
+  const MENU = menus.find((m) => m.id === RESERVA?.menuId);
+  const TOTAL = (MENU?.precioPorPersona ?? 0) * (RESERVA?.personas ?? 0);
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
@@ -58,7 +64,7 @@ export default function CateringReservaPendientePage() {
                   </span>
                   {' '}
                   <span className="font-headline text-lg sm:text-xl font-bold tracking-wider text-primary" id="booking-code">
-                    #{RESERVA.id}
+                    #{RESERVA?.id ?? '…'}
                   </span>
                   {' '}
                   <button className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-surface-container text-primary hover:bg-surface-container-high transition-colors text-xs font-label font-medium" id="copy-btn" type="button">
@@ -95,14 +101,14 @@ export default function CateringReservaPendientePage() {
                       </span>
                       <div className="flex items-baseline gap-3 flex-wrap">
                         <h2 className="font-headline text-2xl font-bold text-primary">
-                          {PLATO.nombre}
+                          {MENU?.nombre ?? '…'}
                         </h2>
                         <span className="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-xs font-label font-semibold">
-                          {RESERVA.porciones} porciones
+                          {RESERVA?.personas ?? '…'} personas
                         </span>
                       </div>
                       <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                        {PLATO.descripcion}
+                        {MENU?.descripcion}
                       </p>
                     </div>
                     <div className="md:col-span-4 bg-surface-container-low p-4 rounded-lg flex flex-col justify-between self-stretch">
@@ -141,7 +147,7 @@ export default function CateringReservaPendientePage() {
                         </span>
                         {' '}
                         <span className="text-sm font-headline font-bold text-primary block mt-0.5">
-                          {formatFecha(RESERVA.fecha)}
+                          {RESERVA ? formatFecha(RESERVA.fecha) : '…'}
                         </span>
                         {' '}
                         <span className="text-xs font-body text-on-surface-variant">
@@ -338,7 +344,7 @@ export default function CateringReservaPendientePage() {
                     {' '}{WHATSAPP_DISPLAY}
                   </a>
                   {' '}
-                  <a className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container transition-colors text-xs font-label font-semibold shadow-xs" href={whatsappLink('Hola Paisabor, tengo una consulta sobre mi reserva ' + RESERVA.id)} rel="noopener noreferrer" target="_blank">
+                  <a className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container transition-colors text-xs font-label font-semibold shadow-xs" href={whatsappLink('Hola Paisabor, tengo una consulta sobre mi reserva ' + (RESERVA?.id ?? ''))} rel="noopener noreferrer" target="_blank">
                     <span className="material-symbols-outlined text-base">
                       chat
                     </span>

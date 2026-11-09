@@ -1,5 +1,5 @@
-// Tipos de la app que no son del catálogo. Los del catálogo (Plato, Producto, ItemCatalogo...)
-// están en src/data/tipos.ts.
+// Tipos básicos compartidos. Los del catálogo (Plato, Producto, ItemCatalogo...) están en
+// src/data/tipos.ts y los de dominio (Pedido, Reserva, Usuario...) en src/services/tipos.ts.
 
 export type OrderStatus =
   | 'pendiente'
@@ -18,26 +18,4 @@ export interface LineaPedido {
   cantidad: number;
 }
 
-export interface Pedido {
-  id: string;
-  /** Fecha ISO (YYYY-MM-DD) */
-  fecha: string;
-  estado: OrderStatus;
-  entrega: DeliveryMethod;
-  cliente: string;
-  lineas: LineaPedido[];
-}
-
-export type ReservationStatus = 'pendiente' | 'confirmada' | 'finalizada' | 'rechazada';
-
-/** Reserva de un especial de fin de semana (bajoReserva) */
-export interface Reserva {
-  id: string;
-  /** id de un plato de ESPECIALES */
-  platoId: string;
-  /** Fecha ISO (YYYY-MM-DD) */
-  fecha: string;
-  porciones: number;
-  estado: ReservationStatus;
-  cliente: string;
-}
+// Pedido, Reserva y el resto de tipos de dominio están en src/services/tipos.ts

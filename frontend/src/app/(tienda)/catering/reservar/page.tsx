@@ -1,18 +1,20 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/reservar_men_de_catering_paisabor
 /* eslint-disable @next/next/no-img-element */
-import { baseSinIva, iva } from '@/config/fiscal';
 import { Go } from '@/components/ui/Go';
 import { ItemImage } from '@/components/ItemImage';
 import { PLATOS } from '@/data';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
 import { EMAIL_CONTACTO, whatsappLink } from '@/config/contact';
 import { direccionCorta, SEDE_PRINCIPAL } from '@/config/sedes';
+import { calcularTotales } from '@/lib/precios';
+import { CATERING_ANTICIPACION_HORAS, textoRespuesta } from '@/config/catering';
 
 const PLATOS_CATERING = PLATOS.filter((plato) => plato.disponible);
 // El resumen parte del primer plato y de los 25 comensales que propone el diseño
 const PLATO_INICIAL = PLATOS_CATERING[0];
 const COMENSALES_INICIALES = 25;
-const SUBTOTAL = PLATO_INICIAL.precio * COMENSALES_INICIALES;
+const TOTALES = calcularTotales([{ precioUnit: PLATO_INICIAL.precio, cantidad: COMENSALES_INICIALES }]);
+const SUBTOTAL = TOTALES.subtotal;
 
 export default function CateringReservarPage() {
   return (
@@ -45,7 +47,7 @@ export default function CateringReservarPage() {
                     </span>
                     {' '}
                     <span>
-                      Reserva mínima 72h antes
+                      Reserva mínima {CATERING_ANTICIPACION_HORAS}h antes
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5 bg-surface-container-low px-3 py-1.5 rounded-lg">
@@ -119,7 +121,7 @@ export default function CateringReservarPage() {
                           </span>
                         </div>
                         <span className="text-[11px] text-on-surface-variant">
-                          Se requiere confirmación mínima con 72h de anticipación.
+                          Se requiere confirmación mínima con {CATERING_ANTICIPACION_HORAS}h de anticipación.
                         </span>
                       </div>
                       <div className="flex flex-col gap-1.5">
@@ -336,11 +338,11 @@ export default function CateringReservarPage() {
                         </div>
                         <div className="flex items-center justify-between text-[11px] text-on-surface-variant">
                           <span>Base sin IVA:</span>
-                          <span className="font-medium text-on-surface-variant">{formatEUR(baseSinIva(SUBTOTAL))}</span>
+                          <span className="font-medium text-on-surface-variant">{formatEUR(TOTALES.base)}</span>
                         </div>
                         <div className="flex items-center justify-between text-[11px] text-on-surface-variant">
                           <span>IVA (9%) incluido:</span>
-                          <span className="font-medium text-on-surface-variant">{formatEUR(iva(SUBTOTAL))}</span>
+                          <span className="font-medium text-on-surface-variant">{formatEUR(TOTALES.iva)}</span>
                         </div>
                       </div>
                       <div className="pt-4 mt-2 border-t border-outline-variant/20 flex items-end justify-between">
@@ -359,7 +361,7 @@ export default function CateringReservarPage() {
                         <strong className="text-primary font-medium">
                           Revisión artesanal de cupo:
                         </strong>
-                        {' '}Al enviar la solicitud, nuestro chef revisará la disponibilidad de cupo en cocina y te confirmará en menos de 24 horas hábiles.{' '}
+                        {' '}Al enviar la solicitud, nuestro chef revisará la disponibilidad de cupo en cocina y te confirmará {textoRespuesta()}.{' '}
                         <em>
                           No se realiza ningún cobro en este paso.
                         </em>

@@ -1,11 +1,11 @@
 'use client';
 
-import { baseSinIva } from '@/config/fiscal';
 import Link from 'next/link';
 import { ItemImage } from '@/components/ItemImage';
 import { useCart } from '@/features/cart/CartProvider';
 import type { LineaConItem } from '@/lib/pedidos';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
+import { calcularTotales } from '@/lib/precios';
 
 // Resumen de un pedido (líneas + totales) con la plantilla del checkout de Stitch.
 // Los precios ya incluyen el IVA: la base y el IVA se calculan a partir del total, nunca se suman.
@@ -22,8 +22,7 @@ export function ResumenPedido({
   /** undefined: no se muestra; null: "Por confirmar" */
   envio?: number | null;
 }) {
-  const subtotal = lineas.reduce((acc, l) => acc + l.total, 0);
-  const base = baseSinIva(subtotal);
+  const { subtotal, base, iva } = calcularTotales(lineas.map((l) => ({ precioUnit: l.item.precio, cantidad: l.cantidad })));
   const total = subtotal + (envio ?? 0);
   const articulos = lineas.reduce((acc, l) => acc + l.cantidad, 0);
 
@@ -80,7 +79,7 @@ export function ResumenPedido({
           </div>
           <div className="flex items-center justify-between text-xs text-on-surface-variant">
             <span>IVA (9%) incluido</span>
-            <span>{formatEUR(subtotal - base)}</span>
+            <span>{formatEUR(iva)}</span>
           </div>
         </div>
         <div className="pt-3 flex items-baseline justify-between">

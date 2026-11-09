@@ -1,10 +1,10 @@
 'use client';
 
-import { baseSinIva } from '@/config/fiscal';
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { itemPorId } from '@/data';
 import { lineasConItem, type LineaConItem } from '@/lib/pedidos';
 import type { LineaPedido } from '@/types';
+import { calcularTotales } from '@/lib/precios';
 
 const STORAGE_KEY = 'paisabor:carrito';
 const LAST_ORDER_KEY = 'paisabor:ultimo-pedido';
@@ -14,7 +14,7 @@ interface CartContextValue {
   count: number;
   /** Total con IVA incluido */
   subtotal: number;
-  /** Base sin IVA: subtotal / 1.09 */
+  /** Base sin IVA (calcularTotales) */
   base: number;
   /** IVA contenido en el subtotal (nunca se suma encima) */
   iva: number;
@@ -81,15 +81,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const value = useMemo<CartContextValue>(() => {
     const lineas = lineasConItem(entries);
-    const subtotal = lineas.reduce((acc, l) => acc + l.total, 0);
-    const base = baseSinIva(subtotal);
+    const { subtotal, base, iva } = calcularTotales(lineas.map((l) => ({ precioUnit: l.item.precio, cantidad: l.cantidad })));
 
     return {
       lineas,
       count: lineas.reduce((acc, l) => acc + l.cantidad, 0),
       subtotal,
       base,
-      iva: subtotal - base,
+      iva,
       addItem: (id, cantidad = 1) =>
         setEntries((prev) =>
           prev.some((l) => l.id === id)

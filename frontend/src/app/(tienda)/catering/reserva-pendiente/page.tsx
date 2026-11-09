@@ -3,7 +3,6 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
-import { iva } from '@/config/fiscal';
 import Link from 'next/link';
 import { useCarga } from '@/hooks/useCarga';
 import { useAuth } from '@/providers/AuthProvider';
@@ -11,6 +10,8 @@ import { menusService, reservasService } from '@/services';
 import { formatEUR, formatFecha } from '@/lib/format';
 import { TEL_URL, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
+import { calcularTotales } from '@/lib/precios';
+import { textoRespuesta } from '@/config/catering';
 
 export default function CateringReservaPendientePage() {
   const { user } = useAuth();
@@ -125,7 +126,7 @@ export default function CateringReservaPendientePage() {
                           </span>
                           {' '}
                           <span>
-                            IVA 9% incluido ({formatEUR(iva(TOTAL))})
+                            IVA 9% incluido ({formatEUR(calcularTotales([{ precioUnit: TOTAL, cantidad: 1 }]).iva)})
                           </span>
                         </div>
                       </div>
@@ -263,7 +264,7 @@ export default function CateringReservaPendientePage() {
                         </span>
                         {' '}
                         <span>
-                          Tiempo de respuesta estimado: menos de 24 horas laborables.
+                          Tiempo de respuesta estimado: {textoRespuesta()}.
                         </span>
                       </div>
                     </div>

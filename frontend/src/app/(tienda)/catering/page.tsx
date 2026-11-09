@@ -5,6 +5,7 @@ import { ItemImage } from '@/components/ItemImage';
 import { PLATOS } from '@/data';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
 import { whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
+import { CATERING_ANTICIPACION_HORAS, textoRespuesta } from '@/config/catering';
 
 const PLATOS_CATERING = PLATOS.filter((plato) => plato.disponible);
 
@@ -206,7 +207,7 @@ export default function CateringPage() {
                     2
                   </div>
                   <h3 className="font-headline font-bold text-lg text-primary">
-                    Reserva con Mínimo 72h de Anticipación
+                    Reserva con Mínimo {CATERING_ANTICIPACION_HORAS}h de Anticipación
                   </h3>
                   <p className="text-sm text-on-surface-variant leading-relaxed">
                     Revisamos la disponibilidad logística, confirmamos cantidad de comensales y congelamos la fecha con un anticipo seguro vía iDEAL o transferencia.
@@ -237,7 +238,7 @@ export default function CateringPage() {
                     Diseñemos el Menú Perfecto para tu Ocasión
                   </h2>
                   <p className="text-on-surface-variant text-sm sm:text-base leading-relaxed">
-                    Diligencia el formulario y nuestro equipo gastronómico te enviará una propuesta formal detallada en menos de 12 horas hábiles.
+                    Diligencia el formulario y nuestro equipo gastronómico te enviará una propuesta formal detallada {textoRespuesta()}.
                   </p>
                   <div className="space-y-4 pt-4">
                     <div className="flex items-center gap-4 p-4 rounded-xl bg-surface-bright/70">
@@ -380,7 +381,7 @@ export default function CateringPage() {
                       </span>
                       {' '}
                       <span>
-                        ¡Solicitud enviada con éxito! Te contactaremos con la cotización en menos de 12h.
+                        ¡Solicitud enviada con éxito! Te contactaremos con la cotización {textoRespuesta()}.
                       </span>
                     </div>
                     <Go href="/catering/reservar" className="w-full py-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline font-bold text-sm tracking-wide transition-all duration-200 shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2" id="submit-btn" type="button">

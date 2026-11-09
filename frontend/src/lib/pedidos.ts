@@ -1,10 +1,10 @@
 // Reglas puras de pedidos (sin estado ni almacenamiento): flujo de estados y totales con IVA.
 // Las usan el mock y la UI; la implementación de Supabase debe respetar las mismas reglas.
 
-import { baseSinIva } from '@/config/fiscal';
 import { itemPorId, type ItemCatalogo } from '@/data';
 import type { DeliveryMethod, LineaPedido, OrderStatus } from '@/types';
 import type { LineaPedidoGuardada } from '@/services/tipos';
+import { calcularTotales } from '@/lib/precios';
 
 const FLUJO_DOMICILIO: OrderStatus[] = ['pendiente', 'confirmado', 'en_preparacion', 'listo', 'enviado', 'entregado'];
 // "enviado" no existe para pedidos que el cliente recoge en la sede
@@ -49,9 +49,6 @@ export function lineasGuardadasConItem(lineas: LineaPedidoGuardada[]): LineaConI
   }));
 }
 
-/** Total con IVA incluido; base e IVA salen del total (los precios ya incluyen el 9 %) */
-export function totales(lineas: { precio: number; cantidad: number }[]) {
-  const total = lineas.reduce((acc, l) => acc + l.precio * l.cantidad, 0);
-  const base = baseSinIva(total);
-  return { total, base, iva: total - base };
-}
+/** Totales de líneas con precio (pedidos y carrito): delega en calcularTotales */
+export const totales = (lineas: { precio: number; cantidad: number }[]) =>
+  calcularTotales(lineas.map((l) => ({ precioUnit: l.precio, cantidad: l.cantidad })));

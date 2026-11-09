@@ -1,7 +1,8 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/catering_paisabor
 /* eslint-disable @next/next/no-img-element */
-import { Go } from '@/components/ui/Go';
 import { ItemImage } from '@/components/ItemImage';
+import { BotonElegirPlato } from '@/features/catering/BotonElegirPlato';
+import { FormularioPresupuesto } from '@/features/catering/FormularioPresupuesto';
 import { PLATOS } from '@/data';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
 import { whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
@@ -135,7 +136,7 @@ export default function CateringPage() {
                 </span>
                 {' '}
                 <span className="text-sm font-medium text-on-surface">
-                  Transporte térmico en Ámsterdam
+                  Entrega en Ámsterdam (logística por confirmar)
                 </span>
               </div>
             </div>
@@ -168,9 +169,7 @@ export default function CateringPage() {
                         <h3 className="font-headline font-bold text-xl text-primary">{plato.nombre}</h3>
                         {plato.descripcion && <p className="text-sm text-on-surface-variant">{plato.descripcion}</p>}
                       </div>
-                      <a className="w-full py-3 text-center rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-primary font-medium text-sm transition-colors duration-200" href="#cotizador">
-                        Elegir este plato
-                      </a>
+                      <BotonElegirPlato platoId={plato.id} className="w-full py-3 text-center rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-primary font-medium text-sm transition-colors duration-200" />
                     </div>
                   </div>
                 ))}
@@ -187,7 +186,7 @@ export default function CateringPage() {
                   ¿Cómo Funciona el Servicio de Paisabor?
                 </h2>
                 <p className="text-on-surface-variant text-sm sm:text-base">
-                  Garantizamos puntualidad holandesa y hospitalidad colombiana en cada etapa de tu evento.
+                  Así funciona una solicitud de catering, paso a paso.
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -196,10 +195,10 @@ export default function CateringPage() {
                     1
                   </div>
                   <h3 className="font-headline font-bold text-lg text-primary">
-                    Selecciona tu Paquete o Menú a Medida
+                    Elige tus platos y porciones
                   </h3>
                   <p className="text-sm text-on-surface-variant leading-relaxed">
-                    Explora nuestros paquetes o indícanos preferencias personalizadas para tu empresa o festejo familiar. Adaptamos porciones y restricciones.
+                    Elige uno o varios platos del menú e indica cuántas porciones quieres de cada uno. Cuéntanos alergias o restricciones en los comentarios.
                   </p>
                 </div>
                 <div className="bg-surface-container-lowest p-8 rounded-xl shadow-xs relative flex flex-col space-y-4">
@@ -210,7 +209,7 @@ export default function CateringPage() {
                     Reserva con Mínimo {CATERING_ANTICIPACION_HORAS}h de Anticipación
                   </h3>
                   <p className="text-sm text-on-surface-variant leading-relaxed">
-                    Revisamos la disponibilidad logística, confirmamos cantidad de comensales y congelamos la fecha con un anticipo seguro vía iDEAL o transferencia.
+                    Revisamos la disponibilidad y la logística, confirmamos el número de invitados y te enviamos el presupuesto final {textoRespuesta()}.
                   </p>
                 </div>
                 <div className="bg-surface-container-lowest p-8 rounded-xl shadow-xs relative flex flex-col space-y-4">
@@ -218,10 +217,10 @@ export default function CateringPage() {
                     3
                   </div>
                   <h3 className="font-headline font-bold text-lg text-primary">
-                    Montaje Profesional o Entrega Térmica
+                    Entrega o recogida
                   </h3>
                   <p className="text-sm text-on-surface-variant leading-relaxed">
-                    Llegamos a tu locación para instalar el buffet campesino con menaje tradicional o dejamos la comida caliente en cajas térmicas de aislamiento profesional.
+                    Coordinamos contigo la entrega en el lugar del evento o la recogida en nuestra sede. La logística se confirma junto con el presupuesto.
                   </p>
                 </div>
               </div>
@@ -287,110 +286,7 @@ export default function CateringPage() {
                   </div>
                 </div>
                 <div className="lg:col-span-7 bg-surface-container-lowest p-6 sm:p-8 rounded-xl shadow-xs">
-                  <div className="space-y-6" id="catering-form">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-2" htmlFor="event-type">
-                          Tipo de Evento *
-                        </label>
-                        <select className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="event-type" required>
-                          <option value="">
-                            Selecciona una opción
-                          </option>
-                          <option value="Corporativo">
-                            Evento Corporativo / Empresa
-                          </option>
-                          <option value="Cumpleaños">
-                            Cumpleaños / Celebración Familiar
-                          </option>
-                          <option value="Boda">
-                            Boda / Compromiso
-                          </option>
-                          <option value="Privado">
-                            Cena Privada / Amigos
-                          </option>
-                          <option value="Comunitario">
-                            Festival / Evento Comunitario
-                          </option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-2" htmlFor="guest-count">
-                          Número de Invitados *
-                        </label>
-                        {' '}
-                        <input className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="guest-count" max="500" min="10" placeholder="Ej. 35 personas" required type="number" />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-2" htmlFor="event-date">
-                          Fecha Estimada *
-                        </label>
-                        {' '}
-                        <input className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="event-date" required type="date" />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-2" htmlFor="city">
-                          Ciudad o Código Postal en NL *
-                        </label>
-                        {' '}
-                        <input className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="city" placeholder="Ej. Ámsterdam 1012" required type="text" />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-2" htmlFor="package-select">
-                        Paquete de Interés *
-                      </label>
-                      <select className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="package-select" required defaultValue="Banquete Criollo Tradicional">
-                        {PLATOS_CATERING.map((plato) => (
-                          <option key={plato.id} value={plato.nombre}>
-                            {plato.nombre} ({formatEUR(plato.precio)} / plato)
-                          </option>
-                        ))}
-                        <option value="Personalizado">
-                          Menú Personalizado / A Medida
-                        </option>
-                      </select>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-2" htmlFor="client-name">
-                          Nombre Completo *
-                        </label>
-                        {' '}
-                        <input className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="client-name" placeholder="Tu nombre" required type="text" />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-2" htmlFor="client-email">
-                          Email de Contacto *
-                        </label>
-                        {' '}
-                        <input className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="client-email" placeholder="nombre@correo.com" required type="email" />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-2" htmlFor="dietary-notes">
-                        Comentarios &amp; Restricciones Dietéticas
-                      </label>
-                      <textarea className="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 focus:outline-hidden focus:bg-surface-container-lowest transition-colors" id="dietary-notes" placeholder="Indica si requieres opciones vegetarianas, sin gluten, vajilla tradicional o servicio de meseros..." rows={3}></textarea>
-                    </div>
-                    <div className="hidden p-4 rounded-lg bg-surface-container text-primary font-medium text-sm flex items-center gap-3" id="form-success">
-                      <span className="material-symbols-outlined text-secondary">
-                        check_circle
-                      </span>
-                      {' '}
-                      <span>
-                        ¡Solicitud enviada con éxito! Te contactaremos con la cotización {textoRespuesta()}.
-                      </span>
-                    </div>
-                    <Go href="/catering/reservar" className="w-full py-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline font-bold text-sm tracking-wide transition-all duration-200 shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2" id="submit-btn" type="button">
-                      <span className="material-symbols-outlined text-lg">
-                        send
-                      </span>
-                      {' '}Enviar Solicitud de Reserva
-                    </Go>
-                  </div>
+                  <FormularioPresupuesto />
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/pago_exitoso_pedido_confirmado_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { ResumenUltimoPedido, UltimoPedidoImporte } from '@/components/order/ResumenPedido';
+import { EnlacePedidoCreado, ImportePedidoCreado, NumeroPedido, PedidoCreadoProvider, ResumenPedidoCreado } from '@/features/orders/PedidoCreado';
 import { EMAIL_SOPORTE, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
 
@@ -9,6 +9,7 @@ export default function CheckoutExitoPage() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
+    <PedidoCreadoProvider>
     <div className="bg-surface font-body text-on-surface selection:bg-secondary-container selection:text-on-secondary-container antialiased">
       <main className="w-full pt-28 bg-surface min-h-[calc(100vh-16rem)]">
         <div className="flex flex-col w-full">
@@ -71,7 +72,7 @@ export default function CheckoutExitoPage() {
                     ¡Muchas gracias por tu compra!
                   </h1>
                   <p className="font-headline font-medium text-lg sm:text-xl text-primary/80 mt-1">
-                    Tu pedido está confirmado y va directo a nuestra cocina.
+                    Hemos recibido tu pedido. Te avisaremos en cuanto nuestra cocina lo confirme.
                   </p>
                   <div className="mt-6 inline-flex items-center gap-3 bg-surface-container-low px-5 py-2.5 rounded-lg">
                     <span className="text-xs uppercase tracking-wider text-on-surface-variant font-label">
@@ -79,7 +80,7 @@ export default function CheckoutExitoPage() {
                     </span>
                     {' '}
                     <span className="font-headline font-bold text-base sm:text-lg text-primary tracking-wide selection:bg-secondary-container" id="orderId">
-                      #PSB-2025-4892
+                      <NumeroPedido />
                     </span>
                     {' '}
                     <button aria-label="Copiar código" className="text-secondary hover:text-primary transition-colors p-1" title="Copiar número de pedido">
@@ -181,7 +182,7 @@ export default function CheckoutExitoPage() {
                         Total Facturado
                       </p>
                       <div className="font-headline font-extrabold text-3xl sm:text-4xl text-surface-bright mt-1 tracking-tight">
-                        <UltimoPedidoImporte parte="total" />
+                        <ImportePedidoCreado parte="total" />
                       </div>
                     </div>
                     <div className="mt-4 pt-3 text-[11px] text-surface-variant/80 flex items-center justify-between">
@@ -190,13 +191,13 @@ export default function CheckoutExitoPage() {
                       </span>
                       {' '}
                       <span className="font-semibold text-surface-bright">
-                        IVA 9% (<UltimoPedidoImporte parte="iva" /> incl.)
+                        IVA 9% (<ImportePedidoCreado parte="iva" /> incl.)
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className="mt-12 bg-surface-container-low rounded-xl p-6 space-y-4">
-                  <ResumenUltimoPedido titulo="Desglose de Productos" />
+                  <ResumenPedidoCreado titulo="Desglose de Productos" />
                 </div>
                 <div className="mt-10 p-6 bg-surface-bright rounded-xl shadow-xs">
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -233,15 +234,15 @@ export default function CheckoutExitoPage() {
                   </div>
                 </div>
                 <div className="mt-12 pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-primary text-on-primary font-label text-sm font-semibold tracking-wide shadow-md hover:bg-primary-container transform hover:-translate-y-0.5 transition-all duration-200" data-path="mi-cuenta" href="/cuenta/pedidos">
+                  <EnlacePedidoCreado className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-primary text-on-primary font-label text-sm font-semibold tracking-wide shadow-md hover:bg-primary-container transform hover:-translate-y-0.5 transition-all duration-200">
                     <span className="material-symbols-outlined text-lg">
                       fact_check
                     </span>
                     {' '}
                     <span>
-                      Ver estado de mi pedido en Mi Cuenta
+                      Ver estado de mi pedido
                     </span>
-                  </Link>
+                  </EnlacePedidoCreado>
                   {' '}
                   <Link className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-surface-container-high text-primary hover:bg-surface-variant font-label text-sm font-semibold tracking-wide transition-colors duration-200" data-path="productos" href="/catalogo">
                     <span className="material-symbols-outlined text-lg">
@@ -289,6 +290,7 @@ export default function CheckoutExitoPage() {
         </div>
       </main>
     </div>
+    </PedidoCreadoProvider>
     </>
   );
 }

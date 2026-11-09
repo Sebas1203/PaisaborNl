@@ -300,7 +300,7 @@ export default function CateringReservaPendientePage() {
                 </div>
               </section>
               <section className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 pt-2">
-                <Link className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all transform hover:-translate-y-0.5 font-label font-semibold text-sm shadow-md" data-path="mis-pedidos" href="/cuenta/pedidos">
+                <Link className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all transform hover:-translate-y-0.5 font-label font-semibold text-sm shadow-md" data-path="mis-pedidos" href="/mis-pedidos">
                   <span className="material-symbols-outlined text-lg">
                     receipt_long
                   </span>

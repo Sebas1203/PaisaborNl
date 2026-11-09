@@ -3,7 +3,7 @@
 import { baseSinIva } from '@/config/fiscal';
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { itemPorId } from '@/data';
-import { lineasConItem, type LineaConItem } from '@/data/mock';
+import { lineasConItem, type LineaConItem } from '@/lib/pedidos';
 import type { LineaPedido } from '@/types';
 
 const STORAGE_KEY = 'paisabor:carrito';
@@ -22,7 +22,10 @@ interface CartContextValue {
   updateQuantity: (id: string, delta: number) => void;
   removeItem: (id: string) => void;
   clear: () => void;
-  /** Guarda el carrito como último pedido (para la pantalla de éxito) y lo vacía */
+  /**
+   * Guarda el carrito como pedido por confirmar. No lo vacía: lo vacía /checkout/exito
+   * cuando el pedido se crea, así un error no hace perder el carrito.
+   */
   checkout: () => void;
 }
 
@@ -47,6 +50,14 @@ function readLines(key: string): LineaPedido[] {
 
 export function readLastOrder(): LineaPedido[] {
   return readLines(LAST_ORDER_KEY);
+}
+
+export function clearLastOrder(): void {
+  try {
+    localStorage.removeItem(LAST_ORDER_KEY);
+  } catch {
+    // nada que borrar
+  }
 }
 
 // Carrito de la demo (sin backend): guarda id y cantidad en localStorage
@@ -95,9 +106,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         try {
           localStorage.setItem(LAST_ORDER_KEY, JSON.stringify(entries));
         } catch {
-          // sin localStorage no hay resumen del último pedido
+          // sin localStorage la confirmación no podrá crear el pedido y lo indicará
         }
-        setEntries([]);
       },
     };
   }, [entries]);

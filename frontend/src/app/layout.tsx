@@ -6,6 +6,7 @@ import '@fontsource-variable/work-sans';
 import '@fontsource-variable/work-sans/wght-italic.css';
 import './globals.css';
 import { CartProvider } from '@/features/cart/CartProvider';
+import { AuthProvider } from '@/providers/AuthProvider';
 
 const DESCRIPCION =
   'Comida colombiana en Ámsterdam: platos típicos, empanadas, fritos, bebidas y catering con receta tradicional antioqueña.';
@@ -37,7 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className="bg-surface font-body text-on-surface antialiased">
-        <CartProvider>{children}</CartProvider>
+        <AuthProvider>
+          <CartProvider>{children}</CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

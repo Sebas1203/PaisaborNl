@@ -1,11 +1,10 @@
 'use client';
 
-import { baseSinIva, iva } from '@/config/fiscal';
+import { baseSinIva } from '@/config/fiscal';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { ItemImage } from '@/components/ItemImage';
-import { lineasConItem, type LineaConItem } from '@/data/mock';
-import { readLastOrder, useCart } from '@/features/cart/CartProvider';
+import { useCart } from '@/features/cart/CartProvider';
+import type { LineaConItem } from '@/lib/pedidos';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
 
 // Resumen de un pedido (líneas + totales) con la plantilla del checkout de Stitch.
@@ -99,20 +98,5 @@ export function ResumenPedido({
 /** Resumen del carrito actual */
 export function ResumenCarrito(props: { titulo?: string; editable?: boolean; envio?: number | null }) {
   const { lineas } = useCart();
-  return <ResumenPedido lineas={lineas} {...props} />;
-}
-
-/** Total o IVA incluido del último pedido pagado */
-export function UltimoPedidoImporte({ parte }: { parte: 'total' | 'iva' }) {
-  const [total, setTotal] = useState(0);
-  useEffect(() => setTotal(lineasConItem(readLastOrder()).reduce((acc, l) => acc + l.total, 0)), []);
-  const importe = parte === 'total' ? total : iva(total);
-  return <>{formatEUR(importe)}</>;
-}
-
-/** Resumen del último pedido pagado (guardado al confirmar el pago) */
-export function ResumenUltimoPedido(props: { titulo?: string }) {
-  const [lineas, setLineas] = useState<LineaConItem[]>([]);
-  useEffect(() => setLineas(lineasConItem(readLastOrder())), []);
   return <ResumenPedido lineas={lineas} {...props} />;
 }

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { whatsappLink } from '@/config/contact';
 import { useCart } from '@/features/cart/CartProvider';
+import { useAuth } from '@/providers/AuthProvider';
+import { MenuCuenta } from './MenuCuenta';
 import { BrandLogo } from '@/components/BrandLogo';
 
 // Navbar del catálogo (cat_logo_de_productos_tienda_online), compartido por las pantallas de cliente
@@ -38,6 +40,7 @@ const bottomLinkClass = (active: boolean) =>
 export function Navbar() {
   const pathname = usePathname();
   const { count } = useCart();
+  const { user } = useAuth();
 
   return (
     <>
@@ -63,13 +66,7 @@ export function Navbar() {
             >
               <span className="material-symbols-outlined">chat</span>
             </a>
-            <Link
-              aria-label="Mi cuenta"
-              className="text-primary hover:text-secondary transition-all active:scale-95 duration-300"
-              href="/cuenta"
-            >
-              <span className="material-symbols-outlined">person</span>
-            </Link>
+            <MenuCuenta />
             <Link
               aria-label="Carrito"
               className="text-primary hover:text-secondary transition-all active:scale-95 duration-300 relative"
@@ -94,6 +91,10 @@ export function Navbar() {
             <span className="font-body text-[10px] font-medium mt-1">{link.label}</span>
           </Link>
         ))}
+        <Link className={bottomLinkClass(pathname.startsWith('/perfil') || pathname.startsWith('/mis-pedidos'))} href={user ? '/perfil' : '/login'} prefetch={false}>
+          <span className="material-symbols-outlined">person</span>
+          <span className="font-body text-[10px] font-medium mt-1">{user ? 'Cuenta' : 'Ingresar'}</span>
+        </Link>
         <Link className={`${bottomLinkClass(pathname === '/carrito')} relative`} href="/carrito">
           <span className="material-symbols-outlined">shopping_bag</span>
           {count > 0 && (

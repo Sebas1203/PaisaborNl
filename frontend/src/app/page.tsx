@@ -1,5 +1,7 @@
 import { redirect } from 'next/navigation';
 
-export default function Home() {
-  redirect('/catalogo');
+// El inicio es el catálogo. Se conserva ?acceso=denegado para mostrar el aviso del proxy.
+export default async function Home({ searchParams }: { searchParams: Promise<{ acceso?: string }> }) {
+  const { acceso } = await searchParams;
+  redirect(acceso === 'denegado' ? '/catalogo?acceso=denegado' : '/catalogo');
 }

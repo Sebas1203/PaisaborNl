@@ -1,11 +1,72 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/finalizar_pedido_paisabor
+// Conectado: elige domicilio o recogida, rellena los datos con el perfil y los valida antes del pago.
+'use client';
+
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { ResumenCarrito } from '@/components/order/ResumenPedido';
-import { Go } from '@/components/ui/Go';
+import { AvisoError } from '@/components/ui/Estados';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
+import { guardarDatosCheckout, leerDatosCheckout } from '@/features/cart/datosCheckout';
+import { useCart } from '@/features/cart/CartProvider';
+import { useAuth } from '@/providers/AuthProvider';
+import { validarEmail, validarNombre, validarTelefono } from '@/services/auth';
+import type { DeliveryMethod } from '@/types';
+
+const ZONAS = ['Ámsterdam (Centro, West, Zuid, Oost)', 'Ámsterdam Noord'];
 
 export default function CheckoutPage() {
+  const router = useRouter();
+  const { user } = useAuth();
+  const { lineas } = useCart();
+  const [entrega, setEntrega] = useState<DeliveryMethod>('domicilio');
+  const [form, setForm] = useState({ calle: '', codigoPostal: '', zona: ZONAS[0], notas: '', nombre: '', email: '', telefono: '' });
+  const [error, setError] = useState<string | null>(null);
+
+  // Rellena con lo último que escribió el cliente o, si no, con su perfil
+  useEffect(() => {
+    if (!user) return;
+    const previos = leerDatosCheckout();
+    if (previos) setEntrega(previos.entrega);
+    setForm((f) => ({
+      ...f,
+      nombre: previos?.nombre ?? user.nombre,
+      email: previos?.email ?? user.email,
+      telefono: previos?.telefono ?? user.telefono ?? '',
+      calle: user.direccion ?? '',
+      notas: previos?.notas ?? '',
+    }));
+  }, [user]);
+
+  const campo = (k: keyof typeof form) => ({
+    value: form[k],
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+      setForm((f) => ({ ...f, [k]: e.target.value })),
+  });
+
+  function continuar() {
+    const problema =
+      (lineas.length === 0 && 'Tu carrito está vacío.') ||
+      validarNombre(form.nombre) ||
+      validarEmail(form.email) ||
+      (!form.telefono.trim() && 'Indica un teléfono para avisarte del pedido.') ||
+      validarTelefono(form.telefono) ||
+      (entrega === 'domicilio' && (!form.calle.trim() || !form.codigoPostal.trim()) && 'Indica la calle y el código postal de entrega.') ||
+      null;
+    setError(problema);
+    if (problema) return;
+    guardarDatosCheckout({
+      entrega,
+      nombre: form.nombre.trim(),
+      email: form.email.trim(),
+      telefono: form.telefono.trim(),
+      direccion: entrega === 'domicilio' ? `${form.calle.trim()}, ${form.codigoPostal.trim().toUpperCase()} ${form.zona}` : undefined,
+      notas: form.notas.trim() || undefined,
+    });
+    router.push('/checkout/pago');
+  }
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
@@ -71,8 +132,8 @@ export default function CheckoutPage() {
                     </span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" id="delivery-selector">
-                    <button className="text-left p-5 rounded-lg bg-surface-container-lowest shadow-xs hover:shadow-md transition-all group relative overflow-hidden flex flex-col justify-between h-36" id="btn-delivery" type="button">
-                      <div className="absolute top-3 right-3 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-xs opacity-100 transition-opacity" id="badge-delivery">
+                    <button aria-pressed={entrega === 'domicilio'} onClick={() => setEntrega('domicilio')} className={`text-left p-5 rounded-lg ${entrega === 'domicilio' ? 'bg-surface-container-lowest shadow-xs' : 'bg-surface-container opacity-80 hover:opacity-100'} hover:shadow-md transition-all group relative overflow-hidden flex flex-col justify-between h-36`} id="btn-delivery" type="button">
+                      <div className={`absolute top-3 right-3 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-xs transition-opacity ${entrega === 'domicilio' ? 'opacity-100' : 'opacity-0'}`} id="badge-delivery">
                         <span className="material-symbols-outlined text-[14px]">
                           check
                         </span>
@@ -102,8 +163,8 @@ export default function CheckoutPage() {
                         </span>
                       </div>
                     </button>
-                    <button className="text-left p-5 rounded-lg bg-surface-container opacity-80 hover:opacity-100 hover:shadow-md transition-all group relative overflow-hidden flex flex-col justify-between h-36" id="btn-pickup" type="button">
-                      <div className="absolute top-3 right-3 w-5 h-5 rounded-full bg-secondary text-on-secondary items-center justify-center text-xs opacity-0 transition-opacity" id="badge-pickup">
+                    <button aria-pressed={entrega === 'recogida'} onClick={() => setEntrega('recogida')} className={`text-left p-5 rounded-lg ${entrega === 'recogida' ? 'bg-surface-container-lowest shadow-xs' : 'bg-surface-container opacity-80 hover:opacity-100'} hover:shadow-md transition-all group relative overflow-hidden flex flex-col justify-between h-36`} id="btn-pickup" type="button">
+                      <div className={`absolute top-3 right-3 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-xs transition-opacity ${entrega === 'recogida' ? 'opacity-100' : 'opacity-0'}`} id="badge-pickup">
                         <span className="material-symbols-outlined text-[14px]">
                           check
                         </span>
@@ -135,7 +196,7 @@ export default function CheckoutPage() {
                     </button>
                   </div>
                 </div>
-                <div className="bg-surface-container-lowest rounded-xl p-6 lg:p-8 shadow-xs space-y-6" id="section-delivery-form">
+                <div className={`${entrega === 'domicilio' ? '' : 'hidden '}bg-surface-container-lowest rounded-xl p-6 lg:p-8 shadow-xs space-y-6`} id="section-delivery-form">
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-secondary">
                       <span className="material-symbols-outlined text-lg">
@@ -157,20 +218,20 @@ export default function CheckoutPage() {
                         Calle y Número *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright placeholder:text-outline-variant transition-colors" id="address-input" placeholder="Ej: nombre de la calle, número y piso" type="text" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright placeholder:text-outline-variant transition-colors" id="address-input" placeholder="Ej: nombre de la calle, número y piso" type="text" autoComplete="street-address" {...campo('calle')} />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="postcode-input">
                         Código Postal *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright uppercase font-medium placeholder:text-outline-variant transition-colors" id="postcode-input" placeholder="1234 AB" type="text" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright uppercase font-medium placeholder:text-outline-variant transition-colors" id="postcode-input" placeholder="1234 AB" type="text" autoComplete="postal-code" {...campo('codigoPostal')} />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="city-input">
                         Ciudad *
                       </label>
-                      <select className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="city-input" defaultValue="Ámsterdam (Centro, West, Zuid, Oost)">
+                      <select className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="city-input" {...campo('zona')}>
                         <option>
                           Ámsterdam (Centro, West, Zuid, Oost)
                         </option>
@@ -184,7 +245,7 @@ export default function CheckoutPage() {
                         Fecha de Entrega *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="delivery-date" type="date" defaultValue="2025-05-17" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="delivery-date" type="date" />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="delivery-slot">
@@ -206,11 +267,11 @@ export default function CheckoutPage() {
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="notes-input">
                         Observaciones para el repartidor (Opcional)
                       </label>
-                      <textarea className="w-full bg-surface-container-low text-on-surface px-4 py-2.5 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright placeholder:text-outline-variant resize-none transition-colors" id="notes-input" placeholder="Ej: piso, timbre o indicaciones para el repartidor" rows={2}></textarea>
+                      <textarea className="w-full bg-surface-container-low text-on-surface px-4 py-2.5 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright placeholder:text-outline-variant resize-none transition-colors" id="notes-input" placeholder="Ej: piso, timbre o indicaciones para el repartidor" rows={2} {...campo('notas')}></textarea>
                     </div>
                   </div>
                 </div>
-                <div className="hidden bg-surface-container-lowest rounded-xl p-6 lg:p-8 shadow-xs space-y-6" id="section-pickup-info">
+                <div className={`${entrega === 'recogida' ? '' : 'hidden '}bg-surface-container-lowest rounded-xl p-6 lg:p-8 shadow-xs space-y-6`} id="section-pickup-info">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <span className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-secondary">
@@ -258,7 +319,7 @@ export default function CheckoutPage() {
                         Día para recoger *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="pickup-date" type="date" defaultValue="2025-05-17" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="pickup-date" type="date" />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="pickup-slot">
@@ -309,14 +370,14 @@ export default function CheckoutPage() {
                         Nombre Completo *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-name" placeholder="Nombre y apellido" type="text" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-name" placeholder="Nombre y apellido" type="text" autoComplete="name" {...campo('nombre')} />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="customer-email">
                         Correo Electrónico *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-email" placeholder="tu@correo.com" type="email" />
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-email" placeholder="tu@correo.com" type="email" autoComplete="email" {...campo('email')} />
                     </div>
                     <div className="sm:col-span-2 space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="customer-phone">
@@ -327,7 +388,7 @@ export default function CheckoutPage() {
                           +31
                         </span>
                         {' '}
-                        <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-r-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-phone" placeholder="Tu número de WhatsApp" type="tel" />
+                        <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-r-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors" id="customer-phone" placeholder="Tu número de WhatsApp" type="tel" autoComplete="tel" {...campo('telefono')} />
                       </div>
                     </div>
                   </div>
@@ -379,7 +440,8 @@ export default function CheckoutPage() {
               <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
                 <div className="bg-surface-container-low rounded-xl p-6 lg:p-8 shadow-xs space-y-6">
                   <ResumenCarrito editable />
-                  <Go href="/checkout/pago" className="w-full py-4 px-6 rounded-lg bg-linear-to-r from-primary via-primary to-primary-container hover:from-primary-container hover:to-primary text-on-primary font-headline font-bold text-base shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-3 group relative overflow-hidden" type="button">
+                  <AvisoError mensaje={error} />
+                  <button onClick={continuar} className="w-full py-4 px-6 rounded-lg bg-linear-to-r from-primary via-primary to-primary-container hover:from-primary-container hover:to-primary text-on-primary font-headline font-bold text-base shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-3 group relative overflow-hidden" type="button">
                     <span className="absolute inset-y-0 left-0 w-1.5 bg-secondary"></span>
                     {' '}
                     <span>
@@ -389,7 +451,7 @@ export default function CheckoutPage() {
                     <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform text-secondary-fixed">
                       arrow_forward
                     </span>
-                  </Go>
+                  </button>
                   <div className="flex items-center justify-center gap-6 pt-2 text-[11px] text-on-surface-variant">
                     <span className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-sm text-secondary">

@@ -1,6 +1,8 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/catering_paisabor
 /* eslint-disable @next/next/no-img-element */
 import { ItemImage } from '@/components/ItemImage';
+import { Suspense } from 'react';
+import { AvisoCatering } from '@/features/catering/AvisoCatering';
 import { BotonElegirPlato } from '@/features/catering/BotonElegirPlato';
 import { FormularioPresupuesto } from '@/features/catering/FormularioPresupuesto';
 import { PLATOS } from '@/data';
@@ -15,6 +17,9 @@ export default function CateringPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: "@layer base {\n@layer base { main>:first-child{margin-top:0!important;} main>:last-child{margin-bottom:0!important;} }\n}" }} />
     <div className="bg-surface font-body text-on-surface antialiased">
+      <Suspense fallback={null}>
+        <AvisoCatering />
+      </Suspense>
       <main className="w-full pt-20 bg-surface min-h-[calc(100vh-20rem)]">
         <div className="flex flex-col w-full">
           <section className="relative w-full bg-primary text-surface-bright pt-12 pb-24 md:py-24 px-6 lg:px-12 overflow-hidden">

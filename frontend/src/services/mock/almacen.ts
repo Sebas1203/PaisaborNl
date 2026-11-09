@@ -7,7 +7,8 @@ export const CLAVES = {
   usuarios: 'db:usuarios',
   pedidos: 'db:pedidos',
   inventario: 'db:inventario',
-  reservas: 'db:reservas',
+  // v2: reservas con varios platos; las del modelo anterior (un menú) se ignoran
+  reservas: 'db:reservas-v2',
   menus: 'db:menus-catering',
   sesion: 'sesion',
 } as const;

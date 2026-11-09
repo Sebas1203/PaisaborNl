@@ -5,6 +5,7 @@
 import { DEMO_CLIENTE, ID_CLIENTE_DEMO } from '@/config/demo';
 import { itemPorId, MENU, PLATOS, PRODUCTOS } from '@/data';
 import { flujoDe } from '@/lib/pedidos';
+import { calcularTotales } from '@/lib/precios';
 import type { DeliveryMethod, OrderStatus } from '@/types';
 import type { ItemInventario, MenuCatering, Pedido, Reserva, TipoEvento, Usuario } from '../tipos';
 
@@ -144,34 +145,41 @@ export function semillaMenus(): MenuCatering[] {
   }));
 }
 
+// MOCK: solicitudes de ejemplo con varios platos; nombres y precios son los del catálogo real.
 function reservaSemilla(
   numero: number,
-  menuId: string,
   diasDesdeHoy: number,
-  personas: number,
+  invitados: number,
   tipoEvento: TipoEvento,
   cliente: ClienteSemilla,
   estado: Reserva['estado'],
+  platos: [string, number][],
 ): Reserva {
+  const items = platos.flatMap(([id, cantidad]) => {
+    const item = itemPorId(id);
+    return item ? [{ itemId: id, nombre: item.nombre, precioUnit: item.precio, cantidad, precioEstimado: Boolean(item.precioEstimado) }] : [];
+  });
   return {
-    id: `RES-${ANIO}-${String(numero).padStart(4, '0')}`,
-    menuId,
-    fecha: isoDia(new Date(Date.now() + diasDesdeHoy * DIA)),
-    personas,
-    tipoEvento,
-    contacto: { nombre: cliente.nombre, email: cliente.email },
+    id: `r-semilla-${numero}`,
+    codigo: `RES-${ANIO}-${String(numero).padStart(4, '0')}`,
     estado,
-    creadaEn: new Date(Date.now() - 2 * DIA).toISOString(),
+    creada: new Date(Date.now() - 2 * DIA).toISOString(),
+    tipoEvento,
+    invitados,
+    fecha: isoDia(new Date(Date.now() + diasDesdeHoy * DIA)),
+    ciudad: 'Ámsterdam',
+    nombre: cliente.nombre,
+    email: cliente.email,
+    items,
+    ...calcularTotales(items),
     clienteId: cliente.id,
   };
 }
 
 export function semillaReservas(): Reserva[] {
-  const menus = semillaMenus();
-  const menu = (i: number) => menus[i % menus.length]?.id ?? '';
   return [
-    reservaSemilla(1, menu(0), 10, 25, 'corporativo', CLIENTE_2, 'pendiente'),
-    reservaSemilla(2, menu(1), 20, 40, 'boda', CLIENTE_3, 'confirmada'),
-    reservaSemilla(3, menu(2), -15, 15, 'cumpleanos', CLIENTE_DEMO, 'realizada'),
+    reservaSemilla(1, 10, 25, 'corporativo', CLIENTE_2, 'pendiente', [['bandeja-paisa', 15], ['bowl-montanero', 10]]),
+    reservaSemilla(2, 20, 40, 'boda', CLIENTE_3, 'confirmada', [['porcion-de-lechona', 25], ['picada-x1-persona', 15]]),
+    reservaSemilla(3, -15, 15, 'cumpleanos', CLIENTE_DEMO, 'realizada', [['bandeja-paisa', 15]]),
   ];
 }

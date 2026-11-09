@@ -72,6 +72,10 @@ dos sesiones a la vez.
    **pendiente** y se muestra su número.
 6. **Mis pedidos**: `/mis-pedidos` → abre el pedido para ver la línea de estados. Mientras esté
    pendiente se puede **cancelar** (pide confirmación).
+7. **Catering**: `/catering/reservar` → elige varios platos con sus porciones (p. ej. 10 bandeja paisa,
+   8 bowl montañero y 7 lechona para 25 invitados). El resumen calcula subtotal, base sin IVA, IVA 9 %
+   y total estimado. Al enviar se crea la reserva `RES-…` y `/catering/reserva-pendiente` muestra los
+   mismos números. La reserva aparece en `/admin/reservas`.
 
 ### Admin
 
@@ -119,14 +123,14 @@ dos sesiones a la vez.
 - **La tienda lee el catálogo de `src/data`**: los productos creados o editados en el admin aparecen
   en el inventario, pero la tienda no los muestra hasta conectar Supabase. Los pedidos sí usan el
   precio y la disponibilidad del inventario.
-- La solicitud de catering de `/catering/reservar` todavía no crea reservas; las reservas del panel
-  son las de ejemplo.
 
 ### TODO de contenido
 
 - Textos legales de `/terminos` y `/privacidad`.
 - Composición y precio por persona de los menús de catering (hoy hay un menú por plato típico con
   precio **estimado**).
+- Catering: tiempo de respuesta (`CATERING_RESPUESTA_HORAS` = 24) y anticipación mínima (72 h) en
+  `src/config/catering.ts`, y qué servicios incluye (vajilla, montaje, personal, transporte).
 - Tipo de IVA (9 % o 21 %) de bebidas y platos preparados, a confirmar con el contador.
 - Alérgenos y descripciones de cada plato.
 - Correos de Google Workspace, segunda sede, horarios y coste de envío.

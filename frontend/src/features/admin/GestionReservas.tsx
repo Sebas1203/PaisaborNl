@@ -1,16 +1,18 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { LineasCatering, TotalesCatering } from '@/components/catering/DesgloseCatering';
 import { AvisoError, EstadoError, EstadoVacio, Skeleton } from '@/components/ui/Estados';
 import { ConfirmDialog } from '@/components/ui/Modal';
 import { useCarga } from '@/hooks/useCarga';
+import { formatFechaEvento } from '@/lib/catering';
 import { formatEUR, formatFecha, formatFechaHora, RESERVATION_STATUS_LABELS, TIPO_EVENTO_LABELS } from '@/lib/format';
-import { menusService, mensajeDeError, reservasService, type MenuCatering, type Reserva, type ReservationStatus } from '@/services';
+import { mensajeDeError, reservasService, type Reserva, type ReservationStatus } from '@/services';
 import { TRANSICIONES_RESERVA } from '@/services/reservas';
 import { botonPeligro, botonPrimario, botonSecundario, inputAdmin, Tabla } from './ui';
 
-// Lista de reservas de catering con detalle y acciones (confirmar, marcar realizada, cancelar).
-// La usan /admin/reservas y /admin/menus-reservas.
+// Lista de reservas de catering con detalle (platos, porciones y desglose de IVA) y acciones
+// (confirmar, marcar realizada, cancelar). La usan /admin/reservas y /admin/menus-reservas.
 
 const COLORES: Record<ReservationStatus, string> = {
   pendiente: 'bg-tertiary-fixed text-on-tertiary-fixed',
@@ -28,23 +30,9 @@ export function EstadoReservaBadge({ estado }: { estado: ReservationStatus }) {
 }
 
 const ESTADOS = Object.keys(RESERVATION_STATUS_LABELS) as ReservationStatus[];
+const porciones = (r: Reserva) => r.items.reduce((acc, i) => acc + i.cantidad, 0);
 
-// En pantallas sin espacio para el panel lateral, al elegir una fila se baja hasta el detalle
-const irAlPanel = (el: HTMLElement | null) => {
-  if (el && window.innerWidth < 1536) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-};
-
-function DetalleReserva({
-  reserva,
-  menu,
-  onActualizada,
-  onCerrar,
-}: {
-  reserva: Reserva;
-  menu?: MenuCatering;
-  onActualizada: (r: Reserva) => void;
-  onCerrar: () => void;
-}) {
+function DetalleReserva({ reserva, onActualizada, onCerrar }: { reserva: Reserva; onActualizada: (r: Reserva) => void; onCerrar: () => void }) {
   const [procesando, setProcesando] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [confirmarCancelar, setConfirmarCancelar] = useState(false);
@@ -66,7 +54,7 @@ function DetalleReserva({
   const dato = (etiqueta: string, valor: React.ReactNode) => (
     <div className="bg-surface-container-low rounded-lg p-3">
       <p className="text-[11px] font-semibold tracking-widest uppercase text-on-surface-variant">{etiqueta}</p>
-      <div className="text-sm text-primary font-semibold mt-0.5">{valor}</div>
+      <div className="text-sm text-primary font-semibold mt-0.5 first-letter:uppercase">{valor}</div>
     </div>
   );
 
@@ -75,7 +63,7 @@ function DetalleReserva({
       <header className="flex items-start justify-between gap-3">
         <div className="space-y-1.5">
           <span className="text-[11px] font-semibold tracking-widest uppercase text-on-surface-variant">Reserva de catering</span>
-          <h2 className="font-headline text-2xl font-bold text-primary">{reserva.id}</h2>
+          <h2 className="font-headline text-2xl font-bold text-primary">{reserva.codigo}</h2>
           <EstadoReservaBadge estado={reserva.estado} />
         </div>
         <button type="button" aria-label="Cerrar detalle" onClick={onCerrar} className="text-on-surface-variant hover:text-primary">
@@ -83,25 +71,24 @@ function DetalleReserva({
         </button>
       </header>
       <div className="grid grid-cols-2 gap-3">
-        {dato('Fecha del evento', formatFecha(reserva.fecha))}
-        {dato('Personas', reserva.personas)}
+        {dato('Fecha del evento', formatFechaEvento(reserva.fecha))}
+        {dato('Hora', reserva.hora ? `${reserva.hora} h` : 'Por confirmar')}
+        {dato('Invitados', `${reserva.invitados} (${porciones(reserva)} porciones)`)}
         {dato('Tipo de evento', TIPO_EVENTO_LABELS[reserva.tipoEvento])}
-        {dato('Menú', menu?.nombre ?? reserva.menuId)}
+        {dato('Lugar', reserva.ciudad)}
       </div>
-      {menu && (
-        <p className="text-sm text-on-surface-variant">
-          {menu.precioEstimado ? 'Precio estimado' : 'Precio'}: {formatEUR(menu.precioPorPersona)} por persona ·{' '}
-          <strong className="text-primary">{formatEUR(menu.precioPorPersona * reserva.personas)}</strong> en total (IVA incluido)
-        </p>
-      )}
+      <section className="bg-surface-container rounded-xl p-4 space-y-4">
+        <LineasCatering variante="tabla" lineas={reserva.items} />
+        <TotalesCatering totales={reserva} estimado={reserva.items.some((i) => i.precioEstimado)} />
+      </section>
       <div className="bg-surface-container-low rounded-lg p-3 text-sm space-y-0.5">
         <p className="text-[11px] font-semibold tracking-widest uppercase text-on-surface-variant">Contacto</p>
-        <p className="font-semibold text-primary">{reserva.contacto.nombre}</p>
-        <p className="text-xs text-on-surface-variant break-all">{reserva.contacto.email}</p>
-        {reserva.contacto.telefono && <p className="text-xs text-on-surface-variant">{reserva.contacto.telefono}</p>}
+        <p className="font-semibold text-primary">{reserva.nombre}</p>
+        <p className="text-xs text-on-surface-variant break-all">{reserva.email}</p>
+        {reserva.telefono && <p className="text-xs text-on-surface-variant">{reserva.telefono}</p>}
       </div>
-      {reserva.notas && <p className="text-sm text-secondary italic">“{reserva.notas}”</p>}
-      <p className="text-xs text-on-surface-variant">Solicitada el {formatFechaHora(reserva.creadaEn)}</p>
+      {reserva.comentarios && <p className="text-sm text-secondary italic whitespace-pre-line">“{reserva.comentarios}”</p>}
+      <p className="text-xs text-on-surface-variant">Solicitada el {formatFechaHora(reserva.creada)}</p>
       <AvisoError mensaje={error} />
       {posibles.length === 0 ? (
         <p className="text-sm text-on-surface-variant">Esta reserva ya no admite cambios.</p>
@@ -126,7 +113,7 @@ function DetalleReserva({
       )}
       <ConfirmDialog
         abierto={confirmarCancelar}
-        titulo={`¿Cancelar la reserva ${reserva.id}?`}
+        titulo={`¿Cancelar la reserva ${reserva.codigo}?`}
         mensaje="La reserva pasará a «Cancelada» y no se podrá reactivar. Avisa al cliente por su contacto."
         textoConfirmar="Sí, cancelar reserva"
         peligro
@@ -138,16 +125,19 @@ function DetalleReserva({
   );
 }
 
+// En pantallas sin espacio para el panel lateral, al elegir una fila se baja hasta el detalle
+const irAlPanel = (el: HTMLElement | null) => {
+  if (el && window.innerWidth < 1536) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
 export function GestionReservas() {
   const [estado, setEstado] = useState<ReservationStatus | 'todas'>('todas');
   const [seleccion, setSeleccion] = useState<string | null>(null);
-  const { datos, setDatos, error, cargando, recargar } = useCarga(() => Promise.all([reservasService.listar(), menusService.listar()]), []);
-  const [reservas = [], menus = []] = datos ?? [];
-  const menuDe = (id: string) => menus.find((m) => m.id === id);
-  const filtradas = useMemo(() => reservas.filter((r) => estado === 'todas' || r.estado === estado), [reservas, estado]);
-  const seleccionada = reservas.find((r) => r.id === seleccion);
+  const { datos: reservas, setDatos, error, cargando, recargar } = useCarga(() => reservasService.listar(), []);
+  const filtradas = useMemo(() => (reservas ?? []).filter((r) => estado === 'todas' || r.estado === estado), [reservas, estado]);
+  const seleccionada = reservas?.find((r) => r.id === seleccion);
 
-  const actualizar = (r: Reserva) => setDatos((d) => (d ? [d[0].map((x) => (x.id === r.id ? r : x)), d[1]] : d));
+  const actualizar = (r: Reserva) => setDatos((lista) => lista?.map((x) => (x.id === r.id ? r : x)) ?? null);
 
   return (
     <div className="space-y-4">
@@ -165,12 +155,12 @@ export function GestionReservas() {
             <Skeleton filas={4} />
           ) : error ? (
             <EstadoError mensaje={error} onReintentar={recargar} />
-          ) : reservas.length === 0 ? (
+          ) : !reservas?.length ? (
             <EstadoVacio titulo="Aún no hay reservas de catering" icono="event_available" />
           ) : filtradas.length === 0 ? (
             <EstadoVacio titulo="Ninguna reserva con ese estado" icono="filter_alt_off" />
           ) : (
-            <Tabla cabeceras={['Reserva', 'Evento', 'Menú', 'Personas', 'Contacto', 'Estado']}>
+            <Tabla cabeceras={['Código', 'Evento', 'Platos', 'Invitados', 'Contacto', 'Total', 'Estado']}>
               {filtradas.map((r) => (
                 <tr
                   key={r.id}
@@ -179,16 +169,22 @@ export function GestionReservas() {
                 >
                   <td className="px-4 py-3 font-semibold text-primary whitespace-nowrap">
                     <button type="button" className="hover:text-secondary" onClick={() => setSeleccion(r.id)}>
-                      {r.id}
+                      {r.codigo}
                     </button>
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     {formatFecha(r.fecha)}
                     <span className="block text-[11px] text-on-surface-variant">{TIPO_EVENTO_LABELS[r.tipoEvento]}</span>
                   </td>
-                  <td className="px-4 py-3">{menuDe(r.menuId)?.nombre ?? r.menuId}</td>
-                  <td className="px-4 py-3">{r.personas}</td>
-                  <td className="px-4 py-3">{r.contacto.nombre}</td>
+                  <td className="px-4 py-3">
+                    <span className="block max-w-[14rem] truncate">{r.items.map((i) => `${i.nombre} ×${i.cantidad}`).join(', ')}</span>
+                    <span className="block text-[11px] text-on-surface-variant">
+                      {r.items.length} {r.items.length === 1 ? 'plato' : 'platos'} · {porciones(r)} porciones
+                    </span>
+                  </td>
+                  <td className="px-4 py-3">{r.invitados}</td>
+                  <td className="px-4 py-3">{r.nombre}</td>
+                  <td className="px-4 py-3 font-semibold text-primary whitespace-nowrap">{formatEUR(r.total)}</td>
                   <td className="px-4 py-3">
                     <EstadoReservaBadge estado={r.estado} />
                   </td>
@@ -199,7 +195,7 @@ export function GestionReservas() {
         </section>
         {seleccionada && (
           <aside key={seleccionada.id} ref={irAlPanel} className="2xl:col-span-5 2xl:sticky 2xl:top-24 scroll-mt-24">
-            <DetalleReserva key={seleccionada.id} reserva={seleccionada} menu={menuDe(seleccionada.menuId)} onActualizada={actualizar} onCerrar={() => setSeleccion(null)} />
+            <DetalleReserva reserva={seleccionada} onActualizada={actualizar} onCerrar={() => setSeleccion(null)} />
           </aside>
         )}
       </div>

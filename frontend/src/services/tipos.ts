@@ -109,29 +109,57 @@ export type ReservationStatus = 'pendiente' | 'confirmada' | 'cancelada' | 'real
 
 export type TipoEvento = 'corporativo' | 'cumpleanos' | 'boda' | 'privado' | 'comunitario' | 'otro';
 
-export interface ContactoReserva {
+/** Línea de una reserva: copia nombre y precio del momento de la solicitud (snapshot) */
+export interface LineaReserva {
+  itemId: string;
   nombre: string;
-  email: string;
-  telefono?: string;
+  /** Precio por porción con IVA incluido */
+  precioUnit: number;
+  cantidad: number;
+  precioEstimado: boolean;
 }
 
 export interface Reserva {
-  /** RES-AAAA-NNNN */
+  /** Id interno (para URLs) */
   id: string;
-  menuId: string;
-  /** Fecha del evento (YYYY-MM-DD) */
-  fecha: string;
-  personas: number;
-  tipoEvento: TipoEvento;
-  contacto: ContactoReserva;
-  notas?: string;
+  /** RES-AAAA-NNNN, el que ve el cliente */
+  codigo: string;
   estado: ReservationStatus;
   /** Fecha y hora ISO de la solicitud */
-  creadaEn: string;
+  creada: string;
+  tipoEvento: TipoEvento;
+  invitados: number;
+  /** Fecha del evento (YYYY-MM-DD) */
+  fecha: string;
+  /** HH:MM, si el cliente la indicó */
+  hora?: string;
+  /** Ciudad, código postal o dirección del evento */
+  ciudad: string;
+  nombre: string;
+  email: string;
+  telefono?: string;
+  comentarios?: string;
+  items: LineaReserva[];
+  subtotal: number;
+  base: number;
+  iva: number;
+  total: number;
   clienteId?: string;
 }
 
-export type NuevaReserva = Omit<Reserva, 'id' | 'estado' | 'creadaEn'>;
+export interface NuevaReserva {
+  tipoEvento: TipoEvento;
+  invitados: number;
+  fecha: string;
+  hora?: string;
+  ciudad: string;
+  nombre: string;
+  email: string;
+  telefono?: string;
+  comentarios?: string;
+  items: { id: string; cantidad: number }[];
+  clienteId?: string;
+}
 
 export interface MenuCatering {
   id: string;

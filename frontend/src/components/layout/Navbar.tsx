@@ -15,7 +15,7 @@ const isMenus = (path: string) => path.startsWith('/menus') || path.startsWith('
 const isCatering = (path: string) => path.startsWith('/catering');
 
 const TOP_LINKS = [
-  { href: '/', label: 'Quienes Somos', active: () => false },
+  { href: '/quienes-somos', label: 'Quiénes Somos', active: (path: string) => path.startsWith('/quienes-somos') },
   { href: '/catalogo', label: 'Productos', active: isProductos },
   { href: '/catalogo/platos-tipicos', label: 'Menu', active: isMenus },
   { href: '/catering', label: 'Catering', active: isCatering },

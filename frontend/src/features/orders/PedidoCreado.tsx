@@ -9,15 +9,42 @@ import { clearLastOrder, readLastOrder, useCart } from '@/features/cart/CartProv
 import { formatEUR } from '@/lib/format';
 import { lineasGuardadasConItem, totales } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
-import { mensajeDeError, pedidosService, type Pedido } from '@/services';
+import { mensajeDeError, pedidosService, type PedidoPublico } from '@/services';
 
-// Confirmación de compra: crea el pedido (estado "pendiente") con el carrito pagado y los datos
-// de entrega del checkout, y lo expone a las piezas de la pantalla /checkout/exito.
+// Confirmación de compra: crea el pedido (estado "pendiente") con el carrito y los datos de
+// entrega del checkout, y lo expone a las piezas de la pantalla /checkout/exito.
+// Funciona con y sin cuenta: sin sesión el pedido queda como pedido de invitado.
 
 const CLAVE_CREADO = 'paisabor:pedido-creado';
 
+/** Lo mínimo para volver a consultar el pedido recién creado (también sin cuenta) */
+export interface PedidoCreadoGuardado {
+  id: string;
+  email: string;
+  nombre: string;
+}
+
+/** Último pedido creado en esta pestaña (sessionStorage), o null */
+export function leerPedidoCreado(): PedidoCreadoGuardado | null {
+  try {
+    const raw = sessionStorage.getItem(CLAVE_CREADO);
+    const dato = raw ? (JSON.parse(raw) as Partial<PedidoCreadoGuardado>) : null;
+    return dato?.id && dato.email ? { id: dato.id, email: dato.email, nombre: dato.nombre ?? '' } : null;
+  } catch {
+    return null;
+  }
+}
+
+function guardarPedidoCreado(dato: PedidoCreadoGuardado) {
+  try {
+    sessionStorage.setItem(CLAVE_CREADO, JSON.stringify(dato));
+  } catch {
+    // sin sessionStorage solo se pierde poder recargar esta confirmación
+  }
+}
+
 interface Estado {
-  pedido: Pedido | null;
+  pedido: PedidoPublico | null;
   error: string | null;
   cargando: boolean;
 }
@@ -26,15 +53,7 @@ const Ctx = createContext<Estado>({ pedido: null, error: null, cargando: true })
 const usePedidoCreado = () => useContext(Ctx);
 
 // Evita crear el pedido dos veces si el efecto se ejecuta de nuevo (StrictMode)
-let creando: Promise<Pedido> | null = null;
-
-const leerCreado = () => {
-  try {
-    return sessionStorage.getItem(CLAVE_CREADO);
-  } catch {
-    return null;
-  }
-};
+let creando: Promise<PedidoPublico> | null = null;
 
 export function PedidoCreadoProvider({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -45,16 +64,17 @@ export function PedidoCreadoProvider({ children }: { children: React.ReactNode }
   const userId = user?.id;
 
   useEffect(() => {
-    if (loading || !user) return;
+    // Se espera a saber si hay sesión para asociar el pedido a la cuenta cuando la hay
+    if (loading) return;
     let activo = true;
     const lineas = readLastOrder();
     const datos = leerDatosCheckout();
-    let promesa: Promise<Pedido | null>;
+    let promesa: Promise<PedidoPublico | null>;
 
     if (lineas.length && datos) {
       creando ??= pedidosService
         .crear({
-          clienteId: user.id,
+          clienteId: userId,
           cliente: datos.nombre,
           email: datos.email,
           telefono: datos.telefono,
@@ -64,11 +84,7 @@ export function PedidoCreadoProvider({ children }: { children: React.ReactNode }
           lineas,
         })
         .then((pedido) => {
-          try {
-            sessionStorage.setItem(CLAVE_CREADO, pedido.id);
-          } catch {
-            // sin sessionStorage solo se pierde poder recargar esta confirmación
-          }
+          guardarPedidoCreado({ id: pedido.id, email: pedido.email, nombre: pedido.cliente });
           clearLastOrder();
           borrarDatosCheckout();
           vaciarCarrito.current();
@@ -79,8 +95,9 @@ export function PedidoCreadoProvider({ children }: { children: React.ReactNode }
         });
       promesa = creando;
     } else {
-      const id = leerCreado();
-      promesa = id ? pedidosService.obtener(id) : Promise.resolve(null);
+      // Recarga de la confirmación: misma consulta que el seguimiento público (número + correo)
+      const guardado = leerPedidoCreado();
+      promesa = guardado ? pedidosService.obtenerPublico(guardado.id, guardado.email) : Promise.resolve(null);
     }
 
     promesa
@@ -92,7 +109,6 @@ export function PedidoCreadoProvider({ children }: { children: React.ReactNode }
     return () => {
       activo = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, userId]);
 
   return <Ctx.Provider value={estado}>{children}</Ctx.Provider>;
@@ -124,11 +140,44 @@ export function ResumenPedidoCreado({ titulo }: { titulo?: string }) {
   return <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo={titulo} />;
 }
 
+/** Con cuenta lleva a Mis pedidos; sin cuenta, al seguimiento público con el número ya puesto */
 export function EnlacePedidoCreado({ className, children }: { className?: string; children: React.ReactNode }) {
   const { pedido } = usePedidoCreado();
+  const { user } = useAuth();
+  const href = user
+    ? pedido
+      ? `/mis-pedidos/${pedido.id}`
+      : '/mis-pedidos'
+    : `/seguimiento${pedido ? `?pedido=${encodeURIComponent(pedido.id)}` : ''}`;
   return (
-    <Link className={className} href={pedido ? `/mis-pedidos/${pedido.id}` : '/mis-pedidos'}>
+    <Link className={className} href={href}>
       {children}
     </Link>
+  );
+}
+
+/** Solo sin sesión: invita a crear una cuenta con los datos del pedido (opcional) */
+export function OfertaCrearCuenta() {
+  const { pedido } = usePedidoCreado();
+  const { user, loading } = useAuth();
+  if (loading || user || !pedido) return null;
+  return (
+    <div className="mt-10 p-6 rounded-xl bg-secondary-fixed/40 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="flex items-start gap-3">
+        <span className="material-symbols-outlined text-secondary text-2xl shrink-0">person_add</span>
+        <div>
+          <h2 className="font-headline font-bold text-base text-primary">¿Quieres guardar tus pedidos?</h2>
+          <p className="text-sm text-on-surface-variant mt-0.5">
+            Crea una cuenta con este correo y verás este pedido y los siguientes en «Mis pedidos». Es opcional.
+          </p>
+        </div>
+      </div>
+      <Link
+        href="/registro?desde=pedido&next=/mis-pedidos"
+        className="w-full md:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-secondary text-on-secondary font-label text-sm font-semibold hover:opacity-90 transition-opacity"
+      >
+        Crear cuenta
+      </Link>
+    </div>
   );
 }

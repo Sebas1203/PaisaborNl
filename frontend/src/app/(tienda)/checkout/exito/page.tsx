@@ -1,7 +1,7 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/pago_exitoso_pedido_confirmado_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { EnlacePedidoCreado, ImportePedidoCreado, NumeroPedido, PedidoCreadoProvider, ResumenPedidoCreado } from '@/features/orders/PedidoCreado';
+import { EnlacePedidoCreado, ImportePedidoCreado, NumeroPedido, OfertaCrearCuenta, PedidoCreadoProvider, ResumenPedidoCreado } from '@/features/orders/PedidoCreado';
 import { EMAIL_SOPORTE, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
 
@@ -254,6 +254,7 @@ export default function CheckoutExitoPage() {
                     </span>
                   </Link>
                 </div>
+                <OfertaCrearCuenta />
                 <div className="mt-8 text-center text-xs text-on-surface-variant flex items-center justify-center gap-2">
                   <span className="material-symbols-outlined text-sm text-secondary">
                     support_agent

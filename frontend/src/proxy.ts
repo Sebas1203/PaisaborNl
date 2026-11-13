@@ -5,7 +5,8 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { COOKIE_SESION, leerSesionCookie } from '@/services/mock/sesion';
 
-const RUTAS_CON_SESION = ['/mis-pedidos', '/perfil', '/checkout'];
+// El checkout NO está aquí: se puede comprar sin cuenta (el invitado sigue su pedido en /seguimiento)
+const RUTAS_CON_SESION = ['/mis-pedidos', '/perfil'];
 const RUTAS_DE_ACCESO = ['/login', '/registro'];
 
 const dentroDe = (ruta: string, base: string) => ruta === base || ruta.startsWith(`${base}/`);
@@ -36,5 +37,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/mis-pedidos/:path*', '/perfil/:path*', '/checkout/:path*', '/login', '/registro'],
+  matcher: ['/admin/:path*', '/mis-pedidos/:path*', '/perfil/:path*', '/login', '/registro'],
 };

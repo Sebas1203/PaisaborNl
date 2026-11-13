@@ -65,11 +65,14 @@ dos sesiones a la vez.
    Prueba primero a enviarlo vacío para ver los mensajes de error.
 2. **Catálogo**: `/catalogo` → añade platos y productos al carrito.
 3. **Carrito**: `/carrito` → revisa cantidades, subtotal, base sin IVA e IVA 9 % incluido.
-4. **Checkout**: «Continuar» lleva a `/checkout`. *Si no hubiera sesión, primero redirige a
-   `/login?next=/checkout` y vuelve después, con el carrito intacto.* Elige domicilio o recogida en
-   Sint Jorisstraat 4 y completa los datos (se rellenan con el perfil).
+4. **Checkout**: «Continuar» lleva a `/checkout`. **No hace falta cuenta**: sin sesión el cliente
+   escribe sus datos; con sesión se rellenan con el perfil. Elige domicilio o recogida en
+   Sint Jorisstraat 4.
 5. **Pago**: `/checkout/pago` → «Pagar» (simulado). En `/checkout/exito` se crea el pedido en estado
-   **pendiente** y se muestra su número.
+   **pendiente** y se muestra su número. Sin sesión, la confirmación ofrece **crear cuenta** (opcional:
+   los pedidos hechos con ese correo pasan a «Mis pedidos») y enlaza al seguimiento.
+   - **Seguimiento sin cuenta**: `/seguimiento` → número de pedido + correo con el que se compró
+     (también enlazado en el pie de página).
 6. **Mis pedidos**: `/mis-pedidos` → abre el pedido para ver la línea de estados. Mientras esté
    pendiente se puede **cancelar** (pide confirmación).
 7. **Catering**: `/catering/reservar` → elige varios platos con sus porciones (p. ej. 10 bandeja paisa,
@@ -116,6 +119,9 @@ dos sesiones a la vez.
 - **Supabase Auth**: registro, login, recuperación de contraseña y cuentas de administrador.
 - **RLS (Row Level Security)**: el cliente solo lee sus pedidos y reservas; solo el admin escribe en
   inventario, menús y estados. Hoy esa separación solo existe en la interfaz.
+- **Pedidos sin cuenta**: la función `obtener_pedido_publico(p_id, p_email)` (security definer)
+  para `/seguimiento`, con límite de intentos, y asociar los pedidos de invitado a la cuenta solo
+  cuando el correo esté verificado.
 - **Transacciones**: confirmar un pedido y descontar el stock debe ser una única función SQL.
 - **Mollie**: pagos reales y estados de pago.
 - **Correos**: confirmación de pedido, cambios de estado y recuperación de contraseña (los correos de

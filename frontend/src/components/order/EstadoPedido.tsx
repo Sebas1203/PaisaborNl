@@ -1,6 +1,6 @@
 import { flujoDe } from '@/lib/pedidos';
 import { formatFechaHora, ORDER_STATUS_LABELS } from '@/lib/format';
-import type { CambioEstado, Pedido } from '@/services';
+import type { CambioEstado, PedidoPublico } from '@/services';
 import type { OrderStatus } from '@/types';
 
 // Etiqueta de estado y línea de estados de un pedido (cliente y admin).
@@ -25,7 +25,7 @@ export function EstadoBadge({ estado }: { estado: OrderStatus }) {
 }
 
 /** Pasos del pedido: los completados con su fecha, el actual resaltado y los siguientes en gris */
-export function LineaEstados({ pedido }: { pedido: Pick<Pedido, 'estado' | 'entrega' | 'historial'> }) {
+export function LineaEstados({ pedido }: { pedido: Pick<PedidoPublico, 'estado' | 'entrega' | 'historial'> }) {
   const fechaDe = (estado: OrderStatus) => pedido.historial.find((h) => h.estado === estado)?.fecha;
   const pasos: OrderStatus[] =
     pedido.estado === 'cancelado' ? pedido.historial.map((h) => h.estado) : flujoDe(pedido.entrega);

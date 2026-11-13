@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { authService, ServiceError, type CambiosPerfil, type DatosRegistro, type Rol, type Usuario } from '@/services';
+import { authService, pedidosService, ServiceError, type CambiosPerfil, type DatosRegistro, type Rol, type Usuario } from '@/services';
 
 interface AuthContextValue {
   user: Usuario | null;
@@ -48,6 +48,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signUp = useCallback(async (datos: DatosRegistro) => {
     const usuario = await authService.signUp(datos);
+    // Los pedidos hechos sin cuenta con este correo pasan a "Mis pedidos". Si falla, la cuenta
+    // ya está creada y solo se pierde esa asociación.
+    await pedidosService.asociarPedidosInvitado(usuario.id, usuario.email).catch(() => 0);
     setUser(usuario);
     return usuario;
   }, []);

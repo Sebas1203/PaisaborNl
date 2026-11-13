@@ -9,12 +9,24 @@ import { ServiceError } from './errores';
 import { descontarStockMock, leerInventarioMock } from './inventario';
 import { CLAVES, copia, espera, guardar, leer } from './mock/almacen';
 import { semillaPedidos } from './mock/semilla';
-import type { FiltroPedidos, NuevoPedido, Pedido } from './tipos';
+import type { FiltroPedidos, NuevoPedido, Pedido, PedidoPublico } from './tipos';
 
 export interface PedidosService {
   /** Más recientes primero. Con clienteId, solo los de ese cliente */
   listar(filtro?: FiltroPedidos): Promise<Pedido[]>;
   obtener(id: string): Promise<Pedido | null>;
+  /**
+   * Seguimiento sin cuenta: devuelve el pedido solo si el correo coincide. Con Supabase será la
+   * función SQL obtener_pedido_publico(p_id, p_email) (security definer), con la misma respuesta
+   * para "no existe" y "correo incorrecto" para no revelar qué pedidos existen.
+   * TODO (backend): limitar intentos por IP para evitar que se prueben números a ciegas.
+   */
+  obtenerPublico(id: string, email: string): Promise<PedidoPublico | null>;
+  /**
+   * Al crear una cuenta, pasa a esa cuenta los pedidos de invitado hechos con su correo.
+   * Con Supabase debe hacerse solo cuando el correo esté verificado (trigger en auth.users).
+   */
+  asociarPedidosInvitado(clienteId: string, email: string): Promise<number>;
   /** Crea el pedido en estado "pendiente" con los precios actuales del inventario */
   crear(datos: NuevoPedido): Promise<Pedido>;
   /** Avanza al siguiente estado del flujo; al confirmar descuenta el stock */
@@ -41,6 +53,20 @@ function siguienteId(lista: Pedido[]): string {
   return `${prefijo}${ultimo + 1}`;
 }
 
+const normalizarCorreo = (email: string) => email.trim().toLowerCase();
+
+/** Solo los campos de PedidoPublico: nada de contacto, dirección ni nombres del equipo */
+export function aPedidoPublico(p: Pedido): PedidoPublico {
+  return {
+    id: p.id,
+    fecha: p.fecha,
+    estado: p.estado,
+    entrega: p.entrega,
+    lineas: p.lineas,
+    historial: p.historial.map(({ estado, fecha }) => ({ estado, fecha })),
+  };
+}
+
 function registrar(pedido: Pedido, estado: OrderStatus, por: string) {
   pedido.estado = estado;
   pedido.historial.push({ estado, fecha: new Date().toISOString(), por });
@@ -56,6 +82,22 @@ export const mockPedidosService: PedidosService = {
   async obtener(id) {
     await espera();
     return copia(tabla().find((p) => p.id === id) ?? null);
+  },
+
+  async obtenerPublico(id, email) {
+    await espera();
+    const numero = id.trim().replace(/^#/, '').toUpperCase();
+    const pedido = tabla().find((p) => p.id === numero && normalizarCorreo(p.email) === normalizarCorreo(email));
+    return pedido ? copia(aPedidoPublico(pedido)) : null;
+  },
+
+  async asociarPedidosInvitado(clienteId, email) {
+    await espera();
+    const lista = tabla();
+    const suyos = lista.filter((p) => !p.clienteId && normalizarCorreo(p.email) === normalizarCorreo(email));
+    suyos.forEach((p) => (p.clienteId = clienteId));
+    if (suyos.length) guardar(CLAVES.pedidos, lista);
+    return suyos.length;
   },
 
   async crear(datos) {

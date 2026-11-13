@@ -54,7 +54,8 @@ export interface Pedido {
   fecha: string;
   estado: OrderStatus;
   entrega: DeliveryMethod;
-  clienteId: string;
+  /** Sin valor: pedido de invitado (compra sin cuenta) */
+  clienteId?: string;
   cliente: string;
   email: string;
   telefono?: string;
@@ -65,8 +66,23 @@ export interface Pedido {
   historial: CambioEstado[];
 }
 
+/**
+ * Lo que devuelve la consulta pública de seguimiento (/seguimiento). Es la misma forma que
+ * devolverá la función de Supabase obtener_pedido_publico(p_id, p_email): solo el estado y el
+ * contenido del pedido, sin datos de contacto ni quién hizo cada cambio.
+ */
+export interface PedidoPublico {
+  id: string;
+  fecha: string;
+  estado: OrderStatus;
+  entrega: DeliveryMethod;
+  lineas: LineaPedidoGuardada[];
+  historial: Pick<CambioEstado, 'estado' | 'fecha'>[];
+}
+
 export interface NuevoPedido {
-  clienteId: string;
+  /** Sin valor: compra sin cuenta */
+  clienteId?: string;
   cliente: string;
   email: string;
   telefono?: string;

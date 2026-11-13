@@ -5,9 +5,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { AvisoError } from '@/components/ui/Estados';
+import { leerPedidoCreado } from '@/features/orders/PedidoCreado';
 import { destinoSeguro } from '@/lib/navegacion';
 import { useAuth } from '@/providers/AuthProvider';
 import { mensajeDeError } from '@/services';
@@ -29,8 +30,17 @@ function Error({ id, mensaje }: { id: string; mensaje?: string | null }) {
 function RegistroForm() {
   const { signUp } = useAuth();
   const router = useRouter();
-  const next = useSearchParams().get('next');
+  const params = useSearchParams();
+  const next = params.get('next');
+  const desdePedido = params.get('desde') === 'pedido';
   const [datos, setDatos] = useState({ nombre: '', email: '', telefono: '', password: '', confirmacion: '' });
+
+  // Viene de la confirmación de una compra sin cuenta: rellena nombre y correo de ese pedido
+  useEffect(() => {
+    if (!desdePedido) return;
+    const pedido = leerPedidoCreado();
+    if (pedido) setDatos((d) => ({ ...d, nombre: d.nombre || pedido.nombre, email: d.email || pedido.email }));
+  }, [desdePedido]);
   const [terminos, setTerminos] = useState(false);
   const [errores, setErrores] = useState<Partial<Record<Campo, string | null>>>({});
   const [error, setError] = useState<string | null>(null);

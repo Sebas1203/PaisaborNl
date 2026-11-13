@@ -53,7 +53,14 @@ export function PanelPedido({ pedido, onActualizado, onCerrar }: { pedido: Pedid
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
         <div className="bg-surface-container-low rounded-lg p-3.5 space-y-0.5">
           <p className="text-[11px] font-semibold tracking-widest uppercase text-on-surface-variant">Cliente</p>
-          <p className="font-semibold text-primary">{pedido.cliente}</p>
+          <p className="font-semibold text-primary">
+            {pedido.cliente}
+            {!pedido.clienteId && (
+              <span className="ml-2 align-middle text-[10px] font-label font-semibold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant px-1.5 py-0.5 rounded-sm">
+                Sin cuenta
+              </span>
+            )}
+          </p>
           <p className="text-xs text-on-surface-variant break-all">{pedido.email}</p>
           {pedido.telefono && <p className="text-xs text-on-surface-variant">{pedido.telefono}</p>}
         </div>

@@ -3,6 +3,7 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ResumenCarrito } from '@/components/order/ResumenPedido';
@@ -10,6 +11,7 @@ import { AvisoError } from '@/components/ui/Estados';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
 import { guardarDatosCheckout, leerDatosCheckout } from '@/features/cart/datosCheckout';
 import { useCart } from '@/features/cart/CartProvider';
+import { loginCon } from '@/lib/navegacion';
 import { useAuth } from '@/providers/AuthProvider';
 import { validarEmail, validarNombre, validarTelefono } from '@/services/auth';
 import type { DeliveryMethod } from '@/types';
@@ -18,26 +20,27 @@ const ZONAS = ['Ámsterdam (Centro, West, Zuid, Oost)', 'Ámsterdam Noord'];
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const { lineas } = useCart();
   const [entrega, setEntrega] = useState<DeliveryMethod>('domicilio');
   const [form, setForm] = useState({ calle: '', codigoPostal: '', zona: ZONAS[0], notas: '', nombre: '', email: '', telefono: '' });
   const [error, setError] = useState<string | null>(null);
 
-  // Rellena con lo último que escribió el cliente o, si no, con su perfil
+  // La cuenta es opcional: rellena con lo último que escribió el cliente en esta pestaña y, si
+  // hay sesión, completa lo que falte con su perfil. Sin sesión el cliente lo escribe.
   useEffect(() => {
-    if (!user) return;
+    if (loading) return;
     const previos = leerDatosCheckout();
     if (previos) setEntrega(previos.entrega);
     setForm((f) => ({
       ...f,
-      nombre: previos?.nombre ?? user.nombre,
-      email: previos?.email ?? user.email,
-      telefono: previos?.telefono ?? user.telefono ?? '',
-      calle: user.direccion ?? '',
-      notas: previos?.notas ?? '',
+      nombre: previos?.nombre ?? user?.nombre ?? f.nombre,
+      email: previos?.email ?? user?.email ?? f.email,
+      telefono: previos?.telefono ?? user?.telefono ?? f.telefono,
+      calle: user?.direccion ?? f.calle,
+      notas: previos?.notas ?? f.notas,
     }));
-  }, [user]);
+  }, [loading, user]);
 
   const campo = (k: keyof typeof form) => ({
     value: form[k],
@@ -360,10 +363,19 @@ export default function CheckoutPage() {
                         Datos de Contacto
                       </h2>
                       <p className="text-xs text-on-surface-variant">
-                        Para notificaciones del estado de tu horneado y factura BTW
+                        Para avisarte del estado de tu pedido
                       </p>
                     </div>
                   </div>
+                  {!loading && !user && (
+                    <p className="text-xs text-on-surface-variant bg-surface-container-low rounded-lg px-4 py-3">
+                      Puedes comprar sin cuenta.{' '}
+                      <Link href={loginCon('/checkout')} className="text-secondary font-semibold hover:underline">
+                        Inicia sesión
+                      </Link>{' '}
+                      si ya tienes una y quieres que tus datos se rellenen solos.
+                    </p>
+                  )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="customer-name">

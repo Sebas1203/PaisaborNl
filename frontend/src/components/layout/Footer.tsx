@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
 import { BrandLogo } from '@/components/BrandLogo';
@@ -28,8 +29,11 @@ export function Footer() {
           <span className="material-symbols-outlined text-[18px]">chat</span>
           Escríbenos por WhatsApp
         </a>
-        <div className="flex space-x-6">
+        <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
           <span className="font-body text-label-sm text-on-surface-variant">{WHATSAPP_DISPLAY}</span>
+          <Link className="font-body text-label-sm text-on-surface-variant hover:text-secondary hover:underline decoration-secondary transition-all" href="/seguimiento">
+            Seguir mi pedido
+          </Link>
           {FOOTER_LINKS.map((label) => (
             <a
               key={label}

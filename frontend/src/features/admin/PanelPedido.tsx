@@ -70,7 +70,7 @@ export function PanelPedido({ pedido, onActualizado, onCerrar }: { pedido: Pedid
       </section>
 
       <section className="space-y-4 bg-surface-container rounded-xl p-4 sm:p-5">
-        <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Ítems" />
+        <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Ítems" entrega={pedido.entrega} />
       </section>
 
       <section className="space-y-3">

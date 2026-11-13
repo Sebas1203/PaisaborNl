@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { ResumenCarrito } from '@/components/order/ResumenPedido';
 import { AvisoError } from '@/components/ui/Estados';
 import { CIUDAD_POR_DEFECTO, FRANJAS } from '@/config/entrega';
+import { textoEnvio } from '@/config/envio';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
 import { guardarDatosCheckout, guardarEntregaElegida, leerDatosCheckout, leerEntregaElegida } from '@/features/cart/datosCheckout';
 import { useCart } from '@/features/cart/CartProvider';
@@ -208,11 +209,11 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex items-baseline justify-between mt-4 pt-3 bg-surface-container-low/50 px-3 py-2 rounded-sm">
                         <span className="text-xs font-label text-on-surface-variant">
-                          Tarifa Ámsterdam
+                          Envío
                         </span>
                         {' '}
-                        <span className="font-headline font-bold text-sm text-secondary" id="delivery-fee-badge">
-                          Por confirmar
+                        <span className="font-headline font-bold text-sm text-secondary text-right" id="delivery-fee-badge">
+                          {textoEnvio('domicilio')}
                         </span>
                       </div>
                     </button>
@@ -239,11 +240,11 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex items-baseline justify-between mt-4 pt-3 bg-surface-container-lowest/60 px-3 py-2 rounded-sm">
                         <span className="text-xs font-label text-on-surface-variant">
-                          Costo
+                          Envío
                         </span>
                         {' '}
                         <span className="font-headline font-bold text-sm text-tertiary">
-                          Gratis
+                          {textoEnvio('recogida')}
                         </span>
                       </div>
                     </button>
@@ -328,7 +329,7 @@ export default function CheckoutPage() {
                       </div>
                     </div>
                     <span className="bg-tertiary-fixed text-on-tertiary-fixed text-xs font-semibold px-3 py-1 rounded-full font-label">
-                      Sin coste
+                      {textoEnvio('recogida')}
                     </span>
                   </div>
                   <div className="bg-surface-container-low p-5 rounded-lg flex flex-col md:flex-row gap-6 items-start">
@@ -477,7 +478,7 @@ export default function CheckoutPage() {
               </div>
               <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
                 <div className="bg-surface-container-low rounded-xl p-6 lg:p-8 shadow-xs space-y-6">
-                  <ResumenCarrito editable />
+                  <ResumenCarrito editable entrega={entrega} />
                   <AvisoError mensaje={error} />
                   <button onClick={continuar} className="w-full py-4 px-6 rounded-lg bg-linear-to-r from-primary via-primary to-primary-container hover:from-primary-container hover:to-primary text-on-primary font-headline font-bold text-base shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-3 group relative overflow-hidden" type="button">
                     <span className="absolute inset-y-0 left-0 w-1.5 bg-secondary"></span>

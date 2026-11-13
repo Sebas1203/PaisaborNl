@@ -135,7 +135,7 @@ function Seguimiento() {
                   </div>
                 </div>
                 <div className="lg:col-span-7 bg-surface-container rounded-xl p-6 space-y-5">
-                  <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Productos" />
+                  <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Productos" entrega={pedido.entrega} />
                 </div>
               </div>
               <div className="bg-surface-container-low rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">

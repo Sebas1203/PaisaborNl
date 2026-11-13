@@ -1,9 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { ItemImage } from '@/components/ItemImage';
+import { costeEnvio, textoEnvio } from '@/config/envio';
 import { useCart } from '@/features/cart/CartProvider';
+import { leerEntregaElegida } from '@/features/cart/datosCheckout';
 import type { LineaConItem } from '@/lib/pedidos';
+import type { DeliveryMethod } from '@/types';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
 import { calcularTotales } from '@/lib/precios';
 
@@ -13,16 +17,17 @@ export function ResumenPedido({
   lineas,
   titulo = 'Tu Canasta',
   editable = false,
-  envio,
+  entrega,
 }: {
   lineas: LineaConItem[];
   titulo?: string;
   /** Muestra el enlace "Editar" hacia el carrito */
   editable?: boolean;
-  /** undefined: no se muestra; null: "Por confirmar" */
-  envio?: number | null;
+  /** Con método de entrega se muestra la línea de envío (src/config/envio.ts); sin él, no */
+  entrega?: DeliveryMethod;
 }) {
   const { subtotal, base, iva } = calcularTotales(lineas.map((l) => ({ precioUnit: l.item.precio, cantidad: l.cantidad })));
+  const envio = entrega ? costeEnvio(entrega) : undefined;
   const total = subtotal + (envio ?? 0);
   const articulos = lineas.reduce((acc, l) => acc + l.cantidad, 0);
 
@@ -66,10 +71,10 @@ export function ResumenPedido({
           <span className="text-on-surface-variant">Subtotal productos</span>
           <span className="font-medium text-primary">{formatEUR(subtotal)}</span>
         </div>
-        {envio !== undefined && (
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-on-surface-variant">Costo de Envío</span>
-            <span className="font-bold text-secondary">{envio === null ? 'Por confirmar' : formatEUR(envio)}</span>
+        {entrega && (
+          <div className="flex items-center justify-between gap-3 text-sm">
+            <span className="text-on-surface-variant">Costo de envío</span>
+            <span className="font-bold text-secondary text-right">{textoEnvio(entrega)}</span>
           </div>
         )}
         <div className="pt-2 pb-1 space-y-1">
@@ -94,8 +99,15 @@ export function ResumenPedido({
   );
 }
 
-/** Resumen del carrito actual */
-export function ResumenCarrito(props: { titulo?: string; editable?: boolean; envio?: number | null }) {
+/**
+ * Resumen del carrito actual. entrega="elegida" usa el método elegido en el carrito o el
+ * checkout (sessionStorage), para pantallas que no lo tienen a mano, como /checkout/pago.
+ */
+export function ResumenCarrito({ entrega, ...props }: { titulo?: string; editable?: boolean; entrega?: DeliveryMethod | 'elegida' }) {
   const { lineas } = useCart();
-  return <ResumenPedido lineas={lineas} {...props} />;
+  const [elegida, setElegida] = useState<DeliveryMethod | undefined>();
+  useEffect(() => {
+    if (entrega === 'elegida') setElegida(leerEntregaElegida() ?? undefined);
+  }, [entrega]);
+  return <ResumenPedido lineas={lineas} entrega={entrega === 'elegida' ? elegida : entrega} {...props} />;
 }

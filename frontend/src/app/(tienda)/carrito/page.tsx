@@ -5,14 +5,12 @@
 import { useEffect, useState } from 'react';
 import { ItemImage } from '@/components/ItemImage';
 import { Go } from '@/components/ui/Go';
+import { costeEnvio, textoEnvio } from '@/config/envio';
 import { useCart } from '@/features/cart/CartProvider';
 import { guardarEntregaElegida, leerEntregaElegida } from '@/features/cart/datosCheckout';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
 
 type Delivery = 'recogida' | 'domicilio';
-
-// TODO: tarifa de envío a domicilio pendiente de confirmar; mientras tanto se muestra "Por confirmar"
-const COSTE_ENVIO_DOMICILIO: number | null = null;
 
 const deliveryClass = (active: boolean) =>
   active
@@ -30,7 +28,8 @@ export default function CarritoPage() {
     else guardarEntregaElegida('recogida');
   }, []);
 
-  const envio = delivery === 'domicilio' ? COSTE_ENVIO_DOMICILIO : 0;
+  // Costo de envío desde src/config/envio.ts (única fuente)
+  const envio = costeEnvio(delivery);
   const total = subtotal + (envio ?? 0);
 
   return (
@@ -151,9 +150,9 @@ export default function CarritoPage() {
                     <span>IVA (9%) incluido</span>
                     <span className="font-medium text-on-surface">{formatEUR(iva)}</span>
                   </div>
-                  <div className="flex justify-between text-on-surface-variant">
-                    <span>Costo de Envío</span>
-                    <span className="font-medium text-on-surface">{envio === null ? 'Por confirmar' : formatEUR(envio)}</span>
+                  <div className="flex justify-between gap-3 text-on-surface-variant">
+                    <span>Costo de envío</span>
+                    <span className="font-medium text-on-surface text-right">{textoEnvio(delivery)}</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-baseline mb-10 pt-4 border-t border-outline-variant/30">

@@ -143,6 +143,8 @@ dos sesiones a la vez.
   `src/config/catering.ts`, y qué servicios incluye (vajilla, montaje, personal, transporte).
 - Tipo de IVA (9 % o 21 %) de bebidas y platos preparados, a confirmar con el contador.
 - Alérgenos y descripciones de cada plato.
-- Correos de Google Workspace, segunda sede, horarios y coste de envío.
+- Correos de Google Workspace, segunda sede y horarios.
+- Costo de envío a domicilio: lo define Diana. Única fuente en `src/config/envio.ts` (recogida =
+  gratis; domicilio = «Se confirma por WhatsApp» mientras no haya precio).
 - Entrega (`src/config/entrega.ts`): franjas reales de reparto y recogida (hoy son las del diseño),
   anticipación mínima y máxima, y **zona de reparto** por código postal (sin definir: no se filtra).

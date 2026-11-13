@@ -1,7 +1,7 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/pago_exitoso_pedido_confirmado_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { EnlacePedidoCreado, EntregaPedidoCreado, ImportePedidoCreado, NumeroPedido, OfertaCrearCuenta, PedidoCreadoProvider, ResumenPedidoCreado } from '@/features/orders/PedidoCreado';
+import { EnlacePedidoCreado, EntregaPedidoCreado, EnvioPedidoCreado, ImportePedidoCreado, NumeroPedido, OfertaCrearCuenta, PedidoCreadoProvider, ResumenPedidoCreado } from '@/features/orders/PedidoCreado';
 import { EMAIL_SOPORTE, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
 
 export default function CheckoutExitoPage() {
@@ -168,7 +168,15 @@ export default function CheckoutExitoPage() {
                         <ImportePedidoCreado parte="total" />
                       </div>
                     </div>
-                    <div className="mt-4 pt-3 text-[11px] text-surface-variant/80 flex items-center justify-between">
+                    <div className="mt-4 pt-3 text-[11px] text-surface-variant/80 flex items-center justify-between gap-3">
+                      <span>
+                        Envío
+                      </span>
+                      <span className="font-semibold text-surface-bright text-right">
+                        <EnvioPedidoCreado />
+                      </span>
+                    </div>
+                    <div className="pt-1 text-[11px] text-surface-variant/80 flex items-center justify-between">
                       <span>
                         Impuestos holandeses
                       </span>

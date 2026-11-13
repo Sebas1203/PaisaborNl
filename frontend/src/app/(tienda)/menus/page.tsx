@@ -6,6 +6,7 @@ import { ItemImage } from '@/components/ItemImage';
 import { ESPECIALES } from '@/data';
 import { formatDias, formatEUR, IVA_INCLUIDO } from '@/lib/format';
 import { EMAIL_CONTACTO, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
+import { textoEnvio } from '@/config/envio';
 import { direccionCorta, SEDE_PRINCIPAL } from '@/config/sedes';
 
 export default function MenusPage() {
@@ -533,7 +534,7 @@ export default function MenusPage() {
                       <input defaultChecked className="text-secondary focus:ring-secondary" name="delivery_mode" type="radio" value="pickup" />
                       {' '}
                       <span>
-                        Recoger en {SEDE_PRINCIPAL.direccion} (Gratis)
+                        Recoger en {SEDE_PRINCIPAL.direccion} ({textoEnvio('recogida')})
                       </span>
                     </label>
                     {' '}
@@ -541,7 +542,7 @@ export default function MenusPage() {
                       <input className="text-secondary focus:ring-secondary" name="delivery_mode" type="radio" value="delivery" />
                       {' '}
                       <span>
-                        Domicilio (tarifa por confirmar)
+                        Domicilio (envío: {textoEnvio('domicilio').toLowerCase()})
                       </span>
                     </label>
                   </div>

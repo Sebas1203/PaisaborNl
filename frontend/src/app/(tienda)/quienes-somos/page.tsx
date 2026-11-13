@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { BrandLogo } from '@/components/BrandLogo';
 import { ItemImage } from '@/components/ItemImage';
 import { whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
+import { textoEnvio } from '@/config/envio';
 import { SEDES } from '@/config/sedes';
 import { CATEGORIAS_PRODUCTO, ESPECIALES, PLATOS, PRODUCTOS } from '@/data';
 import { IVA_INCLUIDO } from '@/lib/format';
@@ -56,7 +57,7 @@ const OFERTA = [
 const COMPROMISOS = [
   { icono: 'soup_kitchen', titulo: 'Receta tradicional antioqueña', texto: 'Preparamos cada plato como se hace en casa, con el sabor de siempre.' },
   { icono: 'euro', titulo: 'Precios claros', texto: `Todos los precios de la tienda tienen el ${IVA_INCLUIDO.replace('IVA', 'IVA (BTW)')}. Sin sorpresas al pagar.` },
-  { icono: 'local_mall', titulo: 'Recoger o a domicilio', texto: 'Recoge tu pedido en nuestra sede o pídelo a domicilio en Ámsterdam (coste de envío por confirmar).' },
+  { icono: 'local_mall', titulo: 'Recoger o a domicilio', texto: `Recoge tu pedido en nuestra sede (${textoEnvio('recogida').toLowerCase()}) o pídelo a domicilio en Ámsterdam (envío: ${textoEnvio('domicilio').toLowerCase()}).` },
   { icono: 'chat', titulo: 'Trato cercano', texto: 'Cualquier duda sobre tu pedido o tu evento la resolvemos directamente por WhatsApp.' },
 ];
 

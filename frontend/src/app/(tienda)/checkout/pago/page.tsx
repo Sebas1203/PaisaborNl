@@ -72,7 +72,7 @@ export default function CheckoutPagoPage() {
             </div>
             <div className="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-28">
               <div className="bg-surface-container-lowest p-6 lg:p-7 rounded-xl shadow-md space-y-6">
-                <ResumenCarrito titulo="Tu Pedido" />
+                <ResumenCarrito titulo="Tu Pedido" entrega="elegida" />
                 <div className="space-y-3 pt-2">
                   <PagarButton className="w-full py-4 px-6 bg-secondary text-on-secondary rounded-lg font-headline font-bold text-base flex items-center justify-center gap-3 hover:bg-on-secondary-container transition-all active:scale-[0.99] shadow-md group disabled:opacity-50" />
                   <p className="text-center text-xs font-semibold text-on-surface-variant">Pago simulado: no se cobra nada.</p>

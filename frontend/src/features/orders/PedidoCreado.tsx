@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { DatosEntrega } from '@/components/order/DatosEntrega';
 import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { EstadoError, Skeleton } from '@/components/ui/Estados';
+import { costeEnvio, textoEnvio } from '@/config/envio';
 import { borrarDatosCheckout, leerDatosCheckout } from '@/features/cart/datosCheckout';
 import { clearLastOrder, readLastOrder, useCart } from '@/features/cart/CartProvider';
 import { formatEUR } from '@/lib/format';
@@ -122,10 +123,12 @@ export function NumeroPedido() {
   return <>#{pedido?.id ?? '…'}</>;
 }
 
+/** Total de productos (más el envío cuando ya tiene precio) o IVA de los productos */
 export function ImportePedidoCreado({ parte }: { parte: 'total' | 'iva' }) {
   const { pedido } = usePedidoCreado();
   const t = totales(pedido?.lineas ?? []);
-  return <>{formatEUR(parte === 'total' ? t.total : t.iva)}</>;
+  const envio = pedido ? (costeEnvio(pedido.entrega) ?? 0) : 0;
+  return <>{formatEUR(parte === 'total' ? t.total + envio : t.iva)}</>;
 }
 
 export function ResumenPedidoCreado({ titulo }: { titulo?: string }) {
@@ -140,7 +143,13 @@ export function ResumenPedidoCreado({ titulo }: { titulo?: string }) {
         </Link>
       </div>
     );
-  return <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo={titulo} />;
+  return <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo={titulo} entrega={pedido.entrega} />;
+}
+
+/** Línea de envío del pedido recién creado ("Gratis", "Se confirma por WhatsApp"…) */
+export function EnvioPedidoCreado() {
+  const { pedido } = usePedidoCreado();
+  return <>{pedido ? textoEnvio(pedido.entrega) : '…'}</>;
 }
 
 /** Método, día y franja del pedido recién creado */

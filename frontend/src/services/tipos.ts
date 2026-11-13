@@ -2,9 +2,10 @@
 // de Supabase, así que no dependen de localStorage ni de ningún detalle del mock.
 
 import type { CategoriaProductoId, DiaEspecial, ItemCatalogo } from '@/data';
+import type { DireccionEntrega } from '@/lib/entrega';
 import type { DeliveryMethod, LineaPedido, OrderStatus } from '@/types';
 
-export type { DeliveryMethod, LineaPedido, OrderStatus };
+export type { DeliveryMethod, DireccionEntrega, LineaPedido, OrderStatus };
 
 // ── Usuarios y sesión ────────────────────────────────────────────────────────
 
@@ -59,8 +60,12 @@ export interface Pedido {
   cliente: string;
   email: string;
   telefono?: string;
+  /** Día de entrega o de recogida (YYYY-MM-DD) */
+  fechaEntrega: string;
+  /** Franja horaria elegida, p. ej. "10:00 – 13:00" (ver src/config/entrega.ts) */
+  franja: string;
   /** Solo en pedidos a domicilio */
-  direccion?: string;
+  direccion?: DireccionEntrega;
   notas?: string;
   lineas: LineaPedidoGuardada[];
   historial: CambioEstado[];
@@ -76,6 +81,8 @@ export interface PedidoPublico {
   fecha: string;
   estado: OrderStatus;
   entrega: DeliveryMethod;
+  fechaEntrega: string;
+  franja: string;
   lineas: LineaPedidoGuardada[];
   historial: Pick<CambioEstado, 'estado' | 'fecha'>[];
 }
@@ -87,7 +94,9 @@ export interface NuevoPedido {
   email: string;
   telefono?: string;
   entrega: DeliveryMethod;
-  direccion?: string;
+  fechaEntrega: string;
+  franja: string;
+  direccion?: DireccionEntrega;
   notas?: string;
   lineas: LineaPedido[];
 }

@@ -5,12 +5,12 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
+import { DatosEntrega } from '@/components/order/DatosEntrega';
 import { EstadoBadge, LineaEstados } from '@/components/order/EstadoPedido';
 import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { AvisoError, EstadoError, EstadoVacio, Skeleton } from '@/components/ui/Estados';
 import { ConfirmDialog } from '@/components/ui/Modal';
 import { whatsappLink } from '@/config/contact';
-import { direccionCorta, SEDE_PRINCIPAL } from '@/config/sedes';
 import { useCarga } from '@/hooks/useCarga';
 import { formatFechaHora } from '@/lib/format';
 import { lineasGuardadasConItem, puedeCancelar } from '@/lib/pedidos';
@@ -90,12 +90,8 @@ export default function MiPedidoPage() {
                     <h2 className="font-headline font-bold text-lg text-primary mb-6">Estado del pedido</h2>
                     <LineaEstados pedido={pedido} />
                   </div>
-                  <div className="bg-surface-container-low rounded-xl p-6 space-y-2 text-sm">
-                    <h2 className="font-headline font-bold text-base text-primary">
-                      {pedido.entrega === 'domicilio' ? 'Entrega a domicilio' : `Recogida en ${SEDE_PRINCIPAL.nombre}`}
-                    </h2>
-                    <p className="text-on-surface-variant">{pedido.entrega === 'domicilio' ? pedido.direccion : direccionCorta()}</p>
-                    {pedido.notas && <p className="text-on-surface-variant italic">“{pedido.notas}”</p>}
+                  <div className="bg-surface-container-low rounded-xl p-6">
+                    <DatosEntrega entrega={pedido.entrega} fechaEntrega={pedido.fechaEntrega} franja={pedido.franja} direccion={pedido.direccion} notas={pedido.notas} />
                   </div>
                 </section>
                 <section className="lg:col-span-7 bg-surface-container rounded-xl p-6 sm:p-8 space-y-5">

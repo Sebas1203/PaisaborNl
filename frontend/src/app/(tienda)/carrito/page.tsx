@@ -2,10 +2,11 @@
 // cantidades, eliminar, método de entrega, subtotal, base sin IVA e IVA (incluido, nunca sumado).
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ItemImage } from '@/components/ItemImage';
 import { Go } from '@/components/ui/Go';
 import { useCart } from '@/features/cart/CartProvider';
+import { guardarEntregaElegida, leerEntregaElegida } from '@/features/cart/datosCheckout';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
 
 type Delivery = 'recogida' | 'domicilio';
@@ -21,6 +22,13 @@ const deliveryClass = (active: boolean) =>
 export default function CarritoPage() {
   const { lineas, subtotal, base, iva, updateQuantity, removeItem } = useCart();
   const [delivery, setDelivery] = useState<Delivery>('recogida');
+
+  // Al volver del checkout se mantiene el método que ya había elegido
+  useEffect(() => {
+    const elegida = leerEntregaElegida();
+    if (elegida) setDelivery(elegida);
+    else guardarEntregaElegida('recogida');
+  }, []);
 
   const envio = delivery === 'domicilio' ? COSTE_ENVIO_DOMICILIO : 0;
   const total = subtotal + (envio ?? 0);
@@ -112,7 +120,10 @@ export default function CarritoPage() {
                           type="radio"
                           value={opcion}
                           checked={delivery === opcion}
-                          onChange={() => setDelivery(opcion)}
+                          onChange={() => {
+                            setDelivery(opcion);
+                            guardarEntregaElegida(opcion);
+                          }}
                         />
                         <span
                           className={`text-sm font-bold ${delivery === opcion ? 'text-secondary' : 'text-on-surface-variant'}`}
@@ -123,7 +134,10 @@ export default function CarritoPage() {
                     ))}
                   </div>
                 </div>
-                {delivery === 'domicilio' && <DatosEnvio />}
+                <p className="-mt-4 mb-8 text-xs text-on-surface-variant">
+                  {delivery === 'domicilio' ? 'La dirección, el día y la franja de entrega' : 'El día y la franja de recogida'} se eligen en el
+                  siguiente paso.
+                </p>
                 <div className="space-y-4 mb-8">
                   <div className="flex justify-between text-on-surface-variant">
                     <span>Subtotal</span>
@@ -169,37 +183,5 @@ export default function CarritoPage() {
         </main>
       </div>
     </>
-  );
-}
-
-// Bloque "Datos de Envío" del diseño (solo a domicilio)
-function DatosEnvio() {
-  const input =
-    'form-input w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20';
-  return (
-    <div className="mb-8 space-y-4 p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/20">
-      <h3 className="text-sm font-bold text-primary">Datos de Envío</h3>
-      <div className="space-y-3">
-        <input className={input} placeholder="Dirección" type="text" />
-        <div className="grid grid-cols-2 gap-3">
-          <input className={input} placeholder="Ciudad" type="text" />
-          <input className={input} placeholder="Código Postal" type="text" />
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="space-y-1">
-            <label className="text-[10px] uppercase font-bold text-outline">Fecha</label>
-            <input className="form-input w-full bg-surface-container-low border-none text-sm p-3 rounded-lg" type="date" />
-          </div>
-          <div className="space-y-1">
-            <label className="text-[10px] uppercase font-bold text-outline">Hora</label>
-            <input className="form-input w-full bg-surface-container-low border-none text-sm p-3 rounded-lg" type="time" />
-          </div>
-        </div>
-        <textarea
-          className="form-textarea w-full bg-surface-container-low border-none text-sm p-3 rounded-lg focus:ring-2 focus:ring-secondary/20 h-20"
-          placeholder="Observaciones (Instrucciones especiales)"
-        ></textarea>
-      </div>
-    </div>
   );
 }

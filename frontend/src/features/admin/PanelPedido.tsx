@@ -5,7 +5,7 @@ import { EstadoBadge, HistorialEstados, LineaEstados } from '@/components/order/
 import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { AvisoError } from '@/components/ui/Estados';
 import { ConfirmDialog } from '@/components/ui/Modal';
-import { direccionCorta } from '@/config/sedes';
+import { DatosEntrega } from '@/components/order/DatosEntrega';
 import { formatFechaHora, ORDER_STATUS_LABELS } from '@/lib/format';
 import { lineasGuardadasConItem, puedeCancelar, siguienteEstado } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
@@ -64,12 +64,8 @@ export function PanelPedido({ pedido, onActualizado, onCerrar }: { pedido: Pedid
           <p className="text-xs text-on-surface-variant break-all">{pedido.email}</p>
           {pedido.telefono && <p className="text-xs text-on-surface-variant">{pedido.telefono}</p>}
         </div>
-        <div className="bg-surface-container-low rounded-lg p-3.5 space-y-0.5">
-          <p className="text-[11px] font-semibold tracking-widest uppercase text-on-surface-variant">
-            {pedido.entrega === 'domicilio' ? 'Domicilio' : 'Recoger en sede'}
-          </p>
-          <p className="text-xs text-on-surface">{pedido.entrega === 'domicilio' ? pedido.direccion : direccionCorta()}</p>
-          {pedido.notas && <p className="text-xs text-secondary italic">“{pedido.notas}”</p>}
+        <div className="bg-surface-container-low rounded-lg p-3.5">
+          <DatosEntrega entrega={pedido.entrega} fechaEntrega={pedido.fechaEntrega} franja={pedido.franja} direccion={pedido.direccion} notas={pedido.notas} />
         </div>
       </section>
 

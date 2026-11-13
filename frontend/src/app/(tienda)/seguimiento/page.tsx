@@ -5,11 +5,11 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { DatosEntrega } from '@/components/order/DatosEntrega';
 import { EstadoBadge, LineaEstados } from '@/components/order/EstadoPedido';
 import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { AvisoError, Skeleton } from '@/components/ui/Estados';
 import { whatsappLink } from '@/config/contact';
-import { direccionCorta, SEDE_PRINCIPAL } from '@/config/sedes';
 import { leerPedidoCreado } from '@/features/orders/PedidoCreado';
 import { formatFechaHora } from '@/lib/format';
 import { lineasGuardadasConItem } from '@/lib/pedidos';
@@ -130,13 +130,8 @@ function Seguimiento() {
                     <h3 className="font-headline font-bold text-lg text-primary mb-5">Estado del pedido</h3>
                     <LineaEstados pedido={pedido} />
                   </div>
-                  <div className="bg-surface-container-low rounded-xl p-6 space-y-1 text-sm">
-                    <h3 className="font-headline font-bold text-base text-primary">
-                      {pedido.entrega === 'domicilio' ? 'Entrega a domicilio' : `Recogida en ${SEDE_PRINCIPAL.nombre}`}
-                    </h3>
-                    <p className="text-on-surface-variant">
-                      {pedido.entrega === 'domicilio' ? 'En la dirección que indicaste al comprar.' : direccionCorta()}
-                    </p>
+                  <div className="bg-surface-container-low rounded-xl p-6">
+                    <DatosEntrega entrega={pedido.entrega} fechaEntrega={pedido.fechaEntrega} franja={pedido.franja} />
                   </div>
                 </div>
                 <div className="lg:col-span-7 bg-surface-container rounded-xl p-6 space-y-5">

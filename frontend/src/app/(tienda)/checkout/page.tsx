@@ -8,36 +8,61 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ResumenCarrito } from '@/components/order/ResumenPedido';
 import { AvisoError } from '@/components/ui/Estados';
+import { CIUDAD_POR_DEFECTO, FRANJAS } from '@/config/entrega';
 import { SEDE_PRINCIPAL } from '@/config/sedes';
-import { guardarDatosCheckout, leerDatosCheckout } from '@/features/cart/datosCheckout';
+import { guardarDatosCheckout, guardarEntregaElegida, leerDatosCheckout, leerEntregaElegida } from '@/features/cart/datosCheckout';
 import { useCart } from '@/features/cart/CartProvider';
+import { normalizarCodigoPostal, rangoFechasEntrega, validarEntrega } from '@/lib/entrega';
 import { loginCon } from '@/lib/navegacion';
 import { useAuth } from '@/providers/AuthProvider';
 import { validarEmail, validarNombre, validarTelefono } from '@/services/auth';
 import type { DeliveryMethod } from '@/types';
 
-const ZONAS = ['Ámsterdam (Centro, West, Zuid, Oost)', 'Ámsterdam Noord'];
-
 export default function CheckoutPage() {
   const router = useRouter();
   const { user, loading } = useAuth();
   const { lineas } = useCart();
-  const [entrega, setEntrega] = useState<DeliveryMethod>('domicilio');
-  const [form, setForm] = useState({ calle: '', codigoPostal: '', zona: ZONAS[0], notas: '', nombre: '', email: '', telefono: '' });
+  const [entrega, setEntregaState] = useState<DeliveryMethod>('domicilio');
+  const [form, setForm] = useState({
+    calle: '',
+    codigoPostal: '',
+    ciudad: CIUDAD_POR_DEFECTO,
+    fecha: '',
+    franja: '',
+    notas: '',
+    nombre: '',
+    email: '',
+    telefono: '',
+  });
   const [error, setError] = useState<string | null>(null);
+  // Se calcula en el navegador: la página es estática y "hoy" no puede fijarse al compilar
+  const [rango, setRango] = useState<{ min: string; max: string } | null>(null);
+
+  // Cada método tiene sus franjas: al cambiar, se descarta la que ya no aplica
+  const setEntrega = (nueva: DeliveryMethod) => {
+    setEntregaState(nueva);
+    guardarEntregaElegida(nueva);
+    setForm((f) => (FRANJAS[nueva].includes(f.franja) ? f : { ...f, franja: '' }));
+  };
 
   // La cuenta es opcional: rellena con lo último que escribió el cliente en esta pestaña y, si
   // hay sesión, completa lo que falte con su perfil. Sin sesión el cliente lo escribe.
   useEffect(() => {
+    setRango(rangoFechasEntrega());
     if (loading) return;
     const previos = leerDatosCheckout();
-    if (previos) setEntrega(previos.entrega);
+    // El método elegido en el carrito (o al volver atrás) manda sobre lo guardado antes
+    setEntregaState(leerEntregaElegida() ?? previos?.entrega ?? 'domicilio');
     setForm((f) => ({
       ...f,
       nombre: previos?.nombre ?? user?.nombre ?? f.nombre,
       email: previos?.email ?? user?.email ?? f.email,
       telefono: previos?.telefono ?? user?.telefono ?? f.telefono,
-      calle: user?.direccion ?? f.calle,
+      calle: previos?.direccion?.calle ?? user?.direccion ?? f.calle,
+      codigoPostal: previos?.direccion?.codigoPostal ?? f.codigoPostal,
+      ciudad: previos?.direccion?.ciudad ?? f.ciudad,
+      fecha: previos?.fechaEntrega ?? f.fecha,
+      franja: previos?.franja ?? f.franja,
       notas: previos?.notas ?? f.notas,
     }));
   }, [loading, user]);
@@ -49,13 +74,21 @@ export default function CheckoutPage() {
   });
 
   function continuar() {
+    const direccion =
+      entrega === 'domicilio'
+        ? {
+            calle: form.calle.trim(),
+            codigoPostal: normalizarCodigoPostal(form.codigoPostal) ?? form.codigoPostal.trim(),
+            ciudad: form.ciudad.trim(),
+          }
+        : undefined;
     const problema =
       (lineas.length === 0 && 'Tu carrito está vacío.') ||
+      validarEntrega({ entrega, fechaEntrega: form.fecha, franja: form.franja, direccion }) ||
       validarNombre(form.nombre) ||
       validarEmail(form.email) ||
       (!form.telefono.trim() && 'Indica un teléfono para avisarte del pedido.') ||
       validarTelefono(form.telefono) ||
-      (entrega === 'domicilio' && (!form.calle.trim() || !form.codigoPostal.trim()) && 'Indica la calle y el código postal de entrega.') ||
       null;
     setError(problema);
     if (problema) return;
@@ -64,11 +97,28 @@ export default function CheckoutPage() {
       nombre: form.nombre.trim(),
       email: form.email.trim(),
       telefono: form.telefono.trim(),
-      direccion: entrega === 'domicilio' ? `${form.calle.trim()}, ${form.codigoPostal.trim().toUpperCase()} ${form.zona}` : undefined,
+      fechaEntrega: form.fecha,
+      franja: form.franja,
+      direccion,
       notas: form.notas.trim() || undefined,
     });
     router.push('/checkout/pago');
   }
+
+  // Fecha y franja: compartidas por domicilio y recogida (solo se ve el bloque del método elegido)
+  const campoFecha = (id: string) => (
+    <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id={id} type="date" min={rango?.min} max={rango?.max} {...campo('fecha')} />
+  );
+  const campoFranja = (id: string) => (
+    <select className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id={id} {...campo('franja')}>
+      <option value="">Elige una franja</option>
+      {FRANJAS[entrega].map((f) => (
+        <option key={f} value={f}>
+          {f}
+        </option>
+      ))}
+    </select>
+  );
 
   return (
     <>
@@ -234,38 +284,24 @@ export default function CheckoutPage() {
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="city-input">
                         Ciudad *
                       </label>
-                      <select className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="city-input" {...campo('zona')}>
-                        <option>
-                          Ámsterdam (Centro, West, Zuid, Oost)
-                        </option>
-                        <option>
-                          Ámsterdam Noord
-                        </option>
-                      </select>
+                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright placeholder:text-outline-variant transition-colors" id="city-input" type="text" autoComplete="address-level2" {...campo('ciudad')} />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="delivery-date">
                         Fecha de Entrega *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="delivery-date" type="date" />
+                      {campoFecha('delivery-date')}
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="delivery-slot">
                         Franja Horaria Preferida *
                       </label>
-                      <select className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="delivery-slot" defaultValue="13:30 - 17:00 (Tarde de merienda)">
-                        <option>
-                          10:00 - 13:00 (Mañana fresca de panes)
-                        </option>
-                        <option>
-                          13:30 - 17:00 (Tarde de merienda)
-                        </option>
-                        <option>
-                          17:30 - 20:30 (Cena y antojo)
-                        </option>
-                      </select>
+                      {campoFranja('delivery-slot')}
                     </div>
+                    <p className="sm:col-span-2 text-xs text-on-surface-variant">
+                      Te confirmaremos por WhatsApp la hora de entrega. Si tu dirección queda fuera de la zona de reparto, te avisaremos.
+                    </p>
                     <div className="sm:col-span-2 space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="notes-input">
                         Observaciones para el repartidor (Opcional)
@@ -322,23 +358,13 @@ export default function CheckoutPage() {
                         Día para recoger *
                       </label>
                       {' '}
-                      <input className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="pickup-date" type="date" />
+                      {campoFecha('pickup-date')}
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-label uppercase tracking-wider text-on-surface-variant font-medium" htmlFor="pickup-slot">
-                        Hora estimada *
+                        Franja para recoger *
                       </label>
-                      <select className="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg text-sm focus:outline-hidden focus:bg-surface-bright transition-colors cursor-pointer" id="pickup-slot" defaultValue="14:00 - 16:30 (Tarde)">
-                        <option>
-                          11:30 - 13:00 (Recién salido del horno)
-                        </option>
-                        <option>
-                          14:00 - 16:30 (Tarde)
-                        </option>
-                        <option>
-                          17:00 - 18:45 (Camino a casa)
-                        </option>
-                      </select>
+                      {campoFranja('pickup-slot')}
                     </div>
                   </div>
                   <div className="p-3 bg-tertiary-fixed/30 rounded-lg flex items-center gap-3 text-xs text-on-surface">
@@ -347,7 +373,7 @@ export default function CheckoutPage() {
                     </span>
                     {' '}
                     <span>
-                      Te enviaremos un SMS con código QR en cuanto tus productos salgan del empaque térmico listos para llevar.
+                      Te confirmaremos por WhatsApp cuándo puedes pasar a recoger tu pedido.
                     </span>
                   </div>
                 </div>

@@ -9,6 +9,7 @@ import { EstadoError, EstadoVacio, Skeleton } from '@/components/ui/Estados';
 import { PanelPedido } from '@/features/admin/PanelPedido';
 import { CabeceraAdmin, inputAdmin, PaginaAdmin, Paginacion, Tabla } from '@/features/admin/ui';
 import { useCarga } from '@/hooks/useCarga';
+import { formatFechaEntrega } from '@/lib/entrega';
 import { formatEUR, formatFechaHora, ORDER_STATUS_LABELS } from '@/lib/format';
 import { totales } from '@/lib/pedidos';
 import { pedidosService, type Pedido } from '@/services';
@@ -96,7 +97,7 @@ function PedidosAdmin() {
             <EstadoVacio titulo="Ningún pedido coincide con los filtros" icono="filter_alt_off" />
           ) : (
             <>
-              <Tabla cabeceras={['Pedido', 'Cliente', 'Fecha', 'Tipo', 'Estado', 'Total']}>
+              <Tabla cabeceras={['Pedido', 'Cliente', 'Fecha', 'Entrega', 'Estado', 'Total']}>
                 {visibles.map((p) => (
                   <tr
                     key={p.id}
@@ -110,7 +111,12 @@ function PedidosAdmin() {
                     </td>
                     <td className="px-4 py-3">{p.cliente}</td>
                     <td className="px-4 py-3 whitespace-nowrap text-on-surface-variant">{formatFechaHora(p.fecha)}</td>
-                    <td className="px-4 py-3">{p.entrega === 'domicilio' ? 'Domicilio' : 'Recoger'}</td>
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      {p.entrega === 'domicilio' ? 'Domicilio' : 'Recoger'}
+                      <span className="block text-[11px] text-on-surface-variant first-letter:uppercase">
+                        {formatFechaEntrega(p.fechaEntrega)} · {p.franja}
+                      </span>
+                    </td>
                     <td className="px-4 py-3">
                       <EstadoBadge estado={p.estado} />
                     </td>

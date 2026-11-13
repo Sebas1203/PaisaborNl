@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { DatosEntrega } from '@/components/order/DatosEntrega';
 import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { EstadoError, Skeleton } from '@/components/ui/Estados';
 import { borrarDatosCheckout, leerDatosCheckout } from '@/features/cart/datosCheckout';
@@ -79,6 +80,8 @@ export function PedidoCreadoProvider({ children }: { children: React.ReactNode }
           email: datos.email,
           telefono: datos.telefono,
           entrega: datos.entrega,
+          fechaEntrega: datos.fechaEntrega,
+          franja: datos.franja,
           direccion: datos.direccion,
           notas: datos.notas,
           lineas,
@@ -138,6 +141,14 @@ export function ResumenPedidoCreado({ titulo }: { titulo?: string }) {
       </div>
     );
   return <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo={titulo} />;
+}
+
+/** Método, día y franja del pedido recién creado */
+export function EntregaPedidoCreado() {
+  const { pedido, cargando } = usePedidoCreado();
+  if (cargando) return <Skeleton filas={2} />;
+  if (!pedido) return null;
+  return <DatosEntrega entrega={pedido.entrega} fechaEntrega={pedido.fechaEntrega} franja={pedido.franja} />;
 }
 
 /** Con cuenta lleva a Mis pedidos; sin cuenta, al seguimiento público con el número ya puesto */

@@ -67,7 +67,9 @@ dos sesiones a la vez.
 3. **Carrito**: `/carrito` → revisa cantidades, subtotal, base sin IVA e IVA 9 % incluido.
 4. **Checkout**: «Continuar» lleva a `/checkout`. **No hace falta cuenta**: sin sesión el cliente
    escribe sus datos; con sesión se rellenan con el perfil. Elige domicilio o recogida en
-   Sint Jorisstraat 4.
+   Sint Jorisstraat 4, el **día** (desde mañana) y la **franja horaria**. En domicilio pide calle,
+   código postal neerlandés (`1234 AB`) y ciudad. Todo queda en el pedido y el admin lo ve en la
+   lista y en el detalle.
 5. **Pago**: `/checkout/pago` → «Pagar» (simulado). En `/checkout/exito` se crea el pedido en estado
    **pendiente** y se muestra su número. Sin sesión, la confirmación ofrece **crear cuenta** (opcional:
    los pedidos hechos con ese correo pasan a «Mis pedidos») y enlaza al seguimiento.
@@ -140,3 +142,5 @@ dos sesiones a la vez.
 - Tipo de IVA (9 % o 21 %) de bebidas y platos preparados, a confirmar con el contador.
 - Alérgenos y descripciones de cada plato.
 - Correos de Google Workspace, segunda sede, horarios y coste de envío.
+- Entrega (`src/config/entrega.ts`): franjas reales de reparto y recogida (hoy son las del diseño),
+  anticipación mínima y máxima, y **zona de reparto** por código postal (sin definir: no se filtra).

@@ -5,7 +5,8 @@ const PREFIJO = 'paisabor:';
 
 export const CLAVES = {
   usuarios: 'db:usuarios',
-  pedidos: 'db:pedidos',
+  // v2: pedidos con fecha, franja y dirección estructurada; los del modelo anterior se ignoran
+  pedidos: 'db:pedidos-v2',
   inventario: 'db:inventario',
   // v2: reservas con varios platos; las del modelo anterior (un menú) se ignoran
   reservas: 'db:reservas-v2',

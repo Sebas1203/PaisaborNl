@@ -3,7 +3,9 @@
 // relativas a hoy para que el resumen del admin tenga datos.
 
 import { DEMO_CLIENTE, ID_CLIENTE_DEMO } from '@/config/demo';
+import { FRANJAS } from '@/config/entrega';
 import { itemPorId, MENU, PLATOS, PRODUCTOS } from '@/data';
+import { direccionTexto, type DireccionEntrega } from '@/lib/entrega';
 import { flujoDe } from '@/lib/pedidos';
 import { calcularTotales } from '@/lib/precios';
 import type { DeliveryMethod, OrderStatus } from '@/types';
@@ -25,26 +27,32 @@ interface ClienteSemilla {
   id: string;
   nombre: string;
   email: string;
-  direccion: string;
+  direccion: DireccionEntrega;
 }
+
+const direccionFicticia = (n: number, letras: string): DireccionEntrega => ({
+  calle: `Calle de ejemplo ${n}`,
+  codigoPostal: `1000 ${letras}`,
+  ciudad: 'Ámsterdam',
+});
 
 const CLIENTE_DEMO: ClienteSemilla = {
   id: ID_CLIENTE_DEMO,
   nombre: 'Cliente Demo',
   email: DEMO_CLIENTE.email || 'cliente.demo@example.com',
-  direccion: 'Calle de ejemplo 1, 1000 AA Ámsterdam',
+  direccion: direccionFicticia(1, 'AA'),
 };
 const CLIENTE_2: ClienteSemilla = {
   id: 'u-cliente-demo-2',
   nombre: 'Cliente demo 2',
   email: 'cliente.demo2@example.com',
-  direccion: 'Calle de ejemplo 2, 1000 AB Ámsterdam',
+  direccion: direccionFicticia(2, 'AB'),
 };
 const CLIENTE_3: ClienteSemilla = {
   id: 'u-cliente-demo-3',
   nombre: 'Cliente demo 3',
   email: 'cliente.demo3@example.com',
-  direccion: 'Calle de ejemplo 3, 1000 AC Ámsterdam',
+  direccion: direccionFicticia(3, 'AC'),
 };
 
 /** Usuarios sin contraseña (no pueden iniciar sesión): solo dan nombre a los pedidos semilla */
@@ -53,7 +61,7 @@ export function semillaUsuarios(): (Usuario & { passwordHash: string | null })[]
     id,
     nombre,
     email,
-    direccion,
+    direccion: direccionTexto(direccion),
     rol: 'cliente',
     passwordHash: null,
   }));
@@ -102,6 +110,9 @@ function pedidoSemilla(
     clienteId: cliente.id,
     cliente: cliente.nombre,
     email: cliente.email,
+    // Entrega el día siguiente a la compra, en la franja del medio
+    fechaEntrega: isoDia(new Date(creado + DIA)),
+    franja: FRANJAS[entrega][1],
     direccion: entrega === 'domicilio' ? cliente.direccion : undefined,
     lineas: lineas.flatMap(([id, cantidad]) => {
       const item = itemPorId(id);

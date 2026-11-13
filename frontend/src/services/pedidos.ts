@@ -2,6 +2,7 @@
 // Con Supabase: tabla pedidos + lineas_pedido + historial_estados, con RLS (el cliente solo ve
 // los suyos) y los cambios de estado en una función SQL que también descuenta el stock.
 
+import { normalizarCodigoPostal, validarEntrega } from '@/lib/entrega';
 import { ORDER_STATUS_LABELS } from '@/lib/format';
 import { puedeCancelar, siguienteEstado } from '@/lib/pedidos';
 import type { OrderStatus } from '@/types';
@@ -62,6 +63,8 @@ export function aPedidoPublico(p: Pedido): PedidoPublico {
     fecha: p.fecha,
     estado: p.estado,
     entrega: p.entrega,
+    fechaEntrega: p.fechaEntrega,
+    franja: p.franja,
     lineas: p.lineas,
     historial: p.historial.map(({ estado, fecha }) => ({ estado, fecha })),
   };
@@ -103,7 +106,8 @@ export const mockPedidosService: PedidosService = {
   async crear(datos) {
     await espera();
     if (!datos.lineas.length) throw new ServiceError('El carrito está vacío.');
-    if (datos.entrega === 'domicilio' && !datos.direccion?.trim()) throw new ServiceError('Indica la dirección de entrega.');
+    const errorEntrega = validarEntrega(datos);
+    if (errorEntrega) throw new ServiceError(errorEntrega);
     const inventario = leerInventarioMock();
     const lineas = datos.lineas.map(({ id, cantidad }) => {
       const item = inventario.find((i) => i.id === id);
@@ -123,7 +127,16 @@ export const mockPedidosService: PedidosService = {
       cliente: datos.cliente,
       email: datos.email,
       telefono: datos.telefono?.trim() || undefined,
-      direccion: datos.entrega === 'domicilio' ? datos.direccion?.trim() : undefined,
+      fechaEntrega: datos.fechaEntrega,
+      franja: datos.franja,
+      direccion:
+        datos.entrega === 'domicilio' && datos.direccion
+          ? {
+              calle: datos.direccion.calle.trim(),
+              codigoPostal: normalizarCodigoPostal(datos.direccion.codigoPostal) ?? datos.direccion.codigoPostal,
+              ciudad: datos.direccion.ciudad.trim(),
+            }
+          : undefined,
       notas: datos.notas?.trim() || undefined,
       lineas,
       historial: [{ estado: 'pendiente', fecha: ahora, por: datos.cliente }],

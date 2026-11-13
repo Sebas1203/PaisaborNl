@@ -1,9 +1,8 @@
 // Generado por scripts/stitch-to-next.mjs desde docs/diseno-stitch/pantallas/pago_exitoso_pedido_confirmado_paisabor
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { EnlacePedidoCreado, ImportePedidoCreado, NumeroPedido, OfertaCrearCuenta, PedidoCreadoProvider, ResumenPedidoCreado } from '@/features/orders/PedidoCreado';
+import { EnlacePedidoCreado, EntregaPedidoCreado, ImportePedidoCreado, NumeroPedido, OfertaCrearCuenta, PedidoCreadoProvider, ResumenPedidoCreado } from '@/features/orders/PedidoCreado';
 import { EMAIL_SOPORTE, whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
-import { SEDE_PRINCIPAL } from '@/config/sedes';
 
 export default function CheckoutExitoPage() {
   return (
@@ -114,27 +113,11 @@ export default function CheckoutExitoPage() {
                           local_shipping
                         </span>
                       </div>
-                      <h2 className="font-headline font-bold text-base text-primary mb-1">
-                        Domicilio en Ámsterdam
-                      </h2>
-                      <p className="text-xs text-on-surface-variant leading-relaxed mb-3">
-                        Reparto artesanal directo desde nuestra cocina en {SEDE_PRINCIPAL.direccion} hasta tu puerta.
-                      </p>
+                      <EntregaPedidoCreado />
                     </div>
-                    <div className="bg-surface-bright p-3 rounded-lg mt-2">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-primary">
-                        <span className="material-symbols-outlined text-secondary text-sm">
-                          schedule
-                        </span>
-                        {' '}
-                        <span>
-                          Hoy, 18:00 – 20:00 CET
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-on-surface-variant mt-1">
-                        Ventana vespertina programada
-                      </p>
-                    </div>
+                    <p className="text-[11px] text-on-surface-variant mt-3">
+                      Te confirmaremos la hora por WhatsApp.
+                    </p>
                   </div>
                   <div className="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between">
                     <div>

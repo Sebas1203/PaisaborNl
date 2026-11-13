@@ -36,6 +36,7 @@ export default function CheckoutPage() {
     telefono: '',
   });
   const [error, setError] = useState<string | null>(null);
+  const [aceptaPrivacidad, setAceptaPrivacidad] = useState(false);
   // Se calcula en el navegador: la página es estática y "hoy" no puede fijarse al compilar
   const [rango, setRango] = useState<{ min: string; max: string } | null>(null);
 
@@ -90,6 +91,7 @@ export default function CheckoutPage() {
       validarEmail(form.email) ||
       (!form.telefono.trim() && 'Indica un teléfono para avisarte del pedido.') ||
       validarTelefono(form.telefono) ||
+      (!aceptaPrivacidad && 'Para continuar, acepta el aviso de privacidad.') ||
       null;
     setError(problema);
     if (problema) return;
@@ -479,6 +481,21 @@ export default function CheckoutPage() {
               <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
                 <div className="bg-surface-container-low rounded-xl p-6 lg:p-8 shadow-xs space-y-6">
                   <ResumenCarrito editable entrega={entrega} />
+                  <label className="flex items-start gap-3 text-xs text-on-surface-variant leading-relaxed cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5 w-4 h-4 shrink-0 accent-secondary cursor-pointer"
+                      checked={aceptaPrivacidad}
+                      onChange={(e) => setAceptaPrivacidad(e.target.checked)}
+                      aria-describedby="aviso-privacidad"
+                    />
+                    <span id="aviso-privacidad">
+                      Acepto que se usen mis datos solo para gestionar este pedido. En esta versión de prueba se guardan únicamente en mi navegador.{' '}
+                      <Link href="/privacidad" target="_blank" rel="noopener" className="text-secondary font-semibold hover:underline">
+                        Aviso de privacidad
+                      </Link>
+                    </span>
+                  </label>
                   <AvisoError mensaje={error} />
                   <button onClick={continuar} className="w-full py-4 px-6 rounded-lg bg-linear-to-r from-primary via-primary to-primary-container hover:from-primary-container hover:to-primary text-on-primary font-headline font-bold text-base shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-3 group relative overflow-hidden" type="button">
                     <span className="absolute inset-y-0 left-0 w-1.5 bg-secondary"></span>

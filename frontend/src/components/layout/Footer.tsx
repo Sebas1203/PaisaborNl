@@ -4,8 +4,10 @@ import { SEDE_PRINCIPAL } from '@/config/sedes';
 import { BrandLogo } from '@/components/BrandLogo';
 
 // Footer del catálogo (cat_logo_de_productos_tienda_online), compartido por las pantallas de cliente.
-// Privacidad y Términos no tienen pantalla en el diseño: quedan sin destino por ahora.
-const FOOTER_LINKS = ['Privacidad', 'Términos'];
+const FOOTER_LINKS = [
+  { label: 'Privacidad', href: '/privacidad' },
+  { label: 'Términos', href: '/terminos' },
+];
 
 export function Footer() {
   return (
@@ -34,14 +36,14 @@ export function Footer() {
           <Link className="font-body text-label-sm text-on-surface-variant hover:text-secondary hover:underline decoration-secondary transition-all" href="/seguimiento">
             Seguir mi pedido
           </Link>
-          {FOOTER_LINKS.map((label) => (
-            <a
-              key={label}
+          {FOOTER_LINKS.map(({ label, href }) => (
+            <Link
+              key={href}
               className="font-body text-label-sm text-on-surface-variant hover:text-secondary hover:underline decoration-secondary transition-all opacity-80 hover:opacity-100"
-              href="#"
+              href={href}
             >
               {label}
-            </a>
+            </Link>
           ))}
         </div>
       </div>

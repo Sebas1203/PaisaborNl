@@ -136,7 +136,9 @@ dos sesiones a la vez.
 
 ### TODO de contenido
 
-- Textos legales de `/terminos` y `/privacidad`.
+- Textos legales definitivos de `/terminos` y `/privacidad`. Hoy dicen que la web es un prototipo
+  (datos solo en el navegador, pago simulado) y marcan el resto como provisional. El checkout pide
+  aceptar un aviso de privacidad breve antes de pasar al pago.
 - Composición y precio por persona de los menús de catering (hoy hay un menú por plato típico con
   precio **estimado**).
 - Catering: tiempo de respuesta (`CATERING_RESPUESTA_HORAS` = 24) y anticipación mínima (72 h) en

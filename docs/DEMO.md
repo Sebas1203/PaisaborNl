@@ -143,6 +143,10 @@ dos sesiones a la vez.
   `src/config/catering.ts`, y qué servicios incluye (vajilla, montaje, personal, transporte).
 - Tipo de IVA (9 % o 21 %) de bebidas y platos preparados, a confirmar con el contador.
 - Alérgenos y descripciones de cada plato.
+- Afirmaciones del negocio retiradas hasta confirmarlas: cifras de invitados atendidos, HACCP,
+  ingredientes importados, dossier de menús, opciones vegetarianas/sin gluten, reparto en bicicleta,
+  empaque térmico, horarios y cierre de pedidos de `/menus`, política de cancelación y facturación a
+  empresas. Si Diana las confirma, se pueden volver a poner.
 - Correos de Google Workspace, segunda sede y horarios.
 - Costo de envío a domicilio: lo define Diana. Única fuente en `src/config/envio.ts` (recogida =
   gratis; domicilio = «Se confirma por WhatsApp» mientras no haya precio).

@@ -50,7 +50,7 @@ export default function CheckoutExitoPage() {
               <div className="relative bg-surface-container-lowest rounded-xl shadow-xl p-6 sm:p-10 lg:p-14 overflow-hidden">
                 <div className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-surface-container-low flex items-center justify-center select-none pointer-events-none opacity-50">
                   <span className="font-headline font-extrabold text-xs text-primary/30 tracking-widest uppercase [transform:rotate(25deg)]">
-                    Paisabor · Hecho a Mano · AMS
+                    Paisabor · Ámsterdam
                   </span>
                 </div>
                 <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
@@ -253,14 +253,6 @@ export default function CheckoutExitoPage() {
                     </a>
                   </span>
                 </div>
-              </div>
-              <div className="mt-12 text-center max-w-xl mx-auto px-4">
-                <p className="font-headline italic text-sm text-on-surface-variant">
-                  "El secreto de nuestra arepa está en el maíz pelado a mano, el respeto por el tiempo y el cariño de compartir un pedacito de Colombia en los Países Bajos."
-                </p>
-                <span className="block mt-2 text-[10px] font-label uppercase tracking-widest text-secondary font-bold">
-                  — Paisabor Ámsterdam
-                </span>
               </div>
             </div>
           </div>

@@ -262,7 +262,7 @@ export default function CheckoutPage() {
                         Dirección de Entrega
                       </h2>
                       <p className="text-xs text-on-surface-variant">
-                        Repartos ecológicos en bicicleta de carga por los canales
+                        Entrega en Ámsterdam
                       </p>
                     </div>
                   </div>
@@ -494,29 +494,11 @@ export default function CheckoutPage() {
                   <div className="flex items-center justify-center gap-6 pt-2 text-[11px] text-on-surface-variant">
                     <span className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-sm text-secondary">
-                        eco
-                      </span>
-                      {' '}Envío en cargo-bike
-                    </span>
-                    {' '}
-                    <span className="flex items-center gap-1">
-                      <span className="material-symbols-outlined text-sm text-secondary">
                         outdoor_grill
                       </span>
-                      {' '}Hecho a mano en AMS
+                      {' '}Receta tradicional antioqueña
                     </span>
                   </div>
-                </div>
-                <div className="p-4 rounded-xl bg-surface-container-high/60 flex items-start gap-3">
-                  <span className="material-symbols-outlined text-secondary shrink-0 mt-0.5">
-                    local_fire_department
-                  </span>
-                  <p className="text-xs text-on-surface-variant leading-relaxed">
-                    <strong className="text-primary font-bold">
-                      Garantía de frescura Paisabor:
-                    </strong>
-                    {' '}Tus pandebonos y arepas son moldeados y horneados el mismo día de la entrega con queso curado artesanalmente en Holanda siguiendo la receta valluna.
-                  </p>
                 </div>
               </div>
             </div>

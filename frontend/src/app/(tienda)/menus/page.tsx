@@ -22,7 +22,7 @@ export default function MenusPage() {
                 <div className="lg:col-span-7 flex flex-col space-y-6">
                   <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed w-fit text-xs font-label uppercase tracking-widest font-semibold">
                     <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-                    {' '}Cocina Lenta • Por Encargo
+                    {' '}Por encargo
                   </div>
                   <div className="space-y-3">
                     <p className="font-headline text-xs md:text-sm uppercase tracking-[0.2em] text-secondary font-bold">
@@ -36,11 +36,9 @@ export default function MenusPage() {
                     </h1>
                   </div>
                   <p className="text-base sm:text-lg text-on-surface-variant leading-relaxed max-w-2xl font-normal">
-                    Preparado con receta tradicional antioqueña y sabor de casa. Para garantizar frescura y calidad suprema, todos nuestros platos calientes se preparan por encargo con mínimo{' '}
-                    <span className="font-semibold text-primary">
-                      24 a 48 horas de anticipación
-                    </span>
-                    .
+                    Preparados con receta tradicional antioqueña. Los especiales se hacen por encargo: elige el plato y te confirmamos por
+                    WhatsApp el día de entrega o recogida.
+                    {/* TODO (Diana): anticipación mínima real para los especiales */}
                   </p>
                   <div className="flex flex-wrap items-center gap-6 pt-2 text-xs font-label text-on-surface-variant">
                     <div className="flex items-center gap-2">
@@ -49,16 +47,7 @@ export default function MenusPage() {
                       </span>
                       {' '}
                       <span>
-                        Entregas Vie • Sáb • Dom
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-secondary text-lg">
-                        inventory_2
-                      </span>
-                      {' '}
-                      <span>
-                        Empaque térmico hermético
+                        Fines de semana · bajo reserva
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -83,18 +72,13 @@ export default function MenusPage() {
                         {' '}Sabor de casa
                       </div>
                     </div>
-                    <div className="flex items-center justify-between pt-2">
-                      <div className="space-y-1">
-                        <p className="text-xs font-headline uppercase tracking-wider text-primary font-bold">
-                          Reserva Semanal Activa
-                        </p>
-                        <p className="text-xs text-on-surface-variant">
-                          Cupos limitados por horneada dominical
-                        </p>
-                      </div>
-                      <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-tertiary-fixed font-headline font-bold text-sm shadow-xs">
-                        100%
-                      </span>
+                    <div className="space-y-1 pt-2">
+                      <p className="text-xs font-headline uppercase tracking-wider text-primary font-bold">
+                        Especiales de fin de semana
+                      </p>
+                      <p className="text-xs text-on-surface-variant">
+                        {ESPECIALES.filter((plato) => plato.disponible).length} platos disponibles bajo reserva
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -110,10 +94,10 @@ export default function MenusPage() {
                   </div>
                   <div>
                     <h4 className="font-headline font-bold text-sm text-primary">
-                      Elige con Tiempo
+                      Elige tu plato
                     </h4>
                     <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                      Selecciona tu plato típico favorito con mínimo 24-48h previas a la fecha.
+                      Selecciona el especial que quieres y cuántas porciones.
                     </p>
                   </div>
                 </div>
@@ -126,7 +110,7 @@ export default function MenusPage() {
                       Fija tu Entrega
                     </h4>
                     <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                      Retiro en {direccionCorta()} o delivery en caja térmica en Ámsterdam.
+                      Recogida en {direccionCorta()} o domicilio en Ámsterdam.
                     </p>
                   </div>
                 </div>
@@ -136,10 +120,10 @@ export default function MenusPage() {
                   </div>
                   <div>
                     <h4 className="font-headline font-bold text-sm text-primary">
-                      Pago Seguro
+                      Confirmación
                     </h4>
                     <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                      Confirma de inmediato con iDEAL o tarjeta para apartar lote.
+                      Te confirmamos el encargo y el día por WhatsApp.
                     </p>
                   </div>
                 </div>
@@ -149,10 +133,10 @@ export default function MenusPage() {
                   </div>
                   <div>
                     <h4 className="font-headline font-bold text-sm text-primary">
-                      Listo para la Mesa
+                      A la mesa
                     </h4>
                     <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                      Recibe caliente, recién horneado y listo para disfrutar en familia.
+                      Recíbelo o recógelo el día acordado.
                     </p>
                   </div>
                 </div>
@@ -218,13 +202,13 @@ export default function MenusPage() {
             <div className="max-w-7xl mx-auto space-y-12">
               <div className="max-w-3xl space-y-2">
                 <span className="text-xs font-headline uppercase tracking-widest text-secondary font-bold">
-                  Transparencia &amp; Logística Holandesa
+                  Cómo funciona
                 </span>
                 <h2 className="font-headline text-3xl font-extrabold text-primary tracking-tight">
-                  Modalidades y Política de Reserva
+                  Entrega, recogida y pago
                 </h2>
                 <p className="text-sm text-on-surface-variant leading-relaxed">
-                  Cada fin de semana preparamos un lote medido para preservar la sazón íntima y evitar cualquier desperdicio de ingredientes colombianos importados.
+                  Los especiales se preparan por encargo los fines de semana. Los detalles de cada encargo se confirman por WhatsApp.
                 </p>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -239,41 +223,13 @@ export default function MenusPage() {
                       Calendario de Entregas
                     </h3>
                     <p className="text-xs text-on-surface-variant leading-relaxed">
-                      Los especiales se preparan con receta tradicional antioqueña solo los fines de semana, bajo reserva. Recibe o recoge tus pedidos durante los turnos habilitados:
+                      Los especiales se preparan con receta tradicional antioqueña solo los fines de semana, bajo reserva.
                     </p>
-                    <ul className="space-y-2 text-xs text-on-surface-variant font-medium pt-2">
-                      <li className="flex items-center justify-between p-2 rounded-sm bg-surface-container-low">
-                        <span>
-                          Viernes
-                        </span>
-                        {' '}
-                        <span className="font-semibold text-primary">
-                          17:00 – 20:30 CET
-                        </span>
-                      </li>
-                      <li className="flex items-center justify-between p-2 rounded-sm bg-surface-container-low">
-                        <span>
-                          Sábado
-                        </span>
-                        {' '}
-                        <span className="font-semibold text-primary">
-                          12:30 – 19:30 CET
-                        </span>
-                      </li>
-                      <li className="flex items-center justify-between p-2 rounded-sm bg-surface-container-low">
-                        <span>
-                          Domingo
-                        </span>
-                        {' '}
-                        <span className="font-semibold text-primary">
-                          12:00 – 18:00 CET
-                        </span>
-                      </li>
-                    </ul>
+                    {/* TODO (Diana): horarios de entrega y recogida y hora de cierre de pedidos */}
+                    <p className="p-3 rounded-sm bg-surface-container-low text-xs text-on-surface-variant">
+                      Horarios por confirmar. Te indicamos la hora al confirmar el encargo.
+                    </p>
                   </div>
-                  <p className="text-[11px] text-secondary font-semibold">
-                    Cierre de pedidos: Jueves a las 22:00 para entregas de fin de semana.
-                  </p>
                 </div>
                 <div className="bg-surface p-8 rounded-lg shadow-xs flex flex-col justify-between space-y-6">
                   <div className="space-y-4">
@@ -283,19 +239,16 @@ export default function MenusPage() {
                       </span>
                     </div>
                     <h3 className="font-headline font-bold text-xl text-primary">
-                      Recogida &amp; Envíos NL
+                      Recogida y domicilio
                     </h3>
-                    <p className="text-xs text-on-surface-variant leading-relaxed">
-                      Cuidamos la temperatura hasta tu mesa en cualquier rincón autorizado de Países Bajos.
-                    </p>
                     <div className="space-y-3 pt-1">
                       <div className="p-3 rounded-lg bg-surface-container-low">
                         <span className="font-headline font-bold text-xs text-primary block">
-                          Recogida Gratuita en Atelier
+                          Recogida en el local
                         </span>
                         {' '}
                         <span className="text-xs text-on-surface-variant">
-                          {direccionCorta()}. Pasa por tu pedido caliente sin costo extra.
+                          {direccionCorta()}. Envío: {textoEnvio('recogida').toLowerCase()}.
                         </span>
                       </div>
                       <div className="p-3 rounded-lg bg-surface-container-low">
@@ -304,19 +257,10 @@ export default function MenusPage() {
                         </span>
                         {' '}
                         <span className="text-xs text-on-surface-variant">
-                          Ámsterdam, con empaque isotérmico.
+                          Envío: {textoEnvio('domicilio').toLowerCase()}.
                         </span>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-primary font-medium">
-                    <span className="material-symbols-outlined text-sm text-secondary">
-                      verified_user
-                    </span>
-                    {' '}
-                    <span>
-                      Garantía de calor a la entrega
-                    </span>
                   </div>
                 </div>
                 <div className="bg-surface p-8 rounded-lg shadow-xs flex flex-col justify-between space-y-6">
@@ -327,45 +271,15 @@ export default function MenusPage() {
                       </span>
                     </div>
                     <h3 className="font-headline font-bold text-xl text-primary">
-                      Pagos &amp; Confirmación
+                      Pago y confirmación
                     </h3>
                     <p className="text-xs text-on-surface-variant leading-relaxed">
-                      Tu reserva se confirma en el instante de la transacción para que el equipo de cocina reserve tus insumos frescos.
+                      En esta versión de prueba el pago es simulado: no se cobra nada. En la tienda definitiva se pagará con iDEAL o tarjeta.
                     </p>
-                    <div className="space-y-2.5 pt-1 text-xs text-on-surface-variant">
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                        {' '}
-                        <span>
-                          Pagos directos vía{' '}
-                          <strong className="text-primary font-semibold">
-                            iDeal
-                          </strong>
-                          {' '}(bancos holandeses)
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                        {' '}
-                        <span>
-                          Tarjetas de Crédito / Débito
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                        {' '}
-                        <span>
-                          Comprobante instantáneo con instrucciones térmicas
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                        {' '}
-                        <span>
-                          Cancelación flexible hasta 36h antes
-                        </span>
-                      </div>
-                    </div>
+                    <p className="text-xs text-on-surface-variant leading-relaxed">
+                      Para cambiar o cancelar un encargo, escríbenos por WhatsApp.
+                      {/* TODO (Diana): política de cancelación */}
+                    </p>
                   </div>
                   <div className="p-3 rounded-sm bg-surface-container text-xs text-on-surface-variant">
                     ¿Evento grande o celebración especial? Consulta nuestra sección de{' '}
@@ -385,7 +299,7 @@ export default function MenusPage() {
                     {SEDE_PRINCIPAL.nombre}
                   </h3>
                   <p className="text-xs text-on-surface-variant leading-relaxed">
-                    Ven a recoger tu pedido directamente de nuestra cocina. Te recibimos con el aroma a café recién filtrado y una sonrisa de bienvenida.
+                    Ven a recoger tu pedido a nuestra sede.
                   </p>
                   <div className="text-xs text-primary font-semibold space-y-1 pt-1">
                     <p>
@@ -416,199 +330,31 @@ export default function MenusPage() {
                 </h2>
               </div>
               <div className="space-y-3" id="faq-accordion">
-                <div className="rounded-lg bg-surface-container-low overflow-hidden">
-                  <button className="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between text-sm font-headline font-bold text-primary hover:text-secondary transition-colors" type="button">
-                    <span>
-                      ¿Por qué es obligatorio reservar con 24 o 48 horas de anticipación?
-                    </span>
-                    {' '}
-                    <span className="material-symbols-outlined text-lg transition-transform faq-icon">
-                      expand_more
-                    </span>
-                  </button>
-                  <div className="faq-content hidden px-6 pb-4 text-xs text-on-surface-variant leading-relaxed">
-                    Platos como la Lechona o el Sancocho requieren procesos de adobo profundo de hasta 24 horas y cocción lenta. Cocinar bajo encargo garantiza que cada porción esté en su punto exacto de frescura, sin recalentados ni conservantes artificiales.
-                  </div>
-                </div>
-                <div className="rounded-lg bg-surface-container-low overflow-hidden">
-                  <button className="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between text-sm font-headline font-bold text-primary hover:text-secondary transition-colors" type="button">
-                    <span>
-                      ¿Cómo viajan los platos para no perder el calor ni la textura?
-                    </span>
-                    {' '}
-                    <span className="material-symbols-outlined text-lg transition-transform faq-icon">
-                      expand_more
-                    </span>
-                  </button>
-                  <div className="faq-content hidden px-6 pb-4 text-xs text-on-surface-variant leading-relaxed">
-                    Utilizamos cajas térmicas isotérmicas reciclables de alto rendimiento diseñadas para gastronomía europea. La lechona viaja con ventilación controlada para que el cuero mantenga su "tostado crujiente", y los caldos se sellan al vacío para evitar derrames.
-                  </div>
-                </div>
-                <div className="rounded-lg bg-surface-container-low overflow-hidden">
-                  <button className="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between text-sm font-headline font-bold text-primary hover:text-secondary transition-colors" type="button">
-                    <span>
-                      ¿Puedo solicitar porciones para grupos familiares grandes (10+ personas)?
-                    </span>
-                    {' '}
-                    <span className="material-symbols-outlined text-lg transition-transform faq-icon">
-                      expand_more
-                    </span>
-                  </button>
-                  <div className="faq-content hidden px-6 pb-4 text-xs text-on-surface-variant leading-relaxed">
-                    ¡Totalmente! Puedes añadir múltiples porciones de cada plato en el formulario o escribirnos directamente {EMAIL_CONTACTO ? `a ${EMAIL_CONTACTO}` : `por WhatsApp al ${WHATSAPP_DISPLAY}`} para configurar bandejas familiares y servicio de menaje típico en barro.
-                  </div>
-                </div>
+                {[
+                  {
+                    p: '¿Con cuánta anticipación debo hacer el encargo?',
+                    r: 'Los especiales se preparan bajo reserva para el fin de semana. Escríbenos o haz tu solicitud y te confirmamos por WhatsApp si llegamos a la fecha que necesitas.',
+                  },
+                  {
+                    p: '¿Cómo se entregan los platos?',
+                    r: `Puedes recogerlos en ${direccionCorta()} o pedirlos a domicilio en Ámsterdam. Los detalles de la entrega se confirman por WhatsApp.`,
+                  },
+                  {
+                    p: '¿Puedo pedir porciones para un grupo grande?',
+                    r: `Sí. Indica las porciones al reservar o escríbenos ${EMAIL_CONTACTO ? `a ${EMAIL_CONTACTO}` : `por WhatsApp al ${WHATSAPP_DISPLAY}`}. Para eventos, mira también la sección de catering.`,
+                  },
+                ].map(({ p, r }) => (
+                  <details key={p} className="group rounded-lg bg-surface-container-low overflow-hidden">
+                    <summary className="w-full px-6 py-4 cursor-pointer list-none flex items-center justify-between text-sm font-headline font-bold text-primary hover:text-secondary transition-colors">
+                      <span>{p}</span>
+                      <span className="material-symbols-outlined text-lg transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <p className="px-6 pb-4 text-xs text-on-surface-variant leading-relaxed">{r}</p>
+                  </details>
+                ))}
               </div>
             </div>
           </section>
-          <div className="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-primary/60 backdrop-blur-xs" id="reservation-modal">
-            <div className="bg-surface rounded-xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative max-h-[921px] overflow-y-auto">
-              <div className="flex items-start justify-between">
-                <div className="space-y-1">
-                  <span className="text-[11px] font-label uppercase tracking-widest text-secondary font-bold">
-                    Solicitud de Encargo
-                  </span>
-                  <h3 className="font-headline font-bold text-xl text-primary" id="modal-dish-title">
-                    Nombre del Plato
-                  </h3>
-                </div>
-                <button className="p-1 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" type="button">
-                  <span className="material-symbols-outlined text-xl">
-                    close
-                  </span>
-                </button>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-surface-container-low text-xs">
-                <div>
-                  <span className="text-outline block text-[10px]">
-                    Precio unitario
-                  </span>
-                  {' '}
-                  <span className="font-headline font-bold text-sm text-primary" id="modal-dish-price">
-                    Según el plato
-                  </span>
-                </div>
-                <div className="w-px h-6 bg-surface-variant"></div>
-                <div>
-                  <span className="text-outline block text-[10px]">
-                    Tiempo anticipación
-                  </span>
-                  {' '}
-                  <span className="font-headline font-bold text-sm text-secondary" id="modal-dish-time">
-                    24h
-                  </span>
-                </div>
-              </div>
-              <div className="space-y-4" id="reservation-form">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-headline font-semibold text-primary">
-                      Porciones
-                    </label>
-                    {' '}
-                    <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" id="form-qty" max="25" min="1" type="number" defaultValue="2" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-headline font-semibold text-primary">
-                      Día de Entrega
-                    </label>
-                    <select className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" id="form-day" defaultValue="Sábado">
-                      <option value="Viernes">
-                        Viernes próximo
-                      </option>
-                      <option value="Sábado">
-                        Sábado próximo
-                      </option>
-                      <option value="Domingo">
-                        Domingo próximo
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-xs font-headline font-semibold text-primary">
-                    Modalidad
-                  </label>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <label className="flex items-center gap-2 p-2.5 rounded-sm bg-surface-container cursor-pointer hover:bg-surface-container-high transition-colors">
-                      <input defaultChecked className="text-secondary focus:ring-secondary" name="delivery_mode" type="radio" value="pickup" />
-                      {' '}
-                      <span>
-                        Recoger en {SEDE_PRINCIPAL.direccion} ({textoEnvio('recogida')})
-                      </span>
-                    </label>
-                    {' '}
-                    <label className="flex items-center gap-2 p-2.5 rounded-sm bg-surface-container cursor-pointer hover:bg-surface-container-high transition-colors">
-                      <input className="text-secondary focus:ring-secondary" name="delivery_mode" type="radio" value="delivery" />
-                      {' '}
-                      <span>
-                        Domicilio (envío: {textoEnvio('domicilio').toLowerCase()})
-                      </span>
-                    </label>
-                  </div>
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-xs font-headline font-semibold text-primary">
-                    Tu Nombre Completo
-                  </label>
-                  {' '}
-                  <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="Nombre y apellido" required type="text" />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-headline font-semibold text-primary">
-                      Email
-                    </label>
-                    {' '}
-                    <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="tu@correo.com" required type="email" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-headline font-semibold text-primary">
-                      Teléfono / WhatsApp
-                    </label>
-                    {' '}
-                    <input className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="Tu número de WhatsApp" required type="tel" />
-                  </div>
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-xs font-headline font-semibold text-primary">
-                    Notas especiales (alergias, picante, etc.)
-                  </label>
-                  <textarea className="w-full px-3 py-2 text-sm rounded-sm bg-surface-container text-on-surface focus:outline-hidden focus:ring-1 focus:ring-secondary" placeholder="Opcional. Ej. Sin cebolla en la ensalada / Ají extra aparte." rows={2}></textarea>
-                </div>
-                <div className="pt-3">
-                  <button className="w-full py-3 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline font-semibold text-sm transition-all shadow-md flex items-center justify-center gap-2" type="submit">
-                    <span className="material-symbols-outlined text-base">
-                      check_circle
-                    </span>
-                    {' '}
-                    <span>
-                      Confirmar Encargo • Proceder al Pago
-                    </span>
-                  </button>
-                  <p className="text-[11px] text-center text-outline mt-2">
-                    Pago simulado en esta versión de prueba: no se cobra nada.
-                  </p>
-                </div>
-              </div>
-              <div className="hidden text-center py-6 space-y-4" id="modal-success-state">
-                <div className="w-14 h-14 bg-secondary-fixed text-secondary rounded-full flex items-center justify-center mx-auto">
-                  <span className="material-symbols-outlined text-3xl">
-                    done
-                  </span>
-                </div>
-                <h4 className="font-headline font-bold text-xl text-primary">
-                  ¡Reserva Pre-Registrada!
-                </h4>
-                <p className="text-xs text-on-surface-variant max-w-sm mx-auto">
-                  Hemos apartado tus raciones para el día elegido. Te hemos enviado un correo de confirmación con la pasarela de pago iDeal.
-                </p>
-                <button className="px-5 py-2 rounded-lg bg-primary text-on-primary text-xs font-headline font-semibold" type="button">
-                  Entendido, volver a la carta
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </main>
     </div>

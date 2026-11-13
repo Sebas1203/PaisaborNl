@@ -44,40 +44,34 @@ export default function CateringPage() {
                     </span>
                     {' '}Cotizar Servicio de Catering
                   </a>
-                  {' '}
-                  <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-surface-bright/10 hover:bg-surface-bright/20 text-surface-bright font-medium backdrop-blur-md transition-all duration-200" type="button">
-                    <span className="material-symbols-outlined text-xl">
-                      download
-                    </span>
-                    {' '}Descargar Dossier de Menús
-                  </button>
                 </div>
+                {/* Solo datos que salen del propio catálogo o del flujo; nada de cifras del negocio sin confirmar */}
                 <div className="pt-6 grid grid-cols-3 gap-4 max-w-lg">
                   <div className="space-y-1">
                     <span className="font-headline font-bold text-2xl text-secondary-container block">
-                      500+
+                      {PLATOS_CATERING.length}
                     </span>
                     {' '}
                     <span className="text-xs text-outline-variant leading-tight block">
-                      Invitados atendidos en NL
+                      Platos típicos para elegir
                     </span>
                   </div>
                   <div className="space-y-1">
                     <span className="font-headline font-bold text-2xl text-secondary-container block">
-                      100%
+                      Varios
                     </span>
                     {' '}
                     <span className="text-xs text-outline-variant leading-tight block">
-                      Sabor tradicional &amp; café de origen
+                      Platos y porciones en una sola solicitud
                     </span>
                   </div>
                   <div className="space-y-1">
                     <span className="font-headline font-bold text-2xl text-secondary-container block">
-                      HACCP
+                      Sin cobro
                     </span>
                     {' '}
                     <span className="text-xs text-outline-variant leading-tight block">
-                      Certificación sanitaria europea
+                      Pedir presupuesto no tiene coste
                     </span>
                   </div>
                 </div>
@@ -85,7 +79,7 @@ export default function CateringPage() {
               <div className="lg:col-span-5 relative">
                 <div className="relative mx-auto max-w-md lg:max-w-none">
                   <div className="rounded-xl overflow-hidden shadow-2xl bg-primary-container p-2 transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                    <ItemImage alt="A lavish banquet buffet table styled with authentic Colombian earthenware and cazuelas de barro, featuring roasted lechona tolimense with crisp golden crackling, steaming arepitas, and vibrant plantain chips, set in an elegant warm-lit contemporary dining hall in the Netherlands with lush floral accents and terracotta tones." className="w-full h-80 sm:h-96 object-cover rounded-lg" />
+                    <ItemImage alt="Platos típicos colombianos para eventos" className="w-full h-80 sm:h-96 object-cover rounded-lg" />
                   </div>
                   <div className="absolute -bottom-6 -left-4 sm:-left-8 bg-surface-container-lowest text-on-surface p-4 sm:p-5 rounded-xl shadow-xl max-w-xs flex items-center gap-3.5">
                     <div className="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed flex-shrink-0">
@@ -95,10 +89,10 @@ export default function CateringPage() {
                     </div>
                     <div>
                       <p className="font-headline font-bold text-sm text-primary">
-                        Cocina a Fuego Lento
+                        Receta tradicional antioqueña
                       </p>
                       <p className="text-xs text-on-surface-variant">
-                        Tradición paisa transportada a los canales holandeses.
+                        Los platos típicos de nuestro menú, para tu evento.
                       </p>
                     </div>
                   </div>
@@ -110,29 +104,29 @@ export default function CateringPage() {
             <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6 md:gap-8">
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-secondary text-2xl">
-                  verified
+                  restaurant_menu
                 </span>
                 {' '}
                 <span className="text-sm font-medium text-on-surface">
-                  Ingredientes 100% Importados de Colombia &amp; Frescos Locales
+                  Platos típicos de nuestro menú
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-secondary text-2xl">
-                  health_and_safety
+                  request_quote
                 </span>
                 {' '}
                 <span className="text-sm font-medium text-on-surface">
-                  Cumplimiento Estricto Normativa HACCP Países Bajos
+                  Presupuesto sin compromiso
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-secondary text-2xl">
-                  eco
+                  no_food
                 </span>
                 {' '}
                 <span className="text-sm font-medium text-on-surface">
-                  Opciones Disponibles Vegetarianas &amp; Sin Gluten
+                  Cuéntanos alergias y restricciones en la solicitud
                 </span>
               </div>
               <div className="flex items-center gap-3">
@@ -236,13 +230,13 @@ export default function CateringPage() {
               <div className="bg-surface-container rounded-2xl p-8 sm:p-12 lg:p-16 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 <div className="lg:col-span-5 space-y-6">
                   <span className="text-xs font-label uppercase tracking-widest text-secondary font-bold">
-                    Presupuesto Inmediato
+                    Presupuesto sin compromiso
                   </span>
                   <h2 className="font-headline font-bold text-3xl sm:text-4xl text-primary leading-tight">
-                    Diseñemos el Menú Perfecto para tu Ocasión
+                    Arma el menú para tu evento
                   </h2>
                   <p className="text-on-surface-variant text-sm sm:text-base leading-relaxed">
-                    Diligencia el formulario y nuestro equipo gastronómico te enviará una propuesta formal detallada {textoRespuesta()}.
+                    Completa el formulario y te enviaremos el presupuesto {textoRespuesta()}.
                   </p>
                   <div className="space-y-4 pt-4">
                     <div className="flex items-center gap-4 p-4 rounded-xl bg-surface-bright/70">
@@ -251,10 +245,10 @@ export default function CateringPage() {
                       </span>
                       <div>
                         <p className="font-headline font-bold text-xs uppercase tracking-wider text-primary">
-                          Cobertura Geográfica
+                          Dónde
                         </p>
                         <p className="text-xs text-on-surface-variant">
-                          Ámsterdam y alrededores.
+                          Ámsterdam. Si tu evento es en otra ciudad, indícalo y te confirmamos si podemos llegar.
                         </p>
                       </div>
                     </div>
@@ -264,7 +258,7 @@ export default function CateringPage() {
                       </span>
                       <div>
                         <p className="font-headline font-bold text-xs uppercase tracking-wider text-primary">
-                          ¿Atención Urgente?
+                          ¿Prefieres hablar con nosotros?
                         </p>
                         <p className="text-xs text-on-surface-variant">
                           Escríbenos directamente a WhatsApp: {WHATSAPP_DISPLAY}
@@ -281,10 +275,11 @@ export default function CateringPage() {
                       </span>
                       <div>
                         <p className="font-headline font-bold text-xs uppercase tracking-wider text-primary">
-                          Facturación Empresas
+                          ¿Necesitas factura?
                         </p>
                         <p className="text-xs text-on-surface-variant">
-                          Emitimos factura con BTW desglosado apta para deducibilidad corporativa.
+                          Indícalo en los comentarios con los datos de tu empresa.
+                          {/* TODO (Diana/contador): confirmar cómo se emiten las facturas a empresas */}
                         </p>
                       </div>
                     </div>
@@ -310,10 +305,10 @@ export default function CateringPage() {
             <div className="max-w-7xl mx-auto rounded-xl bg-surface-container-lowest p-8 md:p-10 shadow-xs flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="space-y-2 max-w-xl">
                 <span className="text-xs font-label uppercase tracking-widest text-secondary font-bold">
-                  Nuestro Centro de Producción
+                  Nuestra cocina
                 </span>
                 <h3 className="font-headline font-bold text-2xl text-primary">
-                  Atelier &amp; Cocina Central en Ámsterdam
+                  Cocina en Ámsterdam
                 </h3>
                 <p className="text-sm text-on-surface-variant leading-relaxed">
                   Nuestra cocina está en Ámsterdam y preparamos cada pedido con receta tradicional antioqueña.

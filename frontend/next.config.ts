@@ -1,6 +1,13 @@
 import type { NextConfig } from 'next';
 
+// Mismo criterio que src/config/prototipo.ts: prototipo salvo NEXT_PUBLIC_PROTOTIPO=false
+const MODO_PROTOTIPO = process.env.NEXT_PUBLIC_PROTOTIPO !== 'false';
+
 const nextConfig: NextConfig = {
+  // Prototipo de prueba: cabecera noindex en todas las respuestas (también imágenes y archivos)
+  async headers() {
+    return MODO_PROTOTIPO ? [{ source: '/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }] : [];
+  },
   // Rutas antiguas de la cuenta y del admin (antes de la zona de cliente y el inventario unificado)
   async redirects() {
     return [

@@ -47,6 +47,18 @@ demo»**, y en `/admin/login` el botón **«Entrar como admin demo»**.
    contraseñas reales: todo lo que empieza por `NEXT_PUBLIC_` acaba en el código que descarga el
    navegador.
 
+### Modo prototipo (pruebas con usuarios)
+
+Activo por defecto (`NEXT_PUBLIC_PROTOTIPO`, solo se desactiva con `false`):
+
+- Barra inferior **«Prototipo de prueba»** (pago simulado, datos solo en el navegador). Se puede
+  plegar.
+- Botón **«Reiniciar datos de prueba»**: borra de ese navegador todo lo que empieza por `paisabor:`
+  y la cookie de sesión, y vuelve a la portada con los datos de ejemplo.
+- Botón **«Dejar comentarios»** solo si `NEXT_PUBLIC_FEEDBACK_URL` tiene una URL `https` (por
+  ejemplo un Google Form).
+- **noindex**: `<meta name="robots">`, cabecera `X-Robots-Tag` y `robots.txt` con `Disallow: /`.
+
 > **Sin modo demo no hay forma de entrar al panel admin**: el registro solo crea cuentas de
 > cliente. Las cuentas de administrador llegarán con Supabase.
 

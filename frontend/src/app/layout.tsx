@@ -5,6 +5,8 @@ import '@fontsource-variable/epilogue/wght-italic.css';
 import '@fontsource-variable/work-sans';
 import '@fontsource-variable/work-sans/wght-italic.css';
 import './globals.css';
+import { BarraPrototipo } from '@/components/layout/BarraPrototipo';
+import { MODO_PROTOTIPO } from '@/config/prototipo';
 import { CartProvider } from '@/features/cart/CartProvider';
 import { AuthProvider } from '@/providers/AuthProvider';
 
@@ -12,6 +14,8 @@ const DESCRIPCION =
   'Comida colombiana en Ámsterdam: platos típicos, empanadas, fritos, bebidas y catering con receta tradicional antioqueña.';
 
 export const metadata: Metadata = {
+  // Prototipo de prueba: fuera de los buscadores (ver también src/app/robots.ts y next.config.ts)
+  robots: MODO_PROTOTIPO ? { index: false, follow: false, googleBot: { index: false, follow: false } } : undefined,
   // TODO: dominio definitivo de Paisabor (NEXT_PUBLIC_SITE_URL) para las URLs absolutas de Open Graph.
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
   title: 'Paisabor — El sabor de casa',
@@ -41,6 +45,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <CartProvider>{children}</CartProvider>
         </AuthProvider>
+        {MODO_PROTOTIPO && (
+          <>
+            {/* Espacio para que la barra fija no tape el final de la página */}
+            <div aria-hidden className="h-12" />
+            <BarraPrototipo />
+          </>
+        )}
       </body>
     </html>
   );

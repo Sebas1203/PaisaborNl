@@ -52,7 +52,17 @@ export default function PrivacidadPage() {
       </Seccion>
 
       <Seccion titulo="Cómo borrarlos">
-        <p>Borra los datos de este sitio en tu navegador (o usa una ventana de incógnito) y desaparecen pedidos, cuentas y solicitudes de prueba.</p>
+        <p>
+          Pulsa «Reiniciar datos de prueba» en la barra inferior, o borra los datos de este sitio en tu navegador, y desaparecen pedidos, cuentas y
+          solicitudes de prueba.
+        </p>
+      </Seccion>
+
+      <Seccion titulo="Comentarios">
+        <p>
+          Si dejas comentarios con el botón «Dejar comentarios», se envían a un formulario externo que tiene su propia política de privacidad. No
+          incluyas datos personales que no quieras compartir.
+        </p>
       </Seccion>
 
       <Seccion titulo="Preguntas">

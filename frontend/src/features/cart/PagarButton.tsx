@@ -5,7 +5,7 @@ import { formatEUR } from '@/lib/format';
 import { useCart } from './CartProvider';
 import { leerDatosCheckout } from './datosCheckout';
 
-// "Pagar" de la demo: sin pasarela real (TODO: Mollie). Guarda el carrito como pedido por
+// Confirmación con pago simulado: sin pasarela real (TODO: Mollie). Guarda el carrito como pedido por
 // confirmar y va a /checkout/exito, que crea el pedido. Sin datos de entrega vuelve al checkout.
 export function PagarButton({ className }: { className?: string }) {
   const { subtotal, lineas, checkout } = useCart();
@@ -25,8 +25,8 @@ export function PagarButton({ className }: { className?: string }) {
         router.push('/checkout/exito');
       }}
     >
-      <span className="material-symbols-outlined text-xl transition-transform group-hover:scale-110">lock</span>{' '}
-      <span>Pagar {formatEUR(subtotal)}</span>
+      <span className="material-symbols-outlined text-xl transition-transform group-hover:scale-110">check_circle</span>{' '}
+      <span>Confirmar pedido de prueba · {formatEUR(subtotal)}</span>
     </button>
   );
 }

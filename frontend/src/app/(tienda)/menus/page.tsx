@@ -586,7 +586,7 @@ export default function MenusPage() {
                     </span>
                   </button>
                   <p className="text-[11px] text-center text-outline mt-2">
-                    Aceptamos iDEAL y tarjeta (Mollie) en el siguiente paso seguro.
+                    Pago simulado en esta versión de prueba: no se cobra nada.
                   </p>
                 </div>
               </div>

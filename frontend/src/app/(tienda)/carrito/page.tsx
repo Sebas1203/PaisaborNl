@@ -168,14 +168,14 @@ export default function CarritoPage() {
                   disabled={lineas.length === 0}
                   className="w-full bg-primary hover:bg-primary-container text-white py-5 rounded-lg font-bold text-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-50"
                 >
-                  <span>PAGAR AHORA</span> <span className="material-symbols-outlined">lock</span>
+                  <span>CONTINUAR</span> <span className="material-symbols-outlined">arrow_forward</span>
                 </Go>
                 <div className="mt-8 flex items-center justify-center gap-4">
                   <span className="material-symbols-outlined text-outline-variant text-3xl">credit_card</span>{' '}
                   <span className="material-symbols-outlined text-outline-variant text-3xl">account_balance</span>
                 </div>
                 <p className="mt-8 text-center text-xs text-on-surface-variant leading-relaxed">
-                  Pago seguro con iDEAL o tarjeta a través de Mollie.
+                  Pago simulado: no se cobra nada. En la tienda definitiva se pagará con iDEAL o tarjeta.
                 </p>
               </div>
             </aside>

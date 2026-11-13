@@ -15,6 +15,17 @@ export default function CheckoutErrorPage() {
           <div className="relative w-full max-w-6xl mx-auto px-6 py-8 md:py-16">
             <div className="absolute -top-12 left-1/4 w-96 h-96 rounded-full bg-secondary-fixed-dim/20 blur-3xl pointer-events-none -z-10"></div>
             <div className="absolute top-1/2 -right-16 w-80 h-80 rounded-full bg-tertiary-fixed/30 blur-3xl pointer-events-none -z-10"></div>
+            {/* PROTOTIPO: con el pago simulado esta pantalla no se alcanza desde la compra; se conserva como diseño de referencia para Mollie */}
+            <div role="note" className="mb-8 flex items-start gap-3 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed p-4 text-sm">
+              <span className="material-symbols-outlined shrink-0">science</span>
+              <p>
+                <strong>Pantalla de ejemplo.</strong> En esta versión de prueba el pago es simulado (no se cobra nada) y no puede fallar. Los datos
+                de abajo son ilustrativos.{' '}
+                <Link href="/carrito" className="underline font-semibold">
+                  Volver al carrito
+                </Link>
+              </p>
+            </div>
             <div className="flex items-center justify-between gap-4 mb-8">
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-surface-container-high text-secondary">

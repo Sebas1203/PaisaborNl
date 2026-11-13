@@ -70,7 +70,9 @@ dos sesiones a la vez.
    Sint Jorisstraat 4, el **día** (desde mañana) y la **franja horaria**. En domicilio pide calle,
    código postal neerlandés (`1234 AB`) y ciudad. Todo queda en el pedido y el admin lo ve en la
    lista y en el detalle.
-5. **Pago**: `/checkout/pago` → «Pagar» (simulado). En `/checkout/exito` se crea el pedido en estado
+5. **Pago**: `/checkout/pago` muestra el aviso «Pago simulado: no se cobra nada». iDEAL y tarjeta son
+   solo opciones visuales: no hay campos de tarjeta ni de banco. «Confirmar pedido de prueba» lleva a
+   `/checkout/exito`, que crea el pedido en estado
    **pendiente** y se muestra su número. Sin sesión, la confirmación ofrece **crear cuenta** (opcional:
    los pedidos hechos con ese correo pasan a «Mis pedidos») y enlaza al seguimiento.
    - **Seguimiento sin cuenta**: `/seguimiento` → número de pedido + correo con el que se compró

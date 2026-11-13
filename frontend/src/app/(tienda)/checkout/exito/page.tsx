@@ -23,7 +23,7 @@ export default function CheckoutExitoPage() {
                   </span>
                   {' '}
                   <span>
-                    Pago Autorizado
+                    Pedido registrado
                   </span>
                 </div>
                 <div className="h-[2px] w-8 sm:w-16 bg-secondary/30"></div>
@@ -33,7 +33,7 @@ export default function CheckoutExitoPage() {
                   </span>
                   {' '}
                   <span>
-                    En Cocina
+                    Por confirmar
                   </span>
                 </div>
                 <div className="h-[2px] w-8 sm:w-16 bg-surface-dim"></div>
@@ -43,7 +43,7 @@ export default function CheckoutExitoPage() {
                   </span>
                   {' '}
                   <span>
-                    Entrega Ámsterdam
+                    Entrega o recogida
                   </span>
                 </div>
               </div>
@@ -61,21 +61,21 @@ export default function CheckoutExitoPage() {
                       </span>
                     </div>
                     <div className="absolute -bottom-1 -right-1 bg-surface-container-high px-2 py-0.5 rounded-full text-[10px] tracking-wider font-label font-bold text-primary uppercase shadow-xs">
-                      iDEAL OK
+                      Prueba
                     </div>
                   </div>
                   <span className="text-xs uppercase tracking-[0.2em] font-label font-bold text-secondary mb-2">
-                    Transacción Completada
+                    Pedido de prueba registrado
                   </span>
                   <h1 className="font-headline font-extrabold text-2xl sm:text-4xl text-primary tracking-tight leading-tight">
-                    ¡Muchas gracias por tu compra!
+                    ¡Gracias por tu pedido!
                   </h1>
                   <p className="font-headline font-medium text-lg sm:text-xl text-primary/80 mt-1">
-                    Hemos recibido tu pedido. Te avisaremos en cuanto nuestra cocina lo confirme.
+                    Lo hemos registrado como pendiente. Te avisaremos por WhatsApp cuando lo confirmemos.
                   </p>
                   <div className="mt-6 inline-flex items-center gap-3 bg-surface-container-low px-5 py-2.5 rounded-lg">
                     <span className="text-xs uppercase tracking-wider text-on-surface-variant font-label">
-                      Identificador de Pedido:
+                      Número de pedido:
                     </span>
                     {' '}
                     <span className="font-headline font-bold text-base sm:text-lg text-primary tracking-wide selection:bg-secondary-container" id="orderId">
@@ -94,10 +94,10 @@ export default function CheckoutExitoPage() {
                   </div>
                   <div className="mt-6 w-full flex items-center gap-3 bg-surface-container-high/60 px-4 py-3 rounded-lg text-left">
                     <span className="material-symbols-outlined text-secondary text-2xl shrink-0">
-                      mark_email_read
+                      info
                     </span>
                     <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                      Hemos enviado el comprobante oficial y el enlace de seguimiento en tiempo real a tu correo electrónico registrado.
+                      Esta es una versión de prueba: no se ha cobrado nada y no se envían correos. Guarda el número de pedido para consultarlo en «Seguir mi pedido».
                     </p>
                   </div>
                 </div>
@@ -132,21 +132,21 @@ export default function CheckoutExitoPage() {
                       </div>
                       <div className="flex items-baseline gap-2 mb-1">
                         <h2 className="font-headline font-bold text-base text-primary">
-                          iDEAL · ING
+                          Pago simulado
                         </h2>
                       </div>
                       <p className="text-xs text-on-surface-variant leading-relaxed">
-                        Procesado de forma segura a través de la pasarela de pagos Mollie B.V.
+                        No se ha cobrado nada. En la tienda definitiva se pagará con iDEAL o tarjeta a través de Mollie.
                       </p>
                     </div>
                     <div className="bg-surface-bright p-3 rounded-lg mt-2 flex items-center justify-between">
                       <span className="text-xs text-on-surface-variant">
-                        Estado Bancario
+                        Estado del pago
                       </span>
                       {' '}
                       <span className="inline-flex items-center gap-1 text-xs font-bold text-primary">
                         <span className="w-2 h-2 rounded-full bg-secondary"></span>
-                        {' '}Pagado
+                        {' '}Sin cobro (prueba)
                       </span>
                     </div>
                   </div>
@@ -154,7 +154,7 @@ export default function CheckoutExitoPage() {
                     <div>
                       <div className="flex items-center justify-between mb-4 text-surface-tint">
                         <span className="text-[11px] font-label uppercase font-bold tracking-widest text-secondary-fixed">
-                          Monto Liquidado
+                          Importe del pedido
                         </span>
                         {' '}
                         <span className="material-symbols-outlined text-secondary-container">
@@ -162,7 +162,7 @@ export default function CheckoutExitoPage() {
                         </span>
                       </div>
                       <p className="text-xs text-surface-variant/80 uppercase tracking-wider font-label">
-                        Total Facturado
+                        Total
                       </p>
                       <div className="font-headline font-extrabold text-3xl sm:text-4xl text-surface-bright mt-1 tracking-tight">
                         <ImportePedidoCreado parte="total" />
@@ -192,25 +192,10 @@ export default function CheckoutExitoPage() {
                       </div>
                       <div>
                         <h4 className="font-headline font-bold text-sm text-primary">
-                          Preparación artesanal en curso
+                          ¿Qué pasa ahora?
                         </h4>
                         <p className="text-xs text-on-surface-variant max-w-lg mt-0.5">
-                          Nuestras masas son frescas del día y se sellan al vacío justo antes del despacho para conservar intactos los aromas del campo colombiano.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 shrink-0 bg-surface-container-low px-4 py-2 rounded-lg">
-                      <svg className="w-8 h-8 -rotate-90 text-secondary" viewBox="0 0 36 36">
-                        <path className="text-surface-dim" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3.5"></path>
-                        {' '}
-                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray="75, 100" strokeLinecap="round" strokeWidth="3.5"></path>
-                      </svg>
-                      <div>
-                        <p className="text-[10px] font-label font-bold uppercase tracking-wider text-secondary">
-                          Tiempo Estimado
-                        </p>
-                        <p className="text-xs font-headline font-bold text-primary">
-                          Listo en ~45 min
+                          El equipo revisa el pedido y te escribe por WhatsApp para confirmarlo. Puedes ver su estado en cualquier momento con el número de pedido.
                         </p>
                       </div>
                     </div>

@@ -167,7 +167,7 @@ export default function CheckoutPage() {
                   <span className="w-5 h-5 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center text-[10px]">
                     3
                   </span>
-                  {' '}Pago seguro
+                  {' '}Pago (simulado)
                 </span>
               </div>
             </div>
@@ -437,7 +437,7 @@ export default function CheckoutPage() {
                       Método de Pago Preferido
                     </h2>
                     <span className="text-xs font-label text-on-surface-variant">
-                      Siguiente paso: confirmación bancaria
+                      Pago simulado: no se cobra nada
                     </span>
                   </div>
                   <div className="grid grid-cols-3 gap-3">
@@ -483,7 +483,7 @@ export default function CheckoutPage() {
                     <span className="absolute inset-y-0 left-0 w-1.5 bg-secondary"></span>
                     {' '}
                     <span>
-                      Continuar al Pago Seguro
+                      Continuar al pago
                     </span>
                     {' '}
                     <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform text-secondary-fixed">
@@ -491,13 +491,6 @@ export default function CheckoutPage() {
                     </span>
                   </button>
                   <div className="flex items-center justify-center gap-6 pt-2 text-[11px] text-on-surface-variant">
-                    <span className="flex items-center gap-1">
-                      <span className="material-symbols-outlined text-sm text-secondary">
-                        verified_user
-                      </span>
-                      {' '}Pago cifrado SSL
-                    </span>
-                    {' '}
                     <span className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-sm text-secondary">
                         eco

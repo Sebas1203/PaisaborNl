@@ -4,6 +4,7 @@
 
 import { DEMO_CLIENTE, ID_CLIENTE_DEMO } from '@/config/demo';
 import { FRANJAS } from '@/config/entrega';
+import { costeEnvio } from '@/config/envio';
 import { itemPorId, MENU, PLATOS, PRODUCTOS } from '@/data';
 import { direccionTexto, type DireccionEntrega } from '@/lib/entrega';
 import { flujoDe } from '@/lib/pedidos';
@@ -115,6 +116,7 @@ function pedidoSemilla(
     franja: FRANJAS[entrega][1],
     direccion: entrega === 'domicilio' ? cliente.direccion : undefined,
     estadoPago: 'simulado',
+    envio: costeEnvio(entrega) ?? 0,
     lineas: lineas.flatMap(([id, cantidad]) => {
       const item = itemPorId(id);
       return item ? [{ id, cantidad, nombre: item.nombre, precio: item.precio, imagen: item.imagen }] : [];

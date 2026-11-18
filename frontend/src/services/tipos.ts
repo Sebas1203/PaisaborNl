@@ -75,6 +75,8 @@ export interface Pedido {
   notas?: string;
   /** Opcional solo por los pedidos guardados antes de añadirlo (todos eran simulados) */
   estadoPago?: EstadoPago;
+  /** Costo de envío del momento de la compra, € con IVA (0 en recogida). Ver envioDe() */
+  envio?: number;
   lineas: LineaPedidoGuardada[];
   historial: CambioEstado[];
 }
@@ -92,6 +94,7 @@ export interface PedidoPublico {
   fechaEntrega: string;
   franja: string;
   estadoPago: EstadoPago;
+  envio?: number;
   lineas: LineaPedidoGuardada[];
   historial: Pick<CambioEstado, 'estado' | 'fecha'>[];
 }

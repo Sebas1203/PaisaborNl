@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ItemImage } from '@/components/ItemImage';
-import { costeEnvio, textoEnvio } from '@/config/envio';
+import { costeEnvio, textoEnvio, textoImporteEnvio } from '@/config/envio';
 import { useCart } from '@/features/cart/CartProvider';
 import { leerEntregaElegida } from '@/features/cart/datosCheckout';
 import type { LineaConItem } from '@/lib/pedidos';
@@ -18,6 +18,7 @@ export function ResumenPedido({
   titulo = 'Tu Canasta',
   editable = false,
   entrega,
+  envio: envioGuardado,
 }: {
   lineas: LineaConItem[];
   titulo?: string;
@@ -25,9 +26,11 @@ export function ResumenPedido({
   editable?: boolean;
   /** Con método de entrega se muestra la línea de envío (src/config/envio.ts); sin él, no */
   entrega?: DeliveryMethod;
+  /** Envío ya guardado en un pedido (manda sobre la configuración actual) */
+  envio?: number;
 }) {
   const { subtotal, base, iva } = calcularTotales(lineas.map((l) => ({ precioUnit: l.item.precio, cantidad: l.cantidad })));
-  const envio = entrega ? costeEnvio(entrega) : undefined;
+  const envio = entrega ? (envioGuardado ?? costeEnvio(entrega)) : undefined;
   const total = subtotal + (envio ?? 0);
   const articulos = lineas.reduce((acc, l) => acc + l.cantidad, 0);
 
@@ -74,7 +77,7 @@ export function ResumenPedido({
         {entrega && (
           <div className="flex items-center justify-between gap-3 text-sm">
             <span className="text-on-surface-variant">Costo de envío</span>
-            <span className="font-bold text-secondary text-right">{textoEnvio(entrega)}</span>
+            <span className="font-bold text-secondary text-right">{envioGuardado !== undefined ? textoImporteEnvio(envioGuardado) : textoEnvio(entrega)}</span>
           </div>
         )}
         <div className="pt-2 pb-1 space-y-1">

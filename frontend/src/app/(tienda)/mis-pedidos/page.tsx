@@ -11,7 +11,7 @@ import { whatsappLink } from '@/config/contact';
 import { useCarga } from '@/hooks/useCarga';
 import { formatFechaEntrega } from '@/lib/entrega';
 import { formatEUR, formatFechaHora, IVA_INCLUIDO } from '@/lib/format';
-import { totales } from '@/lib/pedidos';
+import { totalPedido } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
 import { pedidosService } from '@/services';
 
@@ -101,7 +101,7 @@ export default function MisPedidosPage() {
                           </p>
                         </div>
                         <div className="text-left sm:text-right shrink-0">
-                          <p className="font-headline font-bold text-lg text-primary">{formatEUR(totales(pedido.lineas).total)}</p>
+                          <p className="font-headline font-bold text-lg text-primary">{formatEUR(totalPedido(pedido))}</p>
                           <p className="text-[11px] text-on-surface-variant">{IVA_INCLUIDO}</p>
                         </div>
                       </Link>

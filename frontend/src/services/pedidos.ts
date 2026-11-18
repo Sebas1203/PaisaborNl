@@ -2,6 +2,7 @@
 // Con Supabase: tabla pedidos + lineas_pedido + historial_estados, con RLS (el cliente solo ve
 // los suyos) y los cambios de estado en una función SQL que también descuenta el stock.
 
+import { costeEnvio } from '@/config/envio';
 import { normalizarCodigoPostal, validarEntrega } from '@/lib/entrega';
 import { ORDER_STATUS_LABELS } from '@/lib/format';
 import { puedeCancelar, siguienteEstado } from '@/lib/pedidos';
@@ -66,6 +67,7 @@ export function aPedidoPublico(p: Pedido): PedidoPublico {
     fechaEntrega: p.fechaEntrega,
     franja: p.franja,
     estadoPago: p.estadoPago ?? 'simulado',
+    envio: p.envio,
     lineas: p.lineas,
     historial: p.historial.map(({ estado, fecha }) => ({ estado, fecha })),
   };
@@ -141,6 +143,8 @@ export const mockPedidosService: PedidosService = {
       notas: datos.notas?.trim() || undefined,
       // PROTOTIPO: sin pasarela, el pago siempre es de prueba (no se cobra nada)
       estadoPago: 'simulado',
+      // Se guarda el envío del momento (como los precios) para que el total no cambie después
+      envio: costeEnvio(datos.entrega) ?? 0,
       lineas,
       historial: [{ estado: 'pendiente', fecha: ahora, por: datos.cliente }],
     };

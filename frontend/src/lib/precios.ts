@@ -16,7 +16,7 @@ export interface Totales {
   base: number;
   /** IVA contenido: subtotal − base (así base + iva = total al céntimo) */
   iva: number;
-  /** Igual al subtotal: los gastos de logística o envío van aparte y están por confirmar */
+  /** Igual al subtotal de productos: el envío (src/config/envio.ts) se suma aparte */
   total: number;
 }
 

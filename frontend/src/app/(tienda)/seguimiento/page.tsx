@@ -13,7 +13,7 @@ import { AvisoError, Skeleton } from '@/components/ui/Estados';
 import { whatsappLink } from '@/config/contact';
 import { leerPedidoCreado } from '@/features/orders/PedidoCreado';
 import { formatFechaHora } from '@/lib/format';
-import { lineasGuardadasConItem } from '@/lib/pedidos';
+import { envioDe, lineasGuardadasConItem } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
 import { mensajeDeError, pedidosService, type PedidoPublico } from '@/services';
 import { validarEmail } from '@/services/auth';
@@ -139,7 +139,7 @@ function Seguimiento() {
                   </div>
                 </div>
                 <div className="lg:col-span-7 bg-surface-container rounded-xl p-6 space-y-5">
-                  <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Productos" entrega={pedido.entrega} />
+                  <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Productos" entrega={pedido.entrega} envio={envioDe(pedido)} />
                 </div>
               </div>
               <div className="bg-surface-container-low rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">

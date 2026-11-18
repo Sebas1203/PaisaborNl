@@ -11,7 +11,7 @@ import { CabeceraAdmin, inputAdmin, PaginaAdmin, Paginacion, Tabla } from '@/fea
 import { useCarga } from '@/hooks/useCarga';
 import { formatFechaEntrega } from '@/lib/entrega';
 import { formatEUR, formatFechaHora, ORDER_STATUS_LABELS } from '@/lib/format';
-import { totales } from '@/lib/pedidos';
+import { totalPedido } from '@/lib/pedidos';
 import { pedidosService, type Pedido } from '@/services';
 import type { DeliveryMethod, OrderStatus } from '@/types';
 
@@ -120,7 +120,7 @@ function PedidosAdmin() {
                     <td className="px-4 py-3">
                       <EstadoBadge estado={p.estado} />
                     </td>
-                    <td className="px-4 py-3 font-semibold text-primary whitespace-nowrap">{formatEUR(totales(p.lineas).total)}</td>
+                    <td className="px-4 py-3 font-semibold text-primary whitespace-nowrap">{formatEUR(totalPedido(p))}</td>
                   </tr>
                 ))}
               </Tabla>

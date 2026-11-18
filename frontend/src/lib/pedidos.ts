@@ -5,6 +5,7 @@ import { itemPorId, type ItemCatalogo } from '@/data';
 import type { DeliveryMethod, LineaPedido, OrderStatus } from '@/types';
 import type { LineaPedidoGuardada } from '@/services/tipos';
 import { calcularTotales } from '@/lib/precios';
+import { costeEnvio } from '@/config/envio';
 
 const FLUJO_DOMICILIO: OrderStatus[] = ['pendiente', 'confirmado', 'en_preparacion', 'listo', 'enviado', 'entregado'];
 // "enviado" no existe para pedidos que el cliente recoge en la sede
@@ -48,6 +49,13 @@ export function lineasGuardadasConItem(lineas: LineaPedidoGuardada[]): LineaConI
     total: precio * cantidad,
   }));
 }
+
+/** Envío de un pedido guardado; los anteriores a guardarlo usan el valor actual de la configuración */
+export const envioDe = (pedido: { entrega: DeliveryMethod; envio?: number }) => pedido.envio ?? costeEnvio(pedido.entrega) ?? 0;
+
+/** Total que paga el cliente: productos (IVA incluido) + envío. Única regla para listas y admin */
+export const totalPedido = (pedido: { entrega: DeliveryMethod; envio?: number; lineas: { precio: number; cantidad: number }[] }) =>
+  totales(pedido.lineas).total + envioDe(pedido);
 
 /** Totales de líneas con precio (pedidos y carrito): delega en calcularTotales */
 export const totales = (lineas: { precio: number; cantidad: number }[]) =>

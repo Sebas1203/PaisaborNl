@@ -5,11 +5,11 @@ import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { DatosEntrega } from '@/components/order/DatosEntrega';
 import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { EstadoError, Skeleton } from '@/components/ui/Estados';
-import { costeEnvio, textoEnvio } from '@/config/envio';
+import { textoImporteEnvio } from '@/config/envio';
 import { borrarDatosCheckout, leerDatosCheckout } from '@/features/cart/datosCheckout';
 import { clearLastOrder, readLastOrder, useCart } from '@/features/cart/CartProvider';
 import { formatEUR } from '@/lib/format';
-import { lineasGuardadasConItem, totales } from '@/lib/pedidos';
+import { envioDe, lineasGuardadasConItem, totales } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
 import { mensajeDeError, pedidosService, type PedidoPublico } from '@/services';
 import { aPedidoPublico } from '@/services/pedidos';
@@ -128,7 +128,7 @@ export function NumeroPedido() {
 export function ImportePedidoCreado({ parte }: { parte: 'total' | 'iva' }) {
   const { pedido } = usePedidoCreado();
   const t = totales(pedido?.lineas ?? []);
-  const envio = pedido ? (costeEnvio(pedido.entrega) ?? 0) : 0;
+  const envio = pedido ? envioDe(pedido) : 0;
   return <>{formatEUR(parte === 'total' ? t.total + envio : t.iva)}</>;
 }
 
@@ -144,13 +144,13 @@ export function ResumenPedidoCreado({ titulo }: { titulo?: string }) {
         </Link>
       </div>
     );
-  return <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo={titulo} entrega={pedido.entrega} />;
+  return <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo={titulo} entrega={pedido.entrega} envio={envioDe(pedido)} />;
 }
 
 /** Línea de envío del pedido recién creado ("Gratis", "Se confirma por WhatsApp"…) */
 export function EnvioPedidoCreado() {
   const { pedido } = usePedidoCreado();
-  return <>{pedido ? textoEnvio(pedido.entrega) : '…'}</>;
+  return <>{pedido ? textoImporteEnvio(envioDe(pedido)) : '…'}</>;
 }
 
 /** Método, día y franja del pedido recién creado */

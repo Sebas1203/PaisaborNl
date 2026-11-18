@@ -9,7 +9,7 @@ import { nombreCategoria, STOCK_BAJO_UMBRAL } from '@/config/inventario';
 import { CabeceraAdmin, PaginaAdmin, Tabla, TarjetaDato } from '@/features/admin/ui';
 import { useCarga } from '@/hooks/useCarga';
 import { formatEUR, formatFechaHora } from '@/lib/format';
-import { totales } from '@/lib/pedidos';
+import { totalPedido } from '@/lib/pedidos';
 import { inventarioService, pedidosService, reservasService } from '@/services';
 
 const mismoDia = (a: Date, b: Date) => a.toDateString() === b.toDateString();
@@ -29,7 +29,7 @@ export default function AdminResumenPage() {
   const stockBajo = inventario.filter((i) => i.stock < STOCK_BAJO_UMBRAL).sort((a, b) => a.stock - b.stock);
   const ventasMes = pedidos
     .filter((p) => p.estado !== 'cancelado' && mismoMes(new Date(p.fecha), hoy))
-    .reduce((acc, p) => acc + totales(p.lineas).total, 0);
+    .reduce((acc, p) => acc + totalPedido(p), 0);
   const fechaHoy = hoy.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
 
   return (
@@ -82,7 +82,7 @@ export default function AdminResumenPage() {
                       <td className="px-4 py-3">
                         <EstadoBadge estado={p.estado} />
                       </td>
-                      <td className="px-4 py-3 font-semibold text-primary whitespace-nowrap">{formatEUR(totales(p.lineas).total)}</td>
+                      <td className="px-4 py-3 font-semibold text-primary whitespace-nowrap">{formatEUR(totalPedido(p))}</td>
                     </tr>
                   ))}
                 </Tabla>

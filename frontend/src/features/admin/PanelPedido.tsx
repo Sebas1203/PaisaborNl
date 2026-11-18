@@ -8,7 +8,7 @@ import { ConfirmDialog } from '@/components/ui/Modal';
 import { DatosEntrega } from '@/components/order/DatosEntrega';
 import { PagoDePrueba } from '@/components/order/PagoDePrueba';
 import { formatFechaHora, ORDER_STATUS_LABELS } from '@/lib/format';
-import { lineasGuardadasConItem, puedeCancelar, siguienteEstado } from '@/lib/pedidos';
+import { envioDe, lineasGuardadasConItem, puedeCancelar, siguienteEstado } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
 import { mensajeDeError, pedidosService, type Pedido } from '@/services';
 import { botonPeligro, botonPrimario } from './ui';
@@ -74,7 +74,7 @@ export function PanelPedido({ pedido, onActualizado, onCerrar }: { pedido: Pedid
       </section>
 
       <section className="space-y-4 bg-surface-container rounded-xl p-4 sm:p-5">
-        <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Ítems" entrega={pedido.entrega} />
+        <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Ítems" entrega={pedido.entrega} envio={envioDe(pedido)} />
       </section>
 
       <section className="space-y-3">

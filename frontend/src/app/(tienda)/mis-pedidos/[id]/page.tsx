@@ -14,7 +14,7 @@ import { ConfirmDialog } from '@/components/ui/Modal';
 import { whatsappLink } from '@/config/contact';
 import { useCarga } from '@/hooks/useCarga';
 import { formatFechaHora } from '@/lib/format';
-import { lineasGuardadasConItem, puedeCancelar } from '@/lib/pedidos';
+import { envioDe, lineasGuardadasConItem, puedeCancelar } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
 import { mensajeDeError, pedidosService } from '@/services';
 
@@ -99,7 +99,7 @@ export default function MiPedidoPage() {
                   </div>
                 </section>
                 <section className="lg:col-span-7 bg-surface-container rounded-xl p-6 sm:p-8 space-y-5">
-                  <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Productos" entrega={pedido.entrega} />
+                  <ResumenPedido lineas={lineasGuardadasConItem(pedido.lineas)} titulo="Productos" entrega={pedido.entrega} envio={envioDe(pedido)} />
                 </section>
               </div>
               <section className="mt-10 bg-surface-container-low rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">

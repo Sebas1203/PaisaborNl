@@ -10,7 +10,7 @@ import { EstadoBadge } from '@/components/order/EstadoPedido';
 import { EstadoError, EstadoVacio, Skeleton } from '@/components/ui/Estados';
 import { useCarga } from '@/hooks/useCarga';
 import { formatEUR, formatFechaHora } from '@/lib/format';
-import { totales } from '@/lib/pedidos';
+import { totalPedido } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
 import { pedidosService } from '@/services';
 
@@ -107,7 +107,7 @@ export default function PerfilPage() {
                       </div>
                       <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto gap-2">
                         <EstadoBadge estado={pedido.estado} />
-                        <span className="font-bold text-primary">{formatEUR(totales(pedido.lineas).total)}</span>
+                        <span className="font-bold text-primary">{formatEUR(totalPedido(pedido))}</span>
                       </div>
                     </Link>
                   );

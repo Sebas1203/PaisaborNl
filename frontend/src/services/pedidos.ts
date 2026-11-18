@@ -65,6 +65,7 @@ export function aPedidoPublico(p: Pedido): PedidoPublico {
     entrega: p.entrega,
     fechaEntrega: p.fechaEntrega,
     franja: p.franja,
+    estadoPago: p.estadoPago ?? 'simulado',
     lineas: p.lineas,
     historial: p.historial.map(({ estado, fecha }) => ({ estado, fecha })),
   };
@@ -138,6 +139,8 @@ export const mockPedidosService: PedidosService = {
             }
           : undefined,
       notas: datos.notas?.trim() || undefined,
+      // PROTOTIPO: sin pasarela, el pago siempre es de prueba (no se cobra nada)
+      estadoPago: 'simulado',
       lineas,
       historial: [{ estado: 'pendiente', fecha: ahora, por: datos.cliente }],
     };

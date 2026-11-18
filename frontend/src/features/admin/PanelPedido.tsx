@@ -6,6 +6,7 @@ import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { AvisoError } from '@/components/ui/Estados';
 import { ConfirmDialog } from '@/components/ui/Modal';
 import { DatosEntrega } from '@/components/order/DatosEntrega';
+import { PagoDePrueba } from '@/components/order/PagoDePrueba';
 import { formatFechaHora, ORDER_STATUS_LABELS } from '@/lib/format';
 import { lineasGuardadasConItem, puedeCancelar, siguienteEstado } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
@@ -66,6 +67,9 @@ export function PanelPedido({ pedido, onActualizado, onCerrar }: { pedido: Pedid
         </div>
         <div className="bg-surface-container-low rounded-lg p-3.5">
           <DatosEntrega entrega={pedido.entrega} fechaEntrega={pedido.fechaEntrega} franja={pedido.franja} direccion={pedido.direccion} notas={pedido.notas} />
+          <div className="mt-3">
+            <PagoDePrueba estado={pedido.estadoPago} />
+          </div>
         </div>
       </section>
 

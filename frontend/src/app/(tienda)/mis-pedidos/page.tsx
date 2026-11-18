@@ -5,9 +5,11 @@
 import Link from 'next/link';
 import { ItemImage } from '@/components/ItemImage';
 import { EstadoBadge } from '@/components/order/EstadoPedido';
+import { PagoDePrueba } from '@/components/order/PagoDePrueba';
 import { EstadoError, EstadoVacio, Skeleton } from '@/components/ui/Estados';
 import { whatsappLink } from '@/config/contact';
 import { useCarga } from '@/hooks/useCarga';
+import { formatFechaEntrega } from '@/lib/entrega';
 import { formatEUR, formatFechaHora, IVA_INCLUIDO } from '@/lib/format';
 import { totales } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
@@ -86,9 +88,13 @@ export default function MisPedidosPage() {
                           <div className="flex flex-wrap items-center gap-2">
                             <span className="font-headline font-bold text-primary group-hover:text-secondary transition-colors">#{pedido.id}</span>
                             <EstadoBadge estado={pedido.estado} />
+                            <PagoDePrueba estado={pedido.estadoPago} compacto />
                           </div>
                           <p className="text-xs text-on-surface-variant">
                             {formatFechaHora(pedido.fecha)} · {pedido.entrega === 'domicilio' ? 'A domicilio' : 'Recogida en tienda'}
+                          </p>
+                          <p className="text-xs font-semibold text-primary first-letter:uppercase">
+                            {pedido.entrega === 'domicilio' ? 'Entrega' : 'Recogida'}: {formatFechaEntrega(pedido.fechaEntrega)} · {pedido.franja}
                           </p>
                           <p className="text-sm text-on-surface truncate">
                             {pedido.lineas.map((l) => `${l.nombre} (x${l.cantidad})`).join(', ')}

@@ -8,7 +8,7 @@ import { FormularioPresupuesto } from '@/features/catering/FormularioPresupuesto
 import { PLATOS } from '@/data';
 import { formatEUR, IVA_INCLUIDO } from '@/lib/format';
 import { whatsappLink, WHATSAPP_DISPLAY } from '@/config/contact';
-import { CATERING_ANTICIPACION_HORAS, textoRespuesta } from '@/config/catering';
+import { textoAnticipacion, textoRespuesta } from '@/config/catering';
 
 const PLATOS_CATERING = PLATOS.filter((plato) => plato.disponible);
 
@@ -67,11 +67,11 @@ export default function CateringPage() {
                   </div>
                   <div className="space-y-1">
                     <span className="font-headline font-bold text-2xl text-secondary-container block">
-                      Sin cobro
+                      Pendiente
                     </span>
                     {' '}
                     <span className="text-xs text-outline-variant leading-tight block">
-                      Pedir presupuesto no tiene coste
+                      Tu solicitud queda pendiente hasta que la confirmemos
                     </span>
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export default function CateringPage() {
                 </span>
                 {' '}
                 <span className="text-sm font-medium text-on-surface">
-                  Presupuesto sin compromiso
+                  Reserva pendiente de confirmación
                 </span>
               </div>
               <div className="flex items-center gap-3">
@@ -135,7 +135,7 @@ export default function CateringPage() {
                 </span>
                 {' '}
                 <span className="text-sm font-medium text-on-surface">
-                  Entrega en Ámsterdam (logística por confirmar)
+                  Entrega y logística por confirmar
                 </span>
               </div>
             </div>
@@ -205,7 +205,7 @@ export default function CateringPage() {
                     2
                   </div>
                   <h3 className="font-headline font-bold text-lg text-primary">
-                    Reserva con Mínimo {CATERING_ANTICIPACION_HORAS}h de Anticipación
+                    Revisamos tu solicitud ({textoAnticipacion().toLowerCase()})
                   </h3>
                   <p className="text-sm text-on-surface-variant leading-relaxed">
                     Revisamos la disponibilidad y la logística, confirmamos el número de invitados y te enviamos el presupuesto final {textoRespuesta()}.
@@ -219,7 +219,7 @@ export default function CateringPage() {
                     Entrega o recogida
                   </h3>
                   <p className="text-sm text-on-surface-variant leading-relaxed">
-                    Coordinamos contigo la entrega en el lugar del evento o la recogida en nuestra sede. La logística se confirma junto con el presupuesto.
+                    Las opciones de entrega o recogida y la logística están por confirmar; las acordamos contigo junto con el presupuesto.
                   </p>
                 </div>
               </div>
@@ -230,7 +230,7 @@ export default function CateringPage() {
               <div className="bg-surface-container rounded-2xl p-8 sm:p-12 lg:p-16 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 <div className="lg:col-span-5 space-y-6">
                   <span className="text-xs font-label uppercase tracking-widest text-secondary font-bold">
-                    Presupuesto sin compromiso
+                    Solicitud de presupuesto
                   </span>
                   <h2 className="font-headline font-bold text-3xl sm:text-4xl text-primary leading-tight">
                     Arma el menú para tu evento
@@ -248,7 +248,8 @@ export default function CateringPage() {
                           Dónde
                         </p>
                         <p className="text-xs text-on-surface-variant">
-                          Ámsterdam. Si tu evento es en otra ciudad, indícalo y te confirmamos si podemos llegar.
+                          Zona de cobertura por confirmar. Indícanos la ciudad y el código postal del evento y te confirmamos si podemos llegar.
+                          {/* TODO (Diana): zona de cobertura del catering */}
                         </p>
                       </div>
                     </div>

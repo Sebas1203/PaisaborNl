@@ -21,8 +21,10 @@ export interface BorradorCatering {
   fecha: string;
   /** HH:MM, opcional */
   hora: string;
-  /** Ciudad o código postal del evento */
+  /** Ciudad del evento */
   ciudad: string;
+  /** Código postal neerlandés del evento ("1234 AB") */
+  codigoPostal: string;
   nombre: string;
   email: string;
   telefono: string;
@@ -43,6 +45,7 @@ const VACIO: BorradorCatering = {
   fecha: '',
   hora: '',
   ciudad: '',
+  codigoPostal: '',
   nombre: '',
   email: '',
   telefono: '',

@@ -48,7 +48,7 @@ export default function CheckoutPagoPage() {
               <div className="space-y-2">
                 <h1 className="font-headline font-bold text-3xl lg:text-4xl text-primary tracking-tight">Forma de pago</h1>
                 <p className="text-sm text-on-surface-variant max-w-xl leading-relaxed">
-                  En la tienda definitiva se pagará con iDEAL o con tarjeta a través de Mollie. En esta prueba la elección es solo visual.
+                  En esta prueba la elección es solo visual: no se conecta con ningún banco ni se cobra nada.
                 </p>
               </div>
               <fieldset className="space-y-3">

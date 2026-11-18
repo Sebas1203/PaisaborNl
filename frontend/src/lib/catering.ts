@@ -1,10 +1,11 @@
 // Reglas puras del catering: validación de la solicitud y formato de fechas. Las usan los
 // formularios, el servicio de reservas y la confirmación.
 
+import { normalizarCodigoPostal } from '@/lib/entrega';
 import { validarEmail, validarNombre, validarTelefono } from '@/services/auth';
 import type { TipoEvento } from '@/services/tipos';
 
-export type CampoCatering = 'tipoEvento' | 'invitados' | 'fecha' | 'ciudad' | 'nombre' | 'email' | 'telefono' | 'items';
+export type CampoCatering = 'tipoEvento' | 'invitados' | 'fecha' | 'ciudad' | 'codigoPostal' | 'nombre' | 'email' | 'telefono' | 'items';
 export type ErroresCatering = Partial<Record<CampoCatering, string>>;
 
 export interface DatosSolicitudCatering {
@@ -12,6 +13,8 @@ export interface DatosSolicitudCatering {
   invitados: number;
   fecha: string;
   ciudad: string;
+  /** Código postal neerlandés del evento ("1234 AB") */
+  codigoPostal: string;
   nombre: string;
   email: string;
   telefono?: string;
@@ -32,7 +35,10 @@ export function validarSolicitudCatering(d: DatosSolicitudCatering): ErroresCate
   if (!Number.isInteger(d.invitados) || d.invitados < 1) errores.invitados = 'Indica el número de invitados (un número entero mayor que 0).';
   if (!d.fecha) errores.fecha = 'Elige la fecha del evento.';
   else if (d.fecha <= hoyIso()) errores.fecha = 'La fecha del evento debe ser posterior a hoy.';
-  if (!d.ciudad.trim()) errores.ciudad = 'Indica la ciudad o el código postal del evento.';
+  if (!d.ciudad.trim()) errores.ciudad = 'Indica la ciudad del evento.';
+  // Solo formato neerlandés (1234 AB): la zona de cobertura del catering está por confirmar
+  if (!d.codigoPostal?.trim()) errores.codigoPostal = 'Indica el código postal del evento.';
+  else if (!normalizarCodigoPostal(d.codigoPostal)) errores.codigoPostal = 'El código postal debe tener el formato 1234 AB.';
   const nombre = validarNombre(d.nombre);
   if (nombre) errores.nombre = nombre;
   const email = validarEmail(d.email);

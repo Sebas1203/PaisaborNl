@@ -48,7 +48,7 @@ export default function CheckoutErrorPage() {
                 </span>
                 {' '}
                 <span>
-                  Pasarela Segura Mollie
+                  Pago simulado
                 </span>
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function CheckoutErrorPage() {
                         <p className="text-xs text-on-surface-variant font-label pt-0.5">
                           Ref. de intento:{' '}
                           <span className="font-mono text-primary font-semibold">
-                            #MOL-ERR-9821
+                            #EJEMPLO
                           </span>
                         </p>
                       </div>
@@ -88,11 +88,7 @@ export default function CheckoutErrorPage() {
                   </div>
                   <div className="px-8 py-8 space-y-6">
                     <p className="text-base text-on-surface leading-relaxed">
-                      La transacción a través de la pasarela{' '}
-                      <span className="font-semibold text-primary">
-                        Mollie
-                      </span>
-                      {' '}no fue procesada o fue cancelada por la entidad bancaria. Tus productos siguen reservados en tu canasta para que no pierdas tu selección de nuestra cocina artesanal.
+                      El pago de prueba no se completó (ejemplo). Tus productos siguen reservados en tu canasta para que no pierdas tu selección de nuestra cocina artesanal.
                     </p>
                     <div className="rounded-lg bg-surface-container-low p-5 space-y-3">
                       <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-label font-bold text-secondary">
@@ -106,10 +102,10 @@ export default function CheckoutErrorPage() {
                       </div>
                       <div className="space-y-1.5">
                         <p className="text-sm font-semibold text-primary">
-                          Motivo reportado: Tiempo de espera agotado o fondos insuficientes
+                          Motivo (ejemplo): el pago de prueba se interrumpió
                         </p>
                         <p className="text-xs text-on-surface-variant leading-relaxed">
-                          El servidor del emisor no respondió dentro del tiempo reglamentario o no autorizó la retención del saldo. No se ha aplicado ningún cargo a tu cuenta bancaria.
+                          En esta versión de prueba no hay pasarela de pago real y no se hace ningún cargo.
                         </p>
                       </div>
                     </div>
@@ -251,12 +247,12 @@ export default function CheckoutErrorPage() {
                     </span>
                     {' '}
                     <span>
-                      ¿Por qué suelen fallar los pagos con iDEAL?
+                      ¿Dudas sobre el pago de prueba?
                     </span>
                   </a>
                   {' '}
                   <span className="font-label text-[10px] uppercase tracking-wider text-outline">
-                    Ref: Mollie v4
+                    Pantalla de ejemplo
                   </span>
                 </div>
               </div>

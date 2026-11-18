@@ -4,7 +4,7 @@
 
 import { CateringMenuPicker } from '@/components/catering/CateringMenuPicker';
 import { ErrorCampo, ResumenCatering } from '@/components/catering/ResumenCatering';
-import { CATERING_ANTICIPACION_HORAS, CATERING_MAX_PORCIONES, TIPOS_EVENTO } from '@/config/catering';
+import { CATERING_MAX_PORCIONES, textoAnticipacion, TIPOS_EVENTO } from '@/config/catering';
 import { EMAIL_CONTACTO, whatsappLink } from '@/config/contact';
 import { useEnviarSolicitud } from '@/features/catering/useEnviarSolicitud';
 import { hoyIso, type CampoCatering } from '@/lib/catering';
@@ -64,7 +64,7 @@ export default function CateringReservarPage() {
               </div>
               <div className="flex items-center gap-1.5 bg-surface-container-low px-3 py-1.5 rounded-lg text-xs font-label text-on-surface-variant self-start md:self-end">
                 <span className="material-symbols-outlined text-secondary text-sm">schedule</span>
-                <span>Reserva mínima {CATERING_ANTICIPACION_HORAS}h antes</span>
+                <span>{textoAnticipacion()}</span>
               </div>
             </div>
           </section>
@@ -84,7 +84,7 @@ export default function CateringReservarPage() {
                       </label>
                       <input className={inputClass} id="event-date" type="date" min={minFecha} value={borrador.fecha} onChange={(e) => actualizar({ fecha: e.target.value })} {...invalido('fecha')} />
                       <ErrorCampo id="fecha-error" mensaje={errores.fecha} />
-                      <span className="text-[11px] text-on-surface-variant">Se requiere confirmación mínima con {CATERING_ANTICIPACION_HORAS}h de anticipación.</span>
+                      <span className="text-[11px] text-on-surface-variant">{textoAnticipacion()}.</span>
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <label className={labelClass} htmlFor="event-time">
@@ -153,10 +153,17 @@ export default function CateringReservarPage() {
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <label className={labelClass} htmlFor="city">
-                        Ciudad o código postal *
+                        Ciudad *
                       </label>
-                      <input className={inputClass} id="city" placeholder="Ej. Ámsterdam o 1012 AB" value={borrador.ciudad} onChange={(e) => actualizar({ ciudad: e.target.value })} {...invalido('ciudad')} />
+                      <input className={inputClass} id="city" placeholder="Ej. Ámsterdam" value={borrador.ciudad} onChange={(e) => actualizar({ ciudad: e.target.value })} {...invalido('ciudad')} />
                       <ErrorCampo id="ciudad-error" mensaje={errores.ciudad} />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className={labelClass} htmlFor="postcode">
+                        Código postal *
+                      </label>
+                      <input className={`${inputClass} uppercase`} id="postcode" placeholder="1234 AB" autoComplete="postal-code" value={borrador.codigoPostal} onChange={(e) => actualizar({ codigoPostal: e.target.value })} {...invalido('codigoPostal')} />
+                      <ErrorCampo id="codigoPostal-error" mensaje={errores.codigoPostal} />
                     </div>
                   </div>
                   <p className="text-[11px] text-on-surface-variant">La dirección exacta y la logística de entrega se confirman con el presupuesto.</p>

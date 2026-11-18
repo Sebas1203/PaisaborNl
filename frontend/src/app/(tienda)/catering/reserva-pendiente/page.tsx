@@ -102,7 +102,7 @@ function Confirmacion({ reserva }: { reserva: Reserva }) {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Dato icono="event" etiqueta="Fecha & hora" valor={formatFechaEvento(reserva.fecha)} detalle={reserva.hora ? `${reserva.hora} h` : 'Hora por confirmar'} />
-            <Dato icono="location_on" etiqueta="Lugar del evento" valor={reserva.ciudad} detalle="Dirección exacta y logística por confirmar" />
+            <Dato icono="location_on" etiqueta="Lugar del evento" valor={reserva.codigoPostal ? `${reserva.codigoPostal} ${reserva.ciudad}` : reserva.ciudad} detalle="Dirección exacta y logística por confirmar" />
             <Dato icono="group" etiqueta="Invitados" valor={`${reserva.invitados} invitados`} />
             <Dato icono="celebration" etiqueta="Tipo de evento" valor={TIPO_EVENTO_LABELS[reserva.tipoEvento]} />
           </div>
@@ -124,7 +124,7 @@ function Confirmacion({ reserva }: { reserva: Reserva }) {
             <span className="text-xs font-label font-bold uppercase tracking-widest text-secondary block">Hoja de ruta</span>
             <h2 className="font-headline text-xl sm:text-2xl font-bold text-primary mt-1">¿Qué sucede a continuación?</h2>
           </div>
-          <span className="text-xs text-outline font-label">Respuesta {textoRespuesta()}</span>
+          <span className="text-xs text-outline font-label">Respuesta: {textoRespuesta()}</span>
         </div>
         <ol className="space-y-6">
           {PASOS.map((paso, i) => (

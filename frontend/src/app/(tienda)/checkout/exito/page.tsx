@@ -136,7 +136,7 @@ export default function CheckoutExitoPage() {
                         </h2>
                       </div>
                       <p className="text-xs text-on-surface-variant leading-relaxed">
-                        No se ha cobrado nada. En la tienda definitiva se pagará con iDEAL o tarjeta a través de Mollie.
+                        Pago de prueba: no se ha cobrado nada ni se ha conectado con ningún banco.
                       </p>
                     </div>
                     <div className="bg-surface-bright p-3 rounded-lg mt-2 flex items-center justify-between">

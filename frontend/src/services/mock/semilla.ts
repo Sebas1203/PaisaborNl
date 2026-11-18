@@ -114,6 +114,7 @@ function pedidoSemilla(
     fechaEntrega: isoDia(new Date(creado + DIA)),
     franja: FRANJAS[entrega][1],
     direccion: entrega === 'domicilio' ? cliente.direccion : undefined,
+    estadoPago: 'simulado',
     lineas: lineas.flatMap(([id, cantidad]) => {
       const item = itemPorId(id);
       return item ? [{ id, cantidad, nombre: item.nombre, precio: item.precio, imagen: item.imagen }] : [];
@@ -179,6 +180,7 @@ function reservaSemilla(
     invitados,
     fecha: isoDia(new Date(Date.now() + diasDesdeHoy * DIA)),
     ciudad: 'Ámsterdam',
+    codigoPostal: cliente.direccion.codigoPostal,
     nombre: cliente.nombre,
     email: cliente.email,
     items,

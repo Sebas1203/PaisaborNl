@@ -4,6 +4,7 @@
 
 import { itemPorId } from '@/data';
 import { validarSolicitudCatering } from '@/lib/catering';
+import { normalizarCodigoPostal } from '@/lib/entrega';
 import { RESERVATION_STATUS_LABELS } from '@/lib/format';
 import { calcularTotales } from '@/lib/precios';
 import { ServiceError } from './errores';
@@ -81,6 +82,7 @@ export const mockReservasService: ReservasService = {
       fecha: datos.fecha,
       hora: datos.hora || undefined,
       ciudad: datos.ciudad.trim(),
+      codigoPostal: normalizarCodigoPostal(datos.codigoPostal) ?? datos.codigoPostal.trim(),
       nombre: datos.nombre.trim(),
       email: datos.email.trim(),
       telefono: datos.telefono?.trim() || undefined,

@@ -75,7 +75,7 @@ function DetalleReserva({ reserva, onActualizada, onCerrar }: { reserva: Reserva
         {dato('Hora', reserva.hora ? `${reserva.hora} h` : 'Por confirmar')}
         {dato('Invitados', `${reserva.invitados} (${porciones(reserva)} porciones)`)}
         {dato('Tipo de evento', TIPO_EVENTO_LABELS[reserva.tipoEvento])}
-        {dato('Lugar', reserva.ciudad)}
+        {dato('Lugar', reserva.codigoPostal ? `${reserva.codigoPostal} ${reserva.ciudad}` : reserva.ciudad)}
       </div>
       <section className="bg-surface-container rounded-xl p-4 space-y-4">
         <LineasCatering variante="tabla" lineas={reserva.items} />

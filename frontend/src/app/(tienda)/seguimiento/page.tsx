@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { DatosEntrega } from '@/components/order/DatosEntrega';
+import { PagoDePrueba } from '@/components/order/PagoDePrueba';
 import { EstadoBadge, LineaEstados } from '@/components/order/EstadoPedido';
 import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { AvisoError, Skeleton } from '@/components/ui/Estados';
@@ -132,6 +133,9 @@ function Seguimiento() {
                   </div>
                   <div className="bg-surface-container-low rounded-xl p-6">
                     <DatosEntrega entrega={pedido.entrega} fechaEntrega={pedido.fechaEntrega} franja={pedido.franja} />
+                    <div className="mt-4">
+                      <PagoDePrueba estado={pedido.estadoPago} />
+                    </div>
                   </div>
                 </div>
                 <div className="lg:col-span-7 bg-surface-container rounded-xl p-6 space-y-5">

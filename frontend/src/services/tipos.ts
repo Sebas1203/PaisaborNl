@@ -40,6 +40,12 @@ export interface LineaPedidoGuardada extends LineaPedido {
   imagen: string;
 }
 
+/**
+ * Estado del pago del pedido. En el prototipo solo existe "simulado" (no se cobra nada).
+ * TODO (backend): con Mollie, 'pendiente' | 'pagado' | 'fallido' desde el webhook.
+ */
+export type EstadoPago = 'simulado';
+
 export interface CambioEstado {
   estado: OrderStatus;
   /** Fecha y hora ISO */
@@ -67,6 +73,8 @@ export interface Pedido {
   /** Solo en pedidos a domicilio */
   direccion?: DireccionEntrega;
   notas?: string;
+  /** Opcional solo por los pedidos guardados antes de añadirlo (todos eran simulados) */
+  estadoPago?: EstadoPago;
   lineas: LineaPedidoGuardada[];
   historial: CambioEstado[];
 }
@@ -83,6 +91,7 @@ export interface PedidoPublico {
   entrega: DeliveryMethod;
   fechaEntrega: string;
   franja: string;
+  estadoPago: EstadoPago;
   lineas: LineaPedidoGuardada[];
   historial: Pick<CambioEstado, 'estado' | 'fecha'>[];
 }
@@ -158,8 +167,10 @@ export interface Reserva {
   fecha: string;
   /** HH:MM, si el cliente la indicó */
   hora?: string;
-  /** Ciudad, código postal o dirección del evento */
+  /** Ciudad del evento */
   ciudad: string;
+  /** "1234 AB". Opcional solo por las reservas guardadas antes de pedirlo */
+  codigoPostal?: string;
   nombre: string;
   email: string;
   telefono?: string;
@@ -178,6 +189,7 @@ export interface NuevaReserva {
   fecha: string;
   hora?: string;
   ciudad: string;
+  codigoPostal: string;
   nombre: string;
   email: string;
   telefono?: string;

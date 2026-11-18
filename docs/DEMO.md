@@ -93,8 +93,9 @@ dos sesiones a la vez.
    pendiente se puede **cancelar** (pide confirmación).
 7. **Catering**: `/catering/reservar` → elige varios platos con sus porciones (p. ej. 10 bandeja paisa,
    8 bowl montañero y 7 lechona para 25 invitados). El resumen calcula subtotal, base sin IVA, IVA 9 %
-   y total estimado. Al enviar se crea la reserva `RES-…` y `/catering/reserva-pendiente` muestra los
-   mismos números. La reserva aparece en `/admin/reservas`.
+   y total estimado. Pide ciudad y código postal neerlandés (`1234 AB`). Al enviar se crea la reserva
+   `RES-…` en estado **pendiente de confirmación** y `/catering/reserva-pendiente` muestra los mismos
+   números. La reserva aparece en `/admin/reservas`.
 
 ### Admin
 
@@ -153,8 +154,9 @@ dos sesiones a la vez.
   aceptar un aviso de privacidad breve antes de pasar al pago.
 - Composición y precio por persona de los menús de catering (hoy hay un menú por plato típico con
   precio **estimado**).
-- Catering: tiempo de respuesta (`CATERING_RESPUESTA_HORAS` = 24) y anticipación mínima (72 h) en
-  `src/config/catering.ts`, y qué servicios incluye (vajilla, montaje, personal, transporte).
+- Catering (`src/config/catering.ts`): tiempo de respuesta y anticipación mínima (hoy `null`: las
+  pantallas dicen «por confirmar»), zona de cobertura y qué servicios incluye (vajilla, montaje,
+  personal, transporte).
 - Tipo de IVA (9 % o 21 %) de bebidas y platos preparados, a confirmar con el contador.
 - Alérgenos y descripciones de cada plato.
 - Afirmaciones del negocio retiradas hasta confirmarlas: cifras de invitados atendidos, HACCP,

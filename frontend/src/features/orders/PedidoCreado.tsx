@@ -12,6 +12,7 @@ import { formatEUR } from '@/lib/format';
 import { lineasGuardadasConItem, totales } from '@/lib/pedidos';
 import { useAuth } from '@/providers/AuthProvider';
 import { mensajeDeError, pedidosService, type PedidoPublico } from '@/services';
+import { aPedidoPublico } from '@/services/pedidos';
 
 // Confirmación de compra: crea el pedido (estado "pendiente") con el carrito y los datos de
 // entrega del checkout, y lo expone a las piezas de la pantalla /checkout/exito.
@@ -92,7 +93,7 @@ export function PedidoCreadoProvider({ children }: { children: React.ReactNode }
           clearLastOrder();
           borrarDatosCheckout();
           vaciarCarrito.current();
-          return pedido;
+          return aPedidoPublico(pedido);
         })
         .finally(() => {
           creando = null;

@@ -71,10 +71,17 @@ export function FormularioPresupuesto() {
         </div>
         <div>
           <label className={labelClass} htmlFor="city">
-            Ciudad o Código Postal en NL *
+            Ciudad *
           </label>
-          <input className={inputClass} id="city" placeholder="Ej. Ámsterdam o 1012 AB" value={borrador.ciudad} onChange={(e) => actualizar({ ciudad: e.target.value })} {...invalido('ciudad')} />
+          <input className={inputClass} id="city" placeholder="Ej. Ámsterdam" value={borrador.ciudad} onChange={(e) => actualizar({ ciudad: e.target.value })} {...invalido('ciudad')} />
           <ErrorCampo id="ciudad-error" mensaje={errores.ciudad} />
+        </div>
+        <div>
+          <label className={labelClass} htmlFor="postcode">
+            Código postal *
+          </label>
+          <input className={`${inputClass} uppercase`} id="postcode" placeholder="1234 AB" autoComplete="postal-code" value={borrador.codigoPostal} onChange={(e) => actualizar({ codigoPostal: e.target.value })} {...invalido('codigoPostal')} />
+          <ErrorCampo id="codigoPostal-error" mensaje={errores.codigoPostal} />
         </div>
       </div>
       <div className="space-y-2">

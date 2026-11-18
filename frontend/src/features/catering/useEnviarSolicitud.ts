@@ -33,6 +33,7 @@ export function useEnviarSolicitud() {
         fecha: borrador.fecha,
         hora: borrador.hora,
         ciudad: borrador.ciudad,
+        codigoPostal: borrador.codigoPostal,
         nombre: borrador.nombre,
         email: borrador.email,
         telefono: borrador.telefono,

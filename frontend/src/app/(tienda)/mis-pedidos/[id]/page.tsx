@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import { DatosEntrega } from '@/components/order/DatosEntrega';
+import { PagoDePrueba } from '@/components/order/PagoDePrueba';
 import { EstadoBadge, LineaEstados } from '@/components/order/EstadoPedido';
 import { ResumenPedido } from '@/components/order/ResumenPedido';
 import { AvisoError, EstadoError, EstadoVacio, Skeleton } from '@/components/ui/Estados';
@@ -92,6 +93,9 @@ export default function MiPedidoPage() {
                   </div>
                   <div className="bg-surface-container-low rounded-xl p-6">
                     <DatosEntrega entrega={pedido.entrega} fechaEntrega={pedido.fechaEntrega} franja={pedido.franja} direccion={pedido.direccion} notas={pedido.notas} />
+                    <div className="mt-4">
+                      <PagoDePrueba estado={pedido.estadoPago} />
+                    </div>
                   </div>
                 </section>
                 <section className="lg:col-span-7 bg-surface-container rounded-xl p-6 sm:p-8 space-y-5">

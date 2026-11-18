@@ -165,7 +165,7 @@ dos sesiones a la vez.
   empresas. Si Diana las confirma, se pueden volver a poner.
 - Correos de Google Workspace, segunda sede y horarios.
 - Costo de envío: única fuente en `src/config/envio.ts` (recogida = gratis; domicilio = 10 €).
-  Cada pedido guarda el envío que pagó. Falta confirmar con el contador el IVA del envío (hoy el
-  desglose de base e IVA es solo de los productos y el envío se suma al total).
+  Cada pedido guarda el envío que pagó. El envío no lleva IVA: el desglose de base e IVA es solo
+  de los productos y el envío se suma al total.
 - Entrega (`src/config/entrega.ts`): franjas reales de reparto y recogida (hoy son las del diseño),
   anticipación mínima y máxima, y **zona de reparto** por código postal (sin definir: no se filtra).

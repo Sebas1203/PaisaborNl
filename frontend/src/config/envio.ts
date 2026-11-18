@@ -7,8 +7,8 @@ import type { DeliveryMethod } from '@/types';
  * Euros con IVA incluido. null = aún sin precio: se confirma con el cliente por WhatsApp.
  * Domicilio: 10 € fijos (definido el 2026-11-18). Cada pedido guarda el envío que pagó
  * (Pedido.envio), así que cambiar este valor no altera los pedidos ya hechos.
- * TODO (contador): confirmar el IVA del envío; hoy la base y el IVA del desglose son solo de
- * los productos y el envío se suma aparte al total.
+ * El envío no lleva IVA (confirmado el 2026-11-18): la base y el IVA del desglose son solo de
+ * los productos y el envío se suma tal cual al total.
  */
 export const COSTE_ENVIO: Record<DeliveryMethod, number | null> = {
   recogida: 0,
